@@ -70,3 +70,7 @@ temp/
 # Optional: Source maps (if you generate them)
 # *.map
 
+
+# Large source logo originals (optimized versions committed instead)
+image/ham_logo.png
+image/yazili_logo.png

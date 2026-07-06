@@ -1,6 +1,6 @@
 # HatsonTech Corporate Website
 
-![HatsonTech Logo](./image/hatsontech-logo.svg)
+![HatsonTech Logo](./image/hatsontech-logo.png)
 
 **Software Solutions & Innovation.**
 *Yazılım Çözümleri ve İnovasyon.*
@@ -85,7 +85,7 @@ hatsontech/
 │   ├── main.js               # Interactivity, language switch, forms
 │   └── translations.js       # Bilingual content (EN/TR)
 ├── image/
-│   ├── hatsontech-logo.svg   # Logo (also favicon)
+│   ├── hatsontech-logo.png   # Logo (also favicon)
 │   └── faydali-bilgiler/     # Blog article images
 ├── insights/                 # Blog — English
 ├── faydali-bilgiler/         # Blog — Turkish
