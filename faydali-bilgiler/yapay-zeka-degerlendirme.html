@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yapay zekâ modelleri nasıl değerlendirilir? Benchmark'lar, kontaminasyon, görev odaklı testler, LLM yargıçlar ve halüsinasyon ölçümü sade bir dille anlatılıyor.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bir Yapay Zekânın &quot;İyi&quot; Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme">
+  <meta property="og:description" content="Yapay zekâ modelleri nasıl değerlendirilir? Benchmark'lar, kontaminasyon, görev odaklı testler, LLM yargıçlar ve halüsinasyon ölçümü sade bir dille anlatılıyor.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Bir Yapay Zekânın &quot;İyi&quot; Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme">
+  <meta name="twitter:description" content="Yapay zekâ modelleri nasıl değerlendirilir? Benchmark'lar, kontaminasyon, görev odaklı testler, LLM yargıçlar ve halüsinasyon ölçümü sade bir dille anlatılıyor.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg">
+  <title>Bir Yapay Zekânın "İyi" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Bir Yapay Zekânın \"İyi\" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme",
+  "description": "Yapay zekâ modelleri nasıl değerlendirilir? Benchmark'lar, kontaminasyon, görev odaklı testler, LLM yargıçlar ve halüsinasyon ölçümü sade bir dille anlatılıyor.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg",
+  "articleSection": "Mühendislik",
+  "keywords": "Değerlendirme, Benchmark, LLM, Halüsinasyon, Kalite"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Bir Yapay Zekânın \"İyi\" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme",
+      "item": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Bir Yapay Zekânın "İyi" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg" alt="Bir Yapay Zekânın &quot;İyi&quot; Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>Bir Yapay Zekânın "İyi" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme</h1>
+    <p class="article-sub">Liderlik tablolarındaki yüzdeler gerçekte ne anlatır, benchmark'lar nerede yanıltır ve bir modelin işe yarayıp yaramadığını asıl ne kanıtlar? Sade bir rehber.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 dk okuma</span><div class="article-tags"><span class="article-tag">Değerlendirme</span><span class="article-tag">Benchmark</span><span class="article-tag">LLM</span><span class="article-tag">Halüsinasyon</span><span class="article-tag">Kalite</span></div></div>
+    <div class="article-body">
+<h2>"İyi model" demek aslında ne demek?</h2>
+<p>Yeni bir yapay zekâ modeli çıktığında manşet hep aynı: "X modeli şu testte %94 aldı, rekor kırdı." Kulağa bir sınav notu gibi geliyor ve içimizdeki öğrenci anlamış gibi başını sallıyor. Ama bir saniye durup düşünelim: %94, neyin %94'ü? Hangi soruların? Kim puanladı? Ve en önemlisi, bu sayı, yarın o modele soracağınız soruda işe yarayıp yaramayacağı hakkında ne söylüyor?</p>
+<p>Bir modelin "iyi" olması tek boyutlu bir şey değildir. Şiir yazmakta harika olan bir model, bir sözleşmedeki tek bir olumsuzluk ekini atladığı için tam tersi bir sonuca varabilir. Hızlı ama dikkatsiz olabilir; ya da yavaş ama titiz. Bir dilde parlak, başka bir dilde tutuk olabilir. Yani "iyi mi?" sorusunun cevabı her zaman "ne için iyi?" diye başlar.</p>
+<p>Değerlendirme (İngilizcesiyle evaluation, sektörde kısaca eval) işte bu soruyu sistematik biçimde sormanın yoludur. Bir modelin ne kadar doğru, ne kadar tutarlı, ne kadar güvenli ve ne kadar işe yarar olduğunu ölçme disiplinidir. Bu yazıda değerlendirmenin neden sandığınızdan çok daha zor olduğunu, benchmark dediğimiz standart sınavların nereye kadar güvenilir olduğunu, insan gözünün neden hâlâ vazgeçilmez olduğunu ve sonunda en önemli testin neden gerçek dünya olduğunu adım adım anlatacağız.</p>
+<h2>Neden değerlendirme bu kadar zor?</h2>
+<p>Bir hesap makinesini test etmek kolaydır: 2+2 yaz, 4 bekle, eşitse doğru. Cevap ya doğrudur ya yanlış, arası yoktur. Ama büyük dil modelleri (LLM'ler, yani metni anlayıp metin üreten yapay zekâlar) böyle çalışmaz. Onlara bir soru sorarsınız, geri serbest ve akıcı bir paragraf gelir. O paragrafın "doğru" olup olmadığını ölçmek, hesap makinesindeki gibi tek bir eşitlik kontrolü değildir.</p>
+<p>İlk zorluk şu: aynı soruya yüzlerce geçerli cevap olabilir. "Bana şu sözleşmenin fesih şartını özetle" dediğinizde model, on farklı kelime dizilişiyle aynı doğru fikri anlatabilir. Hepsi doğrudur ama hiçbiri diğerinin tıpatıp aynısı değildir. Yani sabit bir "cevap anahtarı" ile karşılaştırma çoğu zaman imkânsızdır. Üstüne, modeller olasılıksal çalışır: aynı soruyu iki kez sorarsanız iki farklı cevap alabilirsiniz. Bu da ölçümün üstüne bir belirsizlik katmanı daha ekler.</p>
+<p>İkinci zorluk, "iyi" cevabın çok boyutlu olmasıdır. Bir hukuki yanıt doğru olabilir ama eksik. Eksiksiz olabilir ama anlaşılmaz. Anlaşılır olabilir ama yanlış bir maddeye atıf yapıyordur. Bütün bu boyutları tek bir sayıya sıkıştırmak, bir insanın "iyiliğini" tek bir nota indirgemek kadar kaba bir basitleştirmedir.</p>
+<p>Üçüncü ve belki en sinsi zorluk: değerlendiren kim? Bir matematik probleminde doğru cevabı bilen bir uzman vardır. Ama "bu özet yeterince iyi mi?" sorusunda iki uzman bile farklı düşünebilir. Değerlendirmenin kendisi öznelliğin gölgesinde kalır. İşte tam bu üç zorluk yüzünden sektör, tek bir mükemmel ölçüm aramak yerine birbirini tamamlayan birçok yöntemi yan yana kullanır.</p>
+<h2>Benchmark nedir? Modellerin ortak sınavı</h2>
+<p>Benchmark, farklı modelleri aynı sınava sokmanın yoludur. Önceden hazırlanmış büyük bir soru-cevap setidir: binlerce soru ve her birinin bilinen doğru cevabı. Modeli bu setin üzerinden çalıştırır, kaç soruyu doğru yaptığını sayar ve bir yüzde elde edersiniz. Tıpkı üniversite giriş sınavı gibi: herkes aynı kâğıdı çözer, böylece notlar karşılaştırılabilir hale gelir.</p>
+<p>Yıllar içinde birçok ünlü benchmark ortaya çıktı. MMLU; tarih ve hukuktan tıbba kadar 57 farklı alandan çoktan seçmeli sorular sorarak bir modelin genel bilgisini ölçer. GSM8K, ilkokul düzeyi matematik problemleriyle akıl yürütmeyi test eder. HumanEval ve SWE-bench, modelin kod yazma ve gerçek yazılım hatalarını çözme becerisine bakar. GPQA ise uzman düzeyinde, internette kolayca aranıp bulunamayacak kadar zor fen sorularıyla sınırları zorlar.</p>
+<p>Benchmark'ların güzelliği nesnellik ve karşılaştırılabilirliktir. Herkes aynı testi kullandığında "benim modelim seninkinden iyi" tartışması bir ölçüye dayanır. Yeni bir model çıktığında mühendisler onu dakikalar içinde düzinelerce benchmark'tan geçirip nerede durduğunu görebilir. Alanın bu kadar hızlı ilerlemesinin bir sebebi de budur: ilerlemeyi ölçecek ortak bir cetvelimiz var.</p>
+<p>Ama bu cetvel düşündüğünüzden çok daha eğri olabilir. Ve sektörün 2026'da en çok tartıştığı sorulardan biri tam olarak bu: benchmark'lara ne kadar güvenmeliyiz?</p>
+<h2>Benchmark'ların kör noktaları: kontaminasyon ve doygunluk</h2>
+<p>Benchmark'ların en büyük zaafı, sınava "çalışmış" bir öğrenciyi andırır: ya soruları önceden gördüyse? Buna kontaminasyon (contamination, yani test verilerinin eğitim verisine sızması) deniyor. Modeller, internetten kazınan devasa metin yığınlarıyla eğitiliyor. Popüler benchmark soruları ise yıllardır forumlarda, çözüm kılavuzlarında ve GitHub depolarında dolaşıyor. Yani model o soruyu eğitim sırasında görüp cevabı ezberlemiş olabilir. O zaman yüksek puan, gerçek bir yeteneği değil, sadece iyi bir hafızayı gösterir. MMLU gibi yıllanmış benchmark'lar bu açıdan en kirlenmiş olanlardan sayılıyor.</p>
+<p>İkinci sorun doygunluktur (saturation). Bir test fazla kolaylaştığında ayırt etme gücünü kaybeder. 2026'da en güçlü modeller MMLU'da %88-90'ın üzerinde sıkışmış durumda; bu aralıkta iki model arasındaki birkaç puanlık fark gerçek bir üstünlük mü, yoksa istatistiksel gürültü mü, ayırt etmek çok zor. Daha çarpıcısı GPQA: 2023 sonunda GPT-4 bu testin en zor versiyonu olan GPQA Diamond'da %39 alırken, 2026 başında en üst seviye modeller %94 bandına çıkmış durumda. Oysa PhD'li alan uzmanları bile bu testte ortalama %65 civarında kalıyor. Bir test herkes için kolaylaştığında, artık kimin daha iyi olduğunu söyleyemez.</p>
+<p>Üçüncü ve en insani sorun: benchmark'a göre optimize etme. Bir ölçü hedefe dönüştüğünde, iyi bir ölçü olmaktan çıkar (ekonomide buna Goodhart Yasası denir). Şirketler liderlik tablosunda üste tırmanmak için modellerini doğrudan o testlerde parlayacak şekilde ayarlamaya başlayabilir. Sonuç, benchmark'ta ışıldayan ama gerçek kullanımda hayal kırıklığı yaratan modeller olabilir: sınavdan tam puan alıp dersi hiç anlamamış öğrenci gibi.</p>
+<p>Bunun çözümü olarak alan sürekli yeni, "kirlenmemiş" benchmark'lar üretiyor: modelin eğitim tarihinden sonra yayımlanan sorular ya da hiç kamuya açıklanmayan gizli test setleri. Ama bu bir kovalamaca: her yeni benchmark da zamanla yaşlanır, sızar ve doygunlaşır. İşte bu yüzden tek başına hiçbir benchmark'a iman edilmez.</p>
+<h2>Görev odaklı değerlendirme: genel değil, sizin işiniz</h2>
+<p>Genel benchmark'lar bir modelin geniş yeteneklerini ölçer, ama sizin derdiniz nadiren "genel"dir. Bir hastaneye yapay zekâ kuruyorsanız modelin şiir yazma becerisi sizi hiç ilgilendirmez; tıbbi notları doğru özetleyip özetlemediği ilgilendirir. İşte burada görev odaklı değerlendirme (task-specific eval) devreye girer: modeli, gerçekte yapacağı işin tıpkısı bir test setiyle sınamak.</p>
+<p>Görev odaklı bir eval kurmak için kendi "sınav kâğıdınızı" yazarsınız. Kendi alanınızdan gerçek sorular toplar, her biri için ideal cevabın nasıl görünmesi gerektiğini uzmanlarla birlikte belirler ve modeli bu set üzerinde çalıştırırsınız. Bu set genellikle birkaç yüz dikkatle seçilmiş örnekten oluşur; sayıdan çok kalite ve temsil gücü önemlidir. Amaç, modelin tam da müşterilerinizin gerçekte soracağı türden sorularda nasıl davrandığını görmektir.</p>
+<p>Bu yaklaşımın gücü, ölçtüğünüz şeyin sizin için anlamlı olmasıdır. Liderlik tablosunun zirvesindeki bir model sizin işinizde en iyisi olmayabilir. Çok güçlü ama pahalı bir model, sizin dar göreviniz için, daha küçük ve hızlı bir modelden daha iyi sonuç vermeyebilir. Görev odaklı eval olmadan bunu asla bilemez, yalnızca tahmin edersiniz. İyi ekipler tahmin etmez; ölçer.</p>
+<h2>İnsan değerlendirmesi ve yapay zekânın yapay zekâyı puanlaması</h2>
+<p>Bazı şeyleri otomatik ölçmek imkânsızdır. Bir cevabın "ikna edici", "saygılı" ya da "bir avukatın güveneceği tonda" olup olmadığını hiçbir formül söyleyemez. İşte bu yüzden insan değerlendirmesi (human evaluation) hâlâ altın standarttır. Burada gerçek uzmanlar modelin cevaplarını okur ve puanlar: doğru mu, eksik mi, yanıltıcı mı? Çoğu zaman iki cevap yan yana gösterilir ve değerlendiriciden "hangisi daha iyi?" diye seçmesi istenir; buna eşli karşılaştırma (pairwise comparison) denir ve insanların tek tek mutlak not vermesinden daha tutarlı sonuçlar üretir.</p>
+<p>İnsan değerlendirmesinin sorunu pahalı ve yavaş olmasıdır. Binlerce cevabı uzmanlara okutmak hem zaman alır hem ciddi maliyet getirir. Bu yüzden son yıllarda güçlü bir alternatif yaygınlaştı: LLM-as-a-judge, yani bir yapay zekâ modelinin başka bir modelin cevabını puanlaması. Güçlü bir modele net bir değerlendirme yönergesi (rubrik) verirsiniz; o da yüzlerce cevabı saniyeler içinde, tutarlı biçimde puanlar.</p>
+<p>Şaşırtıcı olan, bunun ne kadar iyi çalışabildiğidir. İyi kurulmuş görevlerde güçlü bir LLM yargıcının insan değerlendiricilerle uyumu %80'in üzerine çıkabiliyor; bu da iki insanın aynı görevde birbiriyle uyuşma oranıyla (yaklaşık %80) hemen hemen aynı. İşte bu yüzden LLM-as-a-judge, ölçekli değerlendirmenin fiilî standardı haline geldi.</p>
+<p>Ama bu yöntemin kendi tuzakları var. Yapay zekâ yargıçları sistematik önyargılar sergileyebilir: ilk gösterilen cevabı kayırma eğilimi (pozisyon önyargısı, bazı testlerde ilk cevaba %75'e varan kayırma görülüyor), daha uzun cevabı otomatik olarak daha iyi sanma (verbosite önyargısı) ya da kendi üslubuna benzeyen metni ödüllendirme. Bu yüzden ciddi ekipler LLM yargıcına körü körüne güvenmez; rubriği somut örneklerle besler, cevapların sırasını rastgele değiştirir ve yargıcın kararlarını düzenli aralıklarla gerçek insan etiketleriyle kalibre eder. Yani yapay zekâ, insanın yerini almaz; insanın erişimini çoğaltır.</p>
+<h2>Halüsinasyon ve doğruluk: en kritik metrik</h2>
+<p>Bir modelin verebileceği en tehlikeli cevap, yanlış olduğunu fark etmediğiniz cevaptır. Halüsinasyon (hallucination), modelin tam bir özgüvenle uydurduğu, gerçekte var olmayan bilgidir: olmayan bir mahkeme kararı, yanlış bir kanun maddesi numarası, hiç söylenmemiş bir alıntı. Model yalan söylemeye çalışmaz; yalnızca bir sonraki kelimeyi tahmin eden bir sistem olduğu için gerçeğe en çok benzeyen ama yanlış olan metni üretebilir. Ve bunu o kadar akıcı yapar ki uzman olmayan bir göz farkı anlamaz.</p>
+<p>İşte bu yüzden halüsinasyon oranı, özellikle hukuk, tıp ve finans gibi alanlarda en kritik metriktir. Sayılar ürkütücü olabilir: Stanford araştırmacılarının 2024'te yaptığı bir çalışma, o dönemin genel amaçlı modellerinin doğrudan hukuki sorularda %58 ile %88 arasında halüsinasyon ürettiğini buldu (GPT-4 %58, Llama 2 %88). Kaynak getirip ona dayanan özel hukuki araştırma araçlarında bu oran daha düşük çıksa da, aynı ekibin bir başka çalışması bu ticari araçların bile sorguların en az altıda birinde hata yaptığını gösterdi. Yani "bu model çok akıllı" demek, "bu model güvenilir" demekle aynı şey değildir.</p>
+<p>Halüsinasyonu ölçmenin birkaç yolu var. RAG (kaynak getirip ona dayanarak cevap üreten sistemler) için en önemli metrik bağlılıktır (faithfulness): modelin söyledikleri, gerçekten verilen kaynaklarda yazıyor mu? Bir başka yaklaşım, aynı soruyu birkaç kez sorup cevapların birbirini tutup tutmadığına bakmaktır; model bir gerçeği biliyorsa tutarlı cevap verir, uyduruyorsa her seferinde farklı şeyler söyleme eğilimindedir. Bu yönteme anlamsal entropi (semantic entropy) deniyor.</p>
+<p>Önemli bir nokta: doğruluğun (accuracy) tek bir yüzü yoktur. Bir model her soruya cevap vermeye çalışıp bazılarını uydurabilir; ya da emin olmadığında "bilmiyorum" diyebilir. Çoğu kritik uygulamada ikincisi çok daha değerlidir. Bu yüzden iyi bir değerlendirme sadece "kaç soruyu doğru bildi" diye sormaz; "yanlış bilirken ne kadar emin görünüyordu" ve "bilmediğini ne sıklıkla kabul etti" diye de sorar.</p>
+<h2>En önemli test: gerçek dünya</h2>
+<p>Bütün benchmark'lar, görev setleri ve insan değerlendirmeleri kontrollü ortamlardır; laboratuvar koşullarıdır. Ama gerçek kullanıcılar laboratuvarda yaşamaz. Gerçek bir avukat, sizin test setinizdeki düzgün soruları sormaz; yazım hatalı, yarım bırakılmış, iki farklı konuyu birbirine karıştıran, bağlamı eksik sorular sorar. İşte bir modelin gerçekten iyi olup olmadığını ancak bu dağınık gerçeklik gösterir.</p>
+<p>Bu yüzden olgun ekipler değerlendirmeyi tek seferlik bir sınav olarak değil, sürekli dönen bir döngü olarak görür. Ürün canlıya çıktıktan sonra gerçek kullanım izlenir (loglar, kullanıcı geri bildirimleri, hangi cevapların düzeltildiği), bu gerçek vakalar yeni test örneklerine dönüştürülür ve eval seti sürekli büyür. Bir de A/B testi vardır: iki farklı model ya da ayar, gerçek kullanıcıların bir kısmına gösterilir ve hangisinin sahada gerçekten daha iyi sonuç verdiği canlı veriyle ölçülür. Hiçbir benchmark bunun yerini tutamaz.</p>
+<p>Gerçek dünya testinin bir de dürüstlük boyutu var. Bir model demoda etkileyici olabilir ama günde binlerce sorgu altında yavaşlayabilir, maliyeti patlayabilir ya da nadir ama tehlikeli hatalar yapabilir. Ölçek, kontrollü testlerin asla yakalayamadığı sorunları gün yüzüne çıkarır. İşte bu yüzden "iyi model mi?" sorusunun nihai cevabı her zaman sahada, gerçek kullanıcıların elinde verilir.</p>
+<h2>HatsonTech yapay zekâ cevaplarını nasıl değerlendiriyor?</h2>
+<p>Gerçek bir işte bir cevabın "oldukça iyi" olması yetmez. Yanlış bir tutar, geçersiz bir stok kaydına yapılan atıf ya da hiç var olmamış bir belge, kullanıcıyı ciddi biçimde yanıltabilir. İşte bu yüzden HatsonAI ile bir müşteriye asistan ya da otomasyon geliştirirken değerlendirmeyi sonradan akla gelen bir kontrol olarak değil, mühendisliğin merkezi olarak ele alıyoruz. Genel bir liderlik tablosunda yüksek puan alan bir model, sizin işinizin kendine özgü diliyle ve verinizle ne kadar başa çıkabildiğini söylemez; bunu ancak alana özgü, görev odaklı değerlendirme gösterebilir.</p>
+<p>Bizim için en kritik metrik bağlılıktır (faithfulness). HatsonAI ile kurduğumuz asistanların çoğu bir RAG sistemidir: önce kurum içi belgeleri ve ilgili kayıtları getirir, sonra cevabı doğrudan bu kaynaklara dayandırır. Değerlendirme sürecimiz tam da bunu sorgular: cevapta belirtilen her bilgi ve her rakam, getirilen gerçek kaynaklarda hakikaten var mı, yoksa model bir şey mi uydurdu? Atıfların kaynaklara izlenebilir biçimde bağlı olması, halüsinasyona karşı en güçlü savunmamızdır. Çünkü kullanıcı, yalnızca cevabı değil, cevabın dayandığı kaynağı da kontrol edebilmelidir.</p>
+<p>Değerlendirmemiz çok katmanlı işler. Alan uzmanlarının hazırladığı, gerçek soruları temsil eden bir test seti üzerinde otomatik kontroller yaparız; bazı yargıları ölçekli biçimde yürütmek için yapay zekâ tabanlı puanlamadan yararlanırız; ama nihai kalite kararını her zaman insan gözü verir. Ve en önemlisi, sistemi gerçek kullanım üzerinden sürekli izler, ortaya çıkan zorlu vakaları test setimize ekler ve böylece döngüyü kapatırız.</p>
+<p>Buradaki amaç, bir öğretici yazının vaadini somut bir disipline dönüştürmektir: "İyi mi?" sorusuna asla tek bir parlak sayıyla cevap vermemek. Bunun yerine doğruluğu, bağlılığı, eksiksizliği ve gerçek dünyadaki güvenilirliği ayrı ayrı ölçmek. Çünkü hata payının dar olduğu bir işte, bir modelin gerçekten iyi olduğunu bilmenin tek dürüst yolu, onu durmadan ve titizlikle ölçmektir.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>"İyi model" tek boyutlu değildir; doğru soru "ne için iyi?" diye başlar ve doğruluk, eksiksizlik, hız, güvenlik gibi boyutları ayrı ayrı ölçmek gerekir.</li><li>Benchmark'lar modelleri aynı sınava sokarak karşılaştırmayı sağlar, ama kontaminasyon (test sorularının eğitim verisine sızması), doygunluk ve benchmark'a göre optimize etme yüzünden yanıltabilir; tek bir teste asla körü körüne güvenmeyin.</li><li>Genel benchmark'lar sizin işinizi ölçmez; kendi alanınızdan toplanmış, gerçek kullanım senaryonuza benzeyen görev odaklı bir test seti çok daha anlamlıdır.</li><li>İnsan değerlendirmesi hâlâ altın standarttır; LLM-as-a-judge (yapay zekânın yapay zekâyı puanlaması) ölçeklenmeyi sağlar ama pozisyon ve verbosite önyargısı gibi sistematik hatalar yüzünden insan etiketleriyle düzenli kalibre edilmelidir.</li><li>Halüsinasyon oranı, özellikle hukuk ve tıp gibi alanlarda en kritik metriktir; doğruluk sadece "kaç doğru" değil, modelin bilmediğini kabul edip etmediğini de kapsar.</li><li>En önemli test gerçek dünyadır: canlı kullanımı izlemek, A/B testi yapmak ve eval setini sürekli büyütmek, hiçbir laboratuvar testinin yakalayamadığı sorunları açığa çıkarır.</li><li>HatsonTech, HatsonAI ile kurduğu RAG tabanlı asistanlarda en çok bağlılık (faithfulness) metriğine odaklanır: her atıf gerçek kaynaklara izlenebilir biçimde bağlıdır ve değerlendirme; otomatik kontroller, yapay zekâ puanlaması ve uzman gözünü birleştiren sürekli bir döngüdür.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

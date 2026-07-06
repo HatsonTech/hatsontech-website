@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A calm, practical look at AI ethics, bias, and safety: how bias enters through data and labels, plus fairness, transparency, privacy (KVKK/GDPR), and where the EU AI Act heads in 2026.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-etigi-onyargi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-etigi-onyargi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI Ethics, Bias, and Safety: A Calm, Practical Guide">
+  <meta property="og:description" content="A calm, practical look at AI ethics, bias, and safety: how bias enters through data and labels, plus fairness, transparency, privacy (KVKK/GDPR), and where the EU AI Act heads in 2026.">
+  <meta property="og:url" content="https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI Ethics, Bias, and Safety: A Calm, Practical Guide">
+  <meta name="twitter:description" content="A calm, practical look at AI ethics, bias, and safety: how bias enters through data and labels, plus fairness, transparency, privacy (KVKK/GDPR), and where the EU AI Act heads in 2026.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg">
+  <title>AI Ethics, Bias, and Safety: A Calm, Practical Guide | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Ethics, Bias, and Safety: A Calm, Practical Guide",
+  "description": "A calm, practical look at AI ethics, bias, and safety: how bias enters through data and labels, plus fairness, transparency, privacy (KVKK/GDPR), and where the EU AI Act heads in 2026.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg",
+  "articleSection": "Society",
+  "keywords": "Yapay Zeka Etiği, Önyargı, Güvenlik, KVKK"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI Ethics, Bias, and Safety: A Calm, Practical Guide",
+      "item": "https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-etigi-onyargi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI Ethics, Bias, and Safety: A Calm, Practical Guide</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg" alt="AI Ethics, Bias, and Safety: A Calm, Practical Guide" loading="lazy">
+    <div class="article-cat">Society</div>
+    <h1>AI Ethics, Bias, and Safety: A Calm, Practical Guide</h1>
+    <p class="article-sub">Where does bias come from, what do fairness and transparency really mean, and what do KVKK and the EU AI Act actually ask of us? A concrete walkthrough, without the lecture.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Yapay Zeka Etiği</span><span class="article-tag">Önyargı</span><span class="article-tag">Güvenlik</span><span class="article-tag">KVKK</span></div></div>
+    <div class="article-body">
+<h2>Ethics Isn't a Garnish — It's an Engineering Problem</h2>
+<p>When people hear 'AI ethics,' they picture something abstract: panels, manifestos, statements of good intent. But for anyone who actually builds and ships a model, ethics, privacy, and safety turn into intensely concrete questions. Who does this system treat unfairly? What happens when it's wrong, and who pays for it? Can it explain what its decision was based on? Could someone who shouldn't see the underlying data end up seeing it? These aren't seminar topics. They're everyday engineering decisions.</p>
+<p>This article isn't here to preach. The goal is to give a curious non-expert — a student, a lawyer, a founder, a working professional — a mental map solid enough to reason about these issues on their own. We'll explain plainly where bias comes from, why fairness has no single definition, what transparency is actually for, and where the rules — Turkey's KVKK and the EU AI Act — are heading.</p>
+<p>Let's start with one foundational idea: AI is not neutral. It looks neutral because it speaks in math and numbers, and numbers always feel objective to us. But every model is a mirror of the data that trained it and the choices of the people who built it. You can't blame a mirror — it shows you whatever you hold up to it. That doesn't make a model bad; it just keeps responsibility where it belongs, on humans. And that's exactly where the ethics conversation begins.</p>
+<h2>Where Bias Comes From: The Story of Data and Labels</h2>
+<p>An AI model learns about the world from the examples it's shown — its 'training data.' If that data doesn't represent reality fairly and evenly, the model learns the distortion, and usually amplifies it. The classic case: a hiring model trained on the résumés of people who were hired in the past. If a certain group was systematically under-hired before, the model quietly builds its template of a 'good candidate' on top of that inequality. No one writes 'discriminate' into the code; the model inherits discrimination straight from the data.</p>
+<p>The second source is labels. In supervised learning, humans assign the meaning: this review is 'positive,' this image is 'cat,' this message is 'spam.' The biases, fatigue, and cultural assumptions of the people doing the labeling seep in quietly. A label like 'offensive language' shifts depending on where the labeler is from and what they treat as normal — one person's joke is another's insult. The model then learns these subjective calls as if they were a fixed law of nature.</p>
+<p>The third and sneakiest source: representation imbalance and feedback loops. A facial recognition system trained mostly on light-skinned faces will make more errors on darker-skinned faces, simply because it hasn't 'seen' enough of them. Worse, once a model is live, its own output shapes tomorrow's data. A crime-prediction tool sends more patrols to an area; more patrols mean more recorded incidents; more incidents make the model rate that area as even 'riskier.' The snake eats its own tail — bias feeds itself.</p>
+<p>The balanced takeaway: bias is not always the product of bad intent. More often it's the product of carelessness, missing data, or the wrong question. That's actually good news, because carelessness is fixable. Treating bias not as a 'bad people' problem but as a measurable, reducible engineering flaw is the first and most important step toward dealing with it.</p>
+<h2>Fairness: There Is No Single Right Definition</h2>
+<p>We toss off the phrase 'a fair model,' but it's surprisingly empty underneath — because fairness has several competing mathematical definitions, and you usually can't satisfy them all at once. Picture a credit model. Does 'fair' mean equal approval rates across every group? Or the model performing with equal accuracy for every group? Or giving the same chance to everyone who actually repays? All three are reasonable, but mathematically, hitting all of them at the same time is, in most cases, impossible. The blanket is too short: cover one end and the other end pokes out.</p>
+<p>This doesn't mean 'fairness is meaningless.' Quite the opposite: it shows that fairness is a value choice. Which definition you pick depends on context, and that's an ethical-political decision, not a technical one. A false negative in medical diagnosis — telling a sick person they're healthy — carries entirely different weight than a false positive in hiring. A good team doesn't say 'our model is fair'; it answers, openly: 'which definition of fairness did we choose, why, and what did that choice cost?'</p>
+<p>The practical upshot: fairness is not a checkbox you tick and forget, it's a balance you keep adjusting. You have to measure the model separately across different groups, compare error rates, make a deliberate choice, and document it. The healthiest mindset treats fairness not as something you 'solve once and shelve,' but as a property you continuously monitor and account for.</p>
+<h2>Transparency and Explainability: Prying Open the Black Box</h2>
+<p>Modern AI models, especially deep neural networks, are often called 'black boxes': you feed in an input, you get an output, but you can't directly read how millions of numerical weights combined to produce that result. The transparency debate is the effort to close that gap. It's important not to conflate two things: process transparency (how was this system built, on what data, with what limits?) and explainability (why did this specific decision come out the way it did?). One is the system's spec sheet; the other is the rationale for a single decision.</p>
+<p>Explainability is critical for trust and accountability. A bank saying 'your loan was denied' isn't enough; for a person to contest it, they need the reasoning. The same holds in healthcare, law, and hiring. A well-designed system can attach an understandable rationale to its output — something like 'these factors contributed most to this result.' A flawless explanation isn't always possible, but no explanation at all is heading somewhere unacceptable.</p>
+<p>An important balancing point: transparency does not mean exposing everything to everyone. Publishing all of a model's parameters is usually neither feasible nor meaningful — no one learns anything from staring at millions of raw numbers. What's actually needed is the right level of information for the right audience: an understandable rationale for the user, technical documentation for the auditor, a compliance record for the regulator. It's better to read transparency as 'no one is left in the dark' than as 'show everything.'</p>
+<p>For AI systems that answer questions from a body of documents — say, an assistant that searches a company's internal knowledge base or policy archive — this issue is especially sharp. A user cannot — and should not — blindly trust a summary or citation an AI puts in front of them. So the right approach in such products is to anchor every answer to its source: showing which document, which passage it relies on, and thereby strengthening human oversight rather than removing it. Here AI is not the one with the final word, but an assistant whose every step the user can verify.</p>
+<h2>Privacy: KVKK, GDPR, and the Trail of Data</h2>
+<p>AI runs on data, and much of that data belongs to people. So privacy sits right at the center of the ethics conversation. In Turkey, the governing text is Law No. 6698 on the Protection of Personal Data (KVKK); its European counterpart is the GDPR. Both rest on the same intuition: your personal data is yours, and others may process it only with a legitimate legal basis and within defined limits. 'Processing' here covers nearly everything — collecting, storing, analyzing, and feeding it to a model.</p>
+<p>For AI, these laws' most important principles are practical and memorable: collect data only for a specific, legitimate purpose (purpose limitation); take no more than you need (data minimization); tell people clearly what you're doing (transparency); and protect the data (security). One especially critical point is automated decisions: under Article 11 of the KVKK, individuals have the right to object to an adverse outcome produced solely by automated analysis. In other words, an algorithm can't make a final, binding decision about you all on its own; a human has to stand somewhere in that chain.</p>
+<p>In 2026, this framework is in motion. On 12 March 2026, the KVKK published guidance on 'agentic AI' systems. The guidance isn't binding law, but it signals the Authority's expectations and its way of looking at the problem. It flags the main risks: the unpredictable expansion of data processing in these multi-step, self-acting systems, the comprehensive profiling that comes from stitching together data from different sources, and the further deepening of the 'black box' effect.</p>
+<p>The practical lesson is clear: when building an AI product, privacy shouldn't be a lid you bolt on at the end but a starting assumption of the design — this is called 'privacy by design.' Being clear from the outset about what data you collect and why, how long you keep it, who can access it, and how the user can control it is both a legal obligation and, at its simplest, a matter of trust.</p>
+<h2>Accountability: 'The Algorithm Said So' Is Not an Excuse</h2>
+<p>When an AI system causes harm, who is responsible? The team that built the model, the people who supplied the training data, the organization that deployed it, or the user who pressed the button? The question isn't simple, and the answer is usually 'a responsibility shared among multiple parties.' The crucial principle in ethics is this: responsibility can never be delegated to 'the algorithm.' A machine can't be held accountable; the accountable parties are the humans who design, buy, and use it.</p>
+<p>That's exactly why the phrase 'the algorithm said so' is dangerous for accountability. Automation has a sneaky side effect: people over-trust the machine's output ('automation bias') and quietly switch off their own judgment. In robust systems, the human isn't a rubber stamp that merely approves the decision; they're an overseer who can genuinely object, halt, and demand a rationale. This is often called keeping a 'human in the loop.'</p>
+<p>In practice, accountability is built from concrete traces: who made which decision, which version of the model, trained on what data, approved by whom? Without these records, when something goes wrong, no one can learn from it and nothing improves. A healthy AI culture is measured not by how fast it finds someone to blame after a failure, but by how well it designed, in advance, the way failures get caught and corrected.</p>
+<h2>Where Regulation Is Heading: The EU AI Act and the Risk-Based Approach</h2>
+<p>The EU AI Act, the first comprehensive law regulating artificial intelligence, has become a global reference point. Its logic is simple but powerful: instead of treating all AI the same, it grades it by risk. A movie-recommendation algorithm and a medical-diagnosis system are not scrutinized to the same degree. The Act sorts systems into roughly four tiers: unacceptable risk (banned), high risk (strict obligations), limited risk (transparency requirements), and minimal risk (largely free).</p>
+<p>At the top sit the bans. Practices like social scoring, manipulative techniques, emotion recognition in workplaces and schools, and building facial recognition databases by indiscriminately scraping images from the internet have been prohibited since 2 February 2025. The next tier down, high-risk systems — in areas like hiring, credit, education, and critical infrastructure — carry obligations for extensive documentation, risk management, data quality, and human oversight. In the limited-risk tier, the main point is transparency: a user should know they're talking to a chatbot, and AI-generated content should be labeled.</p>
+<p>The timeline took an important turn in 2026. Much of the Act enters into application on 2 August 2026 — including, notably, the Article 50 transparency obligations, such as marking AI-generated content and deepfakes. However, under the 'Digital Omnibus' compromise reached in May 2026, the heaviest obligations for high-risk systems in Annex III were postponed to 2 December 2027. So the direction is clear, but the pace was eased a bit to give the sector time to prepare.</p>
+<p>Although Turkey isn't directly subject to the EU AI Act, the framework matters indirectly. Any company serving European users or working with European partners runs into these standards — and the KVKK is heading in broadly the same direction, sharing the same principles of transparency, human oversight, and risk management. The balanced reading is this: these rules aren't designed to ban innovation, but to put guardrails on the riskiest uses while leaving the rest room to breathe.</p>
+<h2>Toward Responsible Use: Not Perfection, but Honesty</h2>
+<p>After all this talk of risk, a tempting conclusion is 'then let's just stay away from AI.' But that's just as unbalanced a reaction as the other extreme. Built well, AI produces real benefit: a lawyer collapsing hours of research into minutes, a clinician catching a finding that might have slipped past, a student learning a complex topic at their own pace. Responsible use isn't rejecting AI — it's using it while knowing its limits.</p>
+<p>The core of a responsible approach comes down to a few plain habits. Be clear about what the system is for and what it cannot do. Keep a human in the loop for consequential decisions. Minimize and protect data. Measure outputs across groups and monitor for bias. And perhaps most important: surface uncertainty instead of hiding it. A system that can say 'I'm not sure about this, please verify' is far safer than one that always sounds confident.</p>
+<p>At HatsonTech, the principles in this article aren't abstract values; they're the frame for product decisions. In an AI assistant like HatsonAI — where the engine reads documents and answers questions inside our products and client projects — the biggest risk is a wrong answer delivered with confidence because it sounds right. So our design philosophy is to anchor answers to their sources, make the user's verification easy, and position AI as a checkable helper rather than the final authority. The goal isn't an infallible machine; it's an honest, transparent tool that stays under human control.</p>
+<p>A closing thought: AI ethics isn't a finish line you reach one day, it's a discipline you keep practicing. There is no perfectly fair, perfectly transparent, or perfectly safe system. What exists is the difference between systems that are aware of their own limits, try to catch their mistakes, and keep responsibility on humans — and those that simply don't care. Being able to see that difference is a new kind of literacy everyone now living alongside technology needs to acquire.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>AI is not neutral; every model mirrors its training data and the choices of the people who built it.</li><li>Bias usually comes not from bad intent but from imbalanced data, human labels, and feedback loops — which makes it measurable and reducible.</li><li>Fairness has no single mathematical definition; which one you pick is a value choice that should be documented openly.</li><li>Transparency means 'no one is left in the dark,' not 'show everything': an understandable rationale for users, documentation for auditors.</li><li>Article 11 of the KVKK gives people the right to object to adverse outcomes produced solely by automated decisions; a human must stay in the chain.</li><li>The EU AI Act grades by risk; most provisions apply from 2 August 2026, while Annex III high-risk obligations were postponed to 2 December 2027.</li><li>Responsible use isn't rejecting AI but using it within its limits, keeping a human in the loop, and surfacing uncertainty rather than hiding it.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

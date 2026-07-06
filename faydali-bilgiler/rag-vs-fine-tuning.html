@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="RAG ve ince ayar (fine-tuning) nedir, nasıl çalışır, hangi durumda hangisini seçmelisiniz? Güncellik, maliyet, kontrol ve halüsinasyon ekseninde net bir karşılaştırma ve ikisini birleştirmenin yolu.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/rag-vs-fine-tuning.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli">
+  <meta property="og:description" content="RAG ve ince ayar (fine-tuning) nedir, nasıl çalışır, hangi durumda hangisini seçmelisiniz? Güncellik, maliyet, kontrol ve halüsinasyon ekseninde net bir karşılaştırma ve ikisini birleştirmenin yolu.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/rag-vs-fine-tuning.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli">
+  <meta name="twitter:description" content="RAG ve ince ayar (fine-tuning) nedir, nasıl çalışır, hangi durumda hangisini seçmelisiniz? Güncellik, maliyet, kontrol ve halüsinasyon ekseninde net bir karşılaştırma ve ikisini birleştirmenin yolu.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/rag-vs-fine-tuning.jpg">
+  <title>RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli",
+  "description": "RAG ve ince ayar (fine-tuning) nedir, nasıl çalışır, hangi durumda hangisini seçmelisiniz? Güncellik, maliyet, kontrol ve halüsinasyon ekseninde net bir karşılaştırma ve ikisini birleştirmenin yolu.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/rag-vs-fine-tuning.jpg",
+  "articleSection": "Mühendislik",
+  "keywords": "RAG, Fine-Tuning, LLM, Mimari"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli",
+      "item": "https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/rag-vs-fine-tuning.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/rag-vs-fine-tuning.jpg" alt="RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli</h1>
+    <p class="article-sub">Bir dil modeline ihtiyacı olan bilgiyi vermenin iki ayrı yolu var: önüne kitabı açık bırakmak (RAG) ya da onu yeniden okula göndermek (ince ayar). İkisinin gerçekte ne yaptığını, nerede ayrıştığını ve en iyi sistemlerin neden çoğu zaman ikisini birden kullandığını anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">RAG</span><span class="article-tag">Fine-Tuning</span><span class="article-tag">LLM</span><span class="article-tag">Mimari</span></div></div>
+    <div class="article-body">
+<h2>İki Soru, Tek Karışıklık</h2>
+<p>Yapay zekâyla ciddi bir şey inşa etmeye kalkan hemen herkes aynı duvara çarpar: hazır bir dil modeli, sizin işinizin özel bilgisini bilmez. Şirketinizin iç politikalarından, ürününüzün son sürümünden, dünkü mevzuat değişikliğinden ya da müşteri kayıtlarınızdan haberi yoktur. Model zekidir ama sizin dünyanıza karşı kördür. Tam bu noktada iki kavram durmadan karşınıza çıkar: 'RAG' ve 'ince ayar' (fine-tuning). Üstelik genellikle birbirinin rakibi gibi, tek bir soruyla sunulurlar: hangisi daha iyi?</p>
+<p>İşte tuzak bu çerçevede. RAG ve ince ayar farklı problemleri çözer; biri diğerinin daha iyi versiyonu değildir. Onları rakip görmek, 'sözlük mü daha iyidir, dil kursu mu?' diye sormaya benzer. Cevap, neye ihtiyacınız olduğuna bağlıdır: o an doğru kelimeyi mi aramanız gerekiyor, yoksa kalıcı bir beceriyi mi içselleştirmeniz?</p>
+<p>Bu yazıda ikisini de sıfırdan, jargonun arkasına saklanmadan açıklayacağız. Önce her birinin nasıl çalıştığını somut benzetmelerle kuracağız. Sonra kararı asıl belirleyen ölçütler üzerinden karşılaştıracağız: güncellik, maliyet, kontrol ve halüsinasyon. En sonunda da olgun sistemlerin neden çoğu zaman ikisini birden kullandığını ve kaynak gösteren güvenilir bir asistanın neden ağırlığını RAG'a verdiğini göreceğiz.</p>
+<h2>Önce Temel: Bir Dil Modeli Aslında Ne Bilir?</h2>
+<p>Bir büyük dil modeli (LLM, large language model), devasa miktarda metin üzerinde 'bir sonraki kelimeyi tahmin et' oyununu oynayarak eğitilir. Bu süreçte iki ayrı şey öğrenir. Birincisi dilin kendisi: dilbilgisi, akıl yürütme kalıpları, üslup, bir argümanın nasıl kurulduğu. İkincisi de eğitim verisinde sık sık geçen olgular: ülke başkentleri, temel bilimsel gerçekler, yaygın kod kalıpları. Bu iki tür bilgi de modelin 'ağırlıklarına', yani milyarlarca sayısal parametreye gömülüdür.</p>
+<p>Buradaki kritik nokta şu: modelin bildiği her şey, eğitim bittiği anda donar. Eğitim verisi belirli bir tarihe kadar uzanır ve o tarihten sonra olan hiçbir şeyi model kendiliğinden bilemez. Üstelik model bir olguyu 'bunu şu kaynaktan öğrendim' diye etiketlemez; her şeyi tek bir bulanık istatistik havuzunda eritir. İşte bu yüzden ham bir model, inandırıcı görünen bir uydurmayı gerçek bir cevaptan ayırt edemez.</p>
+<p>RAG ve ince ayar tam olarak bu iki sınırı iki ayrı uçtan ele alır. RAG, modelin donmuş hafızasını es geçip cevap anında ona taze, doğrulanmış bilgi sunar. İnce ayar ise modelin ağırlıklarını yeniden şekillendirerek yeni bir davranışı ya da bilgiyi kalıcı biçimde içine işler. Birincisini 'dışarıdan bilgi getirmek', ikincisini 'modeli içeriden değiştirmek' diye düşünebilirsiniz.</p>
+<h2>RAG: Modelin Önüne Kitabı Açık Bırakmak</h2>
+<p>RAG, 'Retrieval-Augmented Generation', yani 'getirmeyle güçlendirilmiş üretim' demektir. Çalışma mantığı şaşırtıcı derecede sezgiseldir. Bir soru geldiğinde sistem önce sizin belge havuzunuzda (şirket dokümanları, ürün kılavuzları, mevzuat metinleri, her ne ise) o soruyla en alakalı parçaları arar. Sonra bu parçaları, soruyla birlikte modele 'bağlam' olarak verir ve tek bir talimat koyar: 'Yalnızca sana verdiğim bu metinlere dayanarak cevap ver.' Böylece model ezberinden değil, önüne konan kanıttan konuşur.</p>
+<p>En iyi benzetme şu: bir öğrenciye kapalı kitap sınavı yerine açık kitap sınavı vermek. Kapalı kitap sınavında öğrenci sadece aklında kalanlarla, bazen yanlış hatırlayarak cevap verir. Açık kitap sınavında ise doğru sayfayı açar, oradan okur ve cevabını ona yaslar. RAG, dil modelini sürekli bir açık kitap sınavında tutar. Modelin işi artık bilgiyi hatırlamak değil, önüne getirilen metni doğru biçimde yorumlayıp toparlamaktır.</p>
+<p>Bu yaklaşımın getirisi büyüktür. Bilgi değiştiğinde modeli yeniden eğitmeniz gerekmez; yalnızca arama yaptığı belge havuzunu güncellersiniz. Dünkü düzenleme bugün havuza eklenir ve sistem anında ondan haberdar olur. Dahası, her cevap somut bir kaynağa bağlanabilir: model 'bunu şu belgenin şu bölümünden aldım' diyebilir, çünkü cevap zaten o bölümden üretilmiştir. Kaynak gösterebilirlik, belki de RAG'ın en değerli özelliğidir.</p>
+<p>Teknik tarafta bu arama genellikle 'embedding' denen bir yöntemle yapılır: her metin parçası, anlamını temsil eden bir sayı dizisine (vektöre) çevrilir ve soruyla anlamca en yakın parçalar bulunur. Bu sayede kullanıcı tam o kelimeleri kullanmasa bile ilgili bilgi yüzeye çıkabilir; örneğin 'işten çıkarma tazminatı' diye sorduğunuzda, metinde 'kıdem tazminatı' geçen bölüm de getirilebilir. Ama ayrıntılar bir yana, akılda tutulacak çekirdek fikir basittir: RAG, modele doğru sayfayı açıp açık tutmaktır.</p>
+<h2>İnce Ayar: Modeli Yeniden Okula Göndermek</h2>
+<p>İnce ayar (fine-tuning) tamamen başka bir şey yapar. Burada modele dışarıdan bilgi getirmezsiniz; modelin kendisini değiştirirsiniz. Önceden eğitilmiş bir modeli alır, kendi örneklerinizden oluşan daha küçük ve odaklı bir veri kümesiyle ek bir eğitim turuna sokarsınız. Bu süreçte modelin ağırlıkları, yani o milyarlarca parametre, sizin örneklerinize doğru yeniden ayarlanır. Sonunda elinizde, davranışı kalıcı olarak değişmiş yeni bir model olur.</p>
+<p>Benzetmeyi sürdürelim: RAG bir öğrenciye açık kitap sınavı vermekse, ince ayar o öğrenciyi belirli bir alanda yetiştirmektir. Genel bir hukuk fakültesi mezununu alıp aylarca yalnızca dilekçe yazdırarak ona o işin üslubunu, kalıbını ve reflekslerini kazandırmak gibi. Artık her seferinde 'dilekçe şöyle yazılır' diye anlatmanız gerekmez; bu, onun ikinci doğası olmuştur.</p>
+<p>İnce ayarın asıl parladığı yer bilgi eklemek değil, davranış ve biçim öğretmektir. Modelin belirli bir tonu tutturmasını, çıktıyı her zaman belirli bir formatta vermesini, niş bir alanın jargonunu doğal kullanmasını ya da dar bir görevde daha isabetli olmasını istiyorsanız ince ayar tam yerindedir. Buna karşılık 'şu modele yeni bir gerçeği öğreteyim' diye ince ayar yapmak çoğu zaman kötü bir fikirdir: yeni bilgi parametrelere bulanık biçimde dağılır, kaynak gösterilemez ve model o bilgiyi yine yanlış hatırlayabilir.</p>
+<p>Bir nüans daha: ince ayarla işlediğiniz bilgi de yine donar. Modeli bugün eğitirsiniz, yarın mevzuat değişir ve eğittiğiniz modelin bundan haberi olmaz. Güncellemek için tüm süreci baştan çalıştırmanız gerekir. Yani ince ayar, sık değişen olgular için değil, kararlı kalan beceriler ve üsluplar için biçilmiş kaftandır.</p>
+<h2>Dört Eksende Karşılaştırma</h2>
+<p>İkisini de kavradıktan sonra karar dört eksende netleşir. Birincisi güncellik. RAG burada açık ara öndedir: bilgiyi değiştirmek için belge havuzunu güncellemeniz yeter, model anında haberdar olur. İnce ayarda ise her güncelleme yeni bir eğitim turu demektir; sık değişen bilgi için bu pratik değildir. Bilginiz hızlı değişiyorsa varsayılan tercihiniz RAG olmalı.</p>
+<p>İkincisi maliyet ve emek. RAG'ın asıl maliyeti her sorguda biraz daha fazla işlem yapmak ve sağlam bir arama altyapısı kurmaktır; buna karşılık veriyi güncellemek ucuz ve hızlıdır. İnce ayarın maliyeti ise öne yüklenir: kaliteli örnek verisi hazırlamak ve eğitim turunu çalıştırmak hem emek hem hesaplama gücü ister. Ama bunun karşılığında, eğitim bittikten sonra her sorgu daha yalın olabilir, çünkü modele uzun bir bağlam vermeniz gerekmez.</p>
+<p>Üçüncüsü kontrol ve kaynak gösterebilirlik. RAG cevabı somut bir belgeye bağlayabildiği için denetlenebilir ve şeffaftır; kullanıcı kaynağa gidip kendisi doğrulayabilir. İnce ayarlı model ise neyi neden söylediğini bir kaynakla gösteremez; bilgi parametrelere dağılmıştır. Cevabın dayanağının görünür olması sizin için önemliyse, bu tek başına RAG lehine güçlü bir argümandır.</p>
+<p>Dördüncüsü halüsinasyon, yani modelin kendinden emin bir şekilde uydurması. RAG, modeli getirilen kanıta yaslanmaya zorladığı için halüsinasyonu belirgin biçimde azaltır; arama katmanı iyi çalıştığı sürece model dayanaksız konuşmaz. İnce ayar tek başına halüsinasyonu çözmez; hatta yeni olguları zorla öğretmeye çalışırsanız modeli daha da kendinden emin bir uydurmacıya çevirebilir. Bu dört eksen birlikte değerlendirildiğinde tablo netleşir: 'bilgi getirme' ihtiyacı RAG'ı, 'davranış ve biçim' ihtiyacı ince ayarı işaret eder.</p>
+<h2>Peki Hangisini Ne Zaman Seçmeli?</h2>
+<p>Pratik bir karar kuralı şöyle özetlenebilir. Probleminiz 'modelin doğru, güncel ve doğrulanabilir olgulara erişmesi gerekiyor' biçimindeyse, cevap neredeyse her zaman RAG'dır. Müşteri destek botu şirket dokümanlarından konuşacaksa, bir asistan sürekli değişen kataloğa dayanacaksa, bir hukuk aracı yürürlükteki mevzuata yaslanacaksa, burada ihtiyaç bilgi getirmektir ve RAG tam bunun için tasarlanmıştır.</p>
+<p>Probleminiz 'model belirli bir tarzda davransın, belirli bir formatı tutarlı versin, niş bir alanın dilini doğal konuşsun ya da dar bir görevde daha isabetli olsun' biçimindeyse, devreye ince ayar girer. Markanızın ses tonunu birebir yakalamak, çıktıyı her seferinde aynı yapılandırılmış biçimde almak ya da genel modelin zorlandığı özel bir sınıflandırma görevini iyileştirmek, ders kitabına girecek ince ayar senaryolarıdır.</p>
+<p>Yaygın bir hata, sık değişen bilgiyi ince ayarla modele 'ezberletmeye' çalışmaktır. Bu yol hem pahalı hem kırılgandır: bilgi her değiştiğinde yeniden eğitirsiniz, üstelik model o bilgiyi yine kaynaksız ve bazen yanlış hatırlar. Böyle bir ihtiyaçta doğru araç ezberletmek değil, açık kitap vermektir; yani RAG. Tersinden, yalnızca RAG ile bir modele kalıcı bir üslup ya da derin bir alan refleksi kazandırmaya çalışmak da yanlış aleti zorlamak olur.</p>
+<h2>Ya İkisini Birlikte Kullanırsanız?</h2>
+<p>Buraya kadar ikisini ayrı tuttuk, çünkü önce farklarını net görmek gerekiyordu. Ama gerçek dünyadaki olgun sistemlerin çoğu, RAG ile ince ayarı rakip değil, birbirini tamamlayan iki parça olarak kullanır. Çünkü çözdükleri problemler çakışmaz: biri bilgiyi, diğeri davranışı halleder. Doğru kurgu, ikisinin güçlü yanlarını üst üste bindirir.</p>
+<p>Tipik birleşik mimari şöyle işler: ince ayar modele alanın diline ve istenen davranışa hâkim olmayı öğretir; RAG ise her cevap anında güncel ve doğrulanmış olguları getirir. Niş bir alanda çalışan bir asistanı düşünün. İnce ayarla o alanın jargonunu, beklenen cevap biçimini ve üslubunu içselleştirmiş olabilir; aynı anda RAG ile her sorguda en güncel belgelerden besleniyordur. Sonuç hem doğru tonda hem de gerçeğe bağlı cevaplar verir.</p>
+<p>Buradaki temel ilke, her aracı en iyi yaptığı işe koşmaktır. Olguları parametrelere ezberletmeye çalışmazsınız; onları getirme katmanına bırakırsınız. Tarzı ve refleksleri her seferinde uzun talimatlarla anlatmazsınız; onları ince ayarla modele işlersiniz. Pratikte çoğu ekip önce RAG ile başlar, çünkü en büyük kazanımı en düşük emekle o verir; ince ayara ancak davranış ya da biçim ihtiyacı net biçimde belirginleştiğinde geçerler.</p>
+<h2>Kaynak Gösteren Bir Asistan Neden Ağırlığını RAG'a Verir?</h2>
+<p>HatsonTech'te geliştirdiğimiz yapay zekâ motoru HatsonAI ile, örneğin bir müşteri için kurduğumuz kurumsal bilgi asistanının çekirdeğinde ağırlıklı olarak RAG yatar. Bunun sebebi felsefi değil, doğrudan bilginin doğasından gelir. Kurumsal dokümanlar sürekli değişir, politikalar güncellenir, yeni sürümler çıkar. Donmuş hafızasıyla konuşan bir model burada kaçınılmaz olarak yanılır; dünkü değişikliği bilmeyen bir asistan tehlikelidir.</p>
+<p>Daha da önemlisi, güvenilir bir cevapta değerli olan ezber değil dayanaktır. İleri sürülen her iddianın bir kaynağı olmak zorundadır. RAG tam olarak bunu mümkün kılar: HatsonAI'nin ürettiği cevaplar, getirilen gerçek belgelere bağlanabilir; kullanıcı kaynağa gidip kendi gözüyle doğrulayabilir. Cevap kaynaksız kalıyorsa, doğru davranış uydurmak değil, 'bu konuda elimde dayanak yok' diyebilmektir. Bu dürüstlük, ancak bilgi getirme katmanından geldiğinde mümkün olur.</p>
+<p>Bu, ince ayarın hiç yeri yok demek değildir. Modelin alanın dilini doğal kullanması ya da cevapları tutarlı bir biçimde sunması gibi davranışsal kazanımlarda ince ayar değerli olabilir. Ama olguların, yani hangi bilginin güncel olduğunun ve ne dediğinin kaynağı her zaman dışarıdan, doğrulanabilir biçimde gelmelidir. Bizim için ayrım nettir: dilin akıcılığı modelden, doğruluğun teminatı ise getirilen kaynaktan gelir.</p>
+<p>Sonuçta RAG ile ince ayar arasındaki seçim 'hangisi daha iyi' sorusu değildir; 'şu an hangi problemi çözüyorum' sorusudur. Güncel ve doğrulanabilir bilgiye mi ihtiyacınız var, yoksa kalıcı bir davranışa mı? Çoğu zaman cevap ikisidir; ama hangisiyle başlayacağınızı bilmek, sağlam bir sistemin ilk adımıdır. Her cümlenin bir dayanağı olması gereken bir alandaysanız o ilk adım neredeyse her zaman RAG'dır.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>RAG ve ince ayar rakip değil, farklı problemleri çözen iki araçtır: biri dışarıdan bilgi getirir, diğeri modelin davranışını içeriden değiştirir.</li><li>RAG, modele açık kitap sınavı verir gibi cevap anında güncel ve doğrulanmış belgeler sunar; bilgi değişince yeniden eğitim gerekmez ve her cevap bir kaynağa bağlanabilir.</li><li>İnce ayar, modelin ağırlıklarını yeniden eğiterek üslup, format ve dar görev becerilerini kalıcı kazandırır; yeni olgu ezberletmek için ise kötü bir tercihtir.</li><li>Dört eksen: güncellik ve kaynak gösterebilirlik RAG'ı, davranış ve biçim ihtiyacı ince ayarı işaret eder; ayrıca RAG halüsinasyonu belirgin biçimde azaltır.</li><li>Olgun sistemler çoğu zaman ikisini birlikte kullanır: ince ayar davranışı, RAG güncel olguları halleder; çoğu ekip en büyük kazanımı en düşük emekle veren RAG ile başlar.</li><li>Kaynak gösteren bir asistan (örneğin HatsonAI ile kurulan bir kurumsal bilgi asistanı) ağırlığını RAG'a verir çünkü değerli olan ezber değil dayanaktır; cevaplar getirilen belgelere bağlanabilir, gerektiğinde 'bilmiyorum' diyebilir.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

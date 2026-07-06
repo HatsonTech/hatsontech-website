@@ -1,0 +1,5 @@
+# Sitemap (plain-text) — HatsonTech
+# Primary sitemap: https://hatsontech.com/sitemap.xml
+# Last Updated: June 2026
+
+https://hatsontech.com/

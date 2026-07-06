@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Akıl yürüten (reasoning) yapay zeka modelleri nedir, 'düşünen' modeller nasıl çalışır? Zincirleme akıl yürütme, test-zamanı hesaplama ve bunların ne zaman gerektiğini sade bir dille anlatıyoruz.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/akil-yuruten-reasoning-modeller.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?">
+  <meta property="og:description" content="Akıl yürüten (reasoning) yapay zeka modelleri nedir, 'düşünen' modeller nasıl çalışır? Zincirleme akıl yürütme, test-zamanı hesaplama ve bunların ne zaman gerektiğini sade bir dille anlatıyoruz.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?">
+  <meta name="twitter:description" content="Akıl yürüten (reasoning) yapay zeka modelleri nedir, 'düşünen' modeller nasıl çalışır? Zincirleme akıl yürütme, test-zamanı hesaplama ve bunların ne zaman gerektiğini sade bir dille anlatıyoruz.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280">
+  <title>Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?",
+  "description": "Akıl yürüten (reasoning) yapay zeka modelleri nedir, 'düşünen' modeller nasıl çalışır? Zincirleme akıl yürütme, test-zamanı hesaplama ve bunların ne zaman gerektiğini sade bir dille anlatıyoruz.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html"
+  },
+  "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280",
+  "articleSection": "Eğitim",
+  "keywords": "reasoning model, akıl yürütme, test-zamanı hesaplama, zincirleme akıl yürütme, LLM"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?",
+      "item": "https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/akil-yuruten-reasoning-modeller.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280" alt="Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?" loading="lazy">
+    <div class="article-cat">Eğitim</div>
+    <h1>Akıl Yürüten (Reasoning) Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?</h1>
+    <p class="article-sub">Yeni nesil modeller cevabı hemen söylemiyor; önce 'düşünüyor'. Bu düşünmenin gerçekte ne olduğunu, neden bazı problemleri çözdüğünü, neye mal olduğunu ve her işe neden gerekmediğini jargonun arkasına saklanmadan anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 dk okuma</span><div class="article-tags"><span class="article-tag">Reasoning</span><span class="article-tag">Akıl Yürütme</span><span class="article-tag">Test-Zamanı Hesaplama</span><span class="article-tag">LLM</span></div></div>
+    <div class="article-body">
+<h2>Hızlı Refleks ile Yavaş Düşünme</h2>
+<p>Klasik bir dil modeline zor bir soru sorduğunuzda, aslında olağanüstü hızlı bir refleks izlersiniz: model, gördüğü devasa metnin istatistiğine dayanarak bir sonraki kelimeyi, sonra bir sonrakini tahmin eder ve cevabı tek seferde, durup düşünmeden döker. Bu, basit sorularda harika çalışır. Ama çok adımlı bir matematik problemi, kıvrımlı bir mantık bulmacası ya da iç içe geçmiş bir hukuki muhakeme söz konusu olduğunda, ilk akla gelen kelimeyi söylemek çoğu zaman yanlış cevaba götürür.</p>
+<p>İnsanlar da böyledir. 'İki artı iki' sorusuna düşünmeden cevap veririz; ama 'on yedi ile yirmi üçü çarp' dendiğinde durur, ara basamakları kâğıda döker, adım adım ilerleriz. Psikolog Daniel Kahneman bunu 'hızlı' ve 'yavaş' düşünme diye ayırır. Akıl yürüten (reasoning) modeller, tam olarak bu yavaş düşünmeyi yapay zekâya kazandırma girişimidir: cevabı hemen söylemek yerine, önce kendi içinde bir düşünme süreci yürütmek.</p>
+<h2>'Düşünme' Aslında Ne? Zincirleme Akıl Yürütme</h2>
+<p>Bir reasoning modelinin 'düşünmesi' sihir değildir; özünde, cevaba varmadan önce kendi kendine bir dizi ara adım üretmesidir. Buna 'zincirleme akıl yürütme' (chain-of-thought) denir. Model, problemi parçalara böler, her parçayı sırayla çözer, ara sonuçları kontrol eder ve ancak bu düşünme zincirinin sonunda nihai cevabı verir. Yani daha fazla kelime üretir; ama bu kelimelerin çoğu size değil, kendi muhakemesine yöneliktir.</p>
+<p>En iyi benzetme, bir öğrencinin sınavda 'işlemini göster' talimatına uymasıdır. Sonucu doğrudan yazan öğrenci bir basamakta hata yaparsa fark edemez; oysa her adımı yazan öğrenci, kendi yazdığını okuyarak hatayı yakalayabilir. Reasoning modelleri de benzer biçimde, ürettikleri ara adımları bir sonraki adımın girdisi olarak kullanır. Düşünce zinciri uzadıkça model, kendi mantığını üzerine inşa edebileceği bir zemin kazanır.</p>
+<h2>Test-Zamanı Hesaplama: Daha Çok Düşünmek İçin Daha Çok İşlem</h2>
+<p>Buradaki kilit kavram 'test-zamanı hesaplama' (test-time compute) ya da 'çıkarım-zamanı hesaplama'dır. Klasik yaklaşımda bir modeli daha akıllı yapmanın yolu, onu daha büyük yapmak ve daha çok veriyle eğitmekti; yani tüm yatırım eğitim aşamasına yapılırdı. Reasoning modelleri farklı bir kaldıraç kullanır: modeli aynı bırakıp, cevap üretirken ona daha fazla düşünme süresi (daha fazla işlem) vermek.</p>
+<p>Mantık şudur: zor bir soruda modele 'acele etme, daha uzun düşün' demek, çoğu zaman onu büyütmekten daha ucuz ve daha etkili bir doğruluk artışı sağlar. Model birkaç farklı çözüm yolu deneyebilir, kendi cevabını gözden geçirebilir, çıkmaza giren yolu bırakıp başka bir yol tutabilir. Tıpkı bir insanın zor bir karar için 'bir gece düşüneyim' demesi gibi, modele verilen ekstra hesaplama, kalitenin asıl kaynağı haline gelir. Bu yüzden bu modeller cevabı geç verir ama daha isabetli verir.</p>
+<h2>Bu Modeller Nasıl Eğitiliyor?</h2>
+<p>Bir modele 'iyi düşünmeyi' öğretmenin sırrı, büyük ölçüde pekiştirmeli öğrenmede (reinforcement learning) yatar. Modele bir problem verilir, kendi düşünce zincirini üretmesine izin verilir ve vardığı cevap doğruysa ödüllendirilir, yanlışsa cezalandırılır. Özellikle matematik ve kod gibi cevabın doğrulanabildiği alanlarda bu çok güçlüdür: sonucun doğru olup olmadığı kesin biçimde kontrol edilebildiği için, model zamanla 'hangi tür düşünme adımları doğru cevaba götürüyor' sorusunu kendi kendine keşfeder.</p>
+<p>İlginç olan şu: bu süreçte modele 'şöyle düşün' diye adım adım talimat verilmez. Model, denemeler içinde işe yarayan muhakeme stratejilerini kendisi bulur; problemi bölmeyi, geri dönüp kontrol etmeyi, alternatif yollar denemeyi kendiliğinden geliştirir. Eğitim, doğru düşünme alışkanlıklarını ödülle pekiştirir; modelin içselleştirdiği şey ezber bir cevap değil, bir muhakeme refleksidir.</p>
+<h2>Güçlü Yanları, Bedeli ve Sınırları</h2>
+<p>Reasoning modelleri, çok adımlı ve mantık yoğun görevlerde belirgin biçimde daha iyidir: zor matematik, karmaşık kod, bilimsel problem çözme, planlama ve iç içe geçmiş muhakeme gerektiren analizler. Bu alanlarda düşünme zinciri, hatayı azaltır ve daha güvenilir sonuç verir. Ama bu yetenek bedava değildir. Daha uzun düşünmek, daha çok işlem, daha çok zaman ve daha çok maliyet demektir; cevaplar daha yavaş gelir ve sorgu başına ücret yükselir.</p>
+<p>Bu yüzden kritik nokta şudur: her işe reasoning gerekmez. 'Bu e-postayı özetle' ya da 'şu cümleyi düzelt' gibi tek adımlı görevlerde, düşünen bir modeli çalıştırmak hem israf hem gereksiz yavaşlıktır; klasik hızlı modeller bu işi daha ucuza ve anında yapar. Doğru mühendislik kararı, görevi tanımaktır: basit ve doğrudan işler hızlı modele, çok adımlı ve hata payı düşük olması gereken işler düşünen modele. Olgun sistemler çoğu zaman ikisini bir arada, işe göre seçerek kullanır.</p>
+<h2>Çok Adımlı Muhakeme ve Dayanaklı Cevaplar</h2>
+<p>Kurumsal karar destek görevleri, çok adımlı muhakemenin ders kitabına girecek örneğidir. Bir sorunun cevabı nadiren tek bir belgede yazar; çoğu zaman birden çok kuralı, istisnaları, geçmiş kayıtları ve somut durumun özelliklerini bir arada değerlendirmeyi gerektirir. Bu, tam da düşünme zincirinin işe yaradığı türden bir muhakemedir: önce ilgili bilgileri ayıkla, sonra duruma uygula, çelişen noktaları tart, istisnayı kontrol et, sonuca öyle var.</p>
+<p>HatsonTech olarak müşterilerimiz için geliştirdiğimiz yapay zekâ asistanlarında ve HatsonAI motorunda bizim için belirleyici olan ilke şudur: muhakemenin gücü kadar, her adımın bir dayanağı olması da önemlidir. Bir model ne kadar iyi 'düşünürse düşünsün', cevabın getirilen gerçek belgelere ve verilere bağlanması gerekir; aksi halde kendinden emin ama dayanaksız bir muhakeme, en tehlikeli sonuçtur. Bu yüzden bizde akıl yürütme ile <a href="/faydali-bilgiler/rag-vs-fine-tuning.html">RAG (getirmeyle güçlendirilmiş üretim)</a> el ele çalışır: düşünme zinciri analizi kurar, getirme katmanı her adımı doğrulanabilir kaynağa oturtur. Konunun temeli için <a href="/faydali-bilgiler/llm-nedir-nasil-calisir.html">büyük dil modelleri nasıl çalışır</a> yazımıza da göz atabilirsiniz.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Klasik modeller cevabı tek seferde, hızlı bir refleksle üretir; reasoning modelleri ise cevaptan önce kendi içinde bir düşünme süreci (zincirleme akıl yürütme) yürütür.</li><li>Test-zamanı hesaplama, modeli büyütmek yerine cevap anında ona daha fazla düşünme süresi (işlem) vermektir; zor problemlerde bu çoğu zaman daha ucuz ve etkili bir doğruluk artışı sağlar.</li><li>Bu modeller büyük ölçüde pekiştirmeli öğrenmeyle eğitilir: doğrulanabilir alanlarda (matematik, kod) doğru cevap ödüllendirilir ve model işe yarayan muhakeme stratejilerini kendisi keşfeder.</li><li>Güçlü yanı çok adımlı, mantık yoğun görevlerdir; bedeli daha yüksek maliyet ve gecikmedir. Her işe gerekmez: basit görevler hızlı modele, karmaşık muhakeme düşünen modele.</li><li>Kurumsal karar destek görevleri çok adımlı muhakemenin tipik örneğidir; HatsonTech'in geliştirdiği asistanlarda akıl yürütme ile RAG birlikte çalışır: düşünme analizi kurar, getirme katmanı her adımı doğrulanabilir kaynağa bağlar.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

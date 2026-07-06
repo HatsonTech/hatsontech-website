@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Why does Turkish challenge AI models? Agglutination, rich inflection, tokenization costs and scarce quality data. A clear look at Turkish NLP's hurdles and openings.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/turkce-yapay-zeka-nlp.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/turkce-yapay-zeka-nlp.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI for Turkish: The Challenges and Opportunities of Turkish NLP">
+  <meta property="og:description" content="Why does Turkish challenge AI models? Agglutination, rich inflection, tokenization costs and scarce quality data. A clear look at Turkish NLP's hurdles and openings.">
+  <meta property="og:url" content="https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI for Turkish: The Challenges and Opportunities of Turkish NLP">
+  <meta name="twitter:description" content="Why does Turkish challenge AI models? Agglutination, rich inflection, tokenization costs and scarce quality data. A clear look at Turkish NLP's hurdles and openings.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg">
+  <title>AI for Turkish: The Challenges and Opportunities of Turkish NLP | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI for Turkish: The Challenges and Opportunities of Turkish NLP",
+  "description": "Why does Turkish challenge AI models? Agglutination, rich inflection, tokenization costs and scarce quality data. A clear look at Turkish NLP's hurdles and openings.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg",
+  "articleSection": "Research",
+  "keywords": "Türkçe NLP, LLM, Yapay Zeka, Dil Modelleri"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI for Turkish: The Challenges and Opportunities of Turkish NLP",
+      "item": "https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/turkce-yapay-zeka-nlp.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI for Turkish: The Challenges and Opportunities of Turkish NLP</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg" alt="AI for Turkish: The Challenges and Opportunities of Turkish NLP" loading="lazy">
+    <div class="article-cat">Research</div>
+    <h1>AI for Turkish: The Challenges and Opportunities of Turkish NLP</h1>
+    <p class="article-sub">Why Turkish is hard for language models, how that difficulty shapes LLM behavior, and what it really takes to build Turkish-first AI products.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Türkçe NLP</span><span class="article-tag">LLM</span><span class="article-tag">Yapay Zeka</span><span class="article-tag">Dil Modelleri</span></div></div>
+    <div class="article-body">
+<h2>Why Turkish NLP Deserves Its Own Conversation</h2>
+<p>The leap forward in AI over the past few years has largely been told through English. Benchmark tables, academic papers and product demos mostly place English at the center, and this nurtures the illusion that language models perform equally well in every language. But the structure of a language directly determines how a model behaves in it, and Turkish, precisely because of its distinctive structure, deserves a conversation of its own.</p>
+<p>Turkish is the native language of more than 80 million people and carries a deep written tradition. Yet when it comes to high-quality, machine-processable text produced in the digital world, the gap between it and English is wide. In technical terms this places Turkish in a "mid-to-low resource" position: plenty of speakers, but relatively little clean and structured data to feed models.</p>
+<p>In this article we examine why Turkish is challenging for language models, how that difficulty surfaces in LLM behavior, and what building a Turkish-first AI product actually means. Our aim is neither pessimism nor empty optimism; instead, it is to show why these very challenges open a significant window of opportunity.</p>
+<h2>An Agglutinative Language: One Word, a Whole Sentence</h2>
+<p>Turkish's most defining trait is that it is agglutinative. Suffixes attach to a root one after another, each carrying a specific meaning and growing the word. The classic example "evlerinizden" maps onto four separate English words, "from your houses": ev (house) + ler (plural) + iniz (your) + den (ablative). Where English spreads this meaning across separate words, Turkish compresses it into a single form.</p>
+<p>This structure means that, in theory, a nearly unbounded number of valid words can be formed. The often-cited "Çekoslovakyalılaştıramadıklarımızdan mısınız?" is an extreme case, but even in ordinary text it is common to meet dozens, even hundreds, of inflected forms of a single root. Where an English verb is limited to a handful of forms like "go, goes, going, went," a single Turkish verb can take hundreds of surface forms.</p>
+<p>For language models, this amounts to a vocabulary explosion. The meaning space that a reasonable dictionary covers for English simply does not fit into the same dictionary size for Turkish. The model has to learn that forms of the verb "gelmek" (to come) such as "geliyorum," "gelmeyeceklerdi," and "gelebilseydik" derive from the same root and are bound together. In a poorly designed system, that connection is easily lost.</p>
+<h2>The Tokenization Problem: When the Model Sees Turkish in Fragments</h2>
+<p>Modern language models process text not as words but as sub-units called "tokens." Because most multilingual tokenizers are trained predominantly on English, their rules for splitting words into pieces are shaped around English structure. When Turkish enters such a system, words are often split not at linguistically meaningful boundaries but at points that look arbitrary.</p>
+<p>A word carrying a single meaning, like "gelebilseydik" (if only we could have come), may be broken into three or four token fragments that have nothing to do with its meaning. This hits both efficiency and comprehension. To express the same information, Turkish text consumes noticeably more tokens than English, which means a shorter effective context window, higher processing cost, and slower responses.</p>
+<p>The deeper problem is semantic. When the tokenizer fragments a root differently each time, it becomes harder for the model to establish the link between different inflections of the same concept. The kinship between "mahkeme" (court) and "mahkemenin" (of the court), obvious to a human, weakens in a poorly tokenized representation. In domains like law, where terminology is precise, that can translate directly into lost accuracy.</p>
+<p>This is why Turkish-first systems cannot treat tokenization as an afterthought. A tokenization strategy attuned to Turkish morphology both lowers cost and lets the model genuinely "see" the language. The choice of tokenizer is not the technical detail many assume it to be; it is a foundational architectural decision that shapes the quality of a Turkish product.</p>
+<h2>Vowel Harmony, Consonant Softening and the Surface-Form Explosion</h2>
+<p>Turkish's difficulty is not only about the sheer number of suffixes; the suffixes themselves shift form according to context. By the rule of vowel harmony, the same suffix is written with different vowels depending on the last vowel of the word it joins: "evde" (at home) but "okulda" (at school), "gözler" (eyes) but "kollar" (arms). In other words, one grammatical function surfaces in several different shapes.</p>
+<p>Add consonant softening (kitap becomes kitabı, "book" becoming "the book"), consonant doubling, and vowel deletion (burun becomes burnu, "nose" becoming "its nose"), and a single root takes on dozens of distinct written forms. To a human reader these are natural variants of one word; but a model that has not seen enough balanced data may treat them as disconnected units.</p>
+<p>This becomes especially critical in tasks that depend on search and matching. When a user types "taşınmaz" (real estate), the system must recognize forms like "taşınmazın," "taşınmazlar," and "taşınmazlardan" as part of the same concept. Without morphological normalization or stemming/lemmatization, the bridge between these variants is never built, and retrieval quality drops.</p>
+<p>This is exactly why a RAG (retrieval-augmented generation) system built for Turkish cannot simply copy a pipeline designed for English. A preprocessing and indexing layer that accounts for Turkish's morphological richness is an invisible but decisive component, the thing that ensures the right document is retrieved at the right moment.</p>
+<h2>The Data Problem: Not Just Less, but the Wrong Kind of Less</h2>
+<p>Discussions of low-resource languages are often framed around the "amount of data," but the real picture is more nuanced. There is no shortage of Turkish text on the internet; the problem is the relative scarcity of high-quality, clean, domain-specific, well-labeled data suitable for training and evaluating models. The enormous open datasets, benchmark suites and labeled collections that have accumulated for English over decades simply do not exist at the same maturity for Turkish.</p>
+<p>This gap is felt most acutely in specialized domains. In fields like law, medicine and the public sector, where language must be both technical and consistent, ready-to-use Turkish datasets are often either missing or scattered, inconsistent and unfit for machine processing. Even though legislation, case law and official texts are publicly available, turning them into clean, structured, model-ready form is a serious engineering task in its own right.</p>
+<p>There is a major gap on the evaluation side as well. Where dozens of established benchmarks exist for measuring a model's performance in English, domain-specific evaluation sets of comparable rigor are rare for Turkish. Yet the claim "our model works well in Turkish" only carries weight when it rests on a solid measurement framework designed for Turkish. You cannot reliably improve what you cannot measure.</p>
+<p>In the end, building Turkish AI is far more than downloading a ready dataset and feeding it into training. Collecting the data, cleaning it, structuring it by domain, and building evaluation sets from scratch is at least as decisive as the model architecture. The work is labor-intensive, but for precisely that reason it creates a competitive advantage that is hard to imitate.</p>
+<h2>Are Multilingual Models Enough? What It Means to Be Turkish-First</h2>
+<p>Most of today's large language models are multilingual and can understand Turkish surprisingly well. This is real progress and not to be dismissed. But there is a deep difference between "being able to understand Turkish" and "being designed for Turkish." A multilingual model usually thinks in an English-centric world and treats other languages as add-ons to that main axis. That can cause nuance, idiom and domain-specific terminology to slip away at the edges.</p>
+<p>Building a Turkish-first product is not a matter of placing a thin translation layer on top of a multilingual model. That approach hands the user an experience conceived in English and translated into Turkish: stilted, and often conceptually off. A genuinely Turkish-first system, by contrast, treats Turkish as a first-class citizen at every layer, from tokenization and data pipelines through prompt design and retrieval to evaluation and the language of the interface itself.</p>
+<p>In practice this means a system that answers Turkish questions from Turkish sources, in Turkish terminology, with a correct grasp of the Turkish context. A model that understands what a Turkish lawyer means by "zamanaşımı" directly within Turkish legal context, rather than detouring through the English "statute of limitations." This is not surface-level localization but a design choice woven into the system's identity.</p>
+<p>Multilingual models provide a powerful foundation; but when Turkish-specific engineering is not layered on top of it, the product always feels "good enough, yet not quite right." The difference rarely shows up in the demo, it shows up in the hundreds of small details of real, everyday use.</p>
+<h2>Difficulty Equals Opportunity: An Open Window for Turkey</h2>
+<p>Each of these difficulties also functions as a moat. A team that takes Turkish's agglutinative structure, morphological richness and data scarcity seriously, and actually solves them, accumulates a capability that cannot easily be copied. When everything arrives ready-made for English, competition heats up over the same resources everyone can reach. In Turkish, the real value is born from the labor of building the parts that are not ready-made.</p>
+<p>Turkey holds a natural advantage here: the engineers and experts who live the language as natives and grasp the legal, public and sector context from the inside are right here. Turkish-first AI is best built by teams that think in Turkish and have internalized it. This is not merely a technical edge; it is a matter of cultural and contextual proximity, and that is hard to buy from the outside.</p>
+<p>There is also a dimension of digital sovereignty. It is not a healthy future for Turkish-speaking users' AI experience to be shaped only as a by-product of systems optimized for another language. Building products that put Turkish at the center is both an economic opportunity and, over the long run, a strategic necessity if the language is to keep the place it deserves in the digital world.</p>
+<h2>Why HatsonTech Invests in Turkish-Focused AI</h2>
+<p>At HatsonTech, we treat Turkish-first AI not as a niche but as a founding thesis. It shapes how we build our own products and the AI features we deliver for clients. Specialized business domains are where all of Turkish's challenges are felt most intensely: the language is often both technical and sensitive, and misreading a single suffix or term can lead straight to a wrong conclusion.</p>
+<p>This is exactly why HatsonAI, our AI automation and assistant engine, is designed with Turkish language in mind. On top of powerful foundations, we add a Turkish-specific RAG pipeline, domain-specific data processing, and evaluation processes we built for Turkish. The layer that takes the raw power of a multilingual model and turns it into a product that genuinely works in Turkish context comes into play precisely here.</p>
+<p>Every challenge described in this article, we experience not as an abstract academic problem but as concrete engineering decisions we work on every day: correct tokenization, morphology-aware retrieval, clean and structured Turkish legal data, and evaluation sets that are meaningful for Turkish. These are the details that move a product from "understands Turkish" to "built for Turkish."</p>
+<p>Building AI for Turkish is hard; but we believe that difficulty is exactly the sign of something worth doing. HatsonTech builds its own products and client solutions to own these hard parts that others skip, and to give Turkish-speaking users a genuinely first-class AI experience in their own language.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>Turkish is an agglutinative language: a single root combines with a chain of suffixes to form one word that can correspond to an entire English sentence. This makes the theoretical vocabulary nearly unbounded.</li><li>Tokenizers built on a fixed vocabulary split Turkish words into meaningless fragments, spending more tokens than English to convey the same meaning and losing both efficiency and context.</li><li>Vowel harmony, consonant softening and rich inflection generate thousands of surface forms that share a single root; without morphological awareness, models struggle to relate these variants.</li><li>High-quality, domain-specific, cleanly labeled Turkish data is far scarcer and more scattered than its English counterpart, turning the low-resource problem directly into a product-quality problem.</li><li>Turkish-first AI is not a thin translation layer over a multilingual model; it demands a system designed for Turkish from tokenization and data pipelines through evaluation to domain-specific RAG.</li><li>This is exactly what HatsonTech does with HatsonAI and its products: building an AI stack that treats Turkish as a first-class citizen, evaluated and improved specifically for Turkish.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

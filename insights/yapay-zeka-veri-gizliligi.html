@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Where does your data go when you use AI? Learn in plain language the training vs inference difference, cloud–on-prem options, KVKK and GDPR basics, anonymization, and practical privacy tips for individuals and companies.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI and Data Privacy: Where Does Everything You Type Actually Go?">
+  <meta property="og:description" content="Where does your data go when you use AI? Learn in plain language the training vs inference difference, cloud–on-prem options, KVKK and GDPR basics, anonymization, and practical privacy tips for individuals and companies.">
+  <meta property="og:url" content="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI and Data Privacy: Where Does Everything You Type Actually Go?">
+  <meta name="twitter:description" content="Where does your data go when you use AI? Learn in plain language the training vs inference difference, cloud–on-prem options, KVKK and GDPR basics, anonymization, and practical privacy tips for individuals and companies.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg">
+  <title>AI and Data Privacy: Where Does Everything You Type Actually Go? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI and Data Privacy: Where Does Everything You Type Actually Go?",
+  "description": "Where does your data go when you use AI? Learn in plain language the training vs inference difference, cloud–on-prem options, KVKK and GDPR basics, anonymization, and practical privacy tips for individuals and companies.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg",
+  "articleSection": "Society",
+  "keywords": "Veri Gizliliği, KVKK, GDPR, Güvenlik, Yapay Zekâ"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI and Data Privacy: Where Does Everything You Type Actually Go?",
+      "item": "https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI and Data Privacy: Where Does Everything You Type Actually Go?</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg" alt="AI and Data Privacy: Where Does Everything You Type Actually Go?" loading="lazy">
+    <div class="article-cat">Society</div>
+    <h1>AI and Data Privacy: Where Does Everything You Type Actually Go?</h1>
+    <p class="article-sub">When you type something into an AI tool, where exactly does your data go? The critical difference between training and inference, the cloud–private–on-prem spectrum, the basics of KVKK and GDPR, the real limits of anonymization, and practical tips that actually work for both individuals and companies.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 min read</span><div class="article-tags"><span class="article-tag">Veri Gizliliği</span><span class="article-tag">KVKK</span><span class="article-tag">GDPR</span><span class="article-tag">Güvenlik</span><span class="article-tag">Yapay Zekâ</span></div></div>
+    <div class="article-body">
+<h2>The question: "Where does what I just typed go?"</h2>
+<p>When you paste a draft email, a contract clause, or a message containing names, addresses, and phone numbers into an AI chat tool, the first question seems innocent: where exactly does this text go? The answer is both simpler and more nuanced than most people assume. The simple part is this: your text almost always travels over the internet to the servers of the company that runs the tool, the response is generated there, and it comes back to you. In other words, your text briefly leaves your device and is processed on someone else's computer. This is an unavoidable part of how AI works, not a flaw.</p>
+<p>The nuanced part concerns what happens "over there." The text that reaches the server is used to generate an immediate answer; that step is expected and natural. The real privacy question is what happens to that text after the answer is produced. There are four basic possibilities: is it deleted right away, kept on record for a while, reviewed by a human when needed, or used to train future versions of the model? These four lead to very different outcomes, and what determines which one applies is the settings and the privacy contract of the tool you are using.</p>
+<p>The purpose of this article is precisely to make that chain visible. We will follow your data's journey stop by stop: leaving your device, traveling across the network, being processed on a server, being stored, and sometimes being "taught" to the model. Then we will look at how the law (KVKK and GDPR) frames this journey, how data can be made safer, and the concrete precautions you can take as both an individual and an organization. The goal is not to frighten you, but to let you use AI comfortably and knowingly, with your eyes open.</p>
+<h2>Training data or inference data? The single most important distinction</h2>
+<p>If we had to pick a single concept to keep in mind about AI and privacy, it would be the difference between "training" and "inference." We can split a language model's life into two phases. The first is training: the heavy, weeks- or months-long process, requiring very expensive hardware, in which the model reads enormous piles of text and learns the patterns of language. The second is inference: the everyday moment of use, in which the already-trained model produces an answer to your question within seconds. An analogy: training is a doctor's years of medical school; inference is you asking that doctor a question and getting an answer. Every time you type something into a tool, what you are doing is inference.</p>
+<p>This distinction is critical for privacy because the nature of the risk is entirely different in the two cases. During inference your text is used to generate an answer and, as a rule, its job ends there; the text is not permanently written into the model's "brain." What you wrote in one chat does not sit inside the model when you start a new conversation; the only reason a model seems to "remember" within a single conversation is that the prior exchange is re-sent each time, not stored as lasting memory. The truly lasting trace forms when your text is included in training data: then what you said can become one of billions of examples that shape the model's future behavior.</p>
+<p>The common fear here is: "Will the secret sentence I typed one day appear on someone else's screen?" The reality is more measured than the myth. Modern models do not memorize text word for word; they learn patterns and statistical relationships. However, rare, heavily repeated, or highly distinctive data can under some conditions be "memorized" and leak indirectly; researchers have found examples showing this is possible. That is why enterprise and API-based services with serious privacy policies usually commit to "we do not use your data for training by default." The key is knowing which category your tool falls into.</p>
+<p>The practical takeaway is clear: some free, consumer-facing tools may use your inputs to improve or train the service, while paid enterprise versions and developer APIs generally do not. So it matters not only "which tool" you use but also "which version and which mode" you use it in. The same company's free app and its enterprise plan can be two different worlds when it comes to privacy.</p>
+<h2>Your data's journey: from device to server and back</h2>
+<p>To make where data goes concrete, let's follow the journey stop by stop. The first stop is your device: the text you type is created in your browser or app. The second stop is the network: the text is sent over an encrypted connection (TLS) under modern web standards. This encryption is like a sealed envelope, the same kind used in online banking; it prevents anyone in the middle of the wire from reading the text. The third stop is the server: the text is processed in the data center of the company providing the service (or its cloud provider), the answer is generated, and it returns to you over the same encrypted path.</p>
+<p>The invisible but most important part of the journey begins at the server. Many services keep inputs for a while (logging/retention) to prevent abuse, fix bugs, or improve the service. This retention period can range from zero to a few days to months, and is often configurable. In some cases, if there is suspicion of a policy violation, texts may also be reviewed by a human moderator. None of this is automatically malicious; but from a privacy standpoint, this is exactly where the answer to "how long and to whom is my text visible after the answer" is decided.</p>
+<p>An important detail is where the encryption ends. TLS protects the text in transit between you and the server; but once the text reaches the server, it has to be decrypted in order to be processed. So unlike end-to-end encrypted messaging, the service provider itself can in principle see the content. This is exactly where privacy commitments come in: it is why a promise like "we could see it, but we don't look at it, don't store it, and don't put it into training" matters most when it is written down and auditable.</p>
+<p>An additional layer is third-party integrations. When you use an AI assistant embedded inside an app, the data often goes first to that app's server and from there to the API of the firm providing the model. So the chain may include not one but several companies. To understand your data's real journey you must ask not only "which tool" but also "which providers sit behind this tool"; the answer is usually written in the privacy policy and the data processing agreement.</p>
+<h2>Cloud, private deployment, and on-prem: three levels of control</h2>
+<p>The design choice that most determines where data goes is where the model runs. There are three basic options, and a library analogy makes them easy to picture. The first is a shared cloud service: like a big public library everyone uses. It is fast, powerful, and relatively cheap; but you have to bring the book you want to read (your data) into that building. The second is a private cloud deployment: an isolated section of the same cloud provider reserved for you; like a locked reading room whose boundaries are drawn by contract, where your data is not mixed with other customers'.</p>
+<p>The third and highest level of control is on-prem (on-premises) deployment: running the model directly on the organization's own servers, in its own building. Here the data never leaves the organization's network boundaries; it is like keeping the whole library in your own home. For hospitals, banks, public institutions, and law firms that work with sensitive data, this is often not a preference but a requirement, because regulation may demand that the data stay within a specific geography or a specific infrastructure. In return come higher costs in hardware, maintenance, and expertise; it is a classic trade-off between power and convenience.</p>
+<p>A middle path that has gained prominence in recent years is the "keep the data in the country" approach: even if the model runs in a powerful cloud, keeping the data center where the data is processed geographically within a specific country (data residency). Given KVKK's framework on transferring data abroad, this detail is often vital for organizations operating in Türkiye; where the data sits also determines which country's law it falls under.</p>
+<p>In the AI-powered products and client platforms we build at HatsonTech, these architectural decisions are made from the start around privacy: where sensitive files are processed, what data remains in the system, and the principle that enterprise customers' data will not be "taught" to the model are not features added later but the foundation of the design. This is the "privacy by design" principle put into practice not as an abstract slogan but as concrete engineering decisions.</p>
+<h2>KVKK and GDPR: two arrangements of the same tune</h2>
+<p>Data privacy is not only a preference but also a legal obligation; and two main texts define that obligation. The European Union's GDPR (General Data Protection Regulation) has become a worldwide reference since 2018. Türkiye's KVKK (Personal Data Protection Law, Law No. 6698, 2016) largely shares the same philosophy: personal data cannot be processed without the data subject's explicit consent or a legal ground listed in the law. You can think of them as two arrangements of the same tune; the main theme is identical, some notes and implementation details differ.</p>
+<p>The shared heart of both frameworks is a handful of core principles. Collect data only for a specific and explicit purpose (purpose limitation). Do not collect more than you need for that purpose (data minimization). Do not keep it longer than necessary (storage limitation). And grant people rights: to access their data, correct it, delete it (the "right to be forgotten"), and object to processing. In the AI context these principles apply directly: pasting more personal data than necessary into a tool can, on its own, conflict with the data minimization principle.</p>
+<p>A new player has joined the picture specifically for AI: the EU AI Act. This regulation places, alongside GDPR's "how do you process the data" question, the question "how risky is this AI system and which transparency rules does it fall under." For high-risk uses (for example hiring, credit assessment, certain public decisions) it introduces additional documentation, human oversight, and transparency obligations. Its rules are coming into force in stages as of 2026; so it should be on the radar not only of companies in the EU but of every organization that touches the EU market. It is fair to say the Act is also watched as a reference framework in Türkiye.</p>
+<p>An important caveat: this article is general information, not legal advice. For any specific data processing activity you must consult current legislation and, where needed, a legal expert. The rules are noticeably stricter especially when it comes to transferring data abroad and to special categories of data (such as health, biometric, religion, sexual life, or criminal convictions).</p>
+<h2>Anonymization and pseudonymization: what works, where it fails</h2>
+<p>Making data's identity indistinct is one of the most powerful techniques in the privacy toolkit; but two often-confused concepts must be separated. Pseudonymization replaces information that directly identifies a person (name, national ID number) with a code; but somewhere there is a key holding the "code to real person" mapping. So it is theoretically reversible and, legally, still personal data. Anonymization, on the other hand, aims to sever that link completely and irreversibly; when done correctly, the data ceases to be "personal data" and largely escapes the scope of KVKK/GDPR.</p>
+<p>The critical point is this: true anonymization is far harder than it looks. Deleting the name alone is not enough. Indirect clues like "the only person living in this district, aged 35, in this very rare profession" can make someone re-identifiable when combined with other datasets; this is called re-identification. Academic studies have shown that even a handful of ordinary fields, such as date of birth, gender, and postal code, can be enough to single out most individuals on their own. That is why serious systems rely not on a single move but on layered techniques.</p>
+<p>Its practical meaning in AI workflows is clear. Automatically masking personal identifiers before sending a text to the model (for example replacing names and numbers with placeholders like [PERSON], [NUMBER]) both serves the data minimization principle and reduces harm in case of a leak. In document-heavy workflows this is especially valuable: analyzing the pattern or structure of a document usually does not require the parties' real identity details. When we build an AI assistant for a client's internal knowledge base, the aim is to preserve the substance of the content while never carrying unnecessary personal detail into the system at all.</p>
+<p>Still, to be honest: no anonymization gives a hundred percent guarantee, and over-masking can reduce the usefulness of the data; if you black out everything, there is nothing left to analyze. The right balance is found by asking, each time, "which fields do I actually need for my purpose?"</p>
+<h2>A practical privacy guide for individuals</h2>
+<p>Enterprise architectures aside, most of us use AI every day as individuals; and here a few simple habits eliminate the bulk of the risk. The first rule is "think before you paste": assume that everything you enter into a tool leaves your screen and is processed on another server. Do not paste your national ID number, banking and card details, passwords, personal data others entrusted to you, or documents covered by a signed non-disclosure agreement (NDA) unless it is truly necessary. A simple test: "Would I send this to an email address I don't know?" If the answer is no, don't paste it into an AI tool without thinking either.</p>
+<p>The second rule is to actually read the settings once. Go into your tool's privacy settings; most modern tools have an option like "turn off chat history and training." When you turn this off, your history is not stored and your inputs are not used for model training. The privacy commitments of free consumer versions and paid/enterprise versions can differ; it is worth knowing which mode you are in. Turning on two-factor authentication (2FA) on your account also protects your past chats if your account is compromised.</p>
+<p>The third rule is to anonymize when needed. If you want an email corrected, replace real names with "X" and "Y"; if you want to understand a medical report, strip out the patient's identity and leave only the medical content. The model usually does not need real identities to do its job. Finally, make it a habit to ask, in apps with embedded AI, "where does this assistant send my data?"; review the permissions you've granted and the privacy policy from time to time. These small steps let you use AI far more safely without having to give it up.</p>
+<h2>For companies: designing privacy like a product feature</h2>
+<p>When a company brings AI into its work, privacy is no longer an individual habit but a corporate responsibility with legal consequences. The first step is to take inventory: which teams use which tools with which data? "Shadow AI" — employees unknowingly pasting customer data into free tools — is today one of the most common sources of leaks for organizations. You cannot manage a risk you cannot see; so you first need a clear usage policy and a list of approved tools. Offering a safe alternative rather than simply banning tools is often the most effective way to reduce shadow usage.</p>
+<p>The second step is to read the contracts carefully. When working with an AI provider, the Data Processing Agreement (DPA) is vital: does the provider use your data for training, how long does it retain it, where (in which country) does it process it, who are the subprocessors, and how quickly does it notify you in case of a breach? Under KVKK the ultimate responsibility as the data controller usually stays with you; the provider is merely the data processor. For this reason, especially when it comes to special categories of data and transfers abroad, commitments must be written and verifiable, not verbal.</p>
+<p>The third step is to set up the design correctly from the start: "privacy by design" and "privacy by default." In practice this means data minimization (send the model only the fields it needs), access control (who can see which data), logging (who accessed what and when), and, where needed, private or on-prem deployment options. For high-risk uses, conducting a Data Protection Impact Assessment (DPIA) is both good engineering practice and a step the legislation expects.</p>
+<p>At HatsonTech, this is exactly our approach as we build products like FlowDesk and HatsonAI and deliver AI-powered solutions for clients: questions like where sensitive data resides, who sees it, and what is taught to the model are design decisions that come before product features. Privacy is not a compliance layer pasted on afterward; it is a precondition for the product being trustworthy. For a smart company this is not a cost but an investment that returns in the form of customer trust — because in any field that handles sensitive data, trust is part of the product itself.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>The text you type into an AI tool almost always travels over an encrypted connection (TLS) to the provider's server, where it is decrypted to be processed; the real privacy question is how long the text is kept after the answer, who can see it, and whether it is used for training.</li><li>The difference between training and inference is critical: your everyday use is inference and, as a rule, is not permanently written into the model's memory; the lasting trace forms when your data is included in training data. Serious enterprise versions and APIs usually say 'we do not use your data for training by default.'</li><li>Where the model runs determines the level of control: shared cloud, private cloud, and on-prem deployment. For organizations working with sensitive data, keeping data within a specific country or infrastructure (data residency) is often mandatory.</li><li>KVKK and GDPR share the same core principles: purpose limitation, data minimization, storage limitation, and individuals' rights to access/correct/delete. The EU AI Act adds risk and transparency obligations. This article is general information, not legal advice.</li><li>Anonymization is powerful but hard: deleting the name is not enough, and indirect clues (such as age, district, profession) can lead to re-identification. Masking unnecessary personal data before sending it to the model serves data minimization and reduces leak damage.</li><li>For individuals: think before you paste, turn off privacy and training settings, anonymize when needed. For companies: take an inventory of tools, read DPAs carefully, design privacy from the start (privacy by design), and conduct a DPIA for high-risk uses.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

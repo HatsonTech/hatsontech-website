@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Where should your business start with AI? An honest, hype-free guide to picking a real problem, starting small, measuring, build vs buy, data readiness and ROI.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/isletmeler-icin-yapay-zeka.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/isletmeler-icin-yapay-zeka.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI for Businesses: Where to Start Without the Hype">
+  <meta property="og:description" content="Where should your business start with AI? An honest, hype-free guide to picking a real problem, starting small, measuring, build vs buy, data readiness and ROI.">
+  <meta property="og:url" content="https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI for Businesses: Where to Start Without the Hype">
+  <meta name="twitter:description" content="Where should your business start with AI? An honest, hype-free guide to picking a real problem, starting small, measuring, build vs buy, data readiness and ROI.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg">
+  <title>AI for Businesses: Where to Start Without the Hype | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI for Businesses: Where to Start Without the Hype",
+  "description": "Where should your business start with AI? An honest, hype-free guide to picking a real problem, starting small, measuring, build vs buy, data readiness and ROI.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg",
+  "articleSection": "Business",
+  "keywords": "İşletme, Yapay Zeka Stratejisi, ROI, Dönüşüm, Veri"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI for Businesses: Where to Start Without the Hype",
+      "item": "https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/isletmeler-icin-yapay-zeka.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI for Businesses: Where to Start Without the Hype</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg" alt="AI for Businesses: Where to Start Without the Hype" loading="lazy">
+    <div class="article-cat">Business</div>
+    <h1>AI for Businesses: Where to Start Without the Hype</h1>
+    <p class="article-sub">A practical roadmap for companies that start with a real problem instead of a slide full of promises — that go small, measure honestly, and know when to walk away.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">İşletme</span><span class="article-tag">Yapay Zeka Stratejisi</span><span class="article-tag">ROI</span><span class="article-tag">Dönüşüm</span><span class="article-tag">Veri</span></div></div>
+    <div class="article-body">
+<h2>First, Set the Hype Aside</h2>
+<p>For the past few years the same sentence has been echoing in nearly every boardroom: "We need to get into AI." The trouble is that this is not a goal — it is a feeling. Like "we should digitalize" or "we should move to the cloud," it is a slogan that means nothing until you fill it in. AI is not a destination; it is a tool for doing a specific job cheaper, faster or better. The moment you put the tool in place of the goal, you start inventing a problem just to fit the solution you already bought.</p>
+<p>The danger of hype is not only wasted budget. The real danger is that expectation runs ahead of reality. There is a chasm between a technology working flawlessly in a pitch deck and that same technology working with your actual data, your actual customers, your actual regulations. Projects that begin with the belief that "AI solves everything" curdle into disappointment at the first real-world friction — and often cast a shadow over the whole subject.</p>
+<p>The aim of this article is not to talk you out of AI. Quite the opposite: used well, it is a powerful tool that genuinely works and produces measurable value. The aim is to pull you away from the shine in the showroom and invite you to look from where an engineer — or a founder who takes the business seriously — stands. The questions asked from there are always the same: Which problem? How much money? How much risk? And how will we measure the result?</p>
+<h2>Start With a Problem, Not a Technology</h2>
+<p>A good AI project almost never starts with the question "where can we use AI?" It starts with "what tires us out the most, what costs us the most, what are we always late doing?" Put the technology aside and list your company's most boring, most repetitive, most human-hour-devouring tasks. That is exactly where AI shines today: high-volume, patterned work built on recognizing linguistic or visual patterns — work that, taken one item at a time, is not mentally taxing.</p>
+<p>It pays to be concrete. "Improve the customer experience" is not a problem; it is a wish. But "our support team spends four hours a day sorting sixty percent of incoming emails into three typical categories" — that is a problem. Measurable, bounded, with a clear definition of success. A good candidate problem usually has three traits: it recurs often, you do not wait months to see the outcome, and a human spots a wrong answer the moment they look at it.</p>
+<p>One warning: the most attractive problem is not always the right starting point. It is tempting to pick the company's most critical, most visible process as your first test subject — but it is risky. For your first project, choose somewhere the world will not end if it goes wrong, yet where everyone will clearly see the benefit if it goes right. Trust is built with small, concrete wins, not big, vague promises.</p>
+<h2>Start Small: a Pilot, Not a Revolution</h2>
+<p>After choosing a problem, the most common mistake is to immediately think big. "If we're going to do it, let's transform the whole department" is the approach that burns money and reputation the fastest. The right method is a narrow pilot: a single process, a single team, a clear window of a few weeks, and a success threshold defined up front. The point of a pilot is not to change the world but to answer one question: "Does this actually work, and by how much?"</p>
+<p>The hidden benefit of a good pilot is less the result it produces than what it teaches you. During a pilot you learn how messy your data really is, how users route around the tool, where the model stumbles, and where the real savings are hiding. That knowledge is worth more than the shiniest business plan on paper, because it is real. Even a failed pilot is a cheap lesson — cheap because you learned it before pouring a seven-figure investment in the wrong direction.</p>
+<p>When designing the pilot, adopt the "human in the loop" principle from the outset. The system produces suggestions, but for a while a human makes or approves the final decision. This both reduces risk and lets you measure the model's true hit rate. Instead of putting AI behind the wheel overnight, seat it in the passenger seat first; as trust grows, you hand over responsibility gradually.</p>
+<h2>If You Can't Measure It, You Can't Know It Works</h2>
+<p>The most insidious trap in AI projects is the feeling that something "looks cool." The demo is impressive, everyone nods, the project gets a green light — but no one can say in numbers what we actually improved. The only way to prevent this is to write down the success metric and the current state (the baseline) before a single line of code is written. A sentence like "this task currently takes forty minutes on average with an eight percent error rate" is the only honest ground on which to later claim "it got better."</p>
+<p>The right metric is usually a business metric, not a technical one. The model's accuracy is interesting, but it is not what the boss cares about. The boss cares about hours saved, errors reduced, response time shortened, conversion rate lifted, or returns brought down. Where possible, use a control group: run part of the work the old way and part with the new system, then set the two side by side. Otherwise you cannot tell genuine improvement from a seasonal swing or some other change that happened to ship that month.</p>
+<p>Measurement is also a discipline of honesty. Being able to admit when a pilot's numbers do not hold up is half the battle. A threshold defined in advance ("if it doesn't cut the error rate by at least a third, we don't continue") protects you both from fooling yourself and from the endless "let's give it one more week" loop. Good teams hear bad news early and clearly; bad teams postpone it until the budget runs out.</p>
+<h2>Build vs Buy: an Honest Decision Tree</h2>
+<p>At some point the question arrives: do we buy an off-the-shelf product, or build our own? The general rule is simple: if your need is the same as your competitors', buy. For tasks like reading invoices, summarizing meetings, or answering customer questions, there are mature, cheap, continuously updated products. Building these from scratch is like generating your own electricity — possible, but sensible for almost no business. If your competitive advantage does not come from that task, do not build it yourself.</p>
+<p>Building (or commissioning a custom build) makes sense in three situations: when your business is genuinely unique and ready-made products cannot capture your nuance; when your data is so sensitive or regulated that it cannot leave the building; or when this capability is precisely what sets you apart from competitors. In these cases a generic tool does the job halfway and traps you on the same baseline as everyone else. Most needs of most companies fall on the 'buy' side; the core that truly demands 'build' is small but valuable.</p>
+<p>The third and often smartest path is between the two: take the base intelligence from an external model, but wrap it in your own data, your own rules, and your own domain knowledge. This is the approach behind HatsonAI, our AI automation and assistant engine: we take the general capability of language from strong foundation models, and on top of it we build a company's own knowledge, workflow rules, and a verification layer that cites its sources. The real value lies not in the model itself but in that thin yet laborious layer that makes it reliable, domain-specific and verifiable. Seeing this distinction also clarifies where to put your budget.</p>
+<h2>Data Readiness: Boring but Decisive</h2>
+<p>Most AI projects fail not at the model but at the data. There is an old engineering saying: "garbage in, garbage out." Even the most powerful model cannot shine on data that is messy, incomplete, contradictory, or sitting in ten different places in ten different formats. Most companies have far less 'ready' data than they assume, because data was kept for years for humans, not machines. This is why a surprisingly large share of real projects goes not into building the model but into gathering and cleaning the data.</p>
+<p>The good news is that this cleanup produces value on its own. Organizing, labeling and consolidating your data into a single source of truth helps your business even if AI never arrives — reporting improves, errors drop, institutional memory strengthens. So it is healthier to see data readiness not as AI's tedious precondition but as an investment that pays off in its own right. What's more, this work shows you, in the most honest way, which AI idea is actually realistic.</p>
+<p>A warning comes from the privacy and compliance side too. If you work with customer data, personal data, or regulated information, clarifying data-protection law (in Turkey, the KVKK) and sector rules before feeding any of it to a model is not negotiable. Where the data goes, where it is stored, who can access it — all of this must be designed from the start. This is not only a legal obligation; it is the foundation of your customers' trust, and it should be part of the architecture, not a patch bolted on later.</p>
+<h2>Common Pitfalls and How to Avoid Them</h2>
+<p>A handful of mistakes recur so often they almost form a pattern. The first is choosing the solution before the problem: "We bought such-and-such tool, now where do we plug it in?" That is like buying a hammer and wandering around looking for nails. The second is treating it as a one-off project: AI systems are not set-and-forget but living systems that must be monitored, fed, and can degrade over time. The world changes, the data shifts, the model may not be as accurate as it was yesterday; this is called 'drift,' and you need a maintenance plan for it.</p>
+<p>The third and perhaps most expensive mistake is blindly trusting the model's confident errors. Large language models can fabricate something they do not know in extremely convincing language; this is called 'hallucination.' In domains where accuracy is costly to get wrong — law, health, finance — this is the biggest risk. The fix is not to set the model free but to tie it to verifiable sources, run its output through a checking layer, and keep a human in the loop for critical decisions. That is exactly why, when we build an AI assistant for a client with HatsonAI, we anchor every answer to the source document it rests on: the user should see not just the answer but where the answer came from.</p>
+<p>The fourth is the human side, and it is often more decisive than the technology itself. Even the best system gathers dust on the shelf if the team meant to use it does not trust it, fears it, or cannot fit it into their workflow. Projects stick when they are presented to staff not as "the tool that will replace you" but as "the tool that will take the boring part off your hands," and when they come with training and a feedback channel. Installing the technology is easy; getting people to actually use it is the hard and truly valuable part of the work.</p>
+<h2>Calculating ROI Honestly</h2>
+<p>In the end it all comes down to one question: is this investment paying for itself? The ROI (return on investment) calculation sounds simple — gains divided by cost — but done honestly it is more thorough than most presentations. The gain side is not only 'hours saved'; reduced errors, faster delivery, better decisions, opportunities not missed, and sometimes simply staff focusing on more meaningful work are all gains. Some of these are easy to measure, some hard; rather than ignoring the hard ones, at least flag them honestly.</p>
+<p>On the cost side, the biggest mistake is forgetting the invisible line items. The license or model fee is usually just the tip of the iceberg. Beneath it lie 'hidden' costs like data preparation, integration, maintenance, monitoring, training, and correcting wrong answers. A realistic calculation puts these on the table from the start; otherwise the project's return looks bright on paper but never materializes. A good rule: estimate the first-year cost a little higher than it seems and the return a little lower — surprises usually run in that direction.</p>
+<p>Finally, keep the time horizon realistic. Some AI projects pay for themselves within weeks; some take months; some never do — and recognizing that early is not a failure but good management. Treat ROI not as a one-time gate but as a continuously updated indicator. The healthiest approach is to start with a small pilot, see the real number, then scale what works and honestly shelve what does not. Hype promises you a revolution; good engineering and good management offer you a measurable, repeatable and honest return. Over the long run, it is the latter that wins.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>AI is a tool, not a goal; start with a real, measurable problem to solve — not with the feeling that "we need to get into AI."</li><li>Begin with a narrow pilot instead of a grand transformation; define success with a baseline and a clear business metric before any code is written.</li><li>Buy when your need matches your competitors'; build (or commission) only when data sensitivity, genuine uniqueness, or competitive advantage is at stake.</li><li>Most projects fail at the data, not the model; data cleanup is boring but both decisive and valuable on its own.</li><li>Hallucination, drift and human resistance are the most common pitfalls; anchor the model to verifiable sources and keep a human in the loop for critical decisions.</li><li>Calculate ROI honestly including hidden costs; scale what works and shelve what doesn't, early and honestly.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How does AI turn language into numbers? A plain-English guide to tokens, embeddings and vectors, from tokenization to vector space and cosine similarity.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers">
+  <meta property="og:description" content="How does AI turn language into numbers? A plain-English guide to tokens, embeddings and vectors, from tokenization to vector space and cosine similarity.">
+  <meta property="og:url" content="https://hatsontech.com/insights/token-embedding-vektor.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers">
+  <meta name="twitter:description" content="How does AI turn language into numbers? A plain-English guide to tokens, embeddings and vectors, from tokenization to vector space and cosine similarity.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg">
+  <title>Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers",
+  "description": "How does AI turn language into numbers? A plain-English guide to tokens, embeddings and vectors, from tokenization to vector space and cosine similarity.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/token-embedding-vektor.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg",
+  "articleSection": "Education",
+  "keywords": "Embedding, Vektör, NLP, Yapay Zeka"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers",
+      "item": "https://hatsontech.com/insights/token-embedding-vektor.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/token-embedding-vektor.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/token-embedding-vektor.jpg" alt="Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers" loading="lazy">
+    <div class="article-cat">Education</div>
+    <h1>Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers</h1>
+    <p class="article-sub">A computer processes numbers, not letters. So how does a word, a sentence, even a meaning turn into a number? From tokenization to embeddings, from vector space to semantic similarity, we explain how AI grasps language with concrete analogies and no math required.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Embedding</span><span class="article-tag">Vektör</span><span class="article-tag">NLP</span><span class="article-tag">Yapay Zeka</span></div></div>
+    <div class="article-body">
+<h2>Why We Need a Translation in the First Place</h2>
+<p>When we say AI "understands language," we are telling a small white lie. A language model does not see letters, words or sentences the way we do. In its world, everything is a number. Just as a calculator works only with digits, the one and only thing flowing through a modern AI system is vast strings of numbers. So there is a basic problem to solve: how do we translate text written by a human into numbers a machine can process?</p>
+<p>This translation may sound mechanical, but the real difficulty is not in the mechanics. Mapping a word to some arbitrary number is easy; you give every word in the dictionary an ID and you are done. But that throws meaning straight in the bin. If you assign 4172 to "king" and 9038 to "queen," nothing in those two numbers carries the faintest trace of how closely related the two concepts are. The real challenge is to do the translation so that meaning travels along with the text.</p>
+<p>In this article we will build the three cornerstones of that translation, one at a time: first tokenization, which splits text into pieces; then embeddings, which load meaning onto each piece; and finally the vector space in which those meanings live. The goal is to make this quiet mechanism at the heart of modern AI understandable without requiring any background in mathematics.</p>
+<h2>Tokenization: Cutting Text Into Bite-Size Pieces</h2>
+<p>The first step of the translation is breaking text into manageable pieces. These pieces are called tokens. A token is often not a whole word; sometimes it is part of a word, sometimes a suffix, sometimes just a few letters. The system feeding the model splits incoming text into these tokens and assigns each one its index in the model's vocabulary. Perhaps the simplest analogy is food: you cannot swallow a sentence whole, you first chew it into bites. Tokenization is the step where the model cuts text into digestible bites.</p>
+<p>So why use these odd sub-pieces instead of whole words? Because fitting every word in the world into a single dictionary is impossible. New words, typos, names and technical terms can be invented endlessly. Instead, models use a fixed-size vocabulary made of frequently occurring pieces. A long, rare word like "unbelievable" might be split into familiar parts such as "un," "believ" and "able." This way the model can reconstruct even a word it has never seen out of pieces it already knows, much as you can sound out an unfamiliar word by breaking it into syllables.</p>
+<p>This splitting looks innocent, but its consequences run deep. How many tokens a text breaks into directly determines cost, speed and how much context the model can hold at once, because models measure text in tokens. And token boundaries do not fall with equal efficiency in every language. Many tokenizers built for English shred words in agglutinative languages like Turkish at points that have nothing to do with meaning, which means burning more tokens to say the same thing. Contrary to what most people assume, tokenization is not a technical footnote; it is a foundational design decision that quietly shapes product quality.</p>
+<h2>Embedding: Loading Meaning Onto a Token</h2>
+<p>We turned tokens into index numbers, but as we just saw those numbers are meaningless; "4172" tells you nothing about "king." This is exactly where embeddings come in. An embedding represents each token not as a single number but as a list of numbers, that is, a vector. The word "king" becomes not 4172 alone but a long list like [0.21, -0.83, 0.05, ...] made of hundreds, even thousands, of numbers. Each number in this list carries a tiny clue about one feature of the word.</p>
+<p>The key point is that these numbers are not assigned by hand. The model learns the vectors itself while reading billions of sentences. By watching which words a word sits next to and which contexts it shows up in, it gives it a list of numbers such that words appearing in similar contexts end up with similar lists. There is a beloved saying in linguistics: "You shall know a word by the company it keeps." Embeddings turn exactly this intuition into numbers; a word's meaning is distilled from the words it appears alongside.</p>
+<p>Think of it with a simple analogy. Suppose we score every word along a few axes: how "alive" it is, how "royal" it is, how "masculine versus feminine" it is. "King" scores high on royal and high on masculine; "queen" scores high on royal and high on feminine; "banana" scores low on all three. In real embeddings these axes number in the hundreds and none of them carry labels as tidy as ours; but the idea is the same. Each word becomes a list of coordinates describing the features that make up its meaning.</p>
+<h2>Vector Space: A Map of Meaning</h2>
+<p>Since we have turned every word into a list of numbers, that is, into coordinates, we can now picture every word as a point, just like a city pinned on a map by latitude and longitude. With two numbers we can build a two-dimensional map, with three a three-dimensional space. Because embeddings contain hundreds of numbers, the place where words live is a space of hundreds of dimensions. We cannot visualize it, but the logic is exactly the same: each word is a point with its own position in this vast space. This space is called the vector space.</p>
+<p>The beauty of this map is that the positions on it are not random. When embeddings are learned well, words close in meaning land close together. "King," "queen," "throne" and "palace" gather in one neighborhood, while "banana," "apple" and "strawberry" cluster in a completely different one. Meaning itself has turned into physical proximity. Just as cities near each other on a geographic map often share a similar climate, points near each other on this map of meaning carry similar meanings.</p>
+<p>The most surprising part is that even directions in this space can carry meaning. The classic example: take the vector for "king," subtract the "male" direction and add the "female" direction, and the point you arrive at falls strikingly close to "queen." In other words, a particular movement through the space roughly corresponds to "turning masculine into feminine." This tidy example does not work perfectly in every case, but it points to something real: the model encodes meaning not only in positions but also in the relationships between them. Meaning lives both in the map's points and in its directions.</p>
+<h2>Semantic Similarity: The Angle Between Two Meanings</h2>
+<p>Now that words have become points on a map, we can ask a very powerful question: how similar are two words? To measure this, we look at how much the two points "face the same direction." The most common method is cosine similarity. The name sounds intimidating, but the idea is simple: picture each vector as an arrow reaching from the center of the space out to its point. If two arrows point the same way, the meanings they represent are similar. The smaller the angle between the arrows, the greater the similarity.</p>
+<p>Cosine similarity turns exactly this angle into a number. If two arrows point in precisely the same direction, the similarity is close to 1; if they are completely unrelated, standing at a right angle, it is near 0; if they point in opposite directions, it approaches -1. An important subtlety: cosine similarity considers only the direction of the arrows, not their length. So even if a concept has a "longer" vector because it appears very often, the similarity verdict is not affected; only the direction of the meaning speaks.</p>
+<p>Let us see why this matters with an example. "Automobile" and "car" look completely different in spelling; they share not a single common run of letters. A classic text search cannot match them. But in vector space the two land almost on top of each other, because they keep showing up in the same contexts. Cosine similarity catches this closeness with a high score. This is the secret behind machines comparing meanings rather than words: similarity is now a measure of meanings, not of letters.</p>
+<h2>Sentences and Documents: From a Single Word to a Whole Text</h2>
+<p>So far we have spoken only of single words, but in the real world we deal with questions, sentences and pages of documents. The good news: the same idea scales. Modern models can compress not just words but an entire sentence or paragraph into a single vector, that is, a single point on the map of meaning. This vector is like a summary of the whole text's meaning. The question "How is an employment contract terminated?" and a multi-page piece of legislation both end up as points in the same space.</p>
+<p>This compression is a subtler job than for words. The meaning of a sentence is not merely the sum of its words; their order, which word modifies which, and the surrounding context all come into play. "The dog bit the man" and "The man bit the dog" contain the same words but say entirely different things. So models that produce sentence embeddings account for the relationships between words and generate a single holistic representation. The result is again a vector, but now it carries the meaning of a sentence or a paragraph.</p>
+<p>This ability opens the door to one of AI's most useful applications: semantic search. You turn a user's question into a vector, then, among the vectors of the thousands of documents you hold, you retrieve the ones facing the most similar direction, that is, those with the highest cosine similarity to the question. The user gets not the documents that happen to contain the exact words of the question, but the documents closest to its meaning. Documents that say the same thing in different words, which keyword matching misses entirely, are caught this way too.</p>
+<h2>What Does This Do in a Real Domain Like Law?</h2>
+<p>These concepts can seem abstract, but their value shows up when they touch ground in a concrete domain. Turkish law is exactly such a domain. What a lawyer is after is usually not a document that happens to contain a particular word, but rulings that deal with a particular legal situation. When a user searches for "termination of a lease for just cause," they want rulings on that same legal issue to surface even if those rulings never use that exact phrase. Semantic similarity makes this possible because it reaches past the words to grasp the essence of the matter.</p>
+<p>A semantic search system built for such a domain rests on precisely this mechanism. Millions of rulings and thousands of pages of legislation are placed onto a map of meaning through embeddings. When a user asks a question, that question lands on the same map as a point, and the system retrieves the texts closest in meaning within seconds. Rulings that classic keyword search would miss, phrased in different terms but pointing to the same legal conclusion, become visible this way.</p>
+<p>It is right here that Turkish's own peculiar challenges enter the picture. The system has to recognize that forms like "taşınmaz," "taşınmazın" and "taşınmazlardan" all belong to the same concept; tokenization has to suit Turkish structure; and embeddings have to work meaningfully with a specialized vocabulary. So the three cornerstones described in this article turn into concrete engineering decisions beneath any serious semantic search system. Without the right tokens, meaningful embeddings and a sound similarity measure, you simply cannot build reliable semantic search over a body of technical text.</p>
+<h2>Wrapping Up: The Intuition Beneath the Numbers</h2>
+<p>Let us return to the start. AI does not understand language; it translates it into numbers and operates on those numbers. We have seen the three links of that translation. Tokenization splits text into digestible pieces. Embedding gives each piece a list of coordinates reflecting its meaning. And the vector space is a map of meaning in which those coordinates live; on this map, closeness means similarity, and cosine similarity lets us measure that closeness.</p>
+<p>The power of this chain lies in turning meaning into geometry. Once meaning becomes a position on a map, a human question like "how similar are these two things?" turns into a machine-solvable one like "how close are these two points?" This is the quiet idea beneath modern AI's appearance of grasping language: placing meaning somewhere in space.</p>
+<p>Once you hold this intuition, the workings of many AI tools around you light up. Why a recommender system can find things "similar to this," why an assistant catches what you mean even when you do not use the exact words, why a legal tool can surface rulings phrased differently but about the same issue; the same idea sits beneath all of them. Language is turned into numbers, meaning is placed on a map, and machines navigate that map to produce a sense of meaning that resembles our own.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>AI does not "understand" language; it translates text into numbers and operates only on numbers. The whole point is to do that translation without losing meaning.</li><li>Tokenization splits text into sub-pieces called tokens; how many tokens a text breaks into directly affects cost, speed and context length, and it does not work with equal efficiency in every language.</li><li>An embedding represents each token as a list of numbers (a vector) rather than a single number; these numbers are learned as the model reads billions of sentences, not set by hand, and they encode the word's meaning.</li><li>Vector space is a map of meaning: each word is a point, and words close in meaning land close together; even directions can carry meaning (king − male + female ≈ queen).</li><li>Cosine similarity measures semantic similarity by looking at the angle between two vectors, letting machines compare meanings rather than letters (like "automobile" and "car").</li><li>The same idea scales to sentences and documents to enable semantic search; a document search system uses this mechanism to surface texts about the same issue even when they are phrased in different words.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

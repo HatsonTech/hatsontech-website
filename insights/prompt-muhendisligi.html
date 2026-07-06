@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is prompt engineering and how do you get better answers from AI? A practical guide to clear instructions, context, few-shot examples, roles, and step-by-step thinking with real examples.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Prompt Engineering: A Practical Guide to Getting Better Answers from AI">
+  <meta property="og:description" content="What is prompt engineering and how do you get better answers from AI? A practical guide to clear instructions, context, few-shot examples, roles, and step-by-step thinking with real examples.">
+  <meta property="og:url" content="https://hatsontech.com/insights/prompt-muhendisligi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Prompt Engineering: A Practical Guide to Getting Better Answers from AI">
+  <meta name="twitter:description" content="What is prompt engineering and how do you get better answers from AI? A practical guide to clear instructions, context, few-shot examples, roles, and step-by-step thinking with real examples.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg">
+  <title>Prompt Engineering: A Practical Guide to Getting Better Answers from AI | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Prompt Engineering: A Practical Guide to Getting Better Answers from AI",
+  "description": "What is prompt engineering and how do you get better answers from AI? A practical guide to clear instructions, context, few-shot examples, roles, and step-by-step thinking with real examples.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/prompt-muhendisligi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg",
+  "articleSection": "Practical / How-to",
+  "keywords": "Prompt Engineering, LLM, Yapay Zeka, Verimlilik"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Prompt Engineering: A Practical Guide to Getting Better Answers from AI",
+      "item": "https://hatsontech.com/insights/prompt-muhendisligi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/prompt-muhendisligi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / Prompt Engineering: A Practical Guide to Getting Better Answers from AI</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/prompt-muhendisligi.jpg" alt="Prompt Engineering: A Practical Guide to Getting Better Answers from AI" loading="lazy">
+    <div class="article-cat">Practical / How-to</div>
+    <h1>Prompt Engineering: A Practical Guide to Getting Better Answers from AI</h1>
+    <p class="article-sub">The same AI model can hand you a forgettable answer from a sloppy prompt and a genuinely useful one from a good prompt. We unpack the few simple but powerful habits behind that gap —clear instructions, context, examples, and step-by-step thinking— with concrete before-and-after comparisons.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Prompt Engineering</span><span class="article-tag">LLM</span><span class="article-tag">Yapay Zeka</span><span class="article-tag">Verimlilik</span></div></div>
+    <div class="article-body">
+<h2>What is prompt engineering, really?</h2>
+<p>Whatever you type into an AI model is called a "prompt," and the quality of the answer you get back leans heavily on it. Despite the technical-sounding name, prompt engineering is not a secret programming language. At heart it is one thing: the skill of describing what you want —clearly, completely, and in an organized way— so the AI can actually grasp it. The good news is that it requires no coding, and anyone willing to try can learn it.</p>
+<p>Here is an analogy that helps. Picture the model as an extremely knowledgeable but brand-new intern who cannot see inside your head at all. Tell this intern to "handle this," and they will make a reasonable but probably wrong guess. Tell them who you are, what you want and why, what the result should look like, and hand them one example, and they will usually deliver exactly what you had in mind. The model never changed; the only thing that changed was the briefing you gave it.</p>
+<p>One point worth underlining: modern models are increasingly "forgiving," meaning they will try to make sense of even a messy prompt. But forgiving is not the same as flawless. If you want answers that are accurate, relevant, and ready to use, deliberately building your prompt —rather than leaving it to chance— is still the fastest lever you have. In this article we will see how to pull that lever, step by step, with a before-and-after example for every technique.</p>
+<h2>Clear instructions: vagueness in, vagueness out</h2>
+<p>The first rule of a good prompt is the most boring but most powerful one: say plainly what you want. The AI cannot read your mind; it can only read your words. Phrases like "short," "professional," or "a few bullet points" feel precise to you, but they arrive at the model as gaps left open to interpretation. If you do not fill those gaps, the model fills them for you —and it will not always fill them the way you hoped.</p>
+<p>Let's make it concrete. BEFORE: "Can you fix my email?" This prompt never says what to fix (spelling? tone? length?), who the reader is, or how heavily you want it edited. AFTER: "I'm sending the email below to a client. Fix spelling and grammar, keep the tone polite but direct, and stay under 120 words. Don't change the meaning. Return only the corrected text." The second prompt hands the model the criteria for success, so the result is predictably better.</p>
+<p>As a working habit, try to put three things in every prompt: the task (what it should do), the constraints (what it should not do, or which limits to stay within), and the output format (what the result should look like —a bullet list, a table, a single paragraph?). That trio alone visibly raises the quality of your answers.</p>
+<p>A small caution about negative instructions: saying "don't do X" sometimes works worse than saying "do Y," because you pull the model's attention toward the very thing you don't want. Where you can, flip the negative into a positive. Instead of "don't use technical jargon," saying "write in everyday language a high-schooler would understand" usually gives a cleaner result.</p>
+<h2>Context: tell the model what you know</h2>
+<p>After clear instructions, the biggest lever is context. Context is the background the model needs to produce a good answer for your specific situation: who you are, who you're writing for, what industry you're in, the raw material you're holding, and what you've already tried. The model may have read much of the internet, but it can only know your particular situation if you tell it.</p>
+<p>Look at an example. BEFORE: "Write a marketing blurb for our new product." The model will write something, but it writes into thin air; it has to guess the product, the audience, and the tone. AFTER: "Write a marketing blurb for an accounting app aimed at small businesses. The audience is shopkeepers and small-business owners who aren't accountants. Our biggest promise is that it automates invoice and VAT tracking, saving them a few hours a week. Tone: reassuring, plain, no hype. Three short paragraphs." The second version comes out far more usable, because it hands the model the real raw material.</p>
+<p>When you supply context, mind the balance. Too little forces the model to guess; needlessly too much can bury the actual instruction in noise and make the model miss the detail that matters. Practical rule: give the information that genuinely helps the task, and cut the rest. If you want a long text summarized, give the whole text; but you don't need to share your life story.</p>
+<p>This idea mirrors the core logic behind HatsonAI, the AI assistant engine we build at HatsonTech. There, to feed the model the right context automatically, we use a method called RAG (Retrieval-Augmented Generation): before the model answers, we retrieve the relevant, real source documents and lay them in front of it. In other words, the "adding context" work you'd do by hand, the system automates in the background. The principle is identical: good context means a good answer.</p>
+<h2>Showing examples: the few-shot approach</h2>
+<p>Sometimes showing what you want is far more effective than describing it. AI is surprisingly good at catching the pattern in a handful of examples you give it. This method is called "few-shot" prompting: you show the model a few input-output pairs, and it applies the same pattern to new input. Asking with instructions alone, no examples, is called "zero-shot."</p>
+<p>A concrete case. Say you want to label product reviews as "positive / negative / neutral," and your idea of neutral is particular. BEFORE: "Tell me the sentiment of this review: 'Shipping was a bit late but the product is great.'" The model makes a guess, but not on your scale. AFTER: you first give three examples —"'Amazing, I loved it' → positive," "'Terrible, I want my money back' → negative," "'It's okay, about what I expected' → neutral"— then ask about the real review. Now the model has seen your definition of neutral and produces labels within exactly the frame you intended.</p>
+<p>Few-shot shines especially when you want a specific format (every answer in the same structure), you want to capture a particular style or tone, or the task is hard to describe but easy to demonstrate. Two or three well-chosen examples often do clearer work than a long paragraph of instructions.</p>
+<p>A few practical notes: make your examples varied and representative, because the model copies the hidden patterns in them too —if they are all short sentences, it may stumble on long inputs. Make sure your examples are correct, as well; a wrong example teaches the model the wrong thing. A few high-quality examples always beat many sloppy ones.</p>
+<h2>Role and system prompts: give the model a hat to wear</h2>
+<p>Giving the model a role affects the tone, depth, and focus of the answer to a surprising degree. Saying "You are an experienced accountant" or "Act like a patient teacher explaining to beginners" helps the model decide which pool of knowledge and which style of delivery to draw on. This is not magic; it's simply a practical way of telling the model which slice of its broad abilities to bring to the front.</p>
+<p>An example. BEFORE: "What is inflation?" You get a general, encyclopedic answer. AFTER: "Answer like a patient teacher explaining to a curious high-schooler who hasn't studied economics, using an example from everyday life. One paragraph, plain language." The second answer carries the same information, but it lands at exactly the level and tone you need. The role aligns not the content, but how the content is presented.</p>
+<p>It's worth pausing here on the idea of a "system prompt." In many AI tools there are two kinds of instruction: the ordinary prompt you type in each message, and the system prompt —a persistent frame that holds across the whole conversation. The system prompt answers "who are you and what are your general rules?" while individual messages are the tasks that fall inside that frame. If you're building an application, putting the unchanging part of the behavior in the system prompt is a good habit.</p>
+<p>Practical advice: keep the role appropriate and honest. Telling the model "you are a doctor" does not make it a real doctor or make its medical advice reliable; it only affects the style of delivery. Use the role to tune the form and level of the output, not as a guarantee of expertise. For critical decisions, the answer still needs a human to verify it.</p>
+<h2>Thinking step by step: chain-of-thought</h2>
+<p>When you ask the model for a direct answer to a reasoning, math, or multi-step problem, you sometimes get a fast but wrong guess —like a student who skips the working and blurts out a result. There is a simple, powerful fix: tell the model not to rush, but to think step by step. This technique is called "chain-of-thought."</p>
+<p>Its effect is surprisingly concrete. BEFORE: "A pen costs 7 liras, a notebook costs 3 times a pen. How much are 2 pens and 1 notebook?" Ask the model for the number directly and it sometimes jumps to the wrong one. AFTER: you add to the same question, "Think step by step, compute each item one by one first, and write the total at the end." The model writes, separately, that the notebook is 21 liras, then that 2 pens come to 14, and that the total is 35. Making the thinking visible substantially cuts the chance of error.</p>
+<p>This approach has two extra benefits. First, auditability: because you can see the model's reasoning, you can spot where it went wrong and correct it; you can't do that with a single number tumbling out of a closed box. Second, breaking a complex task into parts lightens the model's load —just as splitting a big problem into small steps helps a human.</p>
+<p>In some modern models this reasoning now happens internally; even if you don't ask, the model thinks step by step in the background and gives you only the result (the wave of "reasoning" models has made this the default). Still, especially for complex or critical tasks, saying "think step by step" both improves accuracy and makes the answer auditable. For simple, single-step questions there is no need for it; it only adds unnecessary length.</p>
+<h2>Common mistakes and how to avoid them</h2>
+<p>The most common mistake is cramming many unrelated tasks into a single prompt. With a prompt like "summarize this text, then translate it to English, also suggest a title and write a social-media post," the model usually skimps on some of the parts. The fix is to break the big task into small, focused steps: first the summary, then the translation, then the title. Quality rises noticeably at each step.</p>
+<p>The second common mistake is vague quantity and format wording. Phrases like "give a few ideas," "keep it short," or "write in detail" mean different things to different people. Instead, give a number and a format: "5 ideas, each one sentence," "at most 100 words," "as bullet points, one sentence each." A measurable target gives both you and the model a clear definition of success.</p>
+<p>The third —and most dangerous mistake on legal or technical topics— is blindly trusting the model's made-up information, i.e. a "hallucination." Even when it is unsure, AI can produce a wrong date, a fake source, or a nonexistent quotation in a perfectly confident tone. The way to protect yourself: independently verify critical information (numbers, names, dates, sources) and, where possible, ask the model to show its basis. This is exactly why we build HatsonAI on an architecture that grounds its answers in real source documents rather than inventing them, and keeps them traceable back to the source.</p>
+<p>The fourth mistake is subtler: mistaking the first answer for the final answer. Working with AI is not a one-shot job but a dialogue. The first output is often seventy percent of the way there; the remaining thirty percent comes from a few corrective instructions. And that brings us to the final principle: iteration.</p>
+<h2>Iteration: a good prompt isn't found, it's refined</h2>
+<p>The single biggest difference between experienced users and beginners isn't that they write the perfect prompt on the first try —it's that, instead of throwing away a bad first answer and giving up, they refine their request and improve the answer step by step. Prompt engineering is not a discovery but a loop: ask, look at the answer, notice what's missing, fix your prompt, try again.</p>
+<p>A practical way to make this loop efficient is to make your corrections specific. Instead of "that didn't work, try again," say what didn't work and why: "too formal, write it in a friendlier voice," "the second bullet is off-topic, remove it," "the examples are too abstract, add concrete ones from everyday life." Because the model sees both its last answer and your feedback, it inches closer to the target each round.</p>
+<p>Over time, you start collecting prompt patterns that work for the tasks you do often —like your own little "prompt library." You'll have patterns that draft a certain kind of email, produce a summary in a certain format, or fix text in a certain tone. Once you find a pattern that works, save it and reuse it; you don't have to start from scratch every time.</p>
+<p>In the end, prompt engineering is not a mysterious specialty but a learnable communication skill. The principles in this article —clear instructions, enough context, showing examples, role/system prompts, step-by-step thinking, and iteration— used together, let you pull far better results out of the same model. At HatsonTech we build on these principles every day while developing AI products; but the nice part is that you don't need to be a software company to use them. On your next prompt, try just one of them —you'll see the difference right away.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>Prompt engineering isn't a secret programming language but the skill of telling AI clearly and in an organized way what you want; it needs no code, and anyone willing to try can learn it.</li><li>Add three things to every prompt: the task (what to do), the constraints (which limits to stay within), and the output format (what the result should look like). Replace vague wording with numbers and format.</li><li>Context and examples are powerful levers: give the model the background specific to your situation, and when needed show the pattern you want with a few examples (few-shot).</li><li>Role and system prompts align the tone and level of the answer; for complex problems, saying 'think step by step' (chain-of-thought) improves accuracy and makes the answer auditable.</li><li>The most dangerous mistake is blindly trusting information the model may invent (hallucination); independently verify critical facts like numbers, names, dates, and sources.</li><li>A good prompt isn't found on the first try but refined through iteration; improve the answer step by step with specific feedback, and save reusable patterns that work.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

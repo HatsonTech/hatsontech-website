@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is MCP (Model Context Protocol), why does it matter, and how does it work? A plain-language guide to the open standard that connects AI to tools and data sources, using a USB-C analogy.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools">
+  <meta property="og:description" content="What is MCP (Model Context Protocol), why does it matter, and how does it work? A plain-language guide to the open standard that connects AI to tools and data sources, using a USB-C analogy.">
+  <meta property="og:url" content="https://hatsontech.com/insights/model-context-protocol-mcp.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools">
+  <meta name="twitter:description" content="What is MCP (Model Context Protocol), why does it matter, and how does it work? A plain-language guide to the open standard that connects AI to tools and data sources, using a USB-C analogy.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280">
+  <title>What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools",
+  "description": "What is MCP (Model Context Protocol), why does it matter, and how does it work? A plain-language guide to the open standard that connects AI to tools and data sources, using a USB-C analogy.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/model-context-protocol-mcp.html"
+  },
+  "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280",
+  "articleSection": "Engineering",
+  "keywords": "MCP, Model Context Protocol, tool use, agents, integration, open standard"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools",
+      "item": "https://hatsontech.com/insights/model-context-protocol-mcp.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/model-context-protocol-mcp.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280" alt="What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools" loading="lazy">
+    <div class="article-cat">Engineering</div>
+    <h1>MCP (Model Context Protocol): The Standard That Connects AI to Tools and Data</h1>
+    <p class="article-sub">On its own, an AI model cannot check your calendar, query your database, or read a file. MCP is the common, open standard for connecting models to external tools and data — the USB-C of AI.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 10 min read</span><div class="article-tags"><span class="article-tag">MCP</span><span class="article-tag">Agents</span><span class="article-tag">Tool Use</span><span class="article-tag">Integration</span></div></div>
+    <div class="article-body">
+<h2>What a Model Cannot Do Alone</h2>
+<p>What an AI model can do on its own is limited: it speaks from the knowledge it was trained on, but it cannot look at your calendar, query your database, read a file, or send an email. What makes a model genuinely useful is connecting it to the tools and data of the outside world. The thing that standardizes this connection is called MCP — the Model Context Protocol.</p>
+<p>Emerging in late 2024 and spreading rapidly through 2025-2026, MCP quickly became one of the common languages of the AI world. In this article we explain, in plain language, what MCP is, which real problem it solves, how it works, and why it matters for a team that builds AI products.</p>
+<h2>What Is MCP? The USB-C Analogy</h2>
+<p>The easiest way to understand MCP is to think of USB-C. Devices used to each have their own charging port and cable; every new device meant a new adapter. USB-C introduced a single standard: now one cable charges your phone, laptop, and headphones. MCP does the same for AI: it puts the connection between models and external tools and data sources onto a single, open standard. Released as an open protocol, MCP aims to let any model use any tool through the same common language.</p>
+<h2>The Problem It Solves: From N×M to N+M</h2>
+<p>Before MCP, every integration was written by hand, from scratch. With three different models and five different tools, connecting them would in theory require fifteen separate, bespoke bridges — the N×M problem. Every new model or tool multiplied the complexity. MCP breaks this equation: each tool is written once as a server that 'speaks' MCP, and each model becomes a client that speaks MCP. So instead of fifteen bridges, five plus three connections suffice (N+M). A tool written once for MCP works with all compatible models.</p>
+<h2>How It Works: Host, Client, Server</h2>
+<p>MCP has three parts. The 'host' is the application the user interacts with (a chat interface, a code editor, a product). The 'client' is the connection layer that speaks on the model's behalf inside the host. The 'server' is the component that exposes a tool or data source to the outside. An MCP server can offer three kinds of capability: tools (functions the model can call to take action), resources (data and documents the model can read), and prompts (reusable templates). When the model needs something, it calls the relevant tool on the server in a standard way, receives the result, and folds it into its answer.</p>
+<h2>Security and Limits</h2>
+<p>Giving a model the authority to take action in the outside world is powerful but risky, so security is central to MCP. Which server to connect to, which tool runs with which permission, and how access to sensitive data is limited must all be designed carefully. A misconfigured tool access can lead the model to perform an operation it should not. A mature setup minimizes permissions, asks for user approval when needed, and makes every action auditable. MCP makes the connection easy; but the responsibility for what gets exposed still lies with the designer.</p>
+<h2>HatsonTech and MCP for Legal Data</h2>
+<p>At HatsonTech this approach is not abstract; it is in the nature of our products. We build MCP-compatible servers that expose Turkish legal data (legislation and case law) to AI in a secure, standard way. So an AI assistant, instead of speaking from frozen memory, can reach current and verifiable legal sources through a standard protocol. This connects directly to <a href="/insights/yapay-zeka-ajanlari.html">AI agents</a> and <a href="/insights/rag-vs-fine-tuning.html">RAG</a>: the agent acts via MCP, RAG brings the information. The result is a system that can both do things and tie what it says to a source.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>MCP (Model Context Protocol) is the open, common standard for connecting AI models to external tools and data sources — the USB-C of AI.</li><li>It solves the N×M complexity problem: when each tool is an MCP server once and each model an MCP client once, one standard replaces separate bridges.</li><li>It has three parts: host (application), client (connection layer), and server (which exposes a tool/data); servers offer tools, resources, and prompts.</li><li>Because it is powerful yet risky, security is central: least privilege, user approval, and auditability are essential; what gets exposed is the designer's responsibility.</li><li>HatsonTech builds MCP-compatible servers exposing Turkish legal data to AI securely and in a standard way; MCP provides the action, RAG the information.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

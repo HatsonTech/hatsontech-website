@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yapay zekâ halüsinasyonu nedir, LLM'ler neden kendinden emin uydurur ve bunu grounding/RAG, kaynak gösterimi, değerlendirme ve insan denetimiyle nasıl azaltırız? Sade bir rehber.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?">
+  <meta property="og:description" content="Yapay zekâ halüsinasyonu nedir, LLM'ler neden kendinden emin uydurur ve bunu grounding/RAG, kaynak gösterimi, değerlendirme ve insan denetimiyle nasıl azaltırız? Sade bir rehber.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?">
+  <meta name="twitter:description" content="Yapay zekâ halüsinasyonu nedir, LLM'ler neden kendinden emin uydurur ve bunu grounding/RAG, kaynak gösterimi, değerlendirme ve insan denetimiyle nasıl azaltırız? Sade bir rehber.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg">
+  <title>Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?",
+  "description": "Yapay zekâ halüsinasyonu nedir, LLM'ler neden kendinden emin uydurur ve bunu grounding/RAG, kaynak gösterimi, değerlendirme ve insan denetimiyle nasıl azaltırız? Sade bir rehber.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg",
+  "articleSection": "Eğitim",
+  "keywords": "Halüsinasyon, Güvenilirlik, RAG, LLM"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?",
+      "item": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg" alt="Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?" loading="lazy">
+    <div class="article-cat">Eğitim</div>
+    <h1>Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?</h1>
+    <p class="article-sub">Bir dil modeli neden yanlış bir cevabı, tam bir özgüvenle, doğruymuş gibi söyler? Halüsinasyonun ne olduğunu, neden modelin doğasından kaynaklandığını ve mühendislerin onu nasıl dizginlediğini sade bir dille anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Halüsinasyon</span><span class="article-tag">Güvenilirlik</span><span class="article-tag">RAG</span><span class="article-tag">LLM</span></div></div>
+    <div class="article-body">
+<h2>Halüsinasyon Tam Olarak Nedir?</h2>
+<p>Yapay zekâ dünyasında 'halüsinasyon', bir dil modelinin gerçekte doğru olmayan bir bilgiyi akıcı, tutarlı ve çoğu zaman ikna edici bir biçimde üretmesidir. Model size var olmayan bir kitabın adını verebilir, hiç yayımlanmamış bir araştırmanın sonucundan söz edebilir ya da bir kanun maddesinin içeriğini olduğundan farklı aktarabilir. Üstelik bütün bunları, doğru bir cevap verirkenki aynı sakin özgüvenle yapar. Asıl rahatsız edici olan da budur: yanlış cevap, dışarıdan doğru cevaptan hiç farklı görünmez.</p>
+<p>Önce bir yanlış anlamayı dağıtalım: halüsinasyon, modelin 'yalan söylemesi' değildir. Yalan, gerçeği bilip onu kasıtlı olarak gizlemeyi gerektirir. Oysa dil modelinin ne böyle bir niyeti ne de gerçeklik kavrayışı vardır. O yalnızca eline geçen örüntülere bakarak hangi kelimenin gelmesinin en olası olduğunu tahmin eder. Bu yüzden halüsinasyonu 'eminmiş gibi konuşan bir tahmin hatası' olarak düşünmek çok daha doğrudur.</p>
+<p>Bir benzetme işi kolaylaştırır. Çok şey okumuş ama sınava hiç çalışmamış, son derece konuşkan bir öğrenci hayal edin. Cevabını bilmediği bir soruda susmaz; bir yerlerde duyduğu kavramları birleştirip kulağa gayet makul gelen bir cevap uydurur. Dil modeli de tıpkı böyledir. Cümlesinin akıcılığı, içindeki bilginin doğru olduğunun garantisi değildir; bu ikisi tamamen birbirinden bağımsızdır.</p>
+<h2>Modeller Neden Uydurur? Tahmin Makinesinin Mantığı</h2>
+<p>Halüsinasyonun kökenini anlamak için bir dil modelinin gerçekte ne yaptığına bakmak gerekir. Büyük dil modeli (LLM, yani Large Language Model) devasa miktarda metin üzerinde tek bir basit işi yapacak şekilde eğitilir: verilen bir metnin ardından gelmesi en olası kelimeyi tahmin etmek. Milyarlarca cümleyi gördükten sonra dilin örüntülerini olağanüstü iyi yakalar. Ama burada karşımızda bir bilgi veritabanı değil, bir olasılık makinesi vardır. Model bir gerçeği 'aramaz'; o gerçeğin nasıl ifade edileceğini tahmin eder.</p>
+<p>Bu mimari, halüsinasyonu bir arıza değil, sistemin doğasının bir sonucu hâline getirir. Model, eğitim verisinde sık sık bir arada görünen kelimelere yatkındır. Bir soruda doğru cevabı temsil eden örüntü zayıfsa ya da hiç yoksa, model boş durmaz; en olası, yani en 'tanıdık' duran kelime dizisini üretiverir. Çoğu zaman bu dizi doğrudur, ama bazen yalnızca doğruymuş gibi durur. Modelin içinde 'bunu gerçekten biliyor muyum?' diye soran bir denetçi yoktur.</p>
+<p>İkinci kaynak, eğitim verisinin kendisidir. Model internetin, kitapların ve belgelerin karışımından öğrenir; bu kaynaklarsa çelişkiler, güncelliğini yitirmiş bilgiler ve düpedüz hatalar barındırır. Üstelik modelin bilgisi belirli bir tarihte 'donar' (buna eğitim kesim tarihi denir); o tarihten sonra olan hiçbir şeyi bilmez, ama yine de o konuda kendinden emin konuşabilir.</p>
+<p>Üçüncü ve daha incelikli bir neden var: birçok model, kullanıcıyı memnun edecek biçimde 'yardımsever' olmaya eğilimlidir. 'Bilmiyorum' demek, eğitim sürecinde çoğunlukla tatmin edici bir cevap olarak görülmemiştir. Sonuçta model, susmak yerine bir şeyler söylemeye doğru hafifçe itilir; bu da boşlukları uydurarak doldurma eğilimini güçlendirir.</p>
+<h2>Halüsinasyonun Türleri: Hepsi Aynı Değildir</h2>
+<p>Bütün halüsinasyonları tek bir kategoriye sıkıştırmak yanıltıcı olur; farklı biçimleri farklı çözümler gerektirir. En yaygın ayrım, olgusal halüsinasyon ile bağlamsal (sadakatsiz) halüsinasyon arasındadır. Olgusal halüsinasyonda model, dünyaya dair yanlış bir şey söyler: uydurma bir tarih, var olmayan bir kişi, sallanmış bir istatistik. Bunlar genellikle modelin eğitim bilgisindeki boşluklardan doğar.</p>
+<p>Bağlamsal halüsinasyon ise daha sinsidir. Burada modele zaten bir belge ya da bağlam verilmiştir, ama model ona sadık kalmaz; metinde olmayan bir şeyi metne aitmiş gibi ekler ya da verilen bilgiyi çarpıtır. Buna sadakat (faithfulness) sorunu denir. Asıl tehlikesi, kullanıcının 'kaynağı zaten verdim' diye içinin rahatlamasıdır; oysa model o kaynağın sınırlarını pekâlâ aşabilir.</p>
+<p>Bir başka önemli tür uydurma atıflardır. Model size gerçek görünen ama tümüyle icat edilmiş bir kaynak sunar: var olmayan bir mahkeme kararı numarası, yayımlanmamış bir makale, yanlış bir sayfa numarası. Bu özellikle akademide ve hukukta tehlikelidir, çünkü atfın doğruluğun teminatı olduğu varsayılır; oysa atfın kendisi de bir halüsinasyon olabilir.</p>
+<p>Son olarak akıl yürütme halüsinasyonları vardır: model adım adım gayet mantıklı görünen bir muhakeme kurar, ama ara adımlardan biri sessizce hatalıdır ve sonuç tümüyle yanlış çıkar. Zincir kulağa o kadar tutarlı gelir ki, hatayı yakalamak için çoğu zaman her halkayı tek tek denetlemek gerekir.</p>
+<h2>Birinci Savunma Hattı: Grounding ve RAG</h2>
+<p>Halüsinasyonla mücadelede en güçlü fikir, modeli yalnızca kendi hafızasıyla baş başa bırakmamaktır. 'Grounding' (sağlamlaştırma), modelin cevabını gerçek ve doğrulanabilir bir kaynağa bağlama pratiğidir. Buradaki temel sezgi şudur: modelin yaratıcılığını dilin akıcılığıyla sınırlayalım, olguları ise dışarıdan, güvenilir bir kaynaktan getirelim. Böylece model bir şeyi 'hatırlamaya' çalışmak yerine, önüne konan kanıttan okuyarak konuşur.</p>
+<p>Bu yaklaşımın en yaygın mimarisi RAG'dir; açılımı Retrieval-Augmented Generation, yani 'getirmeyle güçlendirilmiş üretim'. RAG iki aşamada çalışır. Önce getirme aşamasında, kullanıcının sorusu bir arama sistemine gider ve soruyla en alakalı belgeler bulunur. Ardından üretim aşamasında bu belgeler soruyla birlikte modele verilir ve modele 'yalnızca bu belgelere dayanarak cevap ver' talimatı iletilir. Model artık boşlukları hayal gücüyle değil, getirilen metinle doldurur. Kapalı kitap sınavına giren bir öğrenciyi düşünün; RAG, o sınavı doğru sayfaların açık olduğu bir 'açık kitap' sınavına çevirir.</p>
+<p>RAG'in güzelliği, halüsinasyonun en büyük iki nedenine aynı anda dokunmasıdır. Bilgi boşluğu sorununu çözer, çünkü doğru bilgi artık bağlamda hazırdır. Güncellik sorununu da çözer, çünkü modeli baştan eğitmek yerine yalnızca getirme katmanındaki belgeleri tazelemeniz yeterlidir. Mevzuat mı değişti? Modeli değil, belge havuzunu yenilersiniz.</p>
+<p>HatsonTech'da geliştirdiğimiz HatsonAI'nın çekirdeği tam olarak bu ilke üzerine kuruludur. Örneğin bir müşteri için kurduğumuz kurumsal bilgi tabanı asistanında bir cevap asla modelin ezberinden gelmez; ilgili belge, madde ya da kayıt önce getirilir, cevap ise yalnızca o getirilen metne yaslanarak üretilir. Dilin akıcılığı modelden, doğruluğun teminatı ise gerçek kaynaktan gelir.</p>
+<h2>Kaynak Gösterimi: Cevabı Denetlenebilir Kılmak</h2>
+<p>Doğru bir cevap vermek tek başına yeterli değildir; o cevabın doğrulanabilir olması gerekir. İşte kaynak gösterimi (atıf) tam da burada devreye girer. İyi tasarlanmış bir sistem yalnızca bir sonuç söylemez; o sonucun hangi belgeden, hangi maddeden, hangi paragraftan geldiğini de gösterir. Böylece kullanıcı cevaba körlemesine güvenmek zorunda kalmaz; kaynağa gidip kendi gözleriyle doğrulayabilir.</p>
+<p>Kaynak gösteriminin halüsinasyona karşı iki işlevi vardır. Birincisi açıktır: kullanıcıya doğrulama imkânı verir. İkincisi daha incedir: modelin davranışını disipline eder. Model, her iddiasını getirilen bir kaynağa bağlamak zorunda olduğunu bildiğinde, bağlamın dışına çıkıp serbestçe uydurma alanı daralır. Atıf zorunluluğu bir tür çapa görevi görür.</p>
+<p>Ama burada bir tuzak vardır ve buna daha önce değinmiştik: atfın kendisi de bir halüsinasyon olabilir. Bu yüzden ciddi sistemler atıfların gerçek olduğunu ayrıca doğrular; gösterilen kaynağın gerçekten var olduğunu ve gerçekten o şeyi söylediğini denetler. Atıf yalnızca üretilmez, üretilen atıf ayrıca doğrulanır. Tıklandığında gerçek bir belgeye açılan bir atıf, modelin en güzel cümlesinden çok daha değerlidir.</p>
+<h2>Ölçmeden İyileştiremezsiniz: Değerlendirme</h2>
+<p>Bir sistemin 'iyi göründüğü' için güvenilir olduğunu varsaymak, halüsinasyona davetiye çıkarmaktır. Olgunlaşmış bir yapay zekâ ürünü, halüsinasyon oranını sürekli ve sistematik biçimde ölçer. Buradaki anahtar fikir ayrıştırmadır: bir cevap kötüyse, sorun yanlış belgeyi getirmekten mi yoksa doğru belgeyi yanlış yorumlamaktan mı kaynaklandı? Bu ikisi farklı hatalardır ve farklı düzeltmeler ister.</p>
+<p>Getirme katmanını ölçmek için, doğru cevapları önceden bilinen soru kümeleri kullanılır; sistemin ilgili kaynağı bulup bulmadığı ve onu listede ne kadar üst sıraya koyduğu izlenir. Üretim katmanını ölçmek içinse sadakat (faithfulness) ölçülür: modelin söylediği her şey gerçekten verilen bağlam tarafından destekleniyor mu, yoksa onun ötesine mi geçiyor? Yüksek riskli alanlarda sadakat, belki de en kritik metriktir.</p>
+<p>Modern bir teknik, başka bir güçlü modeli 'hakem' olarak kullanmaktır (buna LLM-as-a-judge, yani 'hakem olarak LLM' denir): bir model, başka bir modelin cevabını verilen bağlama karşı puanlar ve desteklenmeyen iddiaları işaretler. Bu tek başına yeterli değildir, ama insan denetimini ölçeklendirmenin pratik bir yoludur. Asıl önemli olan, değerlendirmenin tek seferlik bir sınav değil, sürekli dönen bir döngü olmasıdır; her değişikliğin kaliteyi gerçekten artırıp artırmadığı sezgiyle değil, sayılarla doğrulanır.</p>
+<h2>İnsan Denetimi: Son Sözü Makineye Bırakmamak</h2>
+<p>Bütün teknik önlemlere rağmen hiçbir sistem halüsinasyonu yüzde yüz ortadan kaldıramaz. Bu yüzden iyi tasarlanmış ürünler makineyi nihai karar verici olarak değil, güçlü bir asistan olarak konumlandırır. Buna 'döngüde insan' (human-in-the-loop) denir: ağır sonuçlar doğuran kararlarda son onay her zaman bir uzmanda kalır. Yapay zekâ taslağı hazırlar, kaynakları toplar, zamandan tasarruf ettirir; ama imzayı atan insandır.</p>
+<p>Burada tasarımın payı büyüktür. İyi bir sistem, kullanıcıyı tembelliğe değil denetime teşvik edecek şekilde kurulur: cevabın yanında kaynakları gösterir, modelin ne kadar emin olduğuna dair ipuçları verir ve elinde yeterli dayanak yoksa bunu açıkça söyler. 'Bilmiyorum' diyebilen bir asistan, her şeye kendinden emin cevap veren ama ara sıra uyduran bir asistandan çok daha güvenilirdir.</p>
+<p>HatsonAI destekli asistanlarımızı tam da bu felsefeyle kuruyoruz. Sistem uzmanın yerini almaz; ona saatler sürecek bir araştırmayı saniyelere indiren, her iddiasını gösterebilen ve son kararı her zaman insana bırakan bir meslektaş gibi davranır. Yapay zekânın gücü, insanın yargısını ortadan kaldırmasında değil, o yargıyı daha hızlı ve daha sağlam bir zemine oturtmasında yatar.</p>
+<h2>Neden En Çok Hukuk ve Tıpta Önemli?</h2>
+<p>Bir sohbet botu yemek tarifinde yanılırsa, en kötü ihtimalle akşam yemeğiniz heba olur. Ama aynı hata hukukta ya da tıpta yapıldığında sonuçlar geri dönülmez olabilir. Uydurma bir mahkeme kararına dayandırılan bir dilekçe davayı kaybettirebilir, hatta avukatın başına yaptırım açabilir. Yanlış bir ilaç dozu ya da var olmayan bir kontrendikasyon bir hastanın sağlığını tehlikeye atabilir. Bu alanlarda 'çoğu zaman doğru' olmak yeterli değildir.</p>
+<p>Bu yüksek riskli alanların ortak bir özelliği vardır: doğruluk, akıcılıktan çok daha önemlidir ve her iddianın bir dayanağı olmak zorundadır. Bir hukukçu için kaynağı gösterilemeyen bir cevap, hiç cevap olmamasından daha tehlikelidir; çünkü yanlış bir güven duygusu yaratır. Tıpta da bir kararın ardındaki gerekçe ve kanıt, kararın kendisi kadar önemlidir. Bu yüzden grounding, kaynak gösterimi ve insan denetimi buralarda bir lüks değil, asgari koşuldur.</p>
+<p>Bunun bedelinin gerçekten ödendiği örnekler var: çeşitli ülkelerde avukatlar, yapay zekânın uydurduğu sahte kararları mahkemeye sundukları için yaptırımla karşılaştı. Bu olaylar halüsinasyonun teorik bir merak değil, somut bir mesleki risk olduğunu gösterdi. Çözüm yapay zekâdan kaçmak değil; onu doğru mimariyle, yani sağlamlaştırma ve denetim katmanlarıyla kuşatmaktır.</p>
+<p>HatsonTech'da çıkış noktamız tam olarak budur. Geliştirdiğimiz yapay zekâlı çözümlerin, kullanıcının kör bir güvenle bağlandığı bir kâhin değil, her cümlesini gerçek bir kaynağa yaslayabilen ve gerektiğinde 'bunun dayanağı elimde yok' diyebilen araçlar olması gerektiğine inanıyoruz. Halüsinasyonu sıfıra indirmek mümkün olmasa da, onu dizginlemek ve görünür kılmak mümkündür; güvenilir yapay zekânın bütün mesele de zaten budur.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Halüsinasyon, bir dil modelinin yanlış bir bilgiyi akıcı ve kendinden emin biçimde üretmesidir; yalan değil, 'eminmiş gibi konuşan bir tahmin hatasıdır'.</li><li>Nedeni mimaridir: LLM bir bilgi veritabanı değil, bir sonraki kelimeyi tahmin eden olasılık makinesidir; bilgi boşlukları, eğitim kesim tarihi ve 'yardımsever olma' baskısı uydurmayı besler.</li><li>Türleri farklıdır: olgusal hata, bağlama sadakatsizlik, uydurma atıflar ve sessizce hatalı akıl yürütme; her biri farklı çözüm ister.</li><li>En güçlü savunma grounding/RAG'dir: olguları güvenilir bir kaynaktan getirip modele 'yalnızca buna dayan' demek; mevzuat değişince modeli değil, belge havuzunu güncellersiniz.</li><li>Kaynak gösterimi cevabı denetlenebilir kılar ve modeli disipline eder; ama atfın kendisi de halüsinasyon olabileceği için atıflar ayrıca doğrulanmalıdır.</li><li>Hiçbir sistem halüsinasyonu sıfırlayamaz; sürekli değerlendirme (özellikle sadakat ölçümü) ve döngüde insan denetimi şarttır. Hukuk ve tıp gibi yüksek riskli alanlarda bunlar lüks değil, asgari koşuldur.</li><li>HatsonAI destekli asistanlarımız bu felsefeyle kurulur: cevaplar güvenilir kaynaklardan getirilir, her iddia gösterilir ve son karar her zaman insanda kalır.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

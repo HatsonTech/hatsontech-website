@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Açık ağırlıklı ve kapalı/API yapay zekâ modelleri nedir, nasıl farklılaşır? Kontrol, gizlilik, maliyet ve yetenek ekseninde net bir karşılaştırma ve 2026 manzarası.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/acik-kaynak-kapali-modeller.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi">
+  <meta property="og:description" content="Açık ağırlıklı ve kapalı/API yapay zekâ modelleri nedir, nasıl farklılaşır? Kontrol, gizlilik, maliyet ve yetenek ekseninde net bir karşılaştırma ve 2026 manzarası.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi">
+  <meta name="twitter:description" content="Açık ağırlıklı ve kapalı/API yapay zekâ modelleri nedir, nasıl farklılaşır? Kontrol, gizlilik, maliyet ve yetenek ekseninde net bir karşılaştırma ve 2026 manzarası.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg">
+  <title>Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi",
+  "description": "Açık ağırlıklı ve kapalı/API yapay zekâ modelleri nedir, nasıl farklılaşır? Kontrol, gizlilik, maliyet ve yetenek ekseninde net bir karşılaştırma ve 2026 manzarası.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg",
+  "articleSection": "Mühendislik",
+  "keywords": "Açık Kaynak, LLM, Open Weight, Yapay Zekâ Altyapısı"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi",
+      "item": "https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/acik-kaynak-kapali-modeller.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg" alt="Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi</h1>
+    <p class="article-sub">Bir yapay zekâ modelini ya bir bulut hizmeti gibi kiralarsınız ya da bir dosya gibi indirip kendi makinenize kurarsınız. Bu iki yol arasındaki seçim; kontrol, gizlilik, maliyet ve yetenek arasında gerçek bir tercih demek. İkisinin ne anlama geldiğini, ne zaman hangisinin daha mantıklı olduğunu ve olgun ekiplerin neden çoğu zaman ikisini birden kullandığını anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 dk okuma</span><div class="article-tags"><span class="article-tag">Açık Kaynak</span><span class="article-tag">LLM</span><span class="article-tag">Open Weight</span><span class="article-tag">Yapay Zekâ Altyapısı</span></div></div>
+    <div class="article-body">
+<h2>Bir Modele Sahip Olmanın İki Yolu</h2>
+<p>Yapay zekâyla bir şey inşa etmeye başladığınızda, daha mimarinizi düşünmeden önce sessiz bir çatal yola gelirsiniz: modeli nasıl 'edineceksiniz'? Burada birbirinden temelde ayrılan iki yol vardır. Ya bir şirketin sunucularında duran ve sizin yalnızca internet üzerinden konuştuğunuz kapalı bir modele bağlanırsınız; ya da ağırlıkları kamuya açık yayımlanmış bir modeli indirip kendi donanımınızda çalıştırırsınız. Birincisi modeli bir hizmet gibi kiralamaktır; ikincisi modelin kopyasını bir dosya gibi elinize almaktır.</p>
+<p>Bu ayrım ilk bakışta teknik bir ayrıntı gibi görünür ama aslında ürününüzün geleceğini şekillendiren stratejik bir karardır. Modeli kiraladığınızda hızlısınız, güçlüsünüz ve hiçbir altyapı derdiniz yoktur; ama modelin nerede çalıştığını, ne zaman değişeceğini ve verinizin nereye gittiğini siz belirlemezsiniz. Modeli kendiniz çalıştırdığınızda her şey sizin kontrolünüzdedir; ama o kontrolün bedelini donanım, uzmanlık ve emek olarak ödersiniz. Çoğu mühendislik kararı gibi burada da bedava öğle yemeği yoktur; yalnızca hangi faturayı ödemeyi seçtiğiniz değişir.</p>
+<p>Bu yazıda iki yolu da jargonun arkasına saklanmadan açacağız. Önce 'açık ağırlık' ve 'kapalı model' kelimelerinin gerçekte ne anlama geldiğini netleştireceğiz. Sonra kararı asıl belirleyen eksenler üzerinden karşılaştıracağız: kontrol, gizlilik, maliyet, yetenek ve destek. Ardından 2026'nın güncel manzarasına, yani Llama, Mistral, GPT, Gemini ve Claude'un nerede durduğuna bakacağız. En sonunda da olgun ekiplerin neden tek bir modele bağlanmak yerine ikisini birden harmanladığını ve HatsonTech'te ürünlerimizi geliştirirken bu dengeyi nasıl kurduğumuzu göreceğiz.</p>
+<h2>'Açık Ağırlık' ve 'Kapalı Model' Tam Olarak Ne Demek?</h2>
+<p>Önce bir kavramı oturtalım: bir dil modelinin 'ağırlıkları'. Bir model devasa miktarda metin üzerinde eğitilirken, öğrendiği her şeyi milyarlarca sayıya, yani ağırlıklara gömer. Bu sayı yığını modelin beynidir; bir soruya verdiği cevap, bu ağırlıkların yaptığı hesaplamadan doğar. Bir yemek tarifi defterini düşünün: model eğitim sırasında milyarlarca 'tarif' öğrenir ve bunları bu sayıların içine kazır. 'Açık ağırlık' (open-weight) bir model, işte bu sayı dosyasını kamuya açık biçimde yayımlamış demektir. İndirebilir, kendi sunucunuzda çalıştırabilir, üzerinde ince ayar yapabilir, dilerseniz internetten tamamen kopuk bir makinede bile kullanabilirsiniz.</p>
+<p>Kapalı bir model ise tam tersidir. Ağırlıkları kimseye verilmez; modeli yalnızca sağlayıcının sunucularındaki bir 'API' (uygulama programlama arayüzü; yani programların birbirine soru sorup cevap aldığı standart bir kapı) üzerinden kullanırsınız. Sorunuzu internet üzerinden yollarsınız, model orada bir yerde çalışır, cevap size geri döner. Modelin beynini hiç görmezsiniz; ona yalnızca bir vitrin camının ardından konuşursunuz: yemeği yersiniz ama tarif defterini hiç açamazsınız.</p>
+<p>Burada sık karıştırılan bir noktayı netleştirelim. 'Açık ağırlık' her zaman 'açık kaynak' ile aynı şey değildir. Gerçek açık kaynakta yalnızca son ürün değil, onu üreten eğitim verisi ve süreç de şeffaftır. Bugün popüler olan birçok model ise ağırlıklarını paylaşır ama eğitim verisini ya da bazı kullanım koşullarını kısıtlar; bunlara teknik olarak 'açık ağırlık' demek daha doğrudur. Pratikte çoğu ekip için kritik olan ayrım da budur: model dosyasını elinize alıp kendi kontrolünüzde çalıştırabiliyor musunuz, yoksa onu yalnızca uzaktan kiralayabiliyor musunuz?</p>
+<p>Bu yüzden bu yazı boyunca asıl ekseni 'kendi çalıştırdığınız model' ile 'kiraladığınız model' arasına koyacağız. Lisansın tam olarak ne kadar özgür olduğu önemli bir ayrıntıdır ama asıl mühendislik kararını belirleyen şey, modelin nerede çalıştığı ve kontrolün kimde olduğudur.</p>
+<h2>Kontrol ve Bağımlılık: Anahtar Kimde?</h2>
+<p>İki yolu ayıran ilk ve belki en derin eksen kontroldür. Kapalı bir API modeli kullandığınızda, sisteminizin tam kalbinde başkasının işlettiği bir kara kutu durur. Bu rahattır; ama o kutuya dair her şeyi sağlayıcı belirler. Modelin yeni bir sürümü çıkıp eskisi emekliye ayrılabilir, fiyatlar değişebilir, kullanım koşulları sıkılaşabilir ya da daha önce kusursuz çalışan bir komut bir güncellemeden sonra sessizce farklı davranmaya başlayabilir. Siz uyum sağlamak zorundasınızdır, çünkü anahtar sizde değildir.</p>
+<p>Açık ağırlıklı bir modeli kendiniz çalıştırdığınızda ise o model dondurulmuş bir fotoğraf gibi sizindir. Beğendiğiniz bir sürümü yıllarca aynı şekilde kullanmaya devam edebilirsiniz; kimse onu sizden alıp emekliye ayıramaz. Modeli kendi verinizle ince ayardan geçirebilir, davranışını derinlemesine biçimlendirebilir, hatta iç işleyişini inceleyebilirsiniz. Buna karşılık tüm sorumluluk da sizdedir: çalışır halde tutmak, ölçeklemek ve güncellemek artık sizin işinizdir.</p>
+<p>Bu eksenin arkasında 'satıcıya bağımlılık' (vendor lock-in) denen sessiz bir risk yatar. Tüm ürününüzü tek bir kapalı modelin etrafına ördüğünüzde, o sağlayıcının kararları sizin kaderiniz olur. Açık modeller bu bağı gevşetir: model bir dosya olduğu için onu farklı sağlayıcılara taşıyabilir, kendi sunucunuza alabilir ya da bir başkasıyla değiştirebilirsiniz. Kontrol gösterişli bir özellik değildir; ama çoğu zaman bir ürünün uzun vadeli dayanıklılığını sessizce belirleyen faktördür.</p>
+<h2>Gizlilik: Veriniz Nereye Gidiyor?</h2>
+<p>İkinci eksen, birçok ciddi proje için belirleyici olan gizliliktir. Kapalı bir API kullandığınızda, modele sorduğunuz her şey internet üzerinden başka bir şirketin sunucularına gider. Büyük sağlayıcılar bugün kurumsal müşteriler için güçlü güvenceler sunar; örneğin verinizi yeni modeller eğitmek için kullanmayacaklarını taahhüt eden sözleşmeler yaygındır. Ama temel gerçek değişmez: hassas veriniz, bir an için de olsa, sizin denetiminizin dışındaki bir altyapıdan geçer.</p>
+<p>Bazı alanlarda bu, tek başına bir engeldir. Bir hastanenin hasta kayıtları, bir bankanın işlem verisi, bir hukuk bürosunun müvekkil dosyaları ya da bir kamu kurumunun gizli belgeleri çoğu zaman düzenleme gereği kurumun sınırlarından dışarı çıkamaz. Bu tür durumlarda açık ağırlıklı bir modeli kendi sunucularınızda, hatta internete hiç bağlı olmayan bir ortamda çalıştırmak yalnızca bir tercih değil, çoğu zaman bir zorunluluktur. Veri makineden hiç ayrılmaz; model veriye gider, veri modele değil.</p>
+<p>Burada dengeli olmak gerekir. Bu, kapalı sağlayıcılardan sürekli veri sızdığı anlamına gelmez; aksine büyük sağlayıcıların güvenlik altyapısı çoğu küçük ekibin kendi başına kurabileceğinden daha sağlamdır. Mesele güven değil, egemenliktir: verinin fiziksel olarak nerede durduğu ve kimin yetki alanına girdiği. Veri egemenliği sizin için kritikse, modeli kendi duvarlarınızın içinde çalıştırma yeteneği açık modellerin en güçlü kozudur.</p>
+<h2>Maliyet: Sayaç mı, Sabit Kira mı?</h2>
+<p>Maliyet, iki yolun en çok yanlış anlaşılan eksenidir, çünkü aslında iki tamamen farklı maliyet biçiminden bahsediyoruz. Kapalı bir API'de maliyet bir taksi sayacı gibi işler: işlediğiniz her parça metin (genellikle 'token' denen kelime parçaları) için ödeme yaparsınız. Başlangıç maliyeti sıfırdır, hemen kullanmaya başlarsınız ve az kullanırsanız az ödersiniz. Ama hacim büyüdükçe sayaç hızla döner; milyonlarca isteği olan bir ürün için bu fatura ciddi boyutlara ulaşabilir.</p>
+<p>Açık ağırlıklı bir modeli kendiniz çalıştırmak ise tersine bir maliyet eğrisine sahiptir. Bu daha çok ev kiralamakla ev satın almak arasındaki farka benzer. Önce ödeme yaparsınız: modeli çalıştıracak donanım (özellikle güçlü grafik işlemcileri, yani GPU'lar), onu ayağa kaldıracak mühendislik ve sürekli işletme emeği. Bu başlangıç yükü ağırdır. Ama bu yatırımı bir kez yaptıktan sonra, her ek isteğin marjinal maliyeti çok düşüktür; sayaç durmadan dönmez. Belirli bir hacmin üzerinde, sabit kira sayaçtan ucuza gelmeye başlar.</p>
+<p>Bunun pratik sonucu oldukça net bir kural verir. Düşük ya da değişken hacimde, hızlı başlamak istediğinizde ve mühendislik gücünüz kısıtlıysa API neredeyse her zaman daha ekonomiktir; kurulum derdi olmadan en güçlü modellere anında erişirsiniz. Çok yüksek ve istikrarlı hacimde ise, özellikle göreve uygun daha küçük bir açık model yeterli geliyorsa, kendi altyapınız uzun vadede belirgin biçimde ucuzlayabilir. Karar, sayaçla kiranın hangi noktada kesiştiğine bağlıdır; ve bu kesişim noktası, çoğu ekibin sandığından daha yüksek bir hacimdedir.</p>
+<h2>Yetenek ve Destek: Sınırda Kim Önde?</h2>
+<p>Uzun süre kabul gören basit bir gerçek vardı: en güçlü, en sınırdaki (frontier) modeller kapalıydı. En büyük laboratuvarlar en zor görevlerde, en karmaşık akıl yürütmede ve en geniş yeteneklerde önde gidiyordu ve bu modellere yalnızca API üzerinden ulaşabiliyordunuz. Ham, en üst düzey yetenek istiyorsanız kapalı modeller varsayılan cevaptı.</p>
+<p>Ama 2026'da bu tablo eskisi kadar keskin değil. Açık ağırlıklı modeller şaşırtıcı bir hızla kapalıların ardından koşuyor; bir önceki neslin sınır modellerinin yetenek düzeyine artık herkesin indirip çalıştırabileceği açık modellerle ulaşılabiliyor. Aradaki mesafe yıllar değil, aylarla ölçülür hale geldi. Daha da önemlisi, birçok gerçek görev için 'mümkün olan en zeki model' gerekmez. Belirli bir işe odaklanmış, iyi seçilmiş ve gerekirse ince ayardan geçirilmiş daha küçük bir açık model, o dar görevde devasa bir genel modelle yarışabilir, hatta daha hızlı ve ucuz olabilir. Bir Formula 1 aracı sokakta market alışverişi için en iyi seçim değildir.</p>
+<p>Yetenek kadar önemli ikinci bir konu destektir. Kapalı bir sağlayıcıyla çalıştığınızda arkanızda bir şirket, bir sözleşme, bir hizmet seviyesi taahhüdü ve bir destek hattı vardır; bir şey ters giderse arayacağınız bir muhatap bulunur. Açık modellerde ise destek çoğunlukla topluluğun omuzlarındadır: forumlar, açık projeler, paylaşılan tarifler. Bu topluluk inanılmaz zengindir ama bir kurumsal garanti değildir; sorunu çözmek nihayetinde sizin ekibinizin işidir. Olgunluk ve güvence isteyen kurumlar için bu fark, yetenek kadar ağır basabilir.</p>
+<h2>2026 Manzarası: Llama, Mistral, GPT, Gemini, Claude</h2>
+<p>Bu eksenleri somutlaştırmak için bugünün manzarasına bakalım, ama bir uyarıyla: bu alan o kadar hızlı değişiyor ki, isimleri kategori örnekleri olarak okuyun, donmuş bir sıralama olarak değil. Açık ağırlık tarafında iki isim öne çıkar. Meta'nın geliştirdiği Llama ailesi, açık ekosistemin belkemiği olmuştur; indirilebilir, ince ayara açık ve geniş bir topluluk tarafından sahiplenilmiş durumdadır. Fransa merkezli Mistral ise verimli ve güçlü açık modelleriyle dikkat çeker; özellikle boyutuna oranla yetenekli, küçük ve hızlı modelleriyle bilinir.</p>
+<p>Kapalı taraf, en çok adı geçen sınır modellerinin bulunduğu yerdir. OpenAI'ın GPT ailesi, geniş kitlenin yapay zekâyla ilk tanıştığı isim oldu ve hâlâ en yaygın kullanılan API'lerden biridir. Google'ın Gemini'ı, dev altyapısı ve metnin yanında görüntü, ses gibi farklı veri türlerini birlikte işleyebilen çok kipli (multimodal) yetenekleriyle güçlü bir rakiptir. Anthropic'in Claude'u ise özellikle uzun ve karmaşık akıl yürütme, dikkatli talimat takibi ve güvenlik odaklı tasarımıyla bilinir; uzun belgelerle çalışan ve titizlik isteyen işlerde sık tercih edilir.</p>
+<p>Bu manzaranın en sağlıklı okunuşu, 'hangisi kazandı' sorusundan kaçınmaktır. Doğru çerçeve şudur: kapalı sınır modelleri (GPT, Gemini, Claude) ham yetenek, kullanım kolaylığı ve kurumsal destek isteyen yerlerde parlar; açık modeller (Llama, Mistral) kontrol, gizlilik ve yüksek hacimde maliyet avantajı isteyen yerlerde parlar. Üstelik aralarındaki yetenek farkı her geçen yıl daralıyor; bu da seçimi giderek daha çok 'hangisi daha akıllı' değil, 'benim kısıtlarıma hangisi uyuyor' sorusuna dönüştürüyor.</p>
+<h2>Ekipler Neden İkisini Birden Kullanır?</h2>
+<p>Buraya kadar iki yolu rakip gibi sunduk, çünkü farklarını net görmek gerekiyordu. Ama gerçek dünyadaki olgun sistemlerin çoğu tek bir modele bağlanmaz; ikisini de, her birini en iyi yaptığı işte kullanır. Bunun en yaygın biçimi 'yönlendirme' (routing) denen yaklaşımdır: gelen her isteği, ona en uygun modele havale edersiniz. Tıpkı bir hastanedeki triyaj gibi; basit ve hacimli işler ucuz bir açık modele gider, karmaşık akıl yürütme ya da en yüksek kalite isteyen işler güçlü bir kapalı modele.</p>
+<p>Bu harman birkaç somut avantaj getirir. Birincisi maliyet: isteklerin büyük çoğunluğu çoğu zaman basittir ve onları ucuz açık modelle karşılayıp yalnızca zor olanları pahalı sınır modeline yollamak faturayı ciddi biçimde düşürür. İkincisi dayanıklılık: bir sağlayıcı çökerse, fiyatını artırırsa ya da bir modeli emekliye ayırırsa, başka bir modele geçebilecek esnekliğiniz olur; tüm yumurtalarınız tek sepette değildir. Üçüncüsü gizlilik: en hassas verileri kendi duvarlarınız içindeki açık modelde tutar, yalnızca hassas olmayan işleri dışarıdaki API'ye açarsınız.</p>
+<p>Pratikte çoğu ekip bu noktaya kademeli gelir. Genellikle hızlı başlamak için bir kapalı API ile yola çıkılır, çünkü en büyük yeteneği en düşük emekle o verir. Sonra hacim büyüdükçe, gizlilik ihtiyacı keskinleştikçe ya da maliyet ağırlaştıkça, belirli iş yükleri tek tek açık modellere taşınır. Doğru mimari, dogmatik biçimde 'her şey açık' ya da 'her şey kapalı' demez; her görevi, o görevin kontrol, gizlilik, maliyet ve yetenek dengesine en uygun modele eşler.</p>
+<h2>HatsonTech Bu Dengeyi Nasıl Kuruyor?</h2>
+<p>HatsonTech'te geliştirdiğimiz ürünler ve müşteri projeleri, tam da bu pragmatik harmanın bir örneğidir. Örneğin AI otomasyon ve asistan motorumuz HatsonAI'da ya da bir müşteri için kurduğumuz kurumsal bilgi asistanında, bu kararın her ekseni aynı anda gergin durur. Gizlilik çoğu zaman en üst düzeyde önemlidir, çünkü işlenen belgeler bir şirketin iç verilerine, gerçek müşterilere ve hassas bilgilere dokunur. Aynı anda, iyi bir akıl yürütme yüksek bir yetenek düzeyi de ister; bir belgeyi doğru yorumlamak, basit bir özetlemenin çok ötesindedir.</p>
+<p>Bu yüzden yaklaşımımız tek bir modele kilitlenmek değil, her görevi doğru modele eşlemektir. Bazı işler için kapalı sınır modellerinin ham akıl yürütme gücü değerlidir; karmaşık bir muhakemeyi en yüksek kalitede yürütmek gerektiğinde bu yeteneğe başvurmak mantıklıdır. Hassasiyetin ya da hacmin öne çıktığı işlerde ise kendi kontrolümüzde çalıştırabileceğimiz açık modeller, gizlilik ve maliyet açısından çok daha uygun bir zemin sunar. Karar her zaman dogmadan değil, o görevin gereğinden çıkar.</p>
+<p>Burada bizim için değişmeyen ilke, modelin türünden tamamen bağımsızdır: doğruluğun teminatı asla modelin ezberine bırakılmaz. Hangi model kullanılırsa kullanılsın, cevapların dayanağı getirilen gerçek kaynak belgelerdir; model akıcılığı sağlar, kaynak ise doğruluğu güvenceye alır. Bu da bizi açık-kapalı tartışmasının en sağlam sonucuna götürür: bu bir inanç savaşı değil, bir mühendislik kararıdır. Doğru soru 'hangisi daha iyi' değil, 'şu görevin kontrol, gizlilik, maliyet ve yetenek dengesi neyi gerektiriyor' sorusudur. Bu soruyu dürüstçe sorduğunuzda, cevap çoğu zaman tek bir model değil, akıllıca harmanlanmış birkaç model olur.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Kapalı/API modeller bir bulut hizmeti gibi kiralanır; açık ağırlıklı (open-weight) modeller bir dosya gibi indirilip kendi donanımınızda çalıştırılır. Asıl ayrım, modelin nerede çalıştığı ve kontrolün kimde olduğudur.</li><li>'Açık ağırlık' her zaman tam 'açık kaynak' demek değildir; çoğu model ağırlıklarını paylaşır ama eğitim verisini ya da kullanımını kısıtlar. Pratikte kritik olan, modeli kendi kontrolünüzde çalıştırıp çalıştıramadığınızdır.</li><li>Kapalı modeller kullanım kolaylığı, en üst düzey ham yetenek ve kurumsal destek sunar; açık modeller kontrol, gizlilik (veri sizin duvarlarınızdan çıkmaz) ve yüksek hacimde maliyet avantajı sunar.</li><li>Maliyet iki farklı biçimdedir: API bir sayaç gibi kullandıkça öder (düşük hacimde ucuz); kendi açık modeliniz önden ağır yatırım ister ama yüksek ve istikrarlı hacimde uzun vadede ucuzlar.</li><li>2026 manzarası: açık tarafta Llama ve Mistral, kapalı tarafta GPT, Gemini ve Claude öne çıkar; aradaki yetenek farkı her yıl daralıyor, bu yüzden seçim giderek 'hangisi akıllı' değil 'kısıtlarıma hangisi uyuyor' sorusu.</li><li>Olgun ekipler ikisini birden kullanır: basit/hassas işleri ucuz açık modele, karmaşık işleri güçlü kapalı modele yönlendirir (routing). Bu harman maliyeti düşürür, dayanıklılığı ve gizliliği artırır.</li><li>HatsonTech her görevi doğru modele eşler ve doğruluğu daima modelin ezberine değil, getirilen gerçek kaynak belgelere bağlar; model akıcılığı, kaynak doğruluğu sağlar.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yapay zeka hukukta araştırma, taslak ve incelemeyi nasıl hızlandırır? Uydurma atıf, gizlilik ve aşırı güven risklerini; topraklama (grounding), RAG ve insan denetimini anlaşılır biçimde anlatıyoruz.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk">
+  <meta property="og:description" content="Yapay zeka hukukta araştırma, taslak ve incelemeyi nasıl hızlandırır? Uydurma atıf, gizlilik ve aşırı güven risklerini; topraklama (grounding), RAG ve insan denetimini anlaşılır biçimde anlatıyoruz.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk">
+  <meta name="twitter:description" content="Yapay zeka hukukta araştırma, taslak ve incelemeyi nasıl hızlandırır? Uydurma atıf, gizlilik ve aşırı güven risklerini; topraklama (grounding), RAG ve insan denetimini anlaşılır biçimde anlatıyoruz.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg">
+  <title>Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk",
+  "description": "Yapay zeka hukukta araştırma, taslak ve incelemeyi nasıl hızlandırır? Uydurma atıf, gizlilik ve aşırı güven risklerini; topraklama (grounding), RAG ve insan denetimini anlaşılır biçimde anlatıyoruz.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg",
+  "articleSection": "LegalTech",
+  "keywords": "Hukuk, LegalTech, Yapay Zeka, Grounding, RAG"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk",
+      "item": "https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/hukukta-yapay-zeka.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/hukukta-yapay-zeka.jpg" alt="Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk" loading="lazy">
+    <div class="article-cat">LegalTech</div>
+    <h1>Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk</h1>
+    <p class="article-sub">Yapay zeka hukuki araştırmayı, taslak yazımını ve belge incelemesini dakikalara indiriyor. Ama uydurma atıflar, gizlilik açıkları ve sessizce yerleşen aşırı güven gibi gerçek riskler de getiriyor. Bu yazıda neyin gerçekten işe yaradığını, neyin tehlikeli olduğunu ve son sözün neden hâlâ hukukçuda kaldığını açıklıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Hukuk</span><span class="article-tag">LegalTech</span><span class="article-tag">Yapay Zeka</span><span class="article-tag">Grounding</span><span class="article-tag">RAG</span></div></div>
+    <div class="article-body">
+<h2>Neden şimdi: hukuk, yapay zeka için adeta biçilmiş bir alan</h2>
+<p>Hukuk, özünde dille yapılan bir iştir. Bir avukatın günü; karar okumak, dilekçe yazmak, sözleşme maddelerini karşılaştırmak, mevzuat taramak ve bütün bunları tutarlı bir argümana dönüştürmekle geçer. Hammadde de metindir, ürün de metin. Tam da bu yüzden, metni anlamak ve üretmek üzere kurulmuş büyük dil modelleri (large language models, kısaca LLM) hukukla şaşırtıcı bir uyum içinde.</p>
+<p>Peki bu model tam olarak nedir? Büyük dil modeli, devasa miktarda metinle eğitilmiş ve 'bir sonraki kelime ne olmalı' sorusunu olağanüstü iyi yanıtlayan bir tahmin makinesidir. Basit görünen bu yetenek pratikte uzun bir kararı özetlemeye, bir paragrafı yeniden yazmaya, iki sözleşme arasındaki farkı bulmaya ya da bir soruyu doğal dilde yanıtlamaya dönüşür. Hukukçunun günlük işlerinin çoğunun tam olarak bu kalıplara oturması bir rastlantı değil.</p>
+<p>Burada en baştan bir noktanın altını çizelim: yapay zeka hukukta 'akıl yürüten bir hâkim' değil, 'çok hızlı okuyan ve yazan bir stajyer' gibidir. Bu benzetme yazının geri kalanının da pusulası olacak. Doğru kullanıldığında bu stajyer, saatler süren mekanik işi dakikalara indirir. Yanlış kullanıldığında ise kendinden son derece emin bir dille yanlış bilgi üretir. Bu yazının amacı, o iki durumu birbirinden ayırt etmeyi öğretmek.</p>
+<h2>Üç büyük fırsat: araştırma, taslak ve inceleme</h2>
+<p>Yapay zekanın hukukta en çok değer kattığı yer araştırmadır. Klasik arama motorları kelime eşler; oysa hukukçunun aradığı çoğu zaman bir kelime değil, bir hukuki durumdur. İşte anlamsal arama (semantic search) tam burada devreye girer: bir uyuşmazlığı kendi cümlelerinizle anlatırsınız, sistem ifade bambaşka olsa bile özü örtüşen kararları önünüze getirir. 'Haksız fesih' yazmasanız bile, anlattığınız olayın aynı hukuki çekirdeği taşıyan emsallerine ulaşırsınız. Saatlerce sekme açıp kapamak yerine, dakikalar içinde ilgili kararlardasınızdır.</p>
+<p>İkinci fırsat taslak yazımıdır. Bir cevap dilekçesinin iskeleti, bir sözleşmenin standart maddeleri ya da bir ihtarnamenin kalıbı çoğu zaman tekrar eder. Yapay zeka, dosyanın bağlamına uyarlanmış bir ilk taslakla işe başlamanızı sağlar. Bu, herkesin bildiği o boş sayfa direncini ortadan kaldırır; siz de enerjinizi sıfırdan cümle kurmaya değil, argümanı keskinleştirmeye ayırırsınız. Önemli olan şudur: bu bir bitmiş metin değil, üzerine inşa edeceğiniz bir kaba taslaktır.</p>
+<p>Üçüncü fırsat incelemedir. Yüz sayfalık bir sözleşmede riskli maddeleri taramak, iki versiyon arasındaki farkları çıkarmak, bir dilekçenin dayandığı argümanları ve atıf yaptığı maddeleri listelemek; insan için yorucu ve hata payı yüksek işlerdir. Yorgun bir göz, otuzuncu sayfadaki bir cezai şart maddesini kolayca atlar. Yapay zeka bu taramayı yorulmadan ve tutarlı biçimde yapar. Ama dikkat: 'tarar ve öne çıkarır', 'karar verir' demek değildir. Son hükmü hâlâ insan kurar.</p>
+<h2>En tehlikeli risk: uydurulmuş atıflar (halüsinasyon)</h2>
+<p>Yapay zekanın hukuktaki en sinsi riski 'halüsinasyon' denen olgudur. Bir dil modeli, gerçekten var olan bir kararı getirmek yerine; var olması mümkün görünen ama aslında hiç bulunmayan bir karar, esas-karar numarası ya da alıntı üretebilir. Üstelik bunu tereddütsüz, akıcı ve son derece inandırıcı bir dille yapar. İşin asıl tehlikesi de burada: model yanıldığında bunu bir uyarı sesiyle değil, tam bir özgüvenle yapar.</p>
+<p>Neden olduğunu anlamak önemli. Ham bir dil modeli bir veri tabanı değildir; gerçekleri bir rafa koyup oradan çağırmaz. Eğitildiği metinlerdeki örüntülere bakarak 'böyle bir cümle nasıl devam ederdi' diye tahmin yürütür. Bir karar numarasının formatını taklit etmek onun için çok kolaydır; o numaranın gerçekten var olup olmadığını denetlemekse, sırf kendi başına bırakıldığında, tam olarak yapamadığı şeydir. Bir bakıma, hatırı sayılır bir kelime hazinesiyle ama hiçbir gerçeği doğrulama imkânı olmadan yazan birini düşünün.</p>
+<p>Ve bu teorik bir kaygı değil. Yalnızca 2025 boyunca, dünyanın dört bir yanındaki mahkemelerde avukatların yapay zekanın uydurduğu sahte kararları dosyaya sundukları yüzlerce vaka belgelendi; bunların bir kısmı para cezaları ve disiplin yaptırımlarıyla sonuçlandı. Bazı hâkimler bu konuda açıkça uyardığı hâlde olaylar tekrarladı. Ders nettir: hukukta bir atıf, kaynağına kadar doğrulanmadan asla güvenilir sayılamaz. Ve bu doğrulamayı yapacak mekanizma, modelin iç sesine değil, sistemin tasarımına ve hukukçunun denetimine ait olmalı.</p>
+<h2>Topraklama (grounding): modeli gerçek metne bağlamak</h2>
+<p>Halüsinasyon riskine karşı bugün bilinen en sağlam yanıt 'topraklama' (grounding) ilkesidir. Fikir basit ama güçlü: modelin yanıtını, hafızasındaki bulanık izlere değil, önüne konan gerçek ve doğrulanabilir kaynaklara dayandırmak. Yani modele 'şu konudaki fikrin nedir' demek yerine, önce ilgili gerçek belgeleri bulup 'yalnızca bu metinlere dayanarak cevap ver' demek. Açık sınavla kapalı sınav arasındaki fark gibi: modelin önüne kaynak kitabı koyarsınız.</p>
+<p>Bunu sağlayan en yaygın mimari, İngilizce kısaltmasıyla RAG (Retrieval-Augmented Generation), yani 'getirmeyle güçlendirilmiş üretim'dir. Akış şöyle işler: kullanıcının sorusu önce bir hukuk korpusunda (kararlar, kanunlar, yönetmelikler arasında) anlamca en yakın gerçek belgeleri bulmak için kullanılır. Bulunan bu belgeler modele bağlam olarak verilir. Model de yanıtını havadan değil, bu somut metinlerin üzerine kurar ve hangi karara ya da maddeye dayandığını gösterir.</p>
+<p>Topraklamanın hukuk açısından iki kritik kazanımı var. Birincisi izlenebilirlik: her cümle bir kaynağa bağlandığı için, hukukçu körü körüne güvenmek yerine tek tıkla gidip kaynağı kendisi görebilir. İkincisi güncellik: yeni bir karar ya da mevzuat değişikliği geldiğinde modeli baştan eğitmek gerekmez; bilgi tabanını güncellemek yeterlidir. HatsonTech'te yazılıma yapay zeka entegre ederken topraklamayı bilinçli olarak temel bir mühendislik ilkesi kabul ediyoruz; çünkü herhangi bir alanda 'kendinden emin ama dayanaksız' bir yanıt, çoğu zaman hiç yanıt olmamasından daha tehlikelidir.</p>
+<p>Yine de dürüst olalım: topraklama halüsinasyonu azaltır, sıfırlamaz. Model bazen önüne konan kaynağı yanlış yorumlayabilir ya da kaynak yetersiz kaldığında boşluğu kendi tahminiyle doldurmaya çalışabilir. Bu yüzden topraklama tek başına yeterli bir güvence değil; ancak bir sonraki ilkeyle, yani insan denetimiyle birlikte gerçek anlamını kazanan bir temeldir.</p>
+<h2>Gizlilik: hukuki sırrın yeni sınavı</h2>
+<p>Hukuki belgeler doğası gereği hassastır. Bir dosya; müvekkilin kişisel verilerini, ticari sırlarını, sağlık bilgilerini ya da bir uyuşmazlığın en mahrem ayrıntılarını içerebilir. Avukatın sır saklama yükümlülüğü, mesleğin en eski ve en temel taşlarından biridir. Yapay zeka araçları bu yükümlülüğü ortadan kaldırmaz; tam tersine, ona yepyeni bir sınav ekler.</p>
+<p>Tehlike şurada: bir avukat hassas bir belgeyi, nasıl çalıştığını bilmediği herkese açık bir yapay zeka aracına yapıştırdığında, o veriyi kontrolünden çıkarmış olabilir. Bazı ücretsiz araçlar, kullanıcının girdiği metni modeli geliştirmek için saklayabilir ya da işleyebilir. Böyle bir durumda gizli bir bilgi, hiç amaçlanmadığı yerlere sızabilir. O yüzden ilk kural nettir: bir aracın verinizle ne yaptığını bilmeden, oraya gizli bilgi vermeyin.</p>
+<p>Doğru yaklaşım, gizliliği sonradan eklenen bir yama değil, en baştan gelen temel bir tasarım gereksinimi olarak ele almaktır. Bu; verinin nerede işlendiğini bilmek, modelin eğitiminde kullanılıp kullanılmadığını netleştirmek ve denetlenebilir, güvenli altyapılar tercih etmek demektir. Nitekim dünya genelinde baroların yayımladığı yapay zeka rehberleri de aynı noktaya, yani aydınlatılmış onam ve veri güvenliğine işaret ediyor. HatsonTech olarak yapay zeka destekli ürünler geliştirirken veri güvenliğini ve gizliliği tasarımın merkezine koyuyoruz; çünkü bir kullanıcının teknolojiye güvenebilmesi için, o teknolojinin verisini koruyacağından emin olması şarttır.</p>
+<h2>Sessiz risk: aşırı güven ve beceri körelmesi</h2>
+<p>Uydurma atıflar göze batan bir risktir; oysa belki daha sinsi olanı sessizce ilerler: aşırı güven. Bir araç çoğu zaman doğru ve hızlı çalıştığında, insan zihni doğal olarak denetimi gevşetir. 'Nasılsa makine bir bakmıştır' düşüncesi, tam da en çok dikkat gereken anda dikkatin azalmasına yol açar. Yapay zekanın akıcı ve kendinden emin üslubu bu eğilimi büsbütün besler.</p>
+<p>Bunun ikinci bir yüzü var: beceri körelmesi. Genç bir hukukçu, araştırmayı ve taslak yazımını tümüyle bir araca devrettiğinde, o işleri kendi başına yapma kasını çalıştırmayı bırakabilir. Oysa bir argümanın neden zayıf olduğunu sezmek ya da bir kararın somut olaya gerçekten uyup uymadığını görmek, ancak o emeği defalarca verdikten sonra gelişen bir yargıdır. Aracın amacı bu yargının yerine geçmek değil, ona zaman açmaktır.</p>
+<p>Sağlıklı denge, yapay zekayı bir 'cevap makinesi' değil, bir 'taslak ve hızlandırıcı' olarak görmektir. Modelin getirdiği her sonucu, tıpkı bir stajyerin hazırladığı taslağa bakar gibi eleştirel bir gözle okumak gerekir: kaynak gerçek mi, atıf güncel mi, argüman somut olaya oturuyor mu? Bu şüpheci refleks bir zayıflık değil, mesleki olgunluğun ta kendisidir.</p>
+<h2>İnsan denetimi (human-in-the-loop): vazgeçilmez katman</h2>
+<p>Bütün bu risklerin birleştiği nokta tek bir ilkeye işaret ediyor: 'insan denetimi' (human-in-the-loop). Bu kavram, yapay zekanın bir işi tek başına baştan sona bitirmesine izin vermek yerine, kritik anlarda kararın bir insana ait kalmasını güvence altına almak demektir. Hukukta bu insan, her zaman hukukçunun kendisidir.</p>
+<p>İnsan denetimi pratikte şöyle görünür: yapay zeka araştırmayı yapar, ama emsalin uygunluğuna avukat karar verir. Model taslağı yazar, ama her cümlenin sorumluluğunu imzasını atan hukukçu taşır. Sistem riskli bir maddeyi öne çıkarır, ama o riskin somut dosyada ne anlama geldiğini insan yorumlar. Yapay zeka hızı sağlar; insan ise yargıyı, bağlamı ve sorumluluğu.</p>
+<p>İyi tasarlanmış bir sistem, bu denetimi zorlaştırmaz, kolaylaştırır. Her yanıtı kaynağına bağlamak, modelin emin olmadığı yerlerde bunu açıkça belirtmesini sağlamak ve doğrulamayı tek tıkla mümkün kılmak; hepsi insanın denetim görevini güçlendiren tasarım tercihleridir. HatsonTech'te yapay zeka çözümlerini bu felsefeyle kuruyoruz: amaç uzmanın yerini almak değil, onun muhakemesini hızlandırmak ve sağlamlaştırmak. Son sözü her zaman insan söyler.</p>
+<h2>Sorumluluk hukukçuda kalır: değişmeyen kural</h2>
+<p>Teknoloji ne kadar gelişirse gelişsin, değişmeyen bir gerçek var: mahkemeye sunulan bir dilekçenin, müvekkile verilen bir tavsiyenin ve ileri sürülen bir argümanın sorumluluğu hukukçuya aittir. 'Yapay zeka öyle söyledi' bir savunma değildir. Bir aracı kullanmayı seçen ve onun çıktısını imzalayan kişi, o çıktının doğruluğundan da sorumludur. Yapay zeka bu denklemi değiştirmez; yalnızca özeni gösterme biçimini dönüştürür.</p>
+<p>Dünyanın pek çok yerinde barolar ve düzenleyici kurumlar tam da bu yönde adım atıyor. Örneğin Amerikan Barolar Birliği'nin (ABA) üretken yapay zekaya ilişkin etik görüşü ve giderek artan sayıda eyalet barosunun rehberi; hukukçuların kullandıkları teknolojiyi anlama, gizliliği koruma ve yapay zeka çıktılarını bağımsız olarak doğrulama yükümlülüğüne dikkat çekiyor. Bunların hiçbiri yapay zekayı yasaklamak için değil; onu meslek etiğinin sınırları içinde, sorumlu biçimde kullanmayı güvence altına almak için. Yani araç yeni, ama özen yükümlülüğü eski ve sağlam.</p>
+<p>Bu yazıyı tek bir cümlede toplamak gerekirse: yapay zeka, hukukçunun gücünü çoğaltan olağanüstü bir kaldıraçtır, ama yargısının yerine geçen bir merci değildir. Doğru kullanım, fırsatları cömertçe kucaklarken riskleri ciddiye almaktan geçer: topraklamayla kaynağa bağlanmak, gizliliği korumak, aşırı güvene direnmek ve son sözü her zaman insana bırakmak. HatsonTech olarak yazılıma yapay zeka entegre ederken uyguladığımız mühendislik disiplini de tam bu denge üzerine kuruludur: topraklama, RAG ve insan denetimini birlikte tasarlayarak kullanıcıyı yavaşlatan mekanik yükü almak, ama ona ait olan muhakemeyi ve sorumluluğu sonuna kadar onun elinde bırakmak.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Hukuk dille yapılan bir iştir; bu yüzden büyük dil modelleri araştırma, taslak yazımı ve belge incelemesinde gerçek bir hızlanma sağlar. Ama bu modeller 'akıl yürüten bir hâkim' değil, 'çok hızlı okuyup yazan bir stajyer' gibidir.</li><li>En tehlikeli risk halüsinasyondur: model, var olmayan kararları ve atıfları kendinden emin bir dille uydurabilir. Yalnızca 2025'te dünya genelinde yüzlerce sahte atıf vakası belgelendi. Hiçbir atıf, kaynağına kadar doğrulanmadan güvenilir sayılmamalı.</li><li>Topraklama (grounding) ve RAG, yanıtı gerçek hukuk metnine bağlayarak halüsinasyonu azaltır ve her cümleyi izlenebilir kılar; ama tek başına yeterli değildir, ancak insan denetimiyle anlam kazanır.</li><li>Gizlilik temel bir tasarım gereksinimidir: bir aracın verinizle ne yaptığını bilmeden ona gizli belge vermeyin.</li><li>Aşırı güven ve beceri körelmesi sessiz ama gerçek risklerdir; yapay zeka bir 'cevap makinesi' değil, eleştirel gözle denetlenmesi gereken bir 'taslak ve hızlandırıcı'dır.</li><li>Sorumluluk her zaman hukukçuda kalır: 'yapay zeka öyle söyledi' bir savunma değildir. HatsonTech olarak yazılıma yapay zeka entegre ederken aynı disiplini uyguluyoruz: mekanik yükü al, muhakemeyi ve son sözü insana bırak.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

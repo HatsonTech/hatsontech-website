@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Token, embedding ve vektör nedir? Yapay zeka dili nasil sayiya cevirir? Tokenizasyon, vektor uzayi ve kosinus benzerligini sade analojilerle anlatan rehber.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/token-embedding-vektor.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?">
+  <meta property="og:description" content="Token, embedding ve vektör nedir? Yapay zeka dili nasil sayiya cevirir? Tokenizasyon, vektor uzayi ve kosinus benzerligini sade analojilerle anlatan rehber.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?">
+  <meta name="twitter:description" content="Token, embedding ve vektör nedir? Yapay zeka dili nasil sayiya cevirir? Tokenizasyon, vektor uzayi ve kosinus benzerligini sade analojilerle anlatan rehber.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg">
+  <title>Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?",
+  "description": "Token, embedding ve vektör nedir? Yapay zeka dili nasil sayiya cevirir? Tokenizasyon, vektor uzayi ve kosinus benzerligini sade analojilerle anlatan rehber.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/token-embedding-vektor.jpg",
+  "articleSection": "Eğitim",
+  "keywords": "Embedding, Vektör, NLP, Yapay Zeka"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?",
+      "item": "https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/token-embedding-vektor.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/token-embedding-vektor.jpg" alt="Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?" loading="lazy">
+    <div class="article-cat">Eğitim</div>
+    <h1>Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?</h1>
+    <p class="article-sub">Bir bilgisayar harfleri değil, sayıları işler. Peki bir kelime, bir cümle, hatta bir anlam nasıl oluyor da sayıya dönüşüyor? Tokenizasyondan embedding'lere, vektör uzayından anlamsal benzerliğe; yapay zekanın dili kavrama biçimini matematik bilmeden, somut analojilerle anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Embedding</span><span class="article-tag">Vektör</span><span class="article-tag">NLP</span><span class="article-tag">Yapay Zeka</span></div></div>
+    <div class="article-body">
+<h2>Neden Bir Çeviriye İhtiyaç Var?</h2>
+<p>Yapay zekanın "dili anladığını" söylediğimizde aslında ufak bir yalan söyleriz. Bir dil modeli ne harfleri ne kelimeleri ne de cümleleri bizim anladığımız anlamda görür. Onun dünyasında her şey sayıdır. Tıpkı bir hesap makinesinin yalnızca rakamlarla iş görmesi gibi, modern yapay zeka sistemlerinin içinde dönen tek şey de uçsuz bucaksız sayı dizileridir. Demek ki ortada çözülmesi gereken temel bir problem var: insanın yazdığı bir metni, makinenin işleyebileceği sayılara nasıl çeviririz?</p>
+<p>Bu çeviri kulağa mekanik gelse de işin asıl zorluğu mekanik kısımda değil. Bir kelimeyi rastgele bir sayıya eşlemek kolaydır; sözlükteki her kelimeye bir numara verir, işi bitirirsiniz. Ama bu yöntem anlamı tamamen çöpe atar. "Kral" kelimesine 4172, "kraliçe" kelimesine 9038 numarasını verseniz, bu iki sayı arasında o iki kavramın akrabalığına dair tek bir iz bile kalmaz. Asıl mesele, çeviriyi öyle bir yapmaktır ki anlam da metinle birlikte yolculuk etsin.</p>
+<p>Bu yazıda söz konusu çevirinin üç temel taşını adım adım kuracağız: önce metni parçalara ayıran tokenizasyonu, ardından her parçaya anlam yükleyen embedding'leri, en sonunda da bu anlamların içinde yaşadığı vektör uzayını ele alacağız. Amacımız, modern yapay zekanın kalbindeki bu sessiz mekanizmayı hiç matematik geçmişi gerektirmeden anlaşılır kılmak.</p>
+<h2>Tokenizasyon: Metni Lokmalara Bölmek</h2>
+<p>Çevirinin ilk adımı, metni yönetilebilir parçalara bölmektir. Bu parçalara token denir. Bir token çoğu zaman tam bir kelime değildir; bazen bir kelimenin parçası, bazen bir ek, bazen de yalnızca birkaç harftir. Modeli besleyen sistem, gelen metni bu token'lara ayırır ve her birine sözlüğündeki sıra numarasını verir. Belki de en sade benzetme yemektir: bir cümleyi olduğu gibi yutamazsınız, önce ısırıp lokmalara ayırırsınız. Tokenizasyon da modelin metni sindirilebilir lokmalara böldüğü adımdır.</p>
+<p>Peki neden tam kelimeler yerine bu tuhaf alt-parçalar kullanılıyor? Çünkü dünyadaki tüm kelimeleri tek bir sözlüğe sığdırmak imkânsızdır. Yeni kelimeler, yazım hataları, isimler ve teknik terimler sonsuza kadar üretilebilir. Bunun yerine modeller, sık geçen parçalardan oluşan sabit boyutlu bir kelime dağarcığı kullanır. "Kitaplıklarımızdan" gibi uzun bir kelime, model tarafından "kitap" ve onu izleyen ekler gibi tanıdık parçalara bölünebilir. Böylece daha önce hiç görmediği bir kelimeyi bile bildiği parçalardan yeniden kurabilir; tıpkı tanımadığınız bir kelimeyi hecelerine ayırarak okuyabilmeniz gibi.</p>
+<p>Bu bölme işi masum görünür ama sonuçları derindir. Bir metnin kaç token'a bölündüğü doğrudan maliyeti, hızı ve modelin tek seferde göz önünde tutabileceği bağlamın uzunluğunu belirler; çünkü modeller metni token sayısıyla ölçer. Üstelik token sınırları her dilde aynı verimlilikte düşmez. İngilizce için tasarlanmış birçok tokenizer, Türkçe gibi sondan eklemeli dillerde kelimeleri anlamla ilgisi olmayan noktalardan parçalar; bu da aynı şeyi söylemek için daha fazla token harcanması demektir. Yani tokenizasyon, çoğu kişinin sandığının aksine teknik bir ayrıntı değil, ürün kalitesini sessizce belirleyen temel bir tasarım kararıdır.</p>
+<h2>Embedding: Bir Token'a Anlam Yüklemek</h2>
+<p>Token'ları sıra numaralarına çevirdik, ama biraz önce gördüğümüz gibi bu numaralar anlamsızdır; "4172" sayısı "kral" hakkında hiçbir şey söylemez. İşte embedding tam burada devreye girer. Embedding (Türkçesiyle "gömme"), her token'ı tek bir sayı yerine bir sayı listesiyle, yani bir vektörle temsil etmektir. Örneğin "kral" kelimesi artık tek başına 4172 değil, [0.21, -0.83, 0.05, ...] gibi yüzlerce, hatta binlerce sayıdan oluşan uzun bir liste hâline gelir. Bu listedeki her sayı, kelimenin bir özelliğine dair minik bir ipucu taşır.</p>
+<p>Buradaki kilit nokta şudur: bu sayılar elle atanmaz. Model, milyarlarca cümleyi okurken bu vektörleri kendisi öğrenir. Bir kelimenin hangi kelimelerle yan yana geçtiğini, hangi bağlamlarda kullanıldığını gözlemleye gözlemleye, ona öyle bir sayı listesi atar ki benzer bağlamlarda görünen kelimeler benzer listelere sahip olur. Dilbilimde sevilen bir söz vardır: "Bir kelimeyi, birlikte gezdiği arkadaşlarından tanırsınız." Embedding'ler tam olarak bu sezgiyi sayıya döker; bir kelimenin anlamı, onunla birlikte göründüğü kelimelerden damıtılır.</p>
+<p>Bunu basit bir benzetmeyle düşünelim. Diyelim ki her kelimeyi birkaç eksende puanlıyoruz: ne kadar "canlı", ne kadar "kraliyetle ilgili", ne kadar "erkeksi mi dişil mi". "Kral" yüksek kraliyet, yüksek erkek alır; "kraliçe" yüksek kraliyet, yüksek dişil; "muz" ise her üçünden de düşük puan alır. Gerçek embedding'lerde bu eksenler yüzlercedir ve hiçbiri bizim koyduğumuz kadar temiz etiketli değildir; ama fikir aynıdır. Her kelime, anlamını oluşturan özelliklerin bir koordinat listesine dönüşür.</p>
+<h2>Vektör Uzayı: Bir Anlam Haritası</h2>
+<p>Her kelimeyi bir sayı listesine, yani koordinatlara çevirdiğimize göre artık her kelimeyi bir noktaya benzetebiliriz; tıpkı bir haritadaki bir şehrin enlem ve boylamla işaretlenmesi gibi. İki sayıyla iki boyutlu bir harita, üç sayıyla üç boyutlu bir uzay kurabiliriz. Embedding'ler yüzlerce sayı içerdiğinden, kelimelerin yaşadığı yer yüzlerce boyutlu bir uzaydır. Bunu gözümüzde canlandıramayız, ama mantık tıpatıp aynıdır: her kelime, bu devasa uzayda kendine ait bir konuma sahip bir noktadır. İşte bu uzaya vektör uzayı denir.</p>
+<p>Bu haritanın güzelliği, üzerindeki konumların rastgele olmamasıdır. Embedding'ler iyi öğrenildiğinde anlamca yakın kelimeler haritada da birbirine yakın düşer. "Kral", "kraliçe", "taht" ve "saray" bir mahallede toplanırken; "muz", "elma" ve "çilek" bambaşka bir mahallede kümelenir. Anlamın kendisi fiziksel bir yakınlığa dönüşmüştür. Coğrafi bir haritada birbirine yakın şehirler çoğu zaman benzer iklimi paylaşır; bu anlam haritasında da birbirine yakın noktalar benzer anlamlar taşır.</p>
+<p>İşin en şaşırtıcı yanı, bu uzaydaki yönlerin bile anlam taşıyabilmesidir. Klasik örnek şudur: "kral" vektöründen "erkek" yönünü çıkarıp "kadın" yönünü eklediğinizde, vardığınız nokta şaşırtıcı biçimde "kraliçe" noktasının yakınına düşer. Yani uzayda belli bir hareket, kabaca "erkeği dişile çevirme" anlamına denk gelir. Bu temiz örnek her durumda mükemmel işlemese de, kayda değer bir gerçeği gösterir: model anlamı yalnızca konumlarda değil, konumlar arasındaki ilişkilerde de kodlar. Anlam, haritanın hem noktalarında hem de doğrultularında yaşar.</p>
+<h2>Anlamsal Benzerlik: İki Anlamın Arasındaki Açı</h2>
+<p>Kelimeler bir haritada noktalara dönüştüğüne göre, artık çok güçlü bir soru sorabiliriz: iki kelime ne kadar benzer? Bunu ölçmek için iki noktanın ne kadar "aynı yöne baktığına" bakarız. En yaygın yöntem kosinüs benzerliğidir. İsmi korkutucu gelse de fikri sadedir: her vektörü, uzayın merkezinden o noktaya uzanan bir ok gibi düşünün. İki ok aynı yöne işaret ediyorsa, temsil ettikleri anlamlar da benzerdir. Oklar arasındaki açı küçüldükçe benzerlik artar.</p>
+<p>Kosinüs benzerliği tam olarak bu açıyı bir sayıya çevirir. İki ok birebir aynı yöne bakıyorsa benzerlik 1'e yakın olur; tamamen ilgisiz, yani dik açıyla duruyorlarsa 0'a; zıt yönlere bakıyorlarsa -1'e yaklaşır. Önemli bir incelik şu: kosinüs benzerliği okların uzunluğunu değil yalnızca yönünü dikkate alır. Yani bir kavram metinde çok sık geçtiği için "daha uzun" bir vektöre sahip olsa bile benzerlik kararı bundan etkilenmez; yalnızca anlamın yönü konuşur.</p>
+<p>Bunun neden bu kadar değerli olduğunu bir örnekle görelim. "Otomobil" ile "araba" yazılış olarak bambaşkadır; ortak tek bir harf dizisi bile paylaşmazlar. Klasik bir metin araması bu ikisini eşleştiremez. Ama vektör uzayında neredeyse üst üste düşerler, çünkü hep aynı bağlamlarda geçerler. Kosinüs benzerliği bu yakınlığı yüksek bir skorla yakalar. İşte makinelerin kelimeleri değil anlamları karşılaştırabilmesinin sırrı buradadır: benzerlik artık harflerin değil, anlamların ölçüsüdür.</p>
+<h2>Cümleler ve Belgeler: Tek Kelimeden Bütün Metne</h2>
+<p>Şimdiye kadar hep tek kelimelerden konuştuk, ama gerçek dünyada sorular, cümleler ve sayfalarca belgeyle uğraşırız. İyi haber şu: aynı fikir ölçeklenir. Modern modeller yalnızca kelimeleri değil, koca bir cümleyi ya da paragrafı da tek bir vektöre, yani anlam haritasındaki tek bir noktaya sıkıştırabilir. Bu vektör, metnin tüm anlamının bir özeti gibidir. "Bir sözleşme nasıl feshedilir?" sorusu da, sayfalarca süren bir kılavuz metni de sonunda aynı uzayda birer noktaya dönüşür.</p>
+<p>Bu sıkıştırma, kelimelerinkinden daha incelikli bir iştir. Bir cümlenin anlamı içindeki kelimelerin sadece toplamı değildir; sıraları, hangi kelimenin hangisini nitelediği ve bağlam da işin içine girer. "Köpek adamı ısırdı" ile "Adam köpeği ısırdı" aynı kelimeleri içerir ama bambaşka şeyler anlatır. Bu yüzden cümle embedding'i üreten modeller, kelimeler arasındaki ilişkileri de hesaba katarak tek bir bütünsel temsil çıkarır. Sonuç yine bir vektördür, ama artık bir cümlenin ya da paragrafın anlamını taşır.</p>
+<p>Bu yetenek, yapay zekanın en kullanışlı uygulamalarından birinin kapısını açar: anlamsal arama. Bir kullanıcının sorusunu bir vektöre çevirirsiniz; ardından elinizdeki binlerce belgenin vektörleri arasından soruya en yakın yöne bakanları, yani kosinüs benzerliği en yüksek olanları getirirsiniz. Kullanıcı, sorudaki kelimelerin birebir geçtiği belgeleri değil, sorunun anlamına en yakın belgeleri alır. Anahtar kelime eşleştirmesinin atladığı, yani farklı sözcüklerle ama aynı anlamı anlatan belgeler de böylece yakalanır.</p>
+<h2>Gerçek Bir Üründe Bu Ne İşe Yarar?</h2>
+<p>Bu kavramlar soyut görünebilir, ama somut bir üründe hayata değdiklerinde değerleri ortaya çıkar. Bir işletmenin belge arşivi tam da böyle bir alandır. Bir kullanıcının aradığı, çoğu zaman belli bir kelimenin geçtiği belge değil, belli bir konuyu ele alan kayıtlardır. Kullanıcı "yıllık izin talebinin reddi" diye arattığında, bu tam ifadeyi içermese bile aynı konuyu tartışan belgelerin gelmesini ister. Anlamsal benzerlik, kelimelerin ötesine geçip meselenin özünü yakaladığı için bunu mümkün kılar.</p>
+<p>HatsonTech'ın yapay zeka altyapısı HatsonAI'da geliştirdiğimiz belge anlama ve kaynak gösteren asistanlar tam olarak bu mekanizmanın üzerine kuruludur. Örneğin FlowDesk içindeki belge araması ya da bir kurum için kurduğumuz iç bilgi tabanı asistanı, binlerce sayfa içeriği embedding'ler aracılığıyla bir anlam haritasına yerleştirir. Bir kullanıcı soru sorduğunda, sorusu da aynı haritaya bir nokta olarak düşer ve sistem o noktaya anlamca en yakın metinleri saniyeler içinde getirir. Klasik anahtar kelime aramasının kaçırdığı, yani farklı terimlerle ifade edilmiş ama aynı sonuca işaret eden belgeler de böylece görünür hâle gelir.</p>
+<p>Tam bu noktada Türkçenin kendine özgü zorlukları da işin içine girer. Sistemin "taşınmaz", "taşınmazın" ve "taşınmazlardan" gibi biçimlerin aynı kavrama ait olduğunu tanıması; tokenizasyonun Türkçenin yapısına uygun yapılması; embedding'lerin Türkçe metinlerle anlamlı çalışması gerekir. Yani bu yazıda anlattığımız üç temel taş, bu tür ürünlerin altında her gün üzerine kafa yorduğumuz somut mühendislik kararlarına dönüşür. Doğru token, anlamlı embedding ve sağlam bir benzerlik ölçüsü olmadan, güvenilir bir anlamsal arama kurulamaz.</p>
+<h2>Toparlayalım: Sayıların Altındaki Sezgi</h2>
+<p>Başa dönelim. Yapay zeka dili anlamaz; onu sayıya çevirir ve o sayılar üzerinde işlem yapar. Bu çevirinin üç halkasını gördük. Tokenizasyon metni sindirilebilir parçalara böler. Embedding her parçaya, anlamını yansıtan bir koordinat listesi atar. Vektör uzayı ise bu koordinatların yaşadığı bir anlam haritasıdır; bu haritada yakınlık benzerlik demektir ve kosinüs benzerliği bu yakınlığı ölçmemizi sağlar.</p>
+<p>Bu zincirin gücü, anlamı bir geometriye çevirmesinde yatar. Anlam bir kez harita üzerinde bir konuma dönüştüğünde, "bu iki şey ne kadar benzer?" gibi insanca bir soru, "bu iki nokta birbirine ne kadar yakın?" gibi makinece çözülebilir bir soruya dönüşür. Modern yapay zekanın dili kavrar gibi görünmesinin altında yatan sessiz fikir budur: anlamı uzayda bir yere yerleştirmek.</p>
+<p>Bu sezgiyi bir kez edindiğinizde, etrafınızdaki birçok yapay zeka aracının nasıl çalıştığı aydınlanır. Bir öneri sisteminin neden "buna benzer" şeyler bulabildiği, bir asistanın neden tam kelimeleri kullanmasanız da ne demek istediğinizi yakaladığı, bir belge arama aracının neden farklı ifade edilmiş ama aynı konuyu ele alan kayıtları getirebildiği; hepsinin temelinde aynı fikir yatar. Dil sayıya çevrilir, anlam bir haritaya yerleşir ve makineler bu harita üzerinde gezinerek bizimkine benzeyen bir anlam duygusu üretir.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Yapay zeka dili "anlamaz"; metni sayılara çevirir ve yalnızca sayılarla işlem yapar. Tüm mesele, bu çeviriyi anlamı kaybetmeden yapabilmektir.</li><li>Tokenizasyon, metni token denen alt-parçalara böler; bir metnin kaç token'a bölündüğü maliyeti, hızı ve bağlam uzunluğunu doğrudan etkiler ve her dilde aynı verimlilikte çalışmaz.</li><li>Embedding, her token'ı tek bir sayı yerine bir sayı listesiyle (vektör) temsil eder; bu sayılar elle değil, modelin milyarlarca cümleyi okuyarak öğrenmesiyle atanır ve kelimenin anlamını kodlar.</li><li>Vektör uzayı bir anlam haritasıdır: her kelime bir noktadır ve anlamca yakın kelimeler birbirine yakın düşer; hatta yönler bile (kral − erkek + kadın ≈ kraliçe) anlam taşıyabilir.</li><li>Kosinüs benzerliği, iki vektörün arasındaki açıya bakarak anlamsal benzerliği ölçer; böylece makineler harfleri değil anlamları karşılaştırabilir ("otomobil" ile "araba" gibi).</li><li>Aynı fikir cümlelere ve belgelere ölçeklenerek anlamsal aramayı mümkün kılar; HatsonTech'ın HatsonAI altyapısı bu mekanizmayla, farklı kelimelerle ifade edilse bile aynı konuyu ele alan belgeleri getirir.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

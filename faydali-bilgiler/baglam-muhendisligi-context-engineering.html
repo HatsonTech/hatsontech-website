@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bağlam mühendisliği (context engineering) nedir, prompt mühendisliğinden farkı ne? Modelin gördüğü bağlamın tamamını tasarlamayı, bağlam penceresini ve 'ortada kaybolma' etkisini sade anlatıyoruz.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi">
+  <meta property="og:description" content="Bağlam mühendisliği (context engineering) nedir, prompt mühendisliğinden farkı ne? Modelin gördüğü bağlamın tamamını tasarlamayı, bağlam penceresini ve 'ortada kaybolma' etkisini sade anlatıyoruz.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi">
+  <meta name="twitter:description" content="Bağlam mühendisliği (context engineering) nedir, prompt mühendisliğinden farkı ne? Modelin gördüğü bağlamın tamamını tasarlamayı, bağlam penceresini ve 'ortada kaybolma' etkisini sade anlatıyoruz.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280">
+  <title>Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi",
+  "description": "Bağlam mühendisliği (context engineering) nedir, prompt mühendisliğinden farkı ne? Modelin gördüğü bağlamın tamamını tasarlamayı, bağlam penceresini ve 'ortada kaybolma' etkisini sade anlatıyoruz.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html"
+  },
+  "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280",
+  "articleSection": "Mühendislik",
+  "keywords": "context engineering, bağlam mühendisliği, bağlam penceresi, RAG, prompt"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi",
+      "item": "https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280" alt="Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>Bağlam Mühendisliği (Context Engineering): Prompt Mühendisliğinin Ötesinde</h1>
+    <p class="article-sub">İyi sonuç almak artık tek bir 'doğru soru' değil; modelin o an gördüğü bağlamın tamamını tasarlamaktır. Talimat, getirilen belgeler, hafıza ve araç çıktıları... Bunları doğru kurma işine bağlam mühendisliği denir.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Context Engineering</span><span class="article-tag">Bağlam</span><span class="article-tag">RAG</span><span class="article-tag">Bellek</span></div></div>
+    <div class="article-body">
+<h2>Bir Sorudan Bütün Bir Bağlama</h2>
+<p>Birkaç yıl önce yapay zekâdan iyi sonuç almanın sırrı 'doğru soruyu sormak', yani prompt mühendisliğiydi. Bugün resim büyüdü. Modern yapay zekâ sistemlerinde —özellikle ajanlarda ve RAG tabanlı ürünlerde— belirleyici olan tek bir istem değil, modelin o an gördüğü bağlamın tamamıdır. Bu bütünü tasarlama işine 'bağlam mühendisliği' (context engineering) deniyor ve 2026'da yapay zekâ mühendisliğinin merkezine yerleşti.</p>
+<p>Bu yazıda bağlamın neden tek bir istemden daha büyük bir mesele olduğunu, bağlam penceresinin neden kıt bir kaynak olduğunu ve doğru bağlamı kurmanın yollarını sade bir dille anlatıyoruz.</p>
+<h2>Prompt Mühendisliğinden Bağlam Mühendisliğine</h2>
+<p>Prompt mühendisliği, modele verdiğiniz talimatı özenle yazmaktır: net olun, rol verin, örnek ekleyin. Hâlâ değerlidir; konuyu <a href="/faydali-bilgiler/prompt-muhendisligi.html">prompt mühendisliği yazımızda</a> ayrıntılı anlattık. Ama bir ajan ya da gerçek bir ürün söz konusu olduğunda, modele giden tek şey sizin talimatınız değildir. Sistem talimatları, kullanıcının geçmiş mesajları, getirilen belgeler, araçların çıktıları, hafızadan gelen notlar... hepsi aynı 'bağlam penceresine' doluşur. Bağlam mühendisliği, bu pencerede neyin, ne kadar ve hangi sırayla bulunacağına karar verme işidir.</p>
+<h2>Bağlam Penceresi: Kıt Bir Kaynak</h2>
+<p>Bir modelin bağlam penceresi, aynı anda 'görebildiği' metnin sınırıdır. Pencereler büyüdü ama yine de kıttır: pencereye ne kadar çok şey doldurursanız, model o kadar dağılır, yavaşlar ve maliyet artar. Bu yüzden bağlam, sınırsız bir çöp kutusu değil, dikkatle yönetilmesi gereken bir bütçedir. İyi bir sistem her sorgu için gereken minimum ama yeterli bağlamı kurar; gereksiz her parça hem parayı hem isabeti aşağı çeker.</p>
+<h2>Daha Fazla Değil, Daha Doğru Bağlam</h2>
+<p>Sezgiye aykırı ama önemli bir gerçek: modele ne kadar çok bağlam verirseniz o kadar iyi cevap alacağınız doğru değildir. Araştırmalar, uzun bağlamların ortasındaki bilginin sıklıkla gözden kaçtığını gösteriyor; buna 'ortada kaybolma' (lost in the middle) etkisi deniyor. Alakasız belgelerle dolu bir pencere, modeli doğru bilgiden uzaklaştırır. Asıl beceri çok şey tıkmak değil; o an gereken doğru parçaları seçip öne koymaktır. Bağlamda kalite, hacimden önemlidir.</p>
+<h2>Bağlamı Kurmanın Yolları</h2>
+<ul>
+<li><strong>Getirme (retrieval):</strong> Tüm veriyi değil, soruyla en alakalı parçaları arayıp eklemek — <a href="/faydali-bilgiler/rag-vs-fine-tuning.html">RAG'ın</a> kalbi.</li>
+<li><strong>Özetleme:</strong> Uzun geçmişi ya da belgeleri sıkıştırarak yer açmak.</li>
+<li><strong>Hafıza:</strong> Önceki etkileşimlerden kalıcı notları gerektiğinde geri çağırmak.</li>
+<li><strong>Yapı ve sıra:</strong> Talimatı, kaynakları ve soruyu modelin en iyi kullanacağı düzende yerleştirmek.</li>
+</ul>
+<h2>Uygulamada Bağlam Mühendisliği</h2>
+<p>Bu, gerçek ürünlerde özellikle kritiktir. Örneğin bir müşteri için geliştirdiğimiz yapay zekâ asistanının ya da HatsonAI ile kurulan bir kurumsal bilgi tabanı asistanının iyi cevap verebilmesi; ilgili belgeleri, güncel kayıtları ve sorunun özelliklerini doğru biçimde bir araya getirmeyi gerektirir. Ama alakasız yüzlerce belgeyi pencereye doldurmak hem maliyeti artırır hem cevabı bozar. Bu tür projelerde yaptığımız işin önemli bir kısmı bağlam mühendisliğidir: her sorgu için doğru parçaları getirip, doğru sırada ve doğru miktarda modele sunmak. <a href="/faydali-bilgiler/vektor-veritabani-anlamsal-arama.html">Anlamsal arama</a> ve RAG bu işin araçlarıdır; bağlam mühendisliği ise onları doğru kullanma disiplinidir.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Bağlam mühendisliği, tek bir istemi değil, modelin gördüğü bağlamın tamamını (talimat, belgeler, hafıza, araç çıktıları) tasarlama işidir.</li><li>Bağlam penceresi kıt bir kaynaktır: çok şey doldurmak modeli dağıtır, yavaşlatır ve maliyeti artırır; bağlam bir bütçedir.</li><li>Daha çok bağlam her zaman daha iyi değildir; 'ortada kaybolma' etkisi yüzünden alakasız içerik isabeti düşürür. Kalite hacimden önemlidir.</li><li>Bağlam kurmanın araçları: getirme (RAG), özetleme, hafıza ve doğru yapı/sıra.</li><li>Gerçek ürünlerde işin büyük kısmı bağlam mühendisliğidir: her sorgu için doğru parçaları, doğru sırada ve miktarda modele sunmak.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is context engineering and how is it different from prompt engineering? A plain-language guide to designing the whole context a model sees, the context window, and the 'lost in the middle' effect.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Context Engineering: Beyond Prompt Engineering">
+  <meta property="og:description" content="What is context engineering and how is it different from prompt engineering? A plain-language guide to designing the whole context a model sees, the context window, and the 'lost in the middle' effect.">
+  <meta property="og:url" content="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Context Engineering: Beyond Prompt Engineering">
+  <meta name="twitter:description" content="What is context engineering and how is it different from prompt engineering? A plain-language guide to designing the whole context a model sees, the context window, and the 'lost in the middle' effect.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280">
+  <title>Context Engineering: Beyond Prompt Engineering | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Context Engineering: Beyond Prompt Engineering",
+  "description": "What is context engineering and how is it different from prompt engineering? A plain-language guide to designing the whole context a model sees, the context window, and the 'lost in the middle' effect.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html"
+  },
+  "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280",
+  "articleSection": "Engineering",
+  "keywords": "context engineering, context window, RAG, prompt, memory"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Context Engineering: Beyond Prompt Engineering",
+      "item": "https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / Context Engineering: Beyond Prompt Engineering</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280" alt="Context Engineering: Beyond Prompt Engineering" loading="lazy">
+    <div class="article-cat">Engineering</div>
+    <h1>Context Engineering: Beyond Prompt Engineering</h1>
+    <p class="article-sub">Getting good results is no longer a single 'right question'; it is designing the entire context the model sees. Instructions, retrieved documents, memory, tool outputs — assembling them well is called context engineering.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Context Engineering</span><span class="article-tag">Context</span><span class="article-tag">RAG</span><span class="article-tag">Memory</span></div></div>
+    <div class="article-body">
+<h2>From a Single Question to a Whole Context</h2>
+<p>A few years ago, the secret to good AI results was 'asking the right question' — prompt engineering. Today the picture is bigger. In modern AI systems — especially agents and RAG-based products — what decides the outcome is not a single prompt but the entire context the model sees at that moment. Designing that whole is called context engineering, and in 2026 it has moved to the center of AI engineering.</p>
+<p>In this article we explain, in plain language, why context is a bigger matter than a single prompt, why the context window is a scarce resource, and the ways to assemble the right context.</p>
+<h2>From Prompt Engineering to Context Engineering</h2>
+<p>Prompt engineering is carefully writing the instruction you give the model: be clear, assign a role, add examples. It is still valuable; we covered it in detail in our <a href="/insights/prompt-muhendisligi.html">prompt engineering article</a>. But when an agent or a real product is involved, your instruction is not the only thing that reaches the model. System instructions, the user's past messages, retrieved documents, tool outputs, notes pulled from memory — all of them crowd into the same 'context window.' Context engineering is deciding what goes into that window, how much, and in what order.</p>
+<h2>The Context Window: A Scarce Resource</h2>
+<p>A model's context window is the limit of the text it can 'see' at once. Windows have grown, but they are still scarce: the more you stuff into the window, the more the model gets distracted, slows down, and costs rise. So context is not a bottomless bin but a budget to be managed carefully. A good system assembles the minimum-yet-sufficient context for each query; every unnecessary piece drags down both cost and accuracy.</p>
+<h2>Not More Context, but the Right Context</h2>
+<p>Counterintuitive but important: it is not true that the more context you give the model, the better the answer. Research shows that information in the middle of long contexts is often overlooked — the 'lost in the middle' effect. A window full of irrelevant documents pulls the model away from the right information. The real skill is not cramming in a lot, but selecting and foregrounding the right pieces needed right now. In context, quality matters more than volume.</p>
+<h2>Ways to Assemble Context</h2>
+<ul>
+<li><strong>Retrieval:</strong> Searching for and adding the most relevant pieces for the question rather than all the data — the heart of <a href="/insights/rag-vs-fine-tuning.html">RAG</a>.</li>
+<li><strong>Summarization:</strong> Compressing a long history or documents to make room.</li>
+<li><strong>Memory:</strong> Recalling persistent notes from earlier interactions when needed.</li>
+<li><strong>Structure and order:</strong> Placing the instruction, sources, and question in the order the model will use best.</li>
+</ul>
+<h2>Context Engineering in Practice</h2>
+<p>This becomes especially critical in knowledge-heavy products. A good answer often requires bringing together the relevant documents, current data, and the specifics of the situation correctly. But stuffing hundreds of irrelevant files into the window both raises cost and corrupts the answer. When we build AI-powered assistants at HatsonTech — for example a document-understanding assistant in HatsonAI or search inside FlowDesk — a large part of the work is context engineering: retrieving the right pieces for each query and presenting them to the model in the right order and amount. <a href="/insights/vektor-veritabani-anlamsal-arama.html">Semantic search</a> and RAG are the tools; context engineering is the discipline of using them well.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>Context engineering is designing the whole context the model sees (instruction, documents, memory, tool outputs), not a single prompt.</li><li>The context window is a scarce resource: stuffing it distracts the model, slows it, and raises cost; context is a budget.</li><li>More context is not always better; the 'lost in the middle' effect means irrelevant content lowers accuracy. Quality beats volume.</li><li>Tools for assembling context: retrieval (RAG), summarization, memory, and the right structure and order.</li><li>When building AI-powered products, much of the work is context engineering: presenting the right pieces to the model in the right order and amount for each query.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

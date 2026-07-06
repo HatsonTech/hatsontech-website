@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Understand the Transformer in plain language: the self-attention intuition, why it replaced RNNs, the encoder-decoder split, and why it scales so remarkably well.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Transformer Architecture, Explained Simply">
+  <meta property="og:description" content="Understand the Transformer in plain language: the self-attention intuition, why it replaced RNNs, the encoder-decoder split, and why it scales so remarkably well.">
+  <meta property="og:url" content="https://hatsontech.com/insights/transformer-mimarisi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="The Transformer Architecture, Explained Simply">
+  <meta name="twitter:description" content="Understand the Transformer in plain language: the self-attention intuition, why it replaced RNNs, the encoder-decoder split, and why it scales so remarkably well.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg">
+  <title>The Transformer Architecture, Explained Simply | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Transformer Architecture, Explained Simply",
+  "description": "Understand the Transformer in plain language: the self-attention intuition, why it replaced RNNs, the encoder-decoder split, and why it scales so remarkably well.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/transformer-mimarisi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg",
+  "articleSection": "Research",
+  "keywords": "Transformer, Attention, Derin Öğrenme, LLM"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Transformer Architecture, Explained Simply",
+      "item": "https://hatsontech.com/insights/transformer-mimarisi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/transformer-mimarisi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / The Transformer Architecture, Explained Simply</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/transformer-mimarisi.jpg" alt="The Transformer Architecture, Explained Simply" loading="lazy">
+    <div class="article-cat">Research</div>
+    <h1>The Transformer Architecture, Explained Simply</h1>
+    <p class="article-sub">A single paper published in 2017 changed the course of AI. We walk through why the "Attention Is All You Need" idea matters so much, how words learn to "pay attention" to one another, and why nearly every large language model today rests on this one foundation.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Transformer</span><span class="article-tag">Attention</span><span class="article-tag">Derin Öğrenme</span><span class="article-tag">LLM</span></div></div>
+    <div class="article-body">
+<h2>The 2017 Paper That Changed Everything</h2>
+<p>The history of AI is full of turning points, but few draw as sharp a line as a single paper published in 2017. Written by eight researchers at Google, it carried a slightly audacious title: "Attention Is All You Need." The title proposed shelving the pile of complicated components long thought essential for language processing and keeping just one mechanism in their place, called attention. The claim was right there in the name: forget the rest, attention is enough.</p>
+<p>At the time, machines read and generated text using neural networks that processed words one at a time, in order. The approach worked, but it was slow and ran out of breath on long sentences. The new architecture, called the Transformer, asked a different question: what if we could look at all the words in a sentence at once and directly learn how each one relates to the others?</p>
+<p>The consequences of this innocent-looking question snowballed. Today, nearly every large language model you have heard of (GPT, Claude, Gemini, Llama, and the rest) is built on the Transformer. The letter in their shared surname even comes from it: the "T" in "GPT" stands for "Transformer." In this article, without drowning in heavy math, we will try to build an intuitive feel for why this architecture turned out to be so powerful.</p>
+<h2>The Problem With the Old Way: Reading Words Single File</h2>
+<p>Before the Transformer, the stars of language tasks were the RNN (Recurrent Neural Network) and its more capable cousin, the LSTM. Picture how these networks work like this: as they read a sentence, they take words one at a time from left to right, carrying a running summary of everything read so far in their head. When a new word arrives, they update that summary. In other words, they ferry a kind of memory bubble along the length of the sentence.</p>
+<p>This approach had two serious problems. The first was speed. Because words are processed in sequence, you have to finish the fourth word before you can compute the fifth. That makes parallel computation impossible, and parallel computation is exactly what modern graphics processors (GPUs) love most. GPUs are built to run thousands of operations at once, yet an RNN forces them to line up single file and wait their turn, which is a waste of all that power.</p>
+<p>The second, more insidious problem was forgetfulness. A piece of information near the start of a sentence passes through dozens of updates before reaching the end, fading a little with each one. In a sentence that rambles on ("My sister, who was born in Ankara last year, now lives in Istanbul, and just started a new job..."), tying the final verb back to that opening "my sister" gets harder for an RNN as more words pile up in between. The information degrades along the way, like a secret whispered down a long line of children.</p>
+<h2>What Is Attention? The Conversation-in-a-Room Analogy</h2>
+<p>The best way to grasp self-attention, the idea at the heart of the Transformer, is through a concrete analogy. Picture every word in a sentence as a person gathered in a room. To clarify its own meaning, each word looks at all the others in the room and asks: "To understand who I am, who should I really be listening to?"</p>
+<p>The classic example is: "The animal didn't cross the street because it was tired." Who does "it" refer to, the animal or the street? For a human the answer is obvious, but a machine has to work it out. Through self-attention, the word "it" scans every word in the sentence and aims the lion's share of its attention at "animal." The meaning of "it" sharpens by drawing on the meaning of "animal." Had the sentence ended "...was too wide," attention would have slid toward "street" instead. The same word decides for itself where to look, depending on context.</p>
+<p>Here is the beautiful part: this attention is not the fragile, step-by-step memory of an RNN. The word "it" reaches the word "animal" directly, in a single hop, no matter how many words sit between them. The distance between the start and end of a sentence is effectively zero for the attention mechanism. Being able to build this direct bridge between distant words is the single most important feature that sets the Transformer apart from its predecessors.</p>
+<p>What is more, the whole calculation finishes in one shot. Every word computes its relationship to all the others at the same time. That is precisely why, unlike an RNN, it can be parallelized: the attention scores for thousands of words can be worked out in a single sweep across a GPU. Attention, in short, is both the smarter idea and the better fit for the hardware.</p>
+<h2>Under the Hood: Query, Key, and Value</h2>
+<p>So how exactly do words manage to "pay attention" to one another? Three concepts come into play here, and a library analogy makes them easier to grasp: Query, Key, and Value. The intriguing twist is that every word plays all three roles at the same time.</p>
+<p>The Query is a word's question of "what am I looking for right now?", like walking into a library and stating the topic you want. The Key is each word's label that says "I am about this topic," like the titles on the spines of books on a shelf. The Value is the actual content a word carries, the information inside the book itself. A word compares its own Query against the Keys of every other word; whichever Key matches the Query best, the more it gathers from that word's Value.</p>
+<p>Numerically, here is what happens. The match between one word's Query and another word's Key becomes a score. A high score means a strong relationship. These scores are then normalized (made to sum to one), and each word's Value is blended in proportion to its score, producing a new, context-enriched representation. So the final representation of the word "it" ends up carrying mostly the Value of "animal."</p>
+<p>The most elegant thing about this three-way game is that Query, Key, and Value are not hand-written fixed rules but things the model learns on its own during training. Nobody enters a rule saying "pronouns should look at their antecedents." After seeing millions of sentences, the model discovers for itself which words ought to attend to which. The rules aren't given; the patterns are learned.</p>
+<h2>Multi-Head Attention and a Sense of Order</h2>
+<p>A single attention mechanism is powerful, but it is stuck with one point of view. That is why the Transformer uses "multi-head attention." Think of it as a panel of experts all reading the same sentence: one head focuses on grammatical relationships (subject-verb agreement), another on semantic closeness, and yet another on what the pronouns point to. Each head catches a different facet of the sentence, and in the end all of their observations are merged into one picture.</p>
+<p>This lets the model weigh a word's relationship to the others not through one narrow lens but through many lenses at once. The richness of language (the way grammar, logic, and context all operate together in a single sentence) can only be captured through this kind of multi-layered view. Instead of one eye, a dozen, each hunting for something different.</p>
+<p>Attention does, however, have a built-in blind spot: because it looks at all the words at the same time, it has no innate sense of their order. Yet in language, order is everything; "the dog bit the man" and "the man bit the dog" contain exactly the same words but describe entirely different events. The Transformer closes this gap with "positional encoding": each word is tagged with a kind of address label marking its place in the sentence. This way the model knows not just the identity of the words, but their arrangement too.</p>
+<h2>Encoder and Decoder: A Tale of Two Halves</h2>
+<p>The original Transformer paper built the architecture from two main parts: the encoder and the decoder. The paper's actual goal was machine translation (say, German to English), and these two parts work like a team for that task. The encoder's job is to read the incoming sentence (the source language) and turn it into a rich, meaning-laden numerical representation; it essentially distills the essence of the sentence.</p>
+<p>The decoder takes this distilled meaning and produces the new sentence in the target language, word by word. The decoder has one important rule: while generating text, it can only look at the words it has already written, never the future it hasn't written yet. This is called "masking," and it makes perfect sense; it is like writing a sentence without yet knowing the next word. The constraint forces the model to genuinely learn to predict, leaving it nowhere to peek at the answer.</p>
+<p>Over time, researchers realized that, depending on the task, these two parts could also be used on their own. Encoder-only models (like BERT) are perfectly suited to understanding, classifying, and searching text. Decoder-only models (like the GPT family and most of today's chat models) are masters of generation. Nearly all of today's popular generative large language models are, in fact, giant versions of this decoder-only design.</p>
+<p>This distinction changes a lot in practice, because the architecture you build a product on depends on the problem you are solving. In an AI assistant we build for a client, for instance, finding and retrieving the most relevant document from a large internal knowledge base (understanding and matching) and then writing a fluent, grounded summary based on those documents (generating) are two separate capabilities that flex different muscles, yet both lean on the same Transformer foundation.</p>
+<h2>Why Does It Scale So Well?</h2>
+<p>The real magic of the Transformer is not just that it gives better results, but that it keeps getting better the bigger you make it. In the AI world this phenomenon is called "scaling laws": as you grow the model (more parameters) and feed it more data and more compute, its performance improves in a surprisingly predictable way. Such a smooth, steady climb was never really possible with RNNs.</p>
+<p>The most fundamental reason is the parallelization we have been talking about all along. Because the Transformer doesn't have to process a sentence in sequence, you can split its training across thousands of processor cores. That is a flawless match for the enormous clusters of GPUs and TPUs that make modern AI possible. The Transformer is not merely a clever idea; it is a design that wrings the last drop out of available hardware. It arrived at the right time, for the right hardware.</p>
+<p>Another source of strength is that the architecture is simple and repeatable. A Transformer is essentially the same building block (attention plus a simple neural network layer) stacked on top of itself many times over. Multiplying these blocks is the most direct way to make the model deeper and raise its capacity. Repeating one simple pattern instead of relying on complex, bespoke parts is a tremendous advantage for both engineering and scalability; like Lego, you can build something huge out of one kind of brick.</p>
+<p>Of course, scaling has a price. Classic self-attention grows its compute cost quadratically as the number of words rises; doubling the length of a text quadruples the attention computation. For very long documents this becomes a serious bottleneck. Researchers keep inventing new methods to bring the cost down, but this fundamental trade-off is still something anyone working with Transformers needs to keep in the back of their mind.</p>
+<h2>The Legacy of a Single Idea</h2>
+<p>Looking back, the Transformer's success springs from one bold simplification: "Maybe we don't need all that complicated sequential processing at all; maybe all we need is for everything to attend to everything." This idea became the dominant approach not only in language, but in image processing, speech recognition, predicting protein folding, and many fields beyond. A single architecture became the shared language of AI.</p>
+<p>In this article we have walked through the intuition behind self-attention, the Query-Key-Value trio, the roles of the encoder and decoder, and why the architecture scales so well. What all these pieces share is that one simple idea which lets information flow directly and in parallel from one word to another. Beneath the dazzling results of modern AI lies a surprisingly elegant mechanism.</p>
+<p>Many real-world domains are dominated by long texts that constantly cross-reference one another, and this is exactly where the Transformer is strongest: connecting distant, related passages and grasping context as a whole. At HatsonTech, when we build AI-powered products such as HatsonAI, we build on top of this foundational architecture; but what matters most to us is less the architecture itself than applying it accurately and reliably to a real business problem. Truly understanding a technology is the first step toward using it responsibly, and that is exactly what this article set out to do.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>The 2017 paper "Attention Is All You Need" replaced RNNs, which process language one word at a time, with the Transformer, which looks at all words at once.</li><li>Self-attention lets every word look directly at all the others in a sentence and learn which it relates to, bridging even distant words in a single hop.</li><li>The mechanism rests on a trio of Query, Key, and Value; these roles aren't handed to the model as rules but learned on their own during training.</li><li>Because the Transformer runs in parallel, it trains efficiently on GPUs and gets predictably better as it grows; these "scaling laws" underpin modern large language models.</li><li>The encoder serves understanding and the decoder serves generation; modern chat models like GPT are mostly giant versions of the decoder-only design.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

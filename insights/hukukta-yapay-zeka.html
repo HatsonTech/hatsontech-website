@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How AI speeds up legal research, drafting, and review, plus the real risks: hallucinated citations, confidentiality, and over-reliance. A clear guide to grounding, RAG, and human oversight.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/hukukta-yapay-zeka.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI in Law: Opportunities, Risks, and Responsibility">
+  <meta property="og:description" content="How AI speeds up legal research, drafting, and review, plus the real risks: hallucinated citations, confidentiality, and over-reliance. A clear guide to grounding, RAG, and human oversight.">
+  <meta property="og:url" content="https://hatsontech.com/insights/hukukta-yapay-zeka.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI in Law: Opportunities, Risks, and Responsibility">
+  <meta name="twitter:description" content="How AI speeds up legal research, drafting, and review, plus the real risks: hallucinated citations, confidentiality, and over-reliance. A clear guide to grounding, RAG, and human oversight.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg">
+  <title>AI in Law: Opportunities, Risks, and Responsibility | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI in Law: Opportunities, Risks, and Responsibility",
+  "description": "How AI speeds up legal research, drafting, and review, plus the real risks: hallucinated citations, confidentiality, and over-reliance. A clear guide to grounding, RAG, and human oversight.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/hukukta-yapay-zeka.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/hukukta-yapay-zeka.jpg",
+  "articleSection": "LegalTech",
+  "keywords": "Hukuk, LegalTech, Yapay Zeka, RAG"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI in Law: Opportunities, Risks, and Responsibility",
+      "item": "https://hatsontech.com/insights/hukukta-yapay-zeka.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/hukukta-yapay-zeka.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI in Law: Opportunities, Risks, and Responsibility</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/hukukta-yapay-zeka.jpg" alt="AI in Law: Opportunities, Risks, and Responsibility" loading="lazy">
+    <div class="article-cat">LegalTech</div>
+    <h1>AI in Law: Opportunities, Risks, and Responsibility</h1>
+    <p class="article-sub">AI is collapsing legal research, drafting, and review from hours into minutes. But it also brings real risks: hallucinated citations, confidentiality leaks, and a quiet creep of over-reliance. This piece explains what genuinely works, what is dangerous, and why the final word still belongs to the lawyer.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Hukuk</span><span class="article-tag">LegalTech</span><span class="article-tag">Yapay Zeka</span><span class="article-tag">RAG</span></div></div>
+    <div class="article-body">
+<h2>Why now: law is almost tailor-made for AI</h2>
+<p>Law is, at its core, work done with language. A lawyer's day is spent reading decisions, drafting petitions, comparing contract clauses, searching legislation, and turning all of it into a coherent argument. The raw material is text and so is the finished product. That is precisely why large language models (LLMs), systems built to understand and produce text, fit law so surprisingly well.</p>
+<p>So what exactly is one of these models? A large language model is a prediction machine, trained on an enormous amount of text and extraordinarily good at answering a single question: what word should come next? That deceptively simple ability turns, in practice, into summarizing a long decision, rewriting a paragraph, spotting the difference between two contracts, or answering a question in plain language. It is no accident that most of a lawyer's daily work fits exactly these patterns.</p>
+<p>Let us underline one point from the very start: AI in law is not a 'reasoning judge' but more like 'an intern who reads and writes extremely fast.' That comparison will be the compass for the rest of this article. Used well, the intern turns hours of mechanical work into minutes. Used badly, it produces wrong information in a tone of complete confidence. The aim of this article is to teach you to tell those two situations apart.</p>
+<h2>Three big opportunities: research, drafting, and review</h2>
+<p>Where AI adds the most value in law is research. Classic search engines match words; yet what a lawyer is after is rarely a word, it is a legal situation. This is exactly where semantic search comes in: you describe a dispute in your own words, and the system surfaces decisions whose substance matches even when the wording is entirely different. You may never type 'wrongful termination,' yet still reach precedents that share the same legal core as the facts you described. Instead of opening and closing tabs for hours, within minutes you are reading the relevant decisions.</p>
+<p>The second opportunity is drafting. The skeleton of a reply petition, the standard clauses of a contract, or the template of a formal notice tend to repeat. AI lets you begin from a first draft already adapted to the context of your file. That dissolves the familiar resistance of the blank page, so you spend your energy not on building sentences from scratch but on sharpening the argument. The key point: this is not a finished text but a rough draft to build upon.</p>
+<p>The third opportunity is review. Scanning a hundred-page contract for risky clauses, extracting the differences between two versions, listing the arguments a petition rests on and the articles it cites, these are tiring, error-prone tasks for a human. A tired eye easily skips a penalty clause buried on page thirty. AI runs that scan tirelessly and consistently. But note: 'scans and surfaces' does not mean 'decides.' The final judgment is still built by a human.</p>
+<h2>The most dangerous risk: hallucinated citations</h2>
+<p>The most insidious risk of AI in law is the phenomenon called 'hallucination.' Instead of retrieving a decision that genuinely exists, a language model can produce a decision, a docket number, or a quotation that looks plausible yet does not exist at all. Worse, it does so without hesitation, fluently and very convincingly. That is the real danger: when the model is wrong, it is wrong with full confidence, not with a warning tone.</p>
+<p>It matters to understand why this happens. A raw language model is not a database; it does not place facts on a shelf and call them back. It looks at patterns in the text it was trained on and predicts 'how would a sentence like this continue?' Imitating the format of a case number is easy for it; checking whether that number actually exists is precisely what it cannot do when left on its own. Picture someone with an impressive vocabulary who writes with no way to verify a single fact.</p>
+<p>And this is not a theoretical worry. In 2025 alone, courts around the world documented hundreds of instances of lawyers submitting fake AI-invented decisions, some ending in monetary sanctions and disciplinary action, and the incidents kept recurring even after judges issued explicit warnings. The lesson is plain: in law, a citation can never be considered reliable until it is verified all the way back to its source. And the mechanism that does that verifying must belong not to the model's inner voice, but to the design of the system and the oversight of the lawyer.</p>
+<h2>Grounding: tying the model to real text</h2>
+<p>The strongest known answer to the hallucination risk today is the principle of 'grounding.' The idea is simple but powerful: base the model's answer not on the fuzzy traces in its memory, but on real, verifiable sources placed in front of it. That is, instead of asking the model 'what is your opinion on this,' you first find the relevant real documents and then say 'answer based only on these texts.' Think of the difference between a closed-book and an open-book exam: you hand the model the source material.</p>
+<p>The most common architecture that delivers this is RAG, short for Retrieval-Augmented Generation. The flow runs like this: the user's question is first used to find the real documents closest in meaning within a legal corpus, decisions, statutes, regulations. Those retrieved documents are handed to the model as context. The model then builds its answer not out of thin air but on these concrete texts, and shows which decision or article it relied on.</p>
+<p>Grounding brings two crucial gains for law. The first is traceability: because every sentence is tied to a source, the lawyer can open that source with a single click instead of trusting blindly. The second is freshness: when a new decision or legislative change lands, there is no need to retrain the model, updating the knowledge base is enough. When AI is built into serious software, grounding is the kind of principle that has to be chosen deliberately, because in a field like law a 'confident but unfounded' answer is often more dangerous than no answer at all.</p>
+<p>Still, let us be honest: grounding reduces hallucination, it does not zero it out. The model can sometimes misread the source it is handed, or, when the source falls short, try to fill the gap with its own guess. So grounding alone is not a sufficient guarantee; it is a foundation that gains its true meaning only together with the next principle, human oversight.</p>
+<h2>Confidentiality: a new test for legal privilege</h2>
+<p>Legal documents are sensitive by nature. A file may hold a client's personal data, trade secrets, health information, or the most intimate details of a dispute. The lawyer's duty of confidentiality is one of the oldest and most fundamental stones of the profession. AI tools do not remove that duty; on the contrary, they add a brand-new test to it.</p>
+<p>Here is where the danger lies: when a lawyer pastes a sensitive document into a public AI tool whose workings they do not understand, they may have let that data slip out of their control. Some free tools may store or process the text users enter in order to improve their models. In that case, confidential information can leak to places it was never meant to reach. So the first rule is clear: do not give confidential information to a tool without knowing what it does with your data.</p>
+<p>The right approach is to treat confidentiality not as a patch added later but as a fundamental design requirement present from the outset. That means knowing where data is processed, clarifying whether it is used to train the model, and choosing auditable, secure infrastructure. Indeed, the AI guidance bar associations have issued around the world points to the same place: informed consent and data security. Putting data security and privacy at the center of the design from day one is a discipline any responsible AI system should follow, because for a professional to trust a technology, they must be sure that technology will keep the secret.</p>
+<h2>The quiet risk: over-reliance and skill erosion</h2>
+<p>Hallucinated citations are a glaring risk; yet perhaps the more insidious one advances quietly: over-reliance. When a tool works correctly and quickly most of the time, the human mind naturally relaxes its scrutiny. The thought 'the machine surely checked' makes attention fade at exactly the moment it is needed most. AI's fluent, confident tone only feeds this tendency.</p>
+<p>There is a second face to this: skill erosion. When a junior lawyer hands research and drafting over to a tool entirely, they may stop exercising the muscle of doing those tasks themselves. Yet sensing why an argument is weak, or seeing whether a decision truly fits the case at hand, is a judgment that develops only after putting in that effort many times over. The tool's purpose is not to replace this judgment but to make time for it.</p>
+<p>The healthy balance is to see AI not as an 'answer machine' but as a 'draft and accelerator.' Every result the model returns should be read with the critical eye you would bring to an intern's draft: is the source real, is the citation current, does the argument fit the case at hand? That skeptical reflex is not weakness, it is professional maturity itself.</p>
+<h2>Human-in-the-loop: the indispensable layer</h2>
+<p>The point where all these risks converge points to a single principle: 'human-in-the-loop.' This concept means that, rather than letting AI finish a task entirely on its own, you guarantee that at critical moments the decision stays with a human. In law, that human is always the lawyer.</p>
+<p>In practice, human-in-the-loop looks like this: AI does the research, but the lawyer decides whether the precedent fits. The model writes the draft, but the lawyer who signs it carries responsibility for every sentence. The system surfaces a risky clause, but the human interprets what that risk means in the case at hand. AI provides the speed; the human provides the judgment, the context, and the responsibility.</p>
+<p>A well-designed system does not make this oversight harder, it makes it easier. Tying every answer to its source, having the model state plainly where it is unsure, and making verification possible with a single click, all are design choices that strengthen the human's supervisory role. Good AI systems are built with this philosophy: the aim is not to replace the expert but to accelerate and strengthen their reasoning. The final word always belongs to the human.</p>
+<h2>Responsibility stays with the lawyer: the unchanging rule</h2>
+<p>No matter how far technology advances, one truth does not change: responsibility for a petition filed with a court, advice given to a client, and an argument put forward rests with the lawyer. 'The AI said so' is not a defense. The person who chooses to use a tool and signs its output is responsible for the accuracy of that output. AI does not change this equation; it only transforms how due care is exercised.</p>
+<p>Across much of the world, bar associations and regulators are moving in exactly this direction. The American Bar Association's ethics guidance on generative AI, for instance, along with the guidance of a growing number of state bars, draws attention to lawyers' duty to understand the technology they use, protect confidentiality, and independently verify AI outputs. None of this is meant to ban AI; it is meant to ensure it is used responsibly, within the bounds of professional ethics. The tool is new, but the duty of care is old and firm.</p>
+<p>If this article had to be gathered into a single sentence: AI is an extraordinary lever that multiplies a lawyer's power, but it is not an authority that replaces their judgment. Right use comes from embracing the opportunities generously while taking the risks seriously: grounding answers in sources, protecting confidentiality, resisting over-reliance, and always leaving the final word to a human. Grounding answers in real sources, retrieval-augmented generation, and keeping a human in the loop are exactly the kind of engineering discipline HatsonTech applies whenever we build AI into software: take away the mechanical burden that slows an expert down, but leave the reasoning and the responsibility that are theirs fully in their hands.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>Law is work done with language, so large language models bring a real acceleration to research, drafting, and document review. But these models behave less like a 'reasoning judge' and more like 'an intern who reads and writes extremely fast.'</li><li>The most dangerous risk is hallucination: a model can invent non-existent decisions and citations in a confident voice. In 2025 alone, courts worldwide documented hundreds of fake-citation cases. No citation should be trusted until it is verified back to its source.</li><li>Grounding and RAG reduce hallucination by tying answers to real legal text and making every sentence traceable; but grounding alone is not enough, it gains its meaning only together with human oversight.</li><li>Confidentiality is a fundamental design requirement: never give a confidential document to a tool without knowing what it does with your data.</li><li>Over-reliance and skill erosion are quiet but real risks; AI is not an 'answer machine' but a 'draft and accelerator' that must be checked with a critical eye.</li><li>Responsibility always stays with the lawyer: 'the AI said so' is not a defense. The engineering balance to aim for is clear: take the mechanical burden, leave the reasoning and the final word to the human.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

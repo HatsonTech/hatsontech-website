@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is an AI agent and how does it differ from a chatbot? The plan-act-observe loop, tool calling, RAG, APIs and the MCP standard, plus autonomy and safety, explained with real-world examples.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/yapay-zeka-ajanlari.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-ajanlari.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-ajanlari.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-ajanlari.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI Agents and Tool Use: From Chatbot to AI That Actually Does Things">
+  <meta property="og:description" content="What is an AI agent and how does it differ from a chatbot? The plan-act-observe loop, tool calling, RAG, APIs and the MCP standard, plus autonomy and safety, explained with real-world examples.">
+  <meta property="og:url" content="https://hatsontech.com/insights/yapay-zeka-ajanlari.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-ajanlari.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI Agents and Tool Use: From Chatbot to AI That Actually Does Things">
+  <meta name="twitter:description" content="What is an AI agent and how does it differ from a chatbot? The plan-act-observe loop, tool calling, RAG, APIs and the MCP standard, plus autonomy and safety, explained with real-world examples.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-ajanlari.jpg">
+  <title>AI Agents and Tool Use: From Chatbot to AI That Actually Does Things | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Agents and Tool Use: From Chatbot to AI That Actually Does Things",
+  "description": "What is an AI agent and how does it differ from a chatbot? The plan-act-observe loop, tool calling, RAG, APIs and the MCP standard, plus autonomy and safety, explained with real-world examples.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/yapay-zeka-ajanlari.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-ajanlari.jpg",
+  "articleSection": "Engineering",
+  "keywords": "AI Agents, Tool Use, MCP, RAG, Otonomi"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI Agents and Tool Use: From Chatbot to AI That Actually Does Things",
+      "item": "https://hatsontech.com/insights/yapay-zeka-ajanlari.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-ajanlari.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/yapay-zeka-ajanlari.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI Agents and Tool Use: From Chatbot to AI That Actually Does Things</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-ajanlari.jpg" alt="AI Agents and Tool Use: From Chatbot to AI That Actually Does Things" loading="lazy">
+    <div class="article-cat">Engineering</div>
+    <h1>AI Agents and Tool Use: From Chatbot to AI That Actually Does Things</h1>
+    <p class="article-sub">What separates an "agent" from a plain chatbot? We explain the plan-act-observe loop, tool calling, MCP-style tool standards, and where agents shine and where they fall apart, in plain language.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 min read</span><div class="article-tags"><span class="article-tag">AI Agents</span><span class="article-tag">Tool Use</span><span class="article-tag">MCP</span><span class="article-tag">RAG</span><span class="article-tag">Otonomi</span></div></div>
+    <div class="article-body">
+<h2>A Chatbot Talks; An Agent Gets Things Done</h2>
+<p>Think of a plain chatbot as a very well-read advisor who can never leave their desk. You ask a question, they weigh everything in their memory, and they write you a tidy answer. But that's where the story ends. They can't open a file, query a database, or run a calculation and change their mind based on the result. In a single breath, they speak from what they already know, and then they stop. In technical terms: a chatbot is one call to a language model. Input goes in, text comes back, done.</p>
+<p>An AI agent is like giving that same advisor a phone, an internet connection, and a small team of assistants. Now they don't just think — they can reach out into the world to test what they're thinking. They can run a search, fetch a document, call an API (another piece of software's 'service window'), look at what comes back, and decide 'hmm, that's not what I expected' and revise the plan. An agent doesn't freeze on a single reply; it works toward a goal, one step at a time.</p>
+<p>The cleanest definition: a chatbot is a single, one-shot call to a language model; an agent is a language model calling tools in a loop until the job is done. Underline the word loop, because that loop is exactly what makes an agent an agent. Instead of answering in one go, an agent takes small steps, looks at what happened after each one, and decides the next step with fresh information.</p>
+<p>This difference is more fundamental than it sounds. A chatbot guesses: 'the Court of Cassation's case law on this probably says X.' An agent actually goes to the case-law database, finds the relevant ruling, reads its text, and tells you: 'here is the exact decision, and it rests on this specific article.' One tries to remember; the other looks it up — and in law, the gap between those two can decide a case.</p>
+<h2>The Heart of the Loop: Plan, Act, Observe</h2>
+<p>Every agent, however fancy, runs on a simple rhythm: plan, act, observe, repeat. Researchers often call this the 'ReAct loop' — a blend of 'Reasoning' and 'Acting.' The name doesn't matter; the rhythm does. This loop is the beating heart underneath nearly every serious AI agent.</p>
+<p>First comes planning: the model looks at the goal and asks, 'what's the most sensible next step?' This is an inner voice, a statement of intent — 'To answer this, I first need to find the relevant statute.' Then comes acting: the model turns that intent into a tool call. 'Run the legislation-search tool with this keyword.' The system around the model actually executes that call and hands the result back.</p>
+<p>The third step is the one most people overlook but which decides everything: observing. The model looks at what the tool returned. Did it find the article it wanted? Did the result come back empty? Is it something different from what it expected? That observation shapes the next plan. If the search came back empty, the model says 'let me change the keyword'; if it found the right article, it says 'now let me search for the case law interpreting it.' Reasoning and action feed each other: the model thinks about what to do, then re-thinks based on what its action produced.</p>
+<p>This loop repeats until the goal is reached or a reasonable stopping point arrives. On a single task, the model might cycle through it three times, or fifteen. There's no magic — just a big job getting done by stacking small decisions on top of one another, exactly the way a researcher works through a problem: read a source, take a note, spot the gap, go to another source, connect the pieces, conclude.</p>
+<h2>Tool Calling: The Model's Hands and Feet</h2>
+<p>A language model, however capable, by nature only produces text. It can't query a database on its own, send an email, or run a real calculator. So how do agents do all those things? The answer lies in an elegant trick called tool calling (sometimes 'function calling').</p>
+<p>Here's how it works: the model is handed a menu of tools it's allowed to use. Each tool comes with a short description — 'search_legislation: takes a keyword, returns the relevant statute articles.' When the model wants to use a tool, it doesn't run it itself; it just writes a request: 'I'd like to call search_legislation with keyword = "rent increase cap."' It's like flagging down a waiter. The model places the order; the kitchen (the surrounding software) cooks the dish and brings the plate back.</p>
+<p>This separation is crucial. The model decides what should be done; the actual work is performed safely by an external system. That way the model never gets unlimited direct access to your database or the internet — it can only use a designed, auditable set of tools. One tool might be allowed to show a bank balance but never to transfer money; developers draw those lines, not the model.</p>
+<p>Whatever the tools return becomes the model's observation, and the loop closes. This is precisely what makes agents powerful: the model doesn't have to settle for the possibly stale or incomplete knowledge in its own head. It can reach out to live, real, verifiable data. For a legal assistant, that's the difference between 'I think the law says this' and 'the law says exactly this, here is the official text.'</p>
+<h2>Looking It Up, Not Remembering: Retrieval and APIs</h2>
+<p>The tools agents use generally fall into two big families: retrieval tools and action tools. Splitting them apart makes it far easier to understand what agents can actually do.</p>
+<p>Retrieval tools bring information in. The most common example is RAG — Retrieval-Augmented Generation. The idea is simple but transformative: instead of letting the model invent an answer, you first pull the real, relevant documents from a knowledge store — usually a 'vector database,' a repository that arranges texts by meaning rather than by keyword overlap — and then ask the model to base its answer only on those documents. The result is a sourced answer, not a guess. In fields like law, where one wrong sentence is expensive, this is non-negotiable.</p>
+<p>Action tools, by contrast, change something in the world or talk to an outside service. Most of them run over an API. Think of an API (Application Programming Interface) as a software's tidy 'service window': you send a request in the right format, you get a structured response back. A weather API, a payments API, a calendar API. The agent makes an API call just like any other tool call; the only difference is that this time the result is a transaction or live data rather than a document.</p>
+<p>Combining the two gives an agent real depth. An agent might first use a retrieval tool to answer 'which clause governs this contract?', then a calculation tool to compute an amount, then another tool to present the result as a clean summary. Each step is small; but chained together, they accomplish a multi-step job that no single chatbot could ever manage.</p>
+<h2>Multi-Step Tasks: Breaking a Job into Pieces</h2>
+<p>The real value of agents isn't answering a single question; it's carrying a multi-step job from start to finish. Picture a complex task: 'Review this lease, check whether the rent increase is legal under current legislation, and if there's a dispute, tell me which case law would help.' That isn't one 'question'; it's a chain of overlapping tasks.</p>
+<p>An agent breaks this up the way a person would. First it reads the lease and extracts the relevant clause. Then it uses the legislation tool to find the statutory cap in force. Next it compares the contract's rate against that cap. If it spots a conflict, it switches to the case-law tool and pulls precedent. The output of each step becomes the input to the next. This is the loop's real power: the agent updates its plan live as it learns along the way.</p>
+<p>In practice there are two common approaches. One is 'plan first, then execute': the agent lays out all the steps as a list up front, then works through them one by one. The other, more flexible, is the ReAct style: the agent takes a step, looks at the result, and decides the next step based on it. The second is far more robust for jobs that can't be fully foreseen and take shape as you go — because the real world rarely follows the first plan.</p>
+<p>An important caution here: every additional step also carries a chance of error. That's why well-designed agents don't chop a task into needlessly long chains. The best architectures reduce a job to the fewest, sturdiest steps possible, because every extra link is a weak point that can snap. In the next section we'll see, with numbers, exactly why that matters so much.</p>
+<h2>A Common Language: MCP and Tool Standards</h2>
+<p>Once agents started using tools, an annoying problem surfaced fast: every model connected to every tool in its own way. If you had five different AI models and eight different tools, you had to write and maintain forty separate integrations. Engineers call this the 'N-times-M problem,' and it was a real headache that slowed the whole industry down.</p>
+<p>The fix was a shared standard: MCP, the Model Context Protocol. Introduced by Anthropic as an open standard in November 2024, MCP is best thought of as the 'USB-C port for AI.' Just as USB-C lets one cable charge your phone, laptop, and headphones, MCP lets models and tools talk to each other in one common way. You write a tool once to fit MCP, and then it works with whichever model you plug it into.</p>
+<p>Adoption came quickly: through 2025, major players like OpenAI and Google announced support for MCP, and in December 2025 Anthropic handed the protocol's governance to an independent body (the Agentic AI Foundation, under the Linux Foundation). So as of 2026, MCP has become a de facto industry standard that no longer belongs to any single company. In practice it offers three core pieces: tools (executable functions the model decides to call), resources (data the model can read), and prompt templates (ready-made patterns that show the model how to interact with a tool). Together these turn a tangle of integrations into a clean, portable architecture.</p>
+<p>At HatsonTech this isn't abstract theory; it's how we work day to day. HatsonAI, the automation and assistant engine behind our products and client projects, is built on an MCP agent system. Capabilities like document search, information retrieval, and source verification are each defined as a tool the model can call in a disciplined way. That keeps the system both extensible (adding a new tool isn't rewriting everything) and auditable: we can see exactly which tool the model reached for, and with which parameters.</p>
+<h2>Where Agents Shine, and Where They Fall Apart</h2>
+<p>Agents are not a cure-all; they're extraordinary at certain jobs and dangerously unreliable at others. Telling the two apart may be the single most important skill in using AI with good judgment.</p>
+<p>Agents shine when the job has a clear goal and reliable tools that give feedback. Extracting and verifying facts from a document, hunting a specific bug in a codebase, pulling together multi-source research, querying and summarizing a dataset — these are squarely their territory. Here, the result of each step is concrete: the search found something or it didn't, the test passed or it failed. The agent can read those signals and correct itself.</p>
+<p>Where they fall apart is predictable: long, multi-step chains. A sneaky bit of math kicks in here. Say the model is 99% accurate at every step — that sounds flawless. But over a hundred-step task, those tiny error rates accumulate: 0.99 to the hundredth power is about 0.37, meaning the odds of the whole task going right end-to-end drop to just over a third. Worse, errors don't just add up, they multiply: a false 'fact' invented at step three gets used as evidence at step seven, and the final output is a confident-sounding answer that's rotten at its foundation.</p>
+<p>Another classic trap is fabrication, or 'hallucination.' A model can sometimes act as if it called a tool when it never did, producing a result dressed up to look real — and the user can't see with the naked eye whether the tool actually ran. That's exactly why, in serious systems, tracing every step — logging which tool was really called and what it returned — is not a luxury but a requirement. In a legal product, the difference between truly fetching the source of a ruling and merely pretending to is everything.</p>
+<h2>Safety: Keeping Autonomy on a Leash</h2>
+<p>The moment you give an agent autonomy — the authority to decide and act on its own — both the power and the risk go up. The worst a talk-only bot can do is write a wrong sentence. An agent that can act might send the wrong email, delete the wrong record, or approve the wrong amount. That's why safety isn't a decoration added later in agent design; it's a frame built from the very start.</p>
+<p>The first and most important principle is least privilege: give the agent only the tools it needs to do its job, and nothing more. A research agent needs reading tools but never a delete-data tool. A tool may show money but not transfer it. Developers draw these limits, not the model — and the model can't cross them, because those tools simply aren't on its menu.</p>
+<p>The second principle is human oversight — often called 'human-in-the-loop.' Before any irreversible or costly action, the system pauses and asks a person to approve. The AI drafts, suggests, calculates; but a human pulls the trigger. In high-stakes fields like law, that's the right balance: the agent does the heavy lifting, the human has the final say. Remember that today's systems are still fragile on long, multi-step tasks and on anything requiring subtle reasoning — which is exactly why oversight is indispensable.</p>
+<p>The third principle is transparency. A good agent system leaves a trail for every step it takes: which tool it called, with which parameters, what it got back, and how it used that. This trail makes debugging possible and builds trust. This is the very core of how we design HatsonAI: it's not enough for AI to produce an answer; it has to show which source the answer rests on. A user acting on a high-stakes decision can't rely on 'the AI told me so'; they have to be able to say 'here is the document, here is the record, here is the source.' That is what makes agents both safe and genuinely useful.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>A chatbot is a single call to a language model; an agent is a language model that calls tools in a loop until the job is done.</li><li>Every agent runs on the same rhythm: plan, act, observe, repeat — this 'ReAct loop' is the heart of an agent.</li><li>Tool calling (function calling) is the model's hands and feet: the model decides what to do, while a safe external system does the real work.</li><li>Tools fall into two families: retrieval tools that bring in information (like RAG) and API-based action tools that change something in the world.</li><li>MCP (Model Context Protocol) is the 'USB-C for AI' standard that lets models and tools speak one common language; by 2026 it sits under an independent foundation as the industry's de facto standard.</li><li>Agents shine on clear-goal tasks with feedback; they fall apart on long multi-step chains where errors accumulate and multiply.</li><li>The three pillars of safety: least privilege, human-in-the-loop oversight, and transparency that makes every step traceable.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

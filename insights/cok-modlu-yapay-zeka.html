@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is multimodal AI and how does it work? How does one model look at an image and read its text together? We explain vision, audio and document understanding via a shared meaning space with simple analogies.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/cok-modlu-yapay-zeka.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/cok-modlu-yapay-zeka.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/cok-modlu-yapay-zeka.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/cok-modlu-yapay-zeka.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Multimodal AI: How One Model Understands Text, Images and Sound at Once">
+  <meta property="og:description" content="What is multimodal AI and how does it work? How does one model look at an image and read its text together? We explain vision, audio and document understanding via a shared meaning space with simple analogies.">
+  <meta property="og:url" content="https://hatsontech.com/insights/cok-modlu-yapay-zeka.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Multimodal AI: How One Model Understands Text, Images and Sound at Once">
+  <meta name="twitter:description" content="What is multimodal AI and how does it work? How does one model look at an image and read its text together? We explain vision, audio and document understanding via a shared meaning space with simple analogies.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg">
+  <title>Multimodal AI: How One Model Understands Text, Images and Sound at Once | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Multimodal AI: How One Model Understands Text, Images and Sound at Once",
+  "description": "What is multimodal AI and how does it work? How does one model look at an image and read its text together? We explain vision, audio and document understanding via a shared meaning space with simple analogies.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/cok-modlu-yapay-zeka.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg",
+  "articleSection": "Education",
+  "keywords": "Multimodal, Görsel Yapay Zeka, LLM, Belge Anlama, Bilgisayarlı Görü"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Multimodal AI: How One Model Understands Text, Images and Sound at Once",
+      "item": "https://hatsontech.com/insights/cok-modlu-yapay-zeka.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/cok-modlu-yapay-zeka.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/cok-modlu-yapay-zeka.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / Multimodal AI: How One Model Understands Text, Images and Sound at Once</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg" alt="Multimodal AI: How One Model Understands Text, Images and Sound at Once" loading="lazy">
+    <div class="article-cat">Education</div>
+    <h1>Multimodal AI: How One Model Understands Text, Images and Sound at Once</h1>
+    <p class="article-sub">When an AI can look at a photo and read the text inside it, interpret a chart, or listen to a voice and respond, we call it multimodal AI. We unpack the idea beneath this ability, its real-world uses and its limits, with concrete examples and no technical background required.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 min read</span><div class="article-tags"><span class="article-tag">Multimodal</span><span class="article-tag">Görsel Yapay Zeka</span><span class="article-tag">LLM</span><span class="article-tag">Belge Anlama</span><span class="article-tag">Bilgisayarlı Görü</span></div></div>
+    <div class="article-body">
+<h2>What Does Multimodal Mean? From One Sense to Many</h2>
+<p>Picture, for a moment, a mind that can only read but cannot see or hear a thing. The first large language models were exactly like this: their abilities were impressive, yet they had a single window onto the world, and that window was writing. There was no point placing a photo, a chart or an audio clip in front of them, because only words could come through that window. The word 'multimodal' describes precisely what removes this limit.</p>
+<p>Here a 'modality' means a type, a form, of information: text is one modality, images another, audio another; video is a modality that carries moving images and sound together. A unimodal model works with only a single form. A multimodal model can take in more than one form at once and weigh them together; for instance, it can look at a table and answer a written question about it.</p>
+<p>The soundest analogy is a human being. When a friend explains a recipe to you, you hear their words, watch the movement of their hands, and glance at the ingredients on the table; you weave these three streams into a single meaning in your mind. Multimodal AI tries to imitate exactly this intuition: to process the pieces arriving from different senses not separately, but as one whole picture.</p>
+<p>As of 2026, the vast majority of the leading AI assistants you meet in daily life are now multimodal by nature. You can upload a photo and ask 'what does this say?', show a screenshot and ask it to describe the bug, or simply speak to it out loud. This is one of the quietest yet most fundamental shifts of the past few years: the model no longer merely reads; it also looks and it listens.</p>
+<h2>A Common Language: Turning Everything Into the Same Number Space</h2>
+<p>So how can a model think about an image and a sentence 'together' when their natures are so different? An image is made of colored dots (pixels), while a sentence is made of letters; they look nothing alike. The secret lies in an idea we have touched on in earlier articles: AI first turns everything into numbers, or more precisely into lists of numbers called vectors. The real trick of multimodal models is that they can place different forms into the same shared number space.</p>
+<p>Think of it through an analogy. Suppose you have a text in Turkish and a text in French; the two are in different languages, but if you could translate both into a common 'map of meaning,' two texts about the same thing would land close together on that map. Multimodal models do exactly this for different senses: a photo of a 'cat' and the word 'cat' settle near the same point on this shared map. Image and text now come to speak the same language of meaning.</p>
+<p>The way this is trained is surprisingly intuitive. The model is shown millions of images gathered from the internet alongside their accompanying description text (for example, a photo's caption). By repeatedly observing which images sit next to which words, it learns to place the phrase 'sunset on the beach' and an actual sunset photo in the same region of the shared map. No one tells it 'this is a sunset'; it infers that link for itself from the pairings.</p>
+<p>Once this shared space is built, the rest is a familiar story. An image is turned into lists of numbers by a 'vision encoder'; these numbers are laid out in front of the model just like text tokens. So the language model, without even being aware that it is looking at a picture, processes it in the very same stream as the words. What the model 'sees' is less about an eye and more about a representation made comprehensible through this shared number language where words and images finally meet.</p>
+<h2>Looking at an Image and Reading Its Text Together: Document Understanding</h2>
+<p>The most practical and perhaps most beloved use of the multimodal ability is document understanding. Picture an invoice, an ID card, a hand-filled form, a table or a chart. These contain text, but that text sits within a layout, a particular arrangement: columns, boxes, headings, signatures. This is exactly where the gap between the old approach and the new one becomes vivid.</p>
+<p>This task used to be done in two separate steps. First, a technology called OCR (optical character recognition) turned the letters in the image into plain text; then a completely different program tried to interpret that plain text. The trouble was this: in flattening the text into a single strip, OCR often lost the document's layout, that is, which number sits under which heading. In a table, the figure under the 'Total' column and the figure under the 'VAT' column could get jumbled together in the plain text.</p>
+<p>A multimodal model unites these two steps in a single glance. It reads the letters in the image and, at the very same time, takes into account their position on the page, their relationships to one another and their visual arrangement. So it answers not only 'what does it say' but also 'where, and next to what, does it say it.' This is why, when you look at an invoice and ask 'what is the total amount, on what date was it issued, and which company does it belong to,' it can pull the answers from the right boxes without mixing them up.</p>
+<p>This ability is especially valuable in document-heavy fields like law. A scanned PDF of a court ruling, the signed pages of a contract, the tables in an expert report; these are all documents that are not merely text but also have a visual structure. A multimodal model can read a clause on a contract page, a handwritten note in the margin and the signature at the bottom all together, reading the document much as a human would. Even so, we will return later in this article to when such reading is trustworthy and when it is risky.</p>
+<h2>Vision: What the Model Sees in an Image</h2>
+<p>Document understanding is just one corner of vision. Multimodal models can also interpret images that do not contain a single letter. They can look at a landscape photo and describe the scene, guess the likely ingredients from a photo of a dish, explain a trend in a chart, or point to a notable region in an image. This is the goal that the field called 'computer vision' has been chasing for years, now fused with language ability.</p>
+<p>There is an important distinction here: older-generation vision systems were usually trained for a narrow, fixed task. One model knew only how to tell 'cat from dog,' another knew only face recognition; the list of classes was fixed in advance. Multimodal models, by contrast, are open-ended. You don't hand them a predefined list of labels; you ask whatever question comes to mind in natural language. They will try to answer even questions never specifically targeted in their training, like 'is the person in this photo carrying an umbrella?' or 'what is the difference between these two products?'</p>
+<p>This flexibility makes vision genuinely 'conversational' for the first time. For a visually impaired user it can describe out loud the scene in front of the phone camera; for a student it can interpret the figure in a hand-drawn geometry problem; for a technician it can look at a photo of a circuit board and flag an incorrectly placed component. Vision is no longer a closed classification box but an open window you can hold a conversation about.</p>
+<p>Still, a caveat is essential. Saying the model 'sees' an image does not mean it sees the way a human does. The model interprets the image through patterns it has learned; these patterns are often extraordinarily accurate, but they can sometimes be misleading too. Before we move on to audio, let us keep this in the back of our minds: we will return at the end of the article to dig into just how reliable this vision ability really is and where it goes wrong.</p>
+<h2>Audio and Speech: Models That Listen and Respond</h2>
+<p>The third major modality is audio. Here too the story unfolded much like vision. In the past, when you spoke to a voice assistant, three separate systems ran in a chain behind the scenes: first a speech-recognition system turned your voice into text, then a language model processed that text and produced a reply, and finally a text-to-speech system turned that reply back into sound. Each link added its own delay and its own margin of error.</p>
+<p>Multimodal models that understand audio directly shorten this chain. They can take in sound in its raw form and process it without slipping text in between. One practical gain is speed and fluency; the conversation feels less halting, more natural. But there is a deeper gain too: sound carries not just words but information beyond the words. The tone of a sentence, its emphasis, the speaker's hesitation or excitement, a dog barking in the background; these are all clues that vanish when transcribed to text but remain alive in the raw audio.</p>
+<p>Thanks to this, the audio ability begins to grasp not only 'what was said' but also 'how it was said.' A model can listen to a recording of a meeting and not merely produce its transcript but largely tell the speakers apart and sense whether a sentence is a genuine question or a sarcastic remark. It can distinguish between music, ambient sound and human speech. This rich layer, which doesn't fit on the flat strip of text, makes audio a valuable modality in its own right.</p>
+<p>Voice interfaces stand out especially when your hands are busy or typing is cumbersome: while driving, while repairing a device, or while listening to a long document on a walk. And where vision and audio meet, things get even more interesting; when a user holds the camera up to an object and asks a question out loud, the model can process both the image and the speech at once and produce a single, unified answer.</p>
+<h2>Why Does All This Matter? Meaning Becoming a Single Stream</h2>
+<p>The value of multimodality is more than the sum of the individual abilities. The real leap lies in these forms beginning to talk to one another. The world never reaches us in a single modality: a restaurant menu is both text and photo, a presentation is both slide image and speech, a case file is text, scanned document and photographic evidence all at once. A unimodal tool can see only one slice of this reality.</p>
+<p>An example makes this concrete. Suppose a user photographs a broken part of a device and asks out loud 'how do I replace this?', while also holding the device's written manual. A human technician naturally combines these three streams: looks at the photo, hears the question, reads the manual, and gives a single answer. A multimodal model aims at exactly this combination. The power of the ability comes not from any single modality but from the connections between them.</p>
+<p>This fusion lets AI communicate with people while demanding less 'translation' from them. In the past, to describe a chart to a model you first had to put it into words; now you can simply show the chart. To describe a problem you don't have to phrase it in flawless sentences; it's enough to share the screenshot and say 'there's an error here.' The layer where a human had to do the preprocessing thins out; AI moves closer to meeting the world in the raw form in which we present it.</p>
+<p>From a wider perspective, multimodality moves AI from being a pure 'language tool' toward a general 'understanding tool.' Text is still at the center, because it forms the backbone of reasoning; but it is no longer the only window. This explains why products built in the coming period are increasingly designed with the expectation that AI will 'see, hear, read and think together.'</p>
+<h2>Limits and Pitfalls: Seeing Is Not Believing</h2>
+<p>Multimodal models are impressive, but overstating their abilities is dangerous. The first and most important limit is that vision, just like text, is prone to 'hallucination.' When the model looks at an image, it describes not what it sees but what is statistically most likely to be there. So in a blurry, unusual or misleading image, it can describe with great confidence an object that isn't actually present, or misread a number in a chart.</p>
+<p>The second pitfall is fine detail. A model usually grasps the overall meaning of a scene correctly, but it can stumble on exact numbers, small print, the precise position of a clock hand, or the distinction between very similar cells in a table. It is strong on 'roughly what is there'; on 'exactly which figure is written' it is not always reliable. This is why, when you have it read an invoice or an official document, checking the output remains indispensable in critical domains.</p>
+<p>Third, multimodal models are not immune to visual deception and bias. Misleading text hidden inside an image can lead the model astray. And because of imbalances in the training data, they may recognize some scenes, objects or groups of people better than others. This is the bias problem of language models carried over into vision, and it demands the same care.</p>
+<p>For all these reasons, serious systems operating in sensitive domains never accept a multimodal model's output as the final word. In the AI-powered products we build at HatsonTech, such as document-understanding assistants powered by HatsonAI, this principle is vital: if a piece of information read from a document or image will drive a business decision, that information is grounded not in the model's interpretation but in a verifiable real source that the assistant can cite. Multimodal ability is a starting point, not a final verdict. However much the model's ability to see, read and hear improves, the verification engineering built around it remains the real determinant of trustworthiness.</p>
+<h2>Wrapping Up: From One Window to Many</h2>
+<p>Let us return to the start. Multimodal AI is a model's ability to take in not just text but images, audio and more at once, and weigh them together. The core idea that makes this possible is surprisingly elegant: translating different forms into a shared number space, a common map of meaning. Once image, text and audio all speak the same language, the model can process them within a single stream.</p>
+<p>This ability touches ground in three major areas. In document understanding, it grasps invoices, forms and official papers by reading text and layout together. In vision, it answers open-ended questions about a scene, chart or photo without being confined to predefined labels. And in audio, it builds more natural and faster communication by capturing tone and context alongside the words.</p>
+<p>At the same time, we have seen its limits. Vision is prone to hallucination, can err on fine detail, and may carry the biases in its training data. That is why a multimodal output, especially in fields like law where the margin for error is low, must always be verified against a reliable source. This balance between the power of the ability and its responsible use sits at the very heart of modern AI engineering.</p>
+<p>Once you hold this intuition, you understand why the tools around you can increasingly 'look' and 'hear.' Your phone translating the text in a photo, an assistant spotting the bug in your screenshot, a legal tool reading a scanned ruling; the same idea sits beneath all of them. The world does not come in a single form, and AI is now learning to look at it not through one window but through many at once.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>Multimodal AI is a model's ability to take in text, images, audio and video at once and weigh them together; unimodal models work with only a single form of information.</li><li>The core idea that makes this possible is translating different forms into a shared number space (a map of meaning); so a 'cat' photo and the word 'cat' land in the same region, and an image is processed in the same stream as words.</li><li>In document understanding, a multimodal model reads both text and layout together; unlike the old OCR approach, it grasps which number sits under which heading in an invoice without mixing them up.</li><li>In vision, the model can answer open-ended natural-language questions about a scene, chart or photo without being confined to predefined labels; this is computer vision fused with language ability.</li><li>In audio, models that understand sound directly work without inserting text in between; they capture not only 'what was said' but tone, emphasis and context, that is, 'how it was said.'</li><li>Vision, like text, is prone to hallucination, can err on fine detail (exact numbers, small print) and may carry bias; so in sensitive domains the output must always be verified against a reliable source. This is exactly the verification engineering HatsonTech builds into its AI-powered products.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

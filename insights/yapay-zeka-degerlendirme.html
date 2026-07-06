@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How are AI models evaluated? Benchmarks, contamination, task-specific tests, LLM judges and hallucination metrics explained simply, with real-world legal examples.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Do We Know an AI Model Is Good? Benchmarks and Evaluation">
+  <meta property="og:description" content="How are AI models evaluated? Benchmarks, contamination, task-specific tests, LLM judges and hallucination metrics explained simply, with real-world legal examples.">
+  <meta property="og:url" content="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="How Do We Know an AI Model Is Good? Benchmarks and Evaluation">
+  <meta name="twitter:description" content="How are AI models evaluated? Benchmarks, contamination, task-specific tests, LLM judges and hallucination metrics explained simply, with real-world legal examples.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg">
+  <title>How Do We Know an AI Model Is Good? Benchmarks and Evaluation | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Do We Know an AI Model Is Good? Benchmarks and Evaluation",
+  "description": "How are AI models evaluated? Benchmarks, contamination, task-specific tests, LLM judges and hallucination metrics explained simply, with real-world legal examples.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/yapay-zeka-degerlendirme.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg",
+  "articleSection": "Engineering",
+  "keywords": "Değerlendirme, Benchmark, LLM, Halüsinasyon, Kalite"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How Do We Know an AI Model Is Good? Benchmarks and Evaluation",
+      "item": "https://hatsontech.com/insights/yapay-zeka-degerlendirme.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/yapay-zeka-degerlendirme.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / How Do We Know an AI Model Is Good? Benchmarks and Evaluation</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg" alt="How Do We Know an AI Model Is Good? Benchmarks and Evaluation" loading="lazy">
+    <div class="article-cat">Engineering</div>
+    <h1>How Do We Know an AI Model Is Good? Benchmarks and Evaluation</h1>
+    <p class="article-sub">What those leaderboard percentages really mean, where benchmarks mislead, and what actually proves a model works in the real world. A plain-language guide.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 min read</span><div class="article-tags"><span class="article-tag">Değerlendirme</span><span class="article-tag">Benchmark</span><span class="article-tag">LLM</span><span class="article-tag">Halüsinasyon</span><span class="article-tag">Kalite</span></div></div>
+    <div class="article-body">
+<h2>What does a "good model" even mean?</h2>
+<p>Every time a new AI model launches, the headline is the same: "Model X scored 94% on this test, a new record." It sounds like a school grade, and the student in all of us nods as if we understood it. But pause for a second: 94% of what? Which questions? Who graded them? And most importantly, what does that number tell you about whether the model will actually help with the question you plan to ask it tomorrow?</p>
+<p>Being a "good" model is not a single dimension. A model that writes beautiful poetry can reach the exact opposite conclusion in a contract because it skipped one little negation. It might be fast but careless, or slow but meticulous. Brilliant in one language, clumsy in another. So the answer to "is it good?" always begins with "good for what?"</p>
+<p>Evaluation, or "eval" in industry shorthand, is the disciplined way of asking exactly that. It is the practice of measuring how accurate, how consistent, how safe and how useful a model is. In this article we will walk through why evaluation is much harder than it looks, how far you can trust those standardized exams called benchmarks, why the human eye is still indispensable, and why in the end the most important test is the real world.</p>
+<h2>Why is evaluation so hard?</h2>
+<p>Testing a calculator is easy: type 2+2, expect 4, a match means correct. The answer is either right or wrong, with nothing in between. But large language models (LLMs, the AI systems that understand and generate text) do not work this way. You ask a question and a free-flowing paragraph comes back. Measuring whether that paragraph is "correct" is not a single equality check like the calculator.</p>
+<p>The first difficulty: a single question can have hundreds of valid answers. Ask "summarize the termination clause of this contract" and the model can express the same correct idea with ten different wordings. All correct, none identical. So comparing against a fixed "answer key" is often impossible. On top of that, models are probabilistic: ask the same question twice and you might get two different answers. That adds another layer of uncertainty to any measurement.</p>
+<p>The second difficulty is that a "good" answer is multi-dimensional. A legal answer can be correct but incomplete. Complete but incomprehensible. Clear but citing the wrong article. Compressing all of these dimensions into one number is as crude as reducing a person's worth to a single grade.</p>
+<p>The third, and perhaps most insidious, difficulty: who is the judge? In a math problem there is an expert who knows the right answer. But for "is this summary good enough?", even two experts may disagree. The evaluation itself sits under the shadow of subjectivity. Precisely because of these three difficulties, the industry uses many complementary methods side by side rather than chasing one perfect measurement.</p>
+<h2>What is a benchmark? The shared exam for models</h2>
+<p>A benchmark is the way we put different models through the same exam. It is a large, pre-built set of questions and answers: thousands of questions, each with a known correct answer. You run the model over the set, count how many it got right, and get a percentage. Just like a university entrance exam: everyone solves the same paper, so the scores become comparable.</p>
+<p>Over the years, many famous benchmarks have emerged. MMLU asks multiple-choice questions across 57 fields, from history and law to medicine, testing a model's general knowledge. GSM8K measures reasoning with grade-school math word problems. HumanEval and SWE-bench look at a model's ability to write code and fix real software bugs. GPQA pushes the limits with expert-level science questions hard enough that you cannot simply look up the answers online.</p>
+<p>The beauty of benchmarks is objectivity and comparability. When everyone uses the same test, the argument "my model is better than yours" rests on a measure. When a new model launches, engineers can run it through dozens of benchmarks within minutes and see where it stands. This is one reason the field moves so fast: we have a shared ruler for progress.</p>
+<p>But that ruler can be far more crooked than you think. And one of the most debated questions in the industry in 2026 is exactly this: how much should we trust benchmarks?</p>
+<h2>The blind spots of benchmarks: contamination and saturation</h2>
+<p>The biggest weakness of benchmarks resembles a student who "studied" for the exam: what if they saw the questions in advance? This is called contamination (test data leaking into the training data). Models are trained on enormous piles of text scraped from the internet, and popular benchmark questions have circulated for years on forums, in solution guides, and in GitHub repositories. So a model may have seen the question during training and memorized the answer. In that case a high score reflects good memory, not real ability. Older, well-worn benchmarks like MMLU are considered among the most contaminated.</p>
+<p>The second problem is saturation. When a test becomes too easy, it loses its power to discriminate. In 2026, the strongest models are bunched above 88-90% on MMLU; in that range, whether a few points between two models means real superiority or just statistical noise is very hard to tell. GPQA is even more striking: at the end of 2023, GPT-4 scored 39% on GPQA Diamond, the hardest version of the test, while by early 2026 the top-tier models sit around 94%. Yet domain experts holding PhDs average only about 65% on that same test. When a test gets easy for everyone, it can no longer tell us who is better.</p>
+<p>The third, and most human, problem: optimizing to the benchmark. When a measure becomes a target, it stops being a good measure (economists call this Goodhart's Law). Companies may start tuning their models specifically to shine on those tests, just to climb the leaderboard. The result can be models that dazzle on the benchmark but disappoint in real use: like a student who aces the exam but never understood the subject.</p>
+<p>As a remedy, the field keeps producing new, "uncontaminated" benchmarks: questions published after a model's training cutoff, or private test sets never released to the public. But it is a chase: every new benchmark eventually ages, leaks and saturates. This is exactly why you never put your faith in any single benchmark alone.</p>
+<h2>Task-specific evaluation: not general, but your job</h2>
+<p>General benchmarks measure a model's broad abilities, but your problem is rarely "general." If you are deploying AI in a hospital, the model's poetry skill is irrelevant; whether it accurately summarizes medical notes is what matters. This is where task-specific evaluation comes in: testing the model with a set that mirrors the exact job it will do.</p>
+<p>To build a task-specific eval, you write your own "exam paper." You collect real questions from your domain, decide with experts what the ideal answer should look like for each, and run the model over the set. This set is usually a few hundred carefully chosen examples; quality and representativeness matter more than sheer count. The goal is to see how the model behaves on exactly the kind of questions your users will really ask.</p>
+<p>The power of this approach is that what you measure is meaningful to you. A model at the top of the leaderboard may not be the best for your job. A very powerful but expensive model may not beat a smaller, faster one on your narrow task. Without task-specific eval you can never know this; you only guess. Good teams do not guess; they measure.</p>
+<h2>Human evaluation and AI grading AI</h2>
+<p>Some things are impossible to measure automatically. No formula can tell you whether an answer is "convincing," "respectful," or "in a tone a lawyer would trust." This is why human evaluation is still the gold standard. Here, real experts read and score the model's answers: is it correct, incomplete, misleading? Often two answers are shown side by side and the evaluator is asked to pick "which is better?" This is called pairwise comparison, and it yields more consistent results than having people assign absolute scores one by one.</p>
+<p>The trouble with human evaluation is that it is expensive and slow. Having experts read thousands of answers takes time and serious cost. So in recent years a powerful alternative has spread: LLM-as-a-judge, where one AI model scores another model's answer. You give a strong model a clear evaluation rubric, and it scores hundreds of answers consistently within seconds.</p>
+<p>What is surprising is how well this can work. On well-structured tasks, a strong LLM judge agrees with human evaluators more than 80% of the time, which is roughly the same as how often two humans agree with each other on the same task (also around 80%). This is why LLM-as-a-judge has become the de facto standard for evaluation at scale.</p>
+<p>But this method has its own traps. AI judges can show systematic biases: a tendency to favor the answer shown first (position bias, with up to a 75% lean toward the first answer in some tests), to assume a longer answer is automatically better (verbosity bias), or to reward text that resembles their own style. This is why serious teams never trust an AI judge blindly; they feed the rubric concrete examples, randomly shuffle the order of answers, and recalibrate the judge against real human labels on a recurring cadence. In other words, AI does not replace the human; it multiplies the human's reach.</p>
+<h2>Hallucination and accuracy: the most critical metric</h2>
+<p>The most dangerous answer a model can give is the one you do not realize is wrong. A hallucination is information the model fabricates with full confidence that does not actually exist: a court ruling that never happened, a wrong statute number, a quote no one ever said. The model is not trying to lie; because it is a system that simply predicts the next word, it can produce text that looks most like the truth but is false. And it does so with such fluency that a non-expert eye cannot tell the difference.</p>
+<p>This is why the hallucination rate is the most critical metric, especially in fields like law, medicine and finance. The numbers can be alarming: a 2024 study by Stanford researchers found that the general-purpose models of the time hallucinated between 58% and 88% of the time on direct legal questions (GPT-4 at 58%, Llama 2 at 88%). Purpose-built legal research tools that retrieve sources first fare better, but a separate study by the same group showed even those commercial tools err on at least one in six queries. So saying "this model is very smart" is not the same as saying "this model is reliable."</p>
+<p>There are several ways to measure hallucination. For RAG (systems that retrieve sources and generate answers grounded in them) the key metric is faithfulness: is what the model says actually written in the sources provided? Another approach is to ask the same question several times and see whether the answers agree; if the model knows a fact it answers consistently, whereas if it is fabricating it tends to say different things each time. This is called semantic entropy.</p>
+<p>An important point: accuracy has more than one face. A model can try to answer every question and fabricate some, or it can say "I don't know" when it is unsure. In most critical applications the latter is far more valuable. This is why a good evaluation does not only ask "how many did it get right"; it also asks "how confident did it look while being wrong" and "how often did it admit it didn't know."</p>
+<h2>The most important test: the real world</h2>
+<p>All benchmarks, task sets and human evaluations are controlled environments; laboratory conditions. But real users do not live in the lab. A real lawyer does not ask the tidy questions in your test set; they ask questions full of typos, left half-finished, mixing two different topics, missing context. It is exactly this messy reality that reveals whether a model is genuinely good.</p>
+<p>This is why mature teams treat evaluation not as a one-off exam but as a continuously turning loop. After the product goes live, real usage is monitored (logs, user feedback, which answers got corrected), these real cases are turned into new test examples, and the eval set keeps growing. There is also A/B testing: two different models or settings are shown to a fraction of real users, and which one truly performs better in the field is measured with live data. No benchmark can replace this.</p>
+<p>Real-world testing also has an honesty dimension. A model can be impressive in a demo but slow down under thousands of queries a day, blow up in cost, or make rare but dangerous mistakes. Scale surfaces problems that controlled tests can never catch. This is why the ultimate answer to "is this a good model?" is always given in the field, in the hands of real users.</p>
+<h2>How we evaluate AI answers at HatsonTech</h2>
+<p>When an AI assistant answers questions over a company's own documents, being "pretty good" is not enough. A wrong figure, a citation to an outdated document, or a fact that never existed can seriously mislead the user. This is why, when we build AI-powered products at HatsonTech, we treat evaluation not as an afterthought but as the center of our engineering. A model that scores high on a general leaderboard tells you nothing about how well it handles the specific language of your domain and your documents; only task-focused evaluation can show that.</p>
+<p>For us the most critical metric is faithfulness. Our HatsonAI engine powers RAG assistants: they first retrieve the relevant documents, then ground the answer directly in those sources. Our evaluation process asks exactly this: is every fact and every reference cited in the answer genuinely present in the real sources that were retrieved, or did the model fabricate something? Having citations traceably bound to sources is our strongest defense against hallucination, because the user should be able to check not just the answer but the source the answer rests on.</p>
+<p>Our evaluation works in layers. We run automated checks over a test set built with domain experts to represent real questions; we use AI-based scoring to run some judgments at scale; but the final quality call is always given by the eyes of domain experts. And most importantly, we continuously monitor the system through real usage, add the hard cases that emerge to our test set, and close the loop.</p>
+<p>The aim here is to turn the promise of an explainer into a concrete discipline: never answer the question "is it good?" with a single shiny number. Instead, measure accuracy, faithfulness, completeness and real-world reliability separately. Because when a model's answers drive real decisions, the only honest way to know it is truly good is to measure it relentlessly and rigorously.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>A "good model" is not one-dimensional; the right question starts with "good for what?" and you must measure separate dimensions like accuracy, completeness, speed and safety individually.</li><li>Benchmarks let you compare models by putting them through the same exam, but they can mislead due to contamination (test questions leaking into training data), saturation, and optimizing to the benchmark; never trust a single test blindly.</li><li>General benchmarks do not measure your job; a task-specific test set collected from your own domain and resembling your real usage is far more meaningful.</li><li>Human evaluation is still the gold standard; LLM-as-a-judge (AI grading AI) enables scale but must be regularly calibrated against human labels because of systematic biases like position and verbosity bias.</li><li>The hallucination rate is the most critical metric, especially in fields like law and medicine; accuracy is not just "how many right" but whether the model admits when it doesn't know.</li><li>The most important test is the real world: monitoring live usage, A/B testing, and continuously growing the eval set surface problems no lab test can catch.</li><li>When we build RAG assistants at HatsonTech, we focus most on faithfulness: every citation is traceably bound to real sources, and evaluation is a continuous loop combining automated checks, AI scoring and expert human judgment.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

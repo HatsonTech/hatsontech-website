@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Transformer mimarisini sade bir dille öğrenin: öz-dikkat sezgisi, RNN'lerin yerini neden aldığı, kodlayıcı-çözücü yapısı ve neden bu kadar iyi ölçeklendiği.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/transformer-mimarisi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Transformer Mimarisi, Sade Bir Dille">
+  <meta property="og:description" content="Transformer mimarisini sade bir dille öğrenin: öz-dikkat sezgisi, RNN'lerin yerini neden aldığı, kodlayıcı-çözücü yapısı ve neden bu kadar iyi ölçeklendiği.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Transformer Mimarisi, Sade Bir Dille">
+  <meta name="twitter:description" content="Transformer mimarisini sade bir dille öğrenin: öz-dikkat sezgisi, RNN'lerin yerini neden aldığı, kodlayıcı-çözücü yapısı ve neden bu kadar iyi ölçeklendiği.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg">
+  <title>Transformer Mimarisi, Sade Bir Dille | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Transformer Mimarisi, Sade Bir Dille",
+  "description": "Transformer mimarisini sade bir dille öğrenin: öz-dikkat sezgisi, RNN'lerin yerini neden aldığı, kodlayıcı-çözücü yapısı ve neden bu kadar iyi ölçeklendiği.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/transformer-mimarisi.jpg",
+  "articleSection": "Araştırma",
+  "keywords": "Transformer, Attention, Derin Öğrenme, LLM"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Transformer Mimarisi, Sade Bir Dille",
+      "item": "https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/transformer-mimarisi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Transformer Mimarisi, Sade Bir Dille</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/transformer-mimarisi.jpg" alt="Transformer Mimarisi, Sade Bir Dille" loading="lazy">
+    <div class="article-cat">Araştırma</div>
+    <h1>Transformer Mimarisi, Sade Bir Dille</h1>
+    <p class="article-sub">2017'de yayımlanan tek bir makale yapay zekânın gidişatını değiştirdi. "Attention Is All You Need" fikrinin neden bu kadar önemli olduğunu, kelimelerin birbirine nasıl "dikkat ettiğini" ve bugünkü büyük dil modellerinin neden hepsinin bu temele oturduğunu adım adım anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Transformer</span><span class="article-tag">Attention</span><span class="article-tag">Derin Öğrenme</span><span class="article-tag">LLM</span></div></div>
+    <div class="article-body">
+<h2>2017'de Her Şeyi Değiştiren Makale</h2>
+<p>Yapay zekânın tarihinde pek çok dönüm noktası vardır, ama çok azı 2017'de yayımlanan tek bir makale kadar keskin bir çizgi çeker. Google'da çalışan sekiz araştırmacının kaleme aldığı makalenin adı biraz iddialıydı: "Attention Is All You Need", yani "İhtiyacınız Olan Tek Şey Dikkat". Başlık, o güne kadar dil işleme için vazgeçilmez sanılan bir yığın karmaşık bileşeni rafa kaldırıp, yerine sadece "dikkat" (attention) adı verilen tek bir mekanizmayı koymayı öneriyordu. Adı üstünde: gerisini boş verin, dikkat yeter.</p>
+<p>O dönemde makinelerin metni okuması ve üretmesi, kelimeleri tek tek, sırayla işleyen sinir ağlarıyla yapılıyordu. Bu yaklaşım çalışıyordu ama yavaştı ve uzun cümlelerde nefesi kesiliyordu. Transformer adı verilen yeni mimari ise farklı bir soru sordu: Ya bir cümledeki bütün kelimelere aynı anda bakabilseydik ve her kelimenin diğerleriyle nasıl ilişkilendiğini doğrudan öğrenebilseydik?</p>
+<p>Bu masum görünen sorunun sonuçları çığ gibi büyüdü. Bugün adını duyduğunuz hemen her büyük dil modeli (GPT, Claude, Gemini, Llama ve diğerleri) temelinde Transformer mimarisini kullanır. Hatta bu modellerin ortak soyadındaki harf bile oradan gelir: "GPT"deki "T", "Transformer" demektir. Bu yazıda, ağır matematiğe boğulmadan, bu mimarinin neden bu kadar güçlü çıktığını sezgisel olarak kavramaya çalışacağız.</p>
+<h2>Eski Yöntemin Derdi: Kelimeleri Tek Sıra Hâlinde Okumak</h2>
+<p>Transformer'dan önce dil görevlerinin yıldızı, RNN (Recurrent Neural Network, yani Tekrarlayan Sinir Ağı) ve onun daha becerikli kuzeni LSTM idi. Bu ağların çalışma mantığını şöyle hayal edin: bir cümleyi okurken kelimeleri soldan sağa tek tek alırlar ve o ana kadar okudukları her şeyin bir özetini kafalarında tutarak ilerlerler. Yeni bir kelime geldiğinde özeti güncellerler. Yani cümle boyunca bir tür hafıza kabarcığını taşırlar.</p>
+<p>Bu yaklaşımın iki ciddi derdi vardı. Birincisi hız. Kelimeler sırayla işlendiği için beşinci kelimeyi hesaplamadan önce dördüncüyü bitirmek zorundasınız. Bu da modern grafik işlemcilerin (GPU) en sevdiği şeyi, yani paralel hesaplamayı imkânsız kılar. GPU'lar binlerce işlemi aynı anda yapmak için tasarlanmıştır; oysa RNN onları tek sıraya dizip sıralarını beklemeye zorlar; tam bir israf.</p>
+<p>İkinci ve daha sinsi dert ise unutkanlıktı. Cümlenin başındaki bir bilgi, sona varana dek onlarca güncellemeden geçer ve her adımda biraz daha silikleşir. "Geçen yıl Ankara'da doğan, şimdi İstanbul'da yaşayan ve yeni bir işe başlayan kız kardeşim..." diye uzayıp giden bir cümlede, sondaki yüklemi baştaki "kız kardeşim" ile bağlamak, araya giren kelime sayısı arttıkça RNN için zorlaşır. Bilgi, kulaktan kulağa oynayan uzun bir çocuk dizisinde olduğu gibi, yol boyunca bozulur.</p>
+<h2>Dikkat (Attention) Nedir? Odadaki Sohbet Analojisi</h2>
+<p>Transformer'ın kalbindeki fikir olan "öz-dikkat" (self-attention) mekanizmasını kavramanın en iyi yolu somut bir benzetmedir. Bir cümledeki her kelimeyi, bir odada toplanmış insanlar gibi düşünün. Her kelime, kendi anlamını netleştirmek için odadaki diğer tüm kelimelere bakar ve şu soruyu sorar: "Ben kim olduğumu anlamak için asıl kime kulak vermeliyim?"</p>
+<p>Klasik örnek şudur: "Hayvan yorgun olduğu için caddeyi geçmedi." İngilizcedeki "it" (yani "o") hangisine işaret ediyor: hayvana mı, caddeye mi? İnsan için cevap apaçık, ama makine bunu kendi çıkarmak zorunda. Öz-dikkat sayesinde "o" kelimesi cümledeki bütün kelimeleri tarar ve dikkatinin aslan payını "hayvan"a yöneltir. Böylece "o"nun anlamı, "hayvan"ın anlamından beslenerek belirginleşir. Eğer cümle "...çok genişti" diye bitseydi, dikkat bu kez "cadde"ye kayardı; yani aynı kelime, bağlama göre nereye bakacağını kendisi seçer.</p>
+<p>İşin güzel yanı şu: bu dikkat, RNN'deki gibi adım adım taşınan kırılgan bir hafıza değildir. "O" kelimesi, "hayvan" kelimesine doğrudan, tek bir sıçramayla ulaşır; aralarında kaç kelime durduğunun hiçbir önemi yoktur. Cümlenin başı ile sonu arasındaki mesafe, dikkat mekanizması açısından adeta sıfırdır. Uzak kelimeler arasında bu doğrudan köprüyü kurabilmek, Transformer'ı öncüllerinden ayıran en kritik özelliktir.</p>
+<p>Üstelik bu hesap tek seferde biter. Her kelime, diğer tüm kelimelerle olan ilişkisini aynı anda hesaplar. Tam da bu yüzden, RNN'in aksine, paralelleştirilebilir: binlerce kelimenin dikkat puanları GPU üzerinde tek hamlede hesaplanabilir. Yani dikkat, hem daha akıllı hem de donanıma daha uygun bir çözümdür.</p>
+<h2>Kaputun Altında: Sorgu, Anahtar ve Değer</h2>
+<p>Peki kelimeler birbirine "dikkat etmeyi" tam olarak nasıl beceriyor? Burada üç kavram devreye girer ve bunları bir kütüphane benzetmesiyle anlatmak işi kolaylaştırır: Sorgu (Query), Anahtar (Key) ve Değer (Value). İşin ilginç yanı, her kelimenin bu üç rolü de aynı anda üstlenmesidir.</p>
+<p>Sorgu, bir kelimenin "şu an neyi arıyorum?" sorusudur; kütüphaneye gidip aradığınız konuyu söylemeniz gibi. Anahtar, her kelimenin "ben şu konu hakkındayım" diyen etiketidir; raftaki kitapların sırtındaki başlıklar gibi. Değer ise o kelimenin taşıdığı asıl içeriktir; kitabın içindeki bilginin kendisi. Bir kelime kendi Sorgusunu diğer tüm kelimelerin Anahtarlarıyla karşılaştırır; hangi Anahtar Sorguya en çok uyuyorsa, o kelimenin Değerinden o kadar çok bilgi devşirir.</p>
+<p>Sayısal olarak şu olur: bir kelimenin Sorgusu ile bir başka kelimenin Anahtarı arasındaki uyum, bir puana dönüşür. Yüksek puan, güçlü bir ilişki demektir. Bu puanlar sonra bir oranlamadan geçirilir (toplamları bire eşitlenir) ve her kelimenin Değeri, kendi puanı oranında harmanlanarak yeni, bağlamla zenginleşmiş bir temsil oluşturulur. Yani "o" kelimesinin nihai temsili, ağırlıklı olarak "hayvan"ın Değerini içinde taşır.</p>
+<p>Bu üçlü oyunun en şık yanı şudur: Sorgu, Anahtar ve Değer elle yazılmış sabit kurallar değil, modelin eğitim sırasında kendi kendine öğrendiği şeylerdir. Hiç kimse modele "zamirler öncüllerine baksın" diye bir kural girmez. Model, milyonlarca cümleyi gördükçe hangi kelimenin hangisine dikkat etmesi gerektiğini kendi keşfeder. Kurallar verilmez, örüntüler öğrenilir.</p>
+<h2>Çok Başlı Dikkat ve Sıra Duygusu</h2>
+<p>Tek bir dikkat mekanizması güçlüdür, ama tek bir bakış açısıyla sınırlıdır. Transformer bu yüzden "çok başlı dikkat" (multi-head attention) kullanır. Bunu aynı cümleyi okuyan bir uzmanlar kurulu gibi düşünün: bir baş dilbilgisel ilişkilere (özne-yüklem uyumuna) odaklanırken, başka bir baş anlamsal yakınlıklara, bir diğeri ise zamirlerin neye işaret ettiğine bakar. Her baş cümlenin farklı bir yüzünü yakalar ve sonunda hepsinin gözlemleri tek bir görüntüde birleştirilir.</p>
+<p>Bu sayede model, bir kelimenin diğerleriyle ilişkisini tek bir dar mercekten değil, aynı anda birçok farklı mercekten değerlendirir. Dilin zenginliği (aynı cümlede dilbilgisinin, mantığın ve bağlamın bir arada işlemesi) ancak böyle çok katmanlı bir bakışla yakalanabilir. Tek bir göz yerine, her biri farklı bir şeyi arayan bir düzine göz.</p>
+<p>Ne var ki dikkatin doğuştan bir kör noktası vardır: tüm kelimelere aynı anda baktığı için kelimelerin sırasını kendiliğinden bilmez. Oysa dilde sıra her şeydir; "köpek adamı ısırdı" ile "adam köpeği ısırdı" tıpatıp aynı kelimeleri içerir ama bambaşka olaylar anlatır. Transformer bu açığı "konumsal kodlama" (positional encoding) ile kapatır: her kelimeye, cümledeki yerini bildiren bir tür adres etiketi eklenir. Böylece model kelimelerin yalnızca kimliğini değil, dizilişini de bilir.</p>
+<h2>Kodlayıcı ve Çözücü: İki Yarımın Hikâyesi</h2>
+<p>Orijinal Transformer makalesi, mimariyi iki ana parçadan kurmuştu: kodlayıcı (encoder) ve çözücü (decoder). Makalenin asıl amacı makine çevirisiydi (örneğin Almancadan İngilizceye) ve bu iki parça o görev için bir ekip gibi çalışır. Kodlayıcının işi, gelen cümleyi (kaynak dili) okuyup onu anlamla yüklü, zengin bir sayısal temsile dönüştürmektir; adeta cümlenin özünü damıtır.</p>
+<p>Çözücü ise bu damıtılmış anlamı alır ve hedef dildeki yeni cümleyi kelime kelime üretir. Çözücünün önemli bir kuralı vardır: metni üretirken yalnızca o ana kadar yazdığı kelimelere bakabilir, henüz yazmadığı geleceğe göz atamaz. Buna "maskeleme" (masking) denir ve son derece mantıklıdır; tıpkı bir cümleyi yazarken bir sonraki kelimeyi henüz bilmiyor olmanız gibi. Bu kısıtlama, modeli gerçekten tahmin etmeyi öğrenmeye zorlar; cevabı kopya çekecek bir yer bırakmaz.</p>
+<p>Zamanla araştırmacılar, göreve göre bu iki parçanın ayrı ayrı da kullanılabileceğini fark etti. Yalnızca kodlayıcıdan oluşan modeller (BERT gibi) metni anlamak, sınıflandırmak ve aramak için biçilmiş kaftandır. Yalnızca çözücüden oluşan modeller (GPT ailesi ve günümüz sohbet modellerinin çoğu) ise metin üretmenin ustasıdır. Bugün popüler olan üretken büyük dil modellerinin neredeyse hepsi, aslında bu "sadece çözücü" tasarımının dev birer sürümüdür.</p>
+<p>Bu ayrım pratikte çok şey değiştirir, çünkü bir ürünü hangi mimariyle inşa edeceğiniz, çözmek istediğiniz probleme bağlıdır. Örneğin bir kurum için geliştirilen yapay zekâ destekli bir asistanda, devasa bir belge arşivinden en alakalı dokümanı bulup getirmek (anlama ve eşleştirme) ile o belgelere dayanarak akıcı bir özet yazmak (üretme), farklı kasları çalıştıran iki ayrı yetenektir; ama ikisi de aynı Transformer temeline yaslanır.</p>
+<h2>Neden Bu Kadar İyi Ölçekleniyor?</h2>
+<p>Transformer'ın asıl büyüsü, sadece daha iyi sonuç vermesi değil; büyütüldükçe daha da iyi olmasıdır. Yapay zekâ dünyasında bu olguya "ölçek yasaları" (scaling laws) denir: modeli büyüttükçe (daha çok parametre), ona daha çok veri ve daha çok hesaplama gücü verdikçe, performansı şaşırtıcı derecede öngörülebilir biçimde artar. RNN'lerle bu kadar düzgün ve istikrarlı bir tırmanış mümkün değildi.</p>
+<p>Bunun en temel sebebi, baştan beri konuştuğumuz paralelleştirme yeteneğidir. Transformer cümleyi sıraya dizmek zorunda olmadığı için, eğitimini binlerce işlemci çekirdeğine bölebilirsiniz. Bu da modern yapay zekâyı mümkün kılan devasa GPU ve TPU kümeleriyle kusursuz bir uyum içindedir. Yani Transformer yalnızca akıllı bir fikir değil, aynı zamanda mevcut donanımdan son damlasına kadar yararlanan bir tasarımdır; doğru zamanda, doğru donanım için ortaya çıkmıştır.</p>
+<p>Bir başka güç kaynağı da mimarinin sade ve tekrarlanabilir olmasıdır. Transformer, esasen aynı yapı bloğunun (dikkat artı basit bir sinir ağı katmanı) üst üste defalarca istiflenmesinden ibarettir. Bu blokları çoğaltmak, modeli derinleştirmenin ve kapasitesini artırmanın en doğrudan yoludur. Karmaşık ve özel parçalar yerine basit bir kalıbı tekrarlamak, hem mühendislik hem de ölçeklenebilirlik açısından muazzam bir avantajdır; Lego gibi, aynı tuğladan kocaman yapılar kurabilirsiniz.</p>
+<p>Elbette ölçeklenmenin bir bedeli var. Klasik öz-dikkat, kelime sayısı arttıkça hesaplama maliyetini karesel olarak büyütür; yani metni iki katına çıkarmak, dikkat hesabını dört katına çıkarır. Çok uzun metinlerde bu ciddi bir darboğaza dönüşür. Araştırmacılar bu maliyeti düşürmek için sürekli yeni yöntemler geliştiriyor, ama bu temel ödünleşim hâlâ Transformer'la çalışan herkesin aklının bir köşesinde tutması gereken bir gerçek.</p>
+<h2>Tek Bir Fikrin Mirası</h2>
+<p>Geriye dönüp baktığımızda, Transformer'ın başarısı tek bir cesur sadeleştirmeden doğuyor: "Belki de tüm o karmaşık sıralı işlemeye hiç ihtiyacımız yok; belki ihtiyacımız olan tek şey, her şeyin her şeye dikkat etmesi." Bu fikir yalnızca dilde değil; görüntü işlemede, ses tanımada, protein katlanmasını tahmin etmede ve daha pek çok alanda baskın yaklaşım hâline geldi. Tek bir mimari, yapay zekânın ortak dili oldu.</p>
+<p>Bu yazıda öz-dikkat sezgisini, Sorgu-Anahtar-Değer üçlüsünü, kodlayıcı ile çözücünün rollerini ve mimarinin neden bu kadar iyi ölçeklendiğini gördük. Tüm bu parçaların ortak paydası, bilginin bir kelimeden diğerine doğrudan ve paralel akmasını sağlayan o tek basit fikirdir. Modern yapay zekânın göz kamaştıran sonuçlarının altında, şaşırtıcı derecede zarif bir mekanizma yatıyor.</p>
+<p>Uzun ve birbirine sürekli atıf yapan metinlerin egemen olduğu belgeler, tam da Transformer'ın en güçlü olduğu yere düşer: uzaktaki ilgili bölümleri birbirine bağlamak ve bağlamı bir bütün olarak kavramak. HatsonTech'te, yapay zekâ destekli ürünlerimizi ve müşteri projelerimizi geliştirirken bu temel mimarinin üzerine inşa ediyoruz; ama bizim için asıl mesele, mimarinin kendisinden çok, onu gerçek bir iş problemine doğru ve güvenilir biçimde uygulayabilmek. Bir teknolojiyi gerçekten anlamak, onu sorumlu kullanmanın ilk adımıdır; bu yazının amacı da tam olarak buydu.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>2017'deki "Attention Is All You Need" makalesi, dili tek tek sırayla işleyen RNN'lerin yerine, tüm kelimelere aynı anda bakan Transformer mimarisini getirdi.</li><li>Öz-dikkat (self-attention), her kelimenin cümledeki diğer tüm kelimelere doğrudan bakıp hangileriyle ilişkili olduğunu öğrenmesini sağlar; uzaktaki kelimeler arasında bile tek bir sıçramayla köprü kurar.</li><li>Mekanizmanın temelinde Sorgu (Query), Anahtar (Key) ve Değer (Value) üçlüsü yatar; bu roller modele kural olarak verilmez, eğitim sırasında kendiliğinden öğrenilir.</li><li>Transformer paralel çalışabildiği için GPU'larda verimli eğitilir ve büyüdükçe öngörülebilir biçimde daha iyi olur; bu "ölçek yasaları" modern büyük dil modellerinin temelidir.</li><li>Kodlayıcı anlamaya, çözücü üretmeye yarar; GPT gibi modern sohbet modelleri çoğunlukla "sadece çözücü" tasarımının dev versiyonlarıdır.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

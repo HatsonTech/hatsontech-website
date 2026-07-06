@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What is AI hallucination, why do LLMs confidently make things up, and how do you reduce it with grounding/RAG, citations, evaluation and human review? A clear, plain-language guide.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI Hallucination: Why Models Make Things Up and How to Reduce It">
+  <meta property="og:description" content="What is AI hallucination, why do LLMs confidently make things up, and how do you reduce it with grounding/RAG, citations, evaluation and human review? A clear, plain-language guide.">
+  <meta property="og:url" content="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="AI Hallucination: Why Models Make Things Up and How to Reduce It">
+  <meta name="twitter:description" content="What is AI hallucination, why do LLMs confidently make things up, and how do you reduce it with grounding/RAG, citations, evaluation and human review? A clear, plain-language guide.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg">
+  <title>AI Hallucination: Why Models Make Things Up and How to Reduce It | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Hallucination: Why Models Make Things Up and How to Reduce It",
+  "description": "What is AI hallucination, why do LLMs confidently make things up, and how do you reduce it with grounding/RAG, citations, evaluation and human review? A clear, plain-language guide.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/yapay-zeka-halusinasyon.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg",
+  "articleSection": "Education",
+  "keywords": "Halüsinasyon, Güvenilirlik, RAG, LLM"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "AI Hallucination: Why Models Make Things Up and How to Reduce It",
+      "item": "https://hatsontech.com/insights/yapay-zeka-halusinasyon.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/yapay-zeka-halusinasyon.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / AI Hallucination: Why Models Make Things Up and How to Reduce It</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg" alt="AI Hallucination: Why Models Make Things Up and How to Reduce It" loading="lazy">
+    <div class="article-cat">Education</div>
+    <h1>AI Hallucination: Why Models Make Things Up and How to Reduce It</h1>
+    <p class="article-sub">Why does a language model state a wrong answer with total confidence, as if it were true? In plain language, we explain what hallucination is, why it springs from the model's very nature, and how engineers rein it in.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 min read</span><div class="article-tags"><span class="article-tag">Halüsinasyon</span><span class="article-tag">Güvenilirlik</span><span class="article-tag">RAG</span><span class="article-tag">LLM</span></div></div>
+    <div class="article-body">
+<h2>What Exactly Is a Hallucination?</h2>
+<p>In the world of AI, a 'hallucination' is when a language model produces information that is not actually true, yet does so in a way that is fluent, coherent and often convincing. The model might hand you the title of a book that does not exist, mention the result of a study that was never published, or describe a legal provision differently from what it actually says. And it does all of this with the same calm confidence it shows when it is right. That is exactly what makes it unsettling: from the outside, a wrong answer looks no different from a correct one.</p>
+<p>Let us clear up one misconception first: a hallucination is not the model 'lying.' Lying requires knowing the truth and deliberately hiding it. A language model has neither such an intention nor any grasp of truth at all. It simply looks at the patterns it has seen and predicts which word is most likely to come next. So it is far more accurate to think of a hallucination as a 'confident-sounding prediction error.'</p>
+<p>An analogy makes this easier. Picture an extremely talkative student who has read a great deal but never studied for the exam. Faced with a question they cannot answer, they do not fall silent; they stitch together concepts they once overheard into something that sounds perfectly reasonable. A language model behaves in exactly the same way. The fluency of its sentence is no guarantee of the truth of the information inside it; the two are entirely independent.</p>
+<h2>Why Do Models Make Things Up? The Logic of a Prediction Engine</h2>
+<p>To see where hallucination comes from, you have to look at what a language model actually does. A large language model (an LLM) is trained on enormous amounts of text to perform one simple task: predict the word most likely to come next after a given piece of text. Having seen billions of sentences, it captures the patterns of language extraordinarily well. But what stands before us is not a database of facts; it is a probability engine. The model does not 'look up' a fact; it predicts how that fact would be phrased.</p>
+<p>This architecture makes hallucination not a malfunction but a consequence of the system's nature. The model leans toward words that frequently appeared together in its training data. If the pattern representing the correct answer to a question is weak or missing, the model does not sit idle; it produces the most likely, most 'familiar'-sounding sequence of words. Often that sequence is correct, but sometimes it merely looks correct. There is no internal auditor inside the model asking, 'do I actually know this?'</p>
+<p>The second source is the training data itself. The model learns from a mixture of the internet, books and documents, and those sources are full of contradictions, outdated information and plain errors. The model's knowledge also 'freezes' at a certain date (called the training cutoff); it knows nothing that happened afterward, yet it can still speak about such topics with full confidence.</p>
+<p>There is a third, subtler reason: many models are nudged toward being 'helpful' in a way that pleases the user. Saying 'I don't know' was often not treated as a satisfying answer during training. As a result, the model is gently pushed to say something rather than stay silent, which only strengthens its tendency to fill the gaps by inventing.</p>
+<h2>Types of Hallucination: They Are Not All the Same</h2>
+<p>Squeezing all hallucinations into one category is misleading; different forms call for different solutions. The most common distinction is between factual hallucination and contextual (unfaithful) hallucination. In a factual hallucination, the model says something false about the world: an invented date, a non-existent person, a made-up statistic. These usually arise from gaps in the model's training knowledge.</p>
+<p>Contextual hallucination is more insidious. Here the model has already been handed a document or context, yet it fails to stay faithful to it; it adds something that is not in the text as if it belonged there, or it distorts the information it was given. This is called a faithfulness problem. The real danger is that the user relaxes, thinking 'but I already supplied the source' — while the model can still stray well beyond that source.</p>
+<p>Another important type is fabricated citations. The model offers you a source that looks real but is entirely invented: a court decision number that does not exist, an unpublished paper, a wrong page reference. This is especially dangerous in academia and law, because a citation is assumed to be a guarantee of accuracy — yet the citation itself can be the hallucination.</p>
+<p>Finally there are reasoning hallucinations: the model builds a step-by-step argument that looks perfectly logical, but one of the intermediate steps is quietly wrong, and the conclusion comes out entirely false. The chain sounds so coherent that catching the error often means auditing every single link, one at a time.</p>
+<h2>The First Line of Defense: Grounding and RAG</h2>
+<p>The most powerful idea in fighting hallucination is to not leave the model alone with its own memory. 'Grounding' is the practice of tying the model's answer to a real, verifiable source. The core intuition is this: confine the model's creativity to the fluency of language, but bring the facts in from outside, from a trusted source. That way, instead of trying to 'remember' something, the model speaks by reading from the evidence placed in front of it.</p>
+<p>The most common architecture for this is RAG, short for Retrieval-Augmented Generation. RAG works in two stages. First, in retrieval, the user's question goes to a search system that surfaces the documents most relevant to it. Then, in generation, those documents are handed to the model alongside the question, with the instruction to 'answer using only these documents.' The model now fills the gaps not with imagination but with the retrieved text. Think of a student sitting a closed-book exam; RAG turns it into an open-book exam where the right pages are already open in front of them.</p>
+<p>The beauty of RAG is that it touches the two biggest causes of hallucination at once. It solves the knowledge-gap problem, because the correct information is now present in the context. And it solves the staleness problem, because instead of retraining the model you simply refresh the documents in the retrieval layer. Legislation changed? You update the document pool, not the model.</p>
+<p>The AI assistants we build at HatsonTech rest on exactly this principle at their core. In a document-search assistant, for example, an answer never comes from the model's memory; the relevant document, section or record is retrieved first, and the answer is produced leaning only on that retrieved text. The fluency comes from the model, while the guarantee of accuracy comes from a real, verifiable source.</p>
+<h2>Citations: Making the Answer Auditable</h2>
+<p>Giving a correct answer is not enough on its own; that answer has to be verifiable. This is precisely where citations come in. A well-designed system does not merely state a conclusion; it also shows which document, which article, which paragraph that conclusion came from. The user is then never forced to trust the answer blindly; they can go to the source and check it with their own eyes.</p>
+<p>Citations serve two functions against hallucination. The first is obvious: they give the user a way to verify. The second is subtler: they discipline the model's behavior. When the model knows it must tie every claim to a retrieved source, the room it has to wander beyond the context and invent freely shrinks. The requirement to cite acts as a kind of anchor.</p>
+<p>But there is a trap here, and we touched on it earlier: the citation itself can be a hallucination. That is why serious systems separately verify that citations are real; they check that the cited source actually exists and actually says what was claimed. Not just producing a citation, but validating the citation it produced, is part of the job. A citation that opens onto a real document when you click it is worth far more than the model's most elegant sentence.</p>
+<h2>You Cannot Improve What You Do Not Measure: Evaluation</h2>
+<p>Assuming a system is reliable because it 'looks good' is an open invitation to hallucination. A mature AI product measures its hallucination rate continuously and systematically. The key idea here is decomposition: when an answer is bad, was the problem retrieving the wrong document, or misreading the right one? These are different failures, and they demand different fixes.</p>
+<p>To measure the retrieval layer, you use question sets whose correct answers are known in advance, tracking whether the system finds the relevant source and how highly it ranks it. To measure the generation layer, you measure faithfulness: is everything the model says actually supported by the provided context, or does it step beyond it? In high-stakes domains, faithfulness is perhaps the single most critical metric.</p>
+<p>A modern technique is to use another capable model as a 'judge' (called LLM-as-a-judge): one model scores another model's answer against the given context and flags any claims that are unsupported. This is not sufficient on its own, but it is a practical way to scale human review. What matters most is that evaluation is not a one-off exam but a continuously turning loop; every change is confirmed to genuinely improve quality with numbers, not with intuition.</p>
+<h2>Human Review: Not Leaving the Last Word to the Machine</h2>
+<p>Despite every technical safeguard, no system can eliminate hallucination one hundred percent. That is why well-designed products position the machine not as the final decision-maker but as a powerful assistant. This is called 'human-in-the-loop': for consequential decisions, the final sign-off always rests with an expert. The AI drafts, gathers the sources and saves time — but it is the human who signs.</p>
+<p>Design plays a large role here. A good system is built to encourage scrutiny rather than complacency: it shows the sources next to the answer, gives cues about how confident the model is, and states plainly when it lacks a sufficient basis. An assistant that can say 'I don't know' is far more trustworthy than one that answers everything confidently and occasionally makes things up.</p>
+<p>We build our AI products with exactly this philosophy. The system does not replace the expert; it behaves like a colleague that compresses hours of research into seconds, can show its basis for every claim, and always leaves the final decision to the person. The power of AI lies not in removing human judgment, but in setting that judgment on a faster and firmer footing.</p>
+<h2>Why It Matters Most in Law and Medicine</h2>
+<p>If a chatbot gets a recipe wrong, at worst your dinner is ruined. But the same mistake made in law or medicine can have irreversible consequences. A brief built on a fabricated court decision can lose the case and even bring sanctions down on the lawyer. A wrong drug dose or a non-existent contraindication can put a patient's health at risk. In these fields, being 'usually correct' is not good enough.</p>
+<p>These high-stakes domains share a common feature: accuracy matters far more than fluency, and every claim must have a basis. For a lawyer, an answer whose source cannot be shown is more dangerous than no answer at all, because it creates a false sense of confidence. In medicine, too, the reasoning and evidence behind a decision are as important as the decision itself. So grounding, citations and human review are not a luxury here but a minimum requirement.</p>
+<p>There are real cases where the price has already been paid: in several countries, lawyers have faced sanctions for submitting to court fake decisions invented by AI. These incidents showed that hallucination is not a theoretical curiosity but a concrete professional risk. The solution is not to flee from AI, but to surround it with the right architecture — that is, with layers of grounding and review.</p>
+<p>At HatsonTech this is precisely our starting point. We believe AI in high-stakes settings should not be an oracle that users trust blindly, but a tool that can rest every sentence on a real source and say 'I have no basis for this' when it must. Reducing hallucination to zero may not be possible, but reining it in and making it visible is — and that, in the end, is what trustworthy AI is all about.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>A hallucination is a language model producing false information fluently and confidently; it is not lying but a 'confident-sounding prediction error.'</li><li>The cause is architectural: an LLM is not a database but a probability engine predicting the next word; knowledge gaps, the training cutoff and pressure to 'be helpful' all feed invention.</li><li>The types differ: factual errors, unfaithfulness to context, fabricated citations and quietly flawed reasoning — each needs a different fix.</li><li>The strongest defense is grounding/RAG: bring facts from a trusted source and tell the model to rely only on them; when legislation changes you update the document pool, not the model.</li><li>Citations make an answer auditable and discipline the model; but since the citation itself can be a hallucination, citations must be separately verified.</li><li>No system can eliminate hallucination; continuous evaluation (especially faithfulness) and human-in-the-loop review are essential. In high-stakes fields like law and medicine these are a minimum, not a luxury.</li><li>The AI products we build are grounded in this philosophy: answers are retrieved from trusted sources, every claim is shown, and the final decision always stays with the human expert.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

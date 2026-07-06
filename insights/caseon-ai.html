@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic legal research that finishes in seconds — built on large language models and RAG over Turkish legal corpora.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/caseon-ai.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/caseon-ai.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/caseon-ai.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/caseon-ai.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="caseon.ai — Rebuilding legal research in Türkiye with AI">
+  <meta property="og:description" content="caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic legal research that finishes in seconds — built on large language models and RAG over Turkish legal corpora.">
+  <meta property="og:url" content="https://hatsontech.com/insights/caseon-ai.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/caseon-ai.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="caseon.ai — Rebuilding legal research in Türkiye with AI">
+  <meta name="twitter:description" content="caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic legal research that finishes in seconds — built on large language models and RAG over Turkish legal corpora.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/caseon-ai.jpg">
+  <title>caseon.ai — Rebuilding legal research in Türkiye with AI | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "caseon.ai — Rebuilding legal research in Türkiye with AI",
+  "description": "caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic legal research that finishes in seconds — built on large language models and RAG over Turkish legal corpora.",
+  "inLanguage": "en",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/insights/caseon-ai.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/caseon-ai.jpg",
+  "articleSection": "Product",
+  "keywords": "caseon.ai, LegalTech, AI, RAG, LLM, Turkish NLP, Legal Research"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Insights",
+      "item": "https://hatsontech.com/insights/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "caseon.ai — Rebuilding legal research in Türkiye with AI",
+      "item": "https://hatsontech.com/insights/caseon-ai.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/caseon-ai.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/caseon-ai.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/insights/">Insights</a> / caseon.ai — Rebuilding legal research in Türkiye with AI</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/caseon-ai.jpg" alt="caseon.ai — Rebuilding legal research in Türkiye with AI" loading="lazy">
+    <div class="article-cat">Product</div>
+    <h1>caseon.ai — Rebuilding legal research in Türkiye with AI</h1>
+    <p class="article-sub">caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic research that finishes in seconds — built on large language models and RAG over Turkish legal corpora.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 9 min read</span><div class="article-tags"><span class="article-tag">caseon.ai</span><span class="article-tag">LegalTech</span><span class="article-tag">AI</span><span class="article-tag">RAG</span><span class="article-tag">LLM</span><span class="article-tag">Turkish NLP</span></div></div>
+    <div class="article-body">
+<h2>Start with a lawyer's actual day</h2>
+<p>Anyone who practices law in Türkiye knows the scene: a case file in front of you, an argument to make, and a dozen browser tabs open in search of the precedent that backs it up. You shuttle between the Court of Cassation, the Council of State, the Constitutional Court, the regional appellate courts and the official legislation databases — each with its own search logic. Yet what you are really after is rarely a single keyword; it is a legal situation. Classic search engines match the word, not the situation.</p>
+<p>The result is a cost everyone feels but few name: time. The hours that are a lawyer's scarcest resource drain away on sifting through decisions worded differently but identical in substance, filtering duplicate results, and chasing down the right article of legislation. The knowledge is already there. The problem is not producing it — it is finding and extracting it from an enormous pile, exactly when you need it and with confidence.</p>
+<p>We built caseon.ai to close that gap. Our aim is not to replace the lawyer but to let them spend more time on the reasoning that is theirs and less on hunting for sources. We treat AI not as a showpiece but as an invisible, indispensable layer in the daily workflow.</p>
+<h2>The scale of the problem: the volume of case-law and legislation</h2>
+<p>Turkish law is an ever-expanding ocean of text. Hundreds of thousands of decisions issued each year by the high courts, thousands of statutes, regulations, communiqués and circulars in force — and on top of those, every amendment they have undergone over time. The picture is far beyond what any single mind can hold. Nor are these texts static: an article is amended, a decision loses its binding force when case-law is unified, a new regulation repeals an old one.</p>
+<p>Traditional keyword search has two fundamental blind spots here. First, because the same legal concept can be phrased in different words, the right decision slips away the moment you pick the wrong term. Second, even when a keyword match returns hundreds of results, deciding which is genuinely a precedent for the concrete case still falls to the human. Search, in other words, is not the end of the work but only its beginning.</p>
+<p>This volume and volatility turn legal research, at bottom, into an information-retrieval problem — and that is precisely where modern language models and semantic search are strongest. caseon.ai's starting point is this technical observation: with the right infrastructure, the ocean becomes searchable, intelligible, and navigable with confidence.</p>
+<h2>What caseon.ai does: four capabilities, one flow</h2>
+<p>We designed caseon.ai around four core capabilities that span a lawyer's day. The first is semantic case-law search: instead of a list of keywords, the user describes a concrete legal situation in their own words, and the system surfaces decisions whose substance matches even when the wording does not. What is being searched for is meaning, not the word.</p>
+<p>The second is document analysis: hand the system a petition, a contract or a decision, and caseon.ai reads the text, ties it to the relevant legislation and case-law, and flags the points that deserve attention. The third is smart templates: rather than drafting repetitive legal documents from scratch, you begin from context-aware drafts that adapt to the specifics of the file.</p>
+<p>The fourth ties the rest together — the legal assistant: a layer that converses in natural language, answers with citations to its sources, and turns a research question into a flow you can follow step by step. These four capabilities do not behave like separate tools but as one integrated experience, because in a lawyer's mind, too, research, analysis and drafting are never truly separate.</p>
+<h2>Under the hood: an LLM + RAG architecture</h2>
+<p>The engine behind caseon.ai's legal intelligence is HatsonAI, our own AI engine. At the heart of the architecture sits Retrieval-Augmented Generation (RAG): rather than answering from the fuzzy memory baked into its own parameters, the language model first retrieves the relevant, real legal texts, then grounds its answer in those sources alone. The model does not invent; it reads and reports.</p>
+<p>In practice, the flow runs like this. The Turkish legal corpus — decisions, statutes, regulations — is converted into vector representations that encode meaning and stored in a vector database. The user's question is mapped into that same meaning space; the system finds the documents closest in meaning and feeds them to the language model as context. The model builds its answer on that concrete context and shows exactly which decision or article it relied on.</p>
+<p>This design carries two consequences that matter deeply for law. The first is traceability: because every answer can be traced back to the source it rests on, the lawyer verifies rather than trusts blindly. The second is updatability: when a new decision or a legislative change lands, there is no need to retrain the model — updating the knowledge base is enough. We build this infrastructure on modern, secure cloud AI services, designed to scale reliably in production.</p>
+<h2>What makes Turkish legal text hard</h2>
+<p>Taking a general-purpose language model and pointing it at law is not enough, because Turkish legal language brings difficulties of its own. Turkish is agglutinative: from a single root you can derive long inflected words that carry as much information as an entire English clause. For models optimized for Western languages, this can produce silent errors in how text is split into pieces (tokenization) and how meaning is captured.</p>
+<p>On top of that sit the layers of law itself. Terms of Ottoman-Turkish origin still live in the language of legislation, standing side by side with their modern equivalents; the old and the new name of the same concept circulate together. The citation structure is dense: a decision points to other decisions, an article to other articles and to amending statutes. A system that loses context easily attaches to the wrong node in this web of references.</p>
+<p>Our approach is to treat these difficulties as a problem of technical design. We build processing pipelines attuned to the structure of Turkish and to legal terminology, domain-specific semantic representations, and retrieval strategies that preserve legal citations. caseon.ai's value lies not merely in using a powerful model, but in aligning that model specifically with the language and logic of Turkish law.</p>
+<h2>Trust, verifiability and privacy</h2>
+<p>In law, a wrong source is not merely a mistake; it can affect a client's rights and the outcome of a case. So our first principle in designing caseon.ai was that the system must never speak in a way that is confident but unfounded. That is the core reason we chose a RAG architecture: every answer is tied to the decision or article of legislation it rests on, and the user can reach the source in a single click and verify it with their own eyes.</p>
+<p>This is a deliberate stance on the role of AI. caseon.ai is not the authority with the final word; it is a tool that accelerates and strengthens the lawyer's reasoning. We design the system so that it can signal what it does not know, or when the available source material is thin — because a trustworthy assistant is one that can say 'I am not sure' when it should.</p>
+<p>Privacy deserves the same seriousness. Legal documents are, by their very nature, sensitive and often confidential. So we treat data security and privacy not as an afterthought but as a fundamental design requirement, building the product on secure cloud infrastructure. The aim is to earn the lawyer's trust in the technology — and to keep it.</p>
+<h2>caseon.ai in a lawyer's day</h2>
+<p>Consider a concrete example. A lawyer faces a contentious contract dispute they are about to take on. In the past, this meant a search session that swallowed the morning. With caseon.ai, they describe the dispute in their own words; the system surfaces decisions with similar factual patterns, ties them to the relevant legislation, and shows — with sources — why each one is relevant.</p>
+<p>Next, the lawyer feeds the opposing party's petition into the system. Document analysis extracts the legal arguments the petition rests on, identifies the articles it cites, and proposes starting points for counter-arguments. When it is time to draft the reply, smart templates let them begin from a draft already adapted to the context of the file.</p>
+<p>Throughout this flow, the legal assistant stays at their side: it answers questions like 'is the current version of this decision still valid?' or 'was this article amended later?' with citations to sources. What is gained in the end is not just time, but a shift in the lawyer's mental energy — from mechanical searching to strategic thinking. That is the real promise of caseon.ai.</p>
+<h2>Where we are going</h2>
+<p>caseon.ai is not a finished product but a platform that keeps deepening. In the period ahead, our focus falls on three fronts: sharpening retrieval quality and semantic matching still further; feeding the legal corpus with broader sources and a stricter freshness guarantee; and strengthening the legal assistant's ability to follow multi-step, complex research questions from end to end.</p>
+<p>In a wider frame, we see this as a proving ground for Turkish-language AI. Every method we develop on the language of Turkish law inside caseon.ai — from handling agglutinative structure to domain-specific semantic representations and citation-preserving retrieval — is a general contribution to the field of Turkish natural language processing, and to the software and AI products HatsonTech builds. At HatsonTech, building our own product means building our own methods.</p>
+<p>Our goal is ambitious but clear: to become the default starting point for legal research in Türkiye — the place a lawyer reflexively opens when a question arises. We intend to get there not through flashy promises, but through a product that works a little more accurately, a little faster and a little more reliably every day. Learn more at <a href="https://caseon.ai" target="_blank" rel="noopener">caseon.ai</a>. The journey has begun, and its most exciting stretch lies ahead.</p>
+    </div>
+    <div class="takeaways"><h3>Key takeaways</h3><ul><li>The volume of case-law and legislation in Turkish law is too large for any one person to track and is constantly changing; classic keyword search finds the word but not the legal situation.</li><li>caseon.ai combines four capabilities in a single flow: semantic case-law search, document analysis, smart templates, and a legal assistant that cites its sources.</li><li>The platform rests on an LLM + RAG architecture powered by HatsonAI, our own AI engine; answers are not invented but grounded in real legal texts and traceable to their source.</li><li>Turkish's agglutinative structure, the coexistence of Ottoman-origin and modern terms, and a dense citation web make legal text technically hard, which is why we align the model specifically with the language of Turkish law.</li><li>Trust, verifiability and privacy are core design principles: caseon.ai does not have the final word; it accelerates and strengthens the lawyer's reasoning.</li><li>The goal is to become the default starting point for legal research in Türkiye, contributing to Turkish-language AI along the way.</li></ul></div>
+    <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="https://caseon.ai" target="_blank" rel="noopener">caseon.ai</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

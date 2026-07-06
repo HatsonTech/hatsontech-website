@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HatsonTech Faydalı Bilgiler — yapay zeka, büyük dil modelleri, RAG ve Türkçe NLP üzerine eğitici yazılar.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Faydalı Bilgiler | HatsonTech">
+  <meta property="og:description" content="HatsonTech Faydalı Bilgiler — yapay zeka, büyük dil modelleri, RAG ve Türkçe NLP üzerine eğitici yazılar.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:image" content="https://hatsontech.com/image/hatsontech-logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Faydalı Bilgiler | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+    .blog-card.card-in { animation: cardIn .5s cubic-bezier(.22,.61,.36,1) both; }
+    @keyframes cardIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "HatsonTech — Faydalı Bilgiler",
+  "url": "https://hatsontech.com/faydali-bilgiler/",
+  "inLanguage": "tr",
+  "description": "Yapay zeka, LLM, RAG ve Türkçe NLP üzerine yazılar.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?",
+      "url": "https://hatsontech.com/faydali-bilgiler/akil-yuruten-reasoning-modeller.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart",
+      "url": "https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi",
+      "url": "https://hatsontech.com/faydali-bilgiler/baglam-muhendisligi-context-engineering.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?",
+      "url": "https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Çoklu-Ajan (Multi-Agent) Sistemler: Tek Ajandan Yapay Zeka Ekibine",
+      "url": "https://hatsontech.com/faydali-bilgiler/coklu-ajan-multi-agent-sistemler.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Büyük Dil Modelleri (LLM) Nedir ve Nasıl Çalışır?",
+      "url": "https://hatsontech.com/faydali-bilgiler/llm-nedir-nasil-calisir.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?",
+      "url": "https://hatsontech.com/faydali-bilgiler/token-embedding-vektor.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları",
+      "url": "https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli",
+      "url": "https://hatsontech.com/faydali-bilgiler/rag-vs-fine-tuning.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-halusinasyon.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Transformer Mimarisi, Sade Bir Dille",
+      "url": "https://hatsontech.com/faydali-bilgiler/transformer-mimarisi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zeka Ajanları ve Araç Kullanımı: Sohbet Botundan Eyleme Geçen Yapay Zekaya",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-ajanlari.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Vektör Veritabanları ve Anlamsal Arama: Bilgisayar \"Anlam\"ı Nasıl Bulur?",
+      "url": "https://hatsontech.com/faydali-bilgiler/vektor-veritabani-anlamsal-arama.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zekâ Etiği, Önyargı ve Güvenlik: Sakin ve Pratik Bir Rehber",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-etigi-onyargi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk",
+      "url": "https://hatsontech.com/faydali-bilgiler/hukukta-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Günlük İşte Yapay Zeka: Sakin Bir Verimlilik Rehberi",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-verimlilik.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Çok Modlu Yapay Zeka: Bir Model Metni, Görseli ve Sesi Aynı Anda Nasıl Anlıyor?",
+      "url": "https://hatsontech.com/faydali-bilgiler/cok-modlu-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Bir Yapay Zekânın \"İyi\" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-degerlendirme.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi",
+      "url": "https://hatsontech.com/faydali-bilgiler/acik-kaynak-kapali-modeller.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "İşletmeler İçin Yapay Zeka: Hype Olmadan Nereden Başlamalı",
+      "url": "https://hatsontech.com/faydali-bilgiler/isletmeler-icin-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zekanın Geleceği ve AGI Tartışması: Gürültüyü Sinyalden Ayırmak",
+      "url": "https://hatsontech.com/faydali-bilgiler/yapay-zekanin-gelecegi-agi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "caseon.ai — Türkiye'de hukuki araştırmayı yapay zekayla yeniden kuruyoruz",
+      "url": "https://hatsontech.com/faydali-bilgiler/caseon-ai.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak",
+      "url": "https://hatsontech.com/faydali-bilgiler/rag-turkce-hukuk-verisi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Türkçe için Yapay Zeka: Türkçe Doğal Dil İşlemenin Zorlukları ve Fırsatları",
+      "url": "https://hatsontech.com/faydali-bilgiler/turkce-yapay-zeka-nlp.html",
+      "datePublished": "2026-06-07"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="blog-head">
+    <h1>Faydalı Bilgiler</h1>
+    <p>Yapay zeka, büyük dil modelleri, RAG ve Türkçe NLP üzerine eğitici yazılar.</p>
+  </header>
+  <section class="blog-grid">
+
+      <article class="blog-card">
+        <a href="akil-yuruten-reasoning-modeller.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280" alt="Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Eğitim</div>
+          <h2><a href="akil-yuruten-reasoning-modeller.html">Akıl Yürüten Yapay Zeka Modelleri: 'Düşünen' Modeller Nasıl Çalışır?</a></h2>
+          <p>Yeni nesil modeller cevabı hemen söylemiyor; önce 'düşünüyor'. Bu düşünmenin gerçekte ne olduğunu, neden bazı problemleri çözdüğünü, neye mal olduğunu ve her işe neden gerekmediğini jargonun arkasına saklanmadan anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="akil-yuruten-reasoning-modeller.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="model-context-protocol-mcp.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280" alt="MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="model-context-protocol-mcp.html">MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart</a></h2>
+          <p>Bir yapay zekâ modeli tek başına takviminize bakamaz, veritabanınızı sorgulayamaz, bir dosya okuyamaz. MCP, modelleri dış araçlara ve verilere bağlamanın ortak, açık standardıdır — yapay zekânın USB-C'si.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 dk okuma</div>
+          <a class="read-more" href="model-context-protocol-mcp.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="baglam-muhendisligi-context-engineering.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280" alt="Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="baglam-muhendisligi-context-engineering.html">Bağlam Mühendisliği (Context Engineering): Prompt'un Ötesi</a></h2>
+          <p>İyi sonuç almak artık tek bir 'doğru soru' değil; modelin o an gördüğü bağlamın tamamını tasarlamaktır. Talimat, getirilen belgeler, hafıza ve araç çıktıları... Bunları doğru kurma işine bağlam mühendisliği denir.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="baglam-muhendisligi-context-engineering.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="kucuk-dil-modelleri-slm.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280" alt="Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="kucuk-dil-modelleri-slm.html">Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?</a></h2>
+          <p>Manşetler hep 'daha büyük' modelleri konuşur. Ama gerçek ürünlerde sessiz bir akım tersine işliyor: küçük, hızlı ve ucuz modeller. Her iş için dev bir model çalıştırmak çoğu zaman gereksiz ve pahalıdır.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 dk okuma</div>
+          <a class="read-more" href="kucuk-dil-modelleri-slm.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="coklu-ajan-multi-agent-sistemler.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1280" alt="Çoklu-Ajan (Multi-Agent) Sistemler: Tek Ajandan Yapay Zeka Ekibine" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="coklu-ajan-multi-agent-sistemler.html">Çoklu-Ajan (Multi-Agent) Sistemler: Tek Ajandan Yapay Zeka Ekibine</a></h2>
+          <p>Tek bir ajan planlayıp araç kullanarak iş yapabilir. Peki bir işi, her biri kendi uzmanlığına sahip birden çok ajan bir ekip gibi yürütürse? Çoklu-ajan sistemlerin fikri budur — ve 2026'nın önemli mimari desenidir.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 dk okuma</div>
+          <a class="read-more" href="coklu-ajan-multi-agent-sistemler.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="llm-nedir-nasil-calisir.html"><img class="blog-card-img" src="../image/faydali-bilgiler/llm-nedir-nasil-calisir.jpg" alt="Büyük Dil Modelleri (LLM) Nedir ve Nasıl Çalışır?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Eğitim</div>
+          <h2><a href="llm-nedir-nasil-calisir.html">Büyük Dil Modelleri (LLM) Nedir ve Nasıl Çalışır?</a></h2>
+          <p>ChatGPT'nin, Gemini'nin ve Claude'un arkasındaki teknolojiyi sıfırdan anlamak: sonraki kelimeyi tahmin etmekten parametrelere, bağlam penceresinden eğitim ile çalışma arasındaki farka kadar, hiçbir teknik geçmiş gerektirmeden.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="llm-nedir-nasil-calisir.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="token-embedding-vektor.html"><img class="blog-card-img" src="../image/faydali-bilgiler/token-embedding-vektor.jpg" alt="Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Eğitim</div>
+          <h2><a href="token-embedding-vektor.html">Token, Embedding ve Vektör: Yapay Zeka Dili Nasıl Sayıya Çeviriyor?</a></h2>
+          <p>Bir bilgisayar harfleri değil, sayıları işler. Peki bir kelime, bir cümle, hatta bir anlam nasıl oluyor da sayıya dönüşüyor? Tokenizasyondan embedding'lere, vektör uzayından anlamsal benzerliğe; yapay zekanın dili kavrama biçimini matematik bilmeden, somut analojilerle anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="token-embedding-vektor.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="prompt-muhendisligi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/prompt-muhendisligi.jpg" alt="Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Pratik / Nasıl Yapılır</div>
+          <h2><a href="prompt-muhendisligi.html">Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları</a></h2>
+          <p>Aynı yapay zeka modeli, kötü bir istemle vasat, iyi bir istemle şaşırtıcı sonuçlar verir. Aradaki farkı yaratan birkaç basit ama güçlü alışkanlığı —net talimat, bağlam, örnek ve adım adım düşünme— somut öncesi/sonrası karşılaştırmalarıyla anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="prompt-muhendisligi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="rag-vs-fine-tuning.html"><img class="blog-card-img" src="../image/faydali-bilgiler/rag-vs-fine-tuning.jpg" alt="RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="rag-vs-fine-tuning.html">RAG mı, İnce Ayar mı? Hangisini Ne Zaman Seçmeli</a></h2>
+          <p>Bir dil modeline ihtiyacı olan bilgiyi vermenin iki ayrı yolu var: önüne kitabı açık bırakmak (RAG) ya da onu yeniden okula göndermek (ince ayar). İkisinin gerçekte ne yaptığını, nerede ayrıştığını ve en iyi sistemlerin neden çoğu zaman ikisini birden kullandığını anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="rag-vs-fine-tuning.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-halusinasyon.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg" alt="Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Eğitim</div>
+          <h2><a href="yapay-zeka-halusinasyon.html">Yapay Zekâ Halüsinasyonu: Modeller Neden Uydurur ve Bunu Nasıl Azaltırız?</a></h2>
+          <p>Bir dil modeli neden yanlış bir cevabı, tam bir özgüvenle, doğruymuş gibi söyler? Halüsinasyonun ne olduğunu, neden modelin doğasından kaynaklandığını ve mühendislerin onu nasıl dizginlediğini sade bir dille anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-halusinasyon.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="transformer-mimarisi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/transformer-mimarisi.jpg" alt="Transformer Mimarisi, Sade Bir Dille" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Araştırma</div>
+          <h2><a href="transformer-mimarisi.html">Transformer Mimarisi, Sade Bir Dille</a></h2>
+          <p>2017'de yayımlanan tek bir makale yapay zekânın gidişatını değiştirdi. "Attention Is All You Need" fikrinin neden bu kadar önemli olduğunu, kelimelerin birbirine nasıl "dikkat ettiğini" ve bugünkü büyük dil modellerinin neden hepsinin bu temele oturduğunu adım adım anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="transformer-mimarisi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-ajanlari.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-ajanlari.jpg" alt="Yapay Zeka Ajanları ve Araç Kullanımı: Sohbet Botundan Eyleme Geçen Yapay Zekaya" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="yapay-zeka-ajanlari.html">Yapay Zeka Ajanları ve Araç Kullanımı: Sohbet Botundan Eyleme Geçen Yapay Zekaya</a></h2>
+          <p>Bir "ajan" sıradan bir sohbet botundan nasıl ayrılır? Planla-uygula-gözlemle döngüsünü, araç çağırmayı, MCP gibi araç standartlarını ve ajanların nerede parlayıp nerede çuvalladığını sade bir dille anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-ajanlari.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="vektor-veritabani-anlamsal-arama.html"><img class="blog-card-img" src="../image/faydali-bilgiler/vektor-veritabani-anlamsal-arama.jpg" alt="Vektör Veritabanları ve Anlamsal Arama: Bilgisayar &quot;Anlam&quot;ı Nasıl Bulur?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="vektor-veritabani-anlamsal-arama.html">Vektör Veritabanları ve Anlamsal Arama: Bilgisayar "Anlam"ı Nasıl Bulur?</a></h2>
+          <p>Anahtar kelime aramasından anlamsal aramaya: embedding'ler, HNSW gibi yaklaşık komşu indeksleri, vektör veritabanının gerçekte yaptığı iş ve yeniden sıralama. Hepsini sade örneklerle anlatıyor, bir kurum içi bilgi tabanında belgelerin kelimeyle değil anlamla nasıl bulunduğunu gösteriyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="vektor-veritabani-anlamsal-arama.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-etigi-onyargi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg" alt="Yapay Zekâ Etiği, Önyargı ve Güvenlik: Sakin ve Pratik Bir Rehber" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Toplum</div>
+          <h2><a href="yapay-zeka-etigi-onyargi.html">Yapay Zekâ Etiği, Önyargı ve Güvenlik: Sakin ve Pratik Bir Rehber</a></h2>
+          <p>Önyargı nereden gelir, adalet ve şeffaflık aslında ne demektir, KVKK ile AB Yapay Zekâ Yasası bizden ne ister? Vaaz vermeden, somut örneklerle gidiyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-etigi-onyargi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="hukukta-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/hukukta-yapay-zeka.jpg" alt="Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">LegalTech</div>
+          <h2><a href="hukukta-yapay-zeka.html">Hukukta Yapay Zeka: Fırsatlar, Riskler ve Sorumluluk</a></h2>
+          <p>Yapay zeka hukuki araştırmayı, taslak yazımını ve belge incelemesini dakikalara indiriyor. Ama uydurma atıflar, gizlilik açıkları ve sessizce yerleşen aşırı güven gibi gerçek riskler de getiriyor. Bu yazıda neyin gerçekten işe yaradığını, neyin tehlikeli olduğunu ve son sözün neden hâlâ hukukçuda kaldığını açıklıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="hukukta-yapay-zeka.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-verimlilik.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-verimlilik.jpg" alt="Günlük İşte Yapay Zeka: Sakin Bir Verimlilik Rehberi" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Pratik / Nasıl Yapılır</div>
+          <h2><a href="yapay-zeka-verimlilik.html">Günlük İşte Yapay Zeka: Sakin Bir Verimlilik Rehberi</a></h2>
+          <p>Yazıdan araştırmaya, e-postadan kodlamaya kadar profesyoneller yapay zekayı her gün nasıl kullanıyor; işi ona nasıl iyi devredersiniz ve nereye sakın güvenmemelisiniz?</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-verimlilik.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="cok-modlu-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg" alt="Çok Modlu Yapay Zeka: Bir Model Metni, Görseli ve Sesi Aynı Anda Nasıl Anlıyor?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Eğitim</div>
+          <h2><a href="cok-modlu-yapay-zeka.html">Çok Modlu Yapay Zeka: Bir Model Metni, Görseli ve Sesi Aynı Anda Nasıl Anlıyor?</a></h2>
+          <p>Bir yapay zeka bir fotoğrafa bakıp içindeki yazıyı okuyabiliyor, bir grafiği yorumlayabiliyor ya da bir sesi dinleyip yanıt verebiliyorsa buna çok modlu (multimodal) yapay zeka denir. Bu yeteneğin altındaki fikri, gerçek kullanım alanlarını ve sınırlarını hiçbir teknik geçmiş gerektirmeden, somut örneklerle anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="cok-modlu-yapay-zeka.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-degerlendirme.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg" alt="Bir Yapay Zekânın &quot;İyi&quot; Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="yapay-zeka-degerlendirme.html">Bir Yapay Zekânın "İyi" Olduğunu Nereden Biliyoruz? Benchmark'lar ve Değerlendirme</a></h2>
+          <p>Liderlik tablolarındaki yüzdeler gerçekte ne anlatır, benchmark'lar nerede yanıltır ve bir modelin işe yarayıp yaramadığını asıl ne kanıtlar? Sade bir rehber.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-degerlendirme.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="acik-kaynak-kapali-modeller.html"><img class="blog-card-img" src="../image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg" alt="Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="acik-kaynak-kapali-modeller.html">Açık Kaynak mı, Kapalı Model mi? Yapay Zekânın Büyük Tercihi</a></h2>
+          <p>Bir yapay zekâ modelini ya bir bulut hizmeti gibi kiralarsınız ya da bir dosya gibi indirip kendi makinenize kurarsınız. Bu iki yol arasındaki seçim; kontrol, gizlilik, maliyet ve yetenek arasında gerçek bir tercih demek. İkisinin ne anlama geldiğini, ne zaman hangisinin daha mantıklı olduğunu ve olgun ekiplerin neden çoğu zaman ikisini birden kullandığını anlatıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="acik-kaynak-kapali-modeller.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-veri-gizliligi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg" alt="Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Toplum</div>
+          <h2><a href="yapay-zeka-veri-gizliligi.html">Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?</a></h2>
+          <p>Bir yapay zekâ aracına bir şey yazdığınızda veriniz tam olarak nereye gider? Eğitim ile çıkarım arasındaki kritik fark, bulut–özel kurulum–on-prem seçenekleri, KVKK ile GDPR'ın temelleri, anonimleştirmenin gerçek sınırları ve hem bireyler hem şirketler için işe yarayan pratik ipuçları.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="yapay-zeka-veri-gizliligi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="isletmeler-icin-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg" alt="İşletmeler İçin Yapay Zeka: Hype Olmadan Nereden Başlamalı" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">İşletme</div>
+          <h2><a href="isletmeler-icin-yapay-zeka.html">İşletmeler İçin Yapay Zeka: Hype Olmadan Nereden Başlamalı</a></h2>
+          <p>Slayttaki büyük vaatlerle değil gerçek bir problemle başlayan; küçük adım atan, dürüstçe ölçen ve gerektiğinde geri çekilmeyi de bilen şirketler için pratik bir yol haritası.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="isletmeler-icin-yapay-zeka.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zekanin-gelecegi-agi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zekanin-gelecegi-agi.jpg" alt="Yapay Zekanın Geleceği ve AGI Tartışması: Gürültüyü Sinyalden Ayırmak" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Araştırma</div>
+          <h2><a href="yapay-zekanin-gelecegi-agi.html">Yapay Zekanın Geleceği ve AGI Tartışması: Gürültüyü Sinyalden Ayırmak</a></h2>
+          <p>"Genel yapay zeka" (AGI) tam olarak ne demek, şu an gerçekten neredeyiz, ajansal yapay zeka neyi değiştiriyor? İyimser ve temkinli görüşleri, yakın vadeli gerçek etkiyi ve şişirilmiş vaatleri sakin bir dille birbirinden ayırıyoruz.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 13 dk okuma</div>
+          <a class="read-more" href="yapay-zekanin-gelecegi-agi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="caseon-ai.html"><img class="blog-card-img" src="../image/faydali-bilgiler/caseon-ai.jpg" alt="caseon.ai — Türkiye'de hukuki araştırmayı yapay zekayla yeniden kuruyoruz" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Ürün</div>
+          <h2><a href="caseon-ai.html">caseon.ai — Türkiye'de hukuki araştırmayı yapay zekayla yeniden kuruyoruz</a></h2>
+          <p>caseon.ai; milyonlarca karar ve binlerce sayfa mevzuat arasında saatler süren manuel aramayı, büyük dil modelleri ve RAG ile saniyeler içinde tamamlanan anlamsal bir hukuki araştırmaya dönüştürür — HatsonAI ile güçlendirilmiştir.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 9 dk okuma</div>
+          <a class="read-more" href="caseon-ai.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="rag-turkce-hukuk-verisi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/rag-turkce-hukuk-verisi.jpg" alt="İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Mühendislik</div>
+          <h2><a href="rag-turkce-hukuk-verisi.html">İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak</a></h2>
+          <p>Ham bir dil modeli işletmenize özgü bilgilerde neden yanılır, Retrieval-Augmented Generation bunu nasıl çözer ve verinize dayanan bir asistanın altındaki getirme katmanı nasıl kurulur?</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 dk okuma</div>
+          <a class="read-more" href="rag-turkce-hukuk-verisi.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="turkce-yapay-zeka-nlp.html"><img class="blog-card-img" src="../image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg" alt="Türkçe için Yapay Zeka: Türkçe Doğal Dil İşlemenin Zorlukları ve Fırsatları" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Araştırma</div>
+          <h2><a href="turkce-yapay-zeka-nlp.html">Türkçe için Yapay Zeka: Türkçe Doğal Dil İşlemenin Zorlukları ve Fırsatları</a></h2>
+          <p>Türkçe neden dil modelleri için zor bir dildir, bu zorluk LLM'lerin davranışını nasıl şekillendirir ve Türkçe öncelikli yapay zeka ürünleri kurmak gerçekte ne gerektirir?</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 dk okuma</div>
+          <a class="read-more" href="turkce-yapay-zeka-nlp.html">Devamını oku &rarr;</a>
+        </div>
+      </article>
+  </section>
+  <nav class="blog-pagination" id="blogPager" aria-label="pagination"></nav>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+  <script>
+(function () {
+  var PER = 9;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.blog-grid .blog-card'));
+  var pager = document.getElementById('blogPager');
+  if (!pager) return;
+  var pages = Math.ceil(cards.length / PER);
+  function show(p, scroll) {
+    cards.forEach(function (c, i) { var v = (i >= (p - 1) * PER && i < p * PER); c.style.display = v ? '' : 'none'; if (v && scroll) { c.classList.remove('card-in'); void c.offsetWidth; c.classList.add('card-in'); } });
+    Array.prototype.slice.call(pager.querySelectorAll('button')).forEach(function (b) { if (b.dataset.p) b.classList.toggle('active', b.dataset.p === String(p)); });
+    var prev = pager.querySelector('[data-nav=prev]'), next = pager.querySelector('[data-nav=next]');
+    if (prev) prev.disabled = (p <= 1); if (next) next.disabled = (p >= pages);
+    pager.dataset.cur = p;
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if (pages > 1) {
+    var prev = document.createElement('button'); prev.innerHTML = '&larr;'; prev.dataset.nav = 'prev';
+    prev.addEventListener('click', function () { show(Math.max(1, (+pager.dataset.cur || 1) - 1), true); });
+    pager.appendChild(prev);
+    for (var p = 1; p <= pages; p++) { var b = document.createElement('button'); b.textContent = p; b.dataset.p = p; b.addEventListener('click', (function (pp) { return function () { show(pp, true); }; })(p)); pager.appendChild(b); }
+    var next = document.createElement('button'); next.innerHTML = '&rarr;'; next.dataset.nav = 'next';
+    next.addEventListener('click', function () { show(Math.min(pages, (+pager.dataset.cur || 1) + 1), true); });
+    pager.appendChild(next);
+  }
+  show(1, false);
+})();
+</script>
+</body>
+</html>

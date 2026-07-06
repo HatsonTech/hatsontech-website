@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Küçük dil modelleri (SLM) nedir, ne zaman büyük modelden daha akıllı bir seçimdir? Hız, maliyet, gizlilik ve uçta çalışma avantajlarını ve damıtmayı sade bir dille anlatıyoruz.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/kucuk-dil-modelleri-slm.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?">
+  <meta property="og:description" content="Küçük dil modelleri (SLM) nedir, ne zaman büyük modelden daha akıllı bir seçimdir? Hız, maliyet, gizlilik ve uçta çalışma avantajlarını ve damıtmayı sade bir dille anlatıyoruz.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?">
+  <meta name="twitter:description" content="Küçük dil modelleri (SLM) nedir, ne zaman büyük modelden daha akıllı bir seçimdir? Hız, maliyet, gizlilik ve uçta çalışma avantajlarını ve damıtmayı sade bir dille anlatıyoruz.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280">
+  <title>Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?",
+  "description": "Küçük dil modelleri (SLM) nedir, ne zaman büyük modelden daha akıllı bir seçimdir? Hız, maliyet, gizlilik ve uçta çalışma avantajlarını ve damıtmayı sade bir dille anlatıyoruz.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html"
+  },
+  "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280",
+  "articleSection": "Mühendislik",
+  "keywords": "SLM, küçük dil modeli, uç yapay zeka, edge AI, damıtma, verimlilik"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?",
+      "item": "https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/kucuk-dil-modelleri-slm.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/kucuk-dil-modelleri-slm.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280" alt="Küçük Dil Modelleri (SLM) ve Uç Yapay Zeka: Küçük Her Zaman Zayıf mı?" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>Küçük Dil Modelleri (SLM) ve Uç (Edge) Yapay Zeka</h1>
+    <p class="article-sub">Manşetler hep 'daha büyük' modelleri konuşur. Ama gerçek ürünlerde sessiz bir akım tersine işliyor: küçük, hızlı ve ucuz modeller. Her iş için dev bir model çalıştırmak çoğu zaman gereksiz ve pahalıdır.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 10 dk okuma</span><div class="article-tags"><span class="article-tag">SLM</span><span class="article-tag">Küçük Modeller</span><span class="article-tag">Uç Yapay Zeka</span><span class="article-tag">Verimlilik</span></div></div>
+    <div class="article-body">
+<h2>Büyük Her Zaman Daha İyi Değil</h2>
+<p>Yapay zekâ haberlerini takip ederseniz, hep 'daha büyük' modellerin manşet olduğunu görürsünüz: daha çok parametre, daha çok veri, daha çok güç. Ama gerçek ürünlerde sessiz bir akım tersine işliyor: küçük dil modelleri (SLM, small language models). Her iş için devasa bir model çalıştırmak çoğu zaman gereksiz, pahalı ve yavaştır. Bu yazıda küçük modellerin ne olduğunu, ne kazandırdığını ve ne zaman büyük modelden daha akıllıca bir seçim olduğunu anlatıyoruz.</p>
+<h2>Küçük Dil Modeli Nedir?</h2>
+<p>Küçük dil modeli, adından da anlaşılacağı gibi, dev modellere kıyasla çok daha az parametreye sahip bir dil modelidir. 'Küçük' görece bir terimdir; ama temel fikir şudur: bir telefonda, bir dizüstü bilgisayarda ya da mütevazı bir sunucuda çalışabilecek kadar hafif. Daha az parametre; daha az hesaplama, daha hızlı cevap ve daha düşük maliyet demektir. Küçük modeller genellikle her şeyi bilen bir dahi olmayı değil, belirli işlerde yeterince iyi, hızlı ve ucuz bir araç olmayı hedefler.</p>
+<h2>Küçük Modelin Kazandırdıkları</h2>
+<ul>
+<li><strong>Hız:</strong> Cevaplar neredeyse anında gelir; gerçek zamanlı uygulamalar için kritiktir.</li>
+<li><strong>Maliyet:</strong> Çalıştırması kat kat ucuzdur; yüksek hacimli işlerde fark büyür.</li>
+<li><strong>Gizlilik:</strong> Cihazda ya da kendi sunucunuzda çalışabildiği için veri dışarı çıkmayabilir — <a href="/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">veri gizliliği</a> açısından büyük avantaj.</li>
+<li><strong>Uçta çalışma (edge):</strong> İnternet bağlantısı olmadan, cihazın kendisinde çalışabilir.</li>
+</ul>
+<h2>Ne Zaman Küçük, Ne Zaman Büyük?</h2>
+<p>Karar görevin doğasına bağlıdır. Sınıflandırma, etiketleme, basit özetleme, yönlendirme ya da belirli bir formatta çıktı üretme gibi dar ve tekrar eden işlerde küçük bir model çoğu zaman yeterlidir; burada büyük modeli çalıştırmak israftır. Buna karşılık çok adımlı muhakeme, derin analiz ya da geniş genel bilgi gerektiren işlerde büyük modeller hâlâ öndedir. <a href="/faydali-bilgiler/akil-yuruten-reasoning-modeller.html">Akıl yürüten modeller</a> yazımızda anlattığımız gibi, doğru mühendislik kararı işi tanımak ve ona uygun aracı seçmektir.</p>
+<h2>Damıtma ve Uç Yapay Zeka</h2>
+<p>Küçük modeller nasıl bu kadar iyi olabiliyor? Yöntemlerden biri 'damıtma'dır (distillation): büyük ve güçlü bir 'öğretmen' modelin davranışını, küçük bir 'öğrenci' modele aktarmak. Öğrenci model, öğretmenin cevaplarından öğrenerek dar bir alanda ona yakın performansı çok daha küçük bir bedenle yakalayabilir. Bu, uç yapay zekânın (edge AI) önünü açar: telefonlarda, araçlarda, fabrika cihazlarında, bulutla konuşmadan çalışan yapay zekâ. Veri cihazda kaldığı için hem hız hem gizlilik kazanılır.</p>
+<h2>HatsonTech: Doğru İşe Doğru Model</h2>
+<p>Bizim için bu bir 'küçük mü büyük mü' ikilemi değil, bir yönlendirme meselesidir. Olgun bir sistem, gelen her işi tek bir dev modele yıkmaz; işi tanır ve uygun modele yönlendirir. Ucuz ve sık işler küçük modele, zor ve kritik muhakeme büyük modele gider. Hassas verinin söz konusu olduğu hukuk gibi alanlarda, kendi altyapımızda çalışabilen modeller gizlilik açısından ayrı bir değer taşır. Amaç en büyük modeli kullanmak değil; her iş için en doğru ve en hesaplı modeli kullanmaktır.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Küçük dil modelleri (SLM), dev modellere göre çok daha az parametreli, telefon veya mütevazı bir sunucuda çalışabilecek kadar hafif modellerdir.</li><li>Kazandırdıkları: hız, düşük maliyet, gizlilik (cihazda/kendi sunucunuzda) ve uçta (edge) çalışabilme.</li><li>Dar ve tekrar eden işlerde küçük model çoğu zaman yeterlidir; çok adımlı muhakeme ve geniş bilgi gerektiren işlerde büyük modeller öndedir.</li><li>Damıtma (distillation), büyük bir 'öğretmen' modelin davranışını küçük bir 'öğrenci' modele aktararak küçük modelleri güçlendirir ve uç yapay zekânın önünü açar.</li><li>Doğru yaklaşım model boyutu değil yönlendirmedir: her işe en doğru ve en hesaplı modeli seçmek; hassas veride kendi altyapınızda çalışan modeller değerlidir.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "name": "hatsontech-website",
+  "version": "1.0.0",
+  "description": "HatsonTech — software solutions & innovation company website (flagship product: FlowDesk). Bilingual (EN/TR) static site.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests configured'",
+    "deploy": "echo 'Configure deployment command based on your hosting'"
+  },
+  "keywords": [
+    "hatsontech",
+    "software-solutions",
+    "custom-software",
+    "web-development",
+    "mobile-app-development",
+    "cloud",
+    "ai",
+    "flowdesk",
+    "bilingual",
+    "responsive"
+  ],
+  "author": "Tarık Şenkal",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HatsonTech/hatsontech_website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HatsonTech/hatsontech_website/issues"
+  },
+  "homepage": "https://hatsontech.com",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ]
+}
+

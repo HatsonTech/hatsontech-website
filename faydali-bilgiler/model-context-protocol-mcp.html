@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MCP (Model Context Protocol) nedir, neden önemli ve nasıl çalışır? Yapay zekayı araçlara ve veri kaynaklarına bağlayan açık standardı, USB-C benzetmesiyle sade bir dille anlatıyoruz.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/model-context-protocol-mcp.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart">
+  <meta property="og:description" content="MCP (Model Context Protocol) nedir, neden önemli ve nasıl çalışır? Yapay zekayı araçlara ve veri kaynaklarına bağlayan açık standardı, USB-C benzetmesiyle sade bir dille anlatıyoruz.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart">
+  <meta name="twitter:description" content="MCP (Model Context Protocol) nedir, neden önemli ve nasıl çalışır? Yapay zekayı araçlara ve veri kaynaklarına bağlayan açık standardı, USB-C benzetmesiyle sade bir dille anlatıyoruz.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280">
+  <title>MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart",
+  "description": "MCP (Model Context Protocol) nedir, neden önemli ve nasıl çalışır? Yapay zekayı araçlara ve veri kaynaklarına bağlayan açık standardı, USB-C benzetmesiyle sade bir dille anlatıyoruz.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-28",
+  "dateModified": "2026-06-28",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html"
+  },
+  "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280",
+  "articleSection": "Mühendislik",
+  "keywords": "MCP, Model Context Protocol, araç kullanımı, ajanlar, entegrasyon, açık standart"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart",
+      "item": "https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/model-context-protocol-mcp.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/model-context-protocol-mcp.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart</nav>
+    <img class="article-hero" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280" alt="MCP (Model Context Protocol) Nedir? Yapay Zekayı Araçlara Bağlayan Standart" loading="lazy">
+    <div class="article-cat">Mühendislik</div>
+    <h1>MCP (Model Context Protocol): Yapay Zekayı Araçlara ve Verilere Bağlayan Standart</h1>
+    <p class="article-sub">Bir yapay zekâ modeli tek başına takviminize bakamaz, veritabanınızı sorgulayamaz, bir dosya okuyamaz. MCP, modelleri dış araçlara ve verilere bağlamanın ortak, açık standardıdır — yapay zekânın USB-C'si.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 10 dk okuma</span><div class="article-tags"><span class="article-tag">MCP</span><span class="article-tag">Ajanlar</span><span class="article-tag">Araç Kullanımı</span><span class="article-tag">Entegrasyon</span></div></div>
+    <div class="article-body">
+<h2>Modelin Tek Başına Yapamadığı Şey</h2>
+<p>Bir yapay zekâ modelinin tek başına yapabileceği şey sınırlıdır: eğitildiği bilgiyle konuşur, ama sizin takviminize bakamaz, veritabanınızı sorgulayamaz, bir dosyayı okuyamaz ya da bir e-posta gönderemez. Modeli gerçekten işe yarar kılan şey, onu dış dünyadaki araçlara ve verilere bağlamaktır. İşte bu bağlantıyı standartlaştıran şeyin adı MCP, yani Model Context Protocol (Model Bağlam Protokolü).</p>
+<p>2024 sonunda ortaya çıkan ve 2025-2026'da hızla yaygınlaşan MCP, kısa sürede yapay zekâ dünyasının ortak dillerinden biri haline geldi. Bu yazıda MCP'nin ne olduğunu, hangi gerçek problemi çözdüğünü, nasıl çalıştığını ve neden yapay zekâ ürünleri geliştiren bir ekip için önemli olduğunu sade bir dille anlatıyoruz.</p>
+<h2>MCP Nedir? USB-C Benzetmesi</h2>
+<p>MCP'yi anlamanın en kolay yolu USB-C'yi düşünmektir. Eskiden her cihazın kendi şarj ucu, kendi kablosu vardı; her yeni cihaz yeni bir adaptör demekti. USB-C tek bir standart getirdi: artık tek bir kabloyla telefonu, dizüstü bilgisayarı, kulaklığı şarj edebiliyorsunuz. MCP, yapay zekâ için aynı şeyi yapar: modeller ile dış araçlar ve veri kaynakları arasındaki bağlantıyı tek, açık bir standarda oturtur. Açık bir protokol olarak yayımlanan MCP, herhangi bir modelin herhangi bir aracı aynı ortak dille kullanabilmesini hedefler.</p>
+<h2>Çözdüğü Problem: N×M'den N+M'e</h2>
+<p>MCP'den önce her entegrasyon elle, baştan yazılırdı. Üç farklı modeliniz ve beş farklı aracınız varsa, bunları birbirine bağlamak için teorik olarak on beş ayrı, özel köprü gerekirdi — buna N×M problemi denir. Her yeni model ya da her yeni araç bu karmaşıklığı katlardı. MCP bu denklemi kırar: her araç MCP'yi 'konuşan' bir sunucu olarak bir kez yazılır, her model MCP'yi konuşan bir istemci olur. Böylece on beş köprü yerine, beş artı üç bağlantı yeter (N+M). Bir kez MCP uyumlu yazılan araç, tüm uyumlu modellerle çalışır.</p>
+<h2>Nasıl Çalışır? Host, İstemci, Sunucu</h2>
+<p>MCP üç parçadan oluşur. 'Host', kullanıcının etkileşime girdiği uygulamadır (bir sohbet arayüzü, bir kod editörü, bir ürün). 'İstemci' (client), host içinde modelin adına konuşan bağlantı katmanıdır. 'Sunucu' (server) ise bir aracı ya da veri kaynağını dış dünyaya açan bileşendir. Bir MCP sunucusu üç tür yetenek sunabilir: araçlar (modelin çağırıp eylem yapabileceği fonksiyonlar), kaynaklar (modelin okuyabileceği veriler ve belgeler) ve hazır istemler (yeniden kullanılabilir şablonlar). Model bir işe ihtiyaç duyduğunda, ilgili sunucudaki aracı standart bir biçimde çağırır, sonucu alır ve cevabına katar.</p>
+<h2>Güvenlik ve Sınırlar</h2>
+<p>Bir modele dış dünyada eylem yapma yetkisi vermek güçlü ama riskli bir adımdır; bu yüzden güvenlik MCP'nin merkezindedir. Hangi sunucuya bağlanılacağı, hangi aracın hangi yetkiyle çalışacağı ve hassas verilere erişimin nasıl sınırlanacağı dikkatle tasarlanmalıdır. Yanlış yapılandırılmış bir araç erişimi, modelin yapmaması gereken bir işlemi yapmasına yol açabilir. Olgun bir kurulum yetkileri en aza indirir, gerektiğinde kullanıcı onayı ister ve her eylemi denetlenebilir kılar. MCP bağlantıyı kolaylaştırır; ama neyin açılacağına dair sorumluluk yine tasarımcıdadır.</p>
+<h2>HatsonTech ve Hukuki Veride MCP</h2>
+<p>HatsonTech'da bu yaklaşım bizim için soyut değil; ürünlerimizin doğasında var. Türk hukuk verisini (mevzuat ve içtihat) yapay zekâya güvenli ve standart biçimde açan MCP uyumlu sunucular geliştiriyoruz. Böylece bir yapay zekâ asistanı, donmuş hafızasından konuşmak yerine güncel ve doğrulanabilir hukuki kaynaklara standart bir protokolle erişebiliyor. Bu, <a href="/faydali-bilgiler/yapay-zeka-ajanlari.html">yapay zekâ ajanları</a> ve <a href="/faydali-bilgiler/rag-vs-fine-tuning.html">RAG</a> ile doğrudan bağlantılıdır: ajan eylemi MCP ile yapar, RAG bilgiyi getirir. Sonuç hem bir şeyler yapabilen hem de söylediğini kaynağa bağlayabilen bir sistemdir.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>MCP (Model Context Protocol), yapay zekâ modellerini dış araçlara ve veri kaynaklarına bağlamanın açık ve ortak standardıdır — yapay zekânın USB-C'si.</li><li>Çözdüğü problem N×M karmaşıklığıdır: her araç bir kez MCP sunucusu, her model bir kez MCP istemcisi olunca, ayrı ayrı köprüler yerine tek standart yeter.</li><li>Üç parçası vardır: host (uygulama), istemci (bağlantı katmanı) ve sunucu (aracı/veriyi açan bileşen); sunucular araç, kaynak ve hazır istem sunar.</li><li>Güçlü ama riskli olduğu için güvenlik merkezdedir: en az yetki, kullanıcı onayı ve denetlenebilirlik şarttır; neyin açılacağı tasarımcının sorumluluğudur.</li><li>HatsonTech, Türk hukuk verisini yapay zekâya standart ve güvenli biçimde açan MCP uyumlu sunucular geliştirir; MCP eylemi, RAG bilgiyi sağlar.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

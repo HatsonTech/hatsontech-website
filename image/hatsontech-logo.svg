@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="HatsonTech logo">
+  <title>HatsonTech</title>
+  <!-- Blue H -->
+  <g fill="#1E4FA0">
+    <rect x="150" y="250" width="48" height="196" rx="7"/>
+    <rect x="314" y="250" width="48" height="196" rx="7"/>
+    <rect x="150" y="326" width="212" height="46" rx="7"/>
+  </g>
+  <!-- Red fedora hat -->
+  <g>
+    <!-- brim -->
+    <ellipse cx="256" cy="232" rx="176" ry="34" fill="#E01B24"/>
+    <!-- crown -->
+    <path d="M148 234 C148 168 150 108 256 108 C362 108 364 168 364 234 C330 250 182 250 148 234 Z" fill="#E01B24"/>
+    <!-- crown top swoosh highlight -->
+    <path d="M196 138 C224 118 300 118 328 150 C300 132 232 132 196 138 Z" fill="#F2545B" opacity="0.85"/>
+    <!-- hat band -->
+    <path d="M150 216 C150 206 362 206 362 216 L362 230 C362 240 150 240 150 230 Z" fill="#B3141B"/>
+  </g>
+</svg>

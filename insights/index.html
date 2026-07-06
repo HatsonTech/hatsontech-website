@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HatsonTech Insights — educational articles on AI, large language models, RAG and Turkish NLP.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/insights/">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Insights | HatsonTech">
+  <meta property="og:description" content="HatsonTech Insights — educational articles on AI, large language models, RAG and Turkish NLP.">
+  <meta property="og:url" content="https://hatsontech.com/insights/">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/hatsontech-logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Insights | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+    .blog-card.card-in { animation: cardIn .5s cubic-bezier(.22,.61,.36,1) both; }
+    @keyframes cardIn { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "HatsonTech — Insights",
+  "url": "https://hatsontech.com/insights/",
+  "inLanguage": "en",
+  "description": "Articles on AI, LLMs, RAG and Turkish NLP.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Reasoning AI Models: How 'Thinking' Models Actually Work",
+      "url": "https://hatsontech.com/insights/akil-yuruten-reasoning-modeller.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools",
+      "url": "https://hatsontech.com/insights/model-context-protocol-mcp.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Context Engineering: Beyond Prompt Engineering",
+      "url": "https://hatsontech.com/insights/baglam-muhendisligi-context-engineering.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Small Language Models (SLMs) and Edge AI: Is Small Always Weak?",
+      "url": "https://hatsontech.com/insights/kucuk-dil-modelleri-slm.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Multi-Agent Systems: From a Single Agent to an AI Team",
+      "url": "https://hatsontech.com/insights/coklu-ajan-multi-agent-sistemler.html",
+      "datePublished": "2026-06-28"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "What Are Large Language Models (LLMs) and How Do They Work?",
+      "url": "https://hatsontech.com/insights/llm-nedir-nasil-calisir.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers",
+      "url": "https://hatsontech.com/insights/token-embedding-vektor.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Prompt Engineering: A Practical Guide to Getting Better Answers from AI",
+      "url": "https://hatsontech.com/insights/prompt-muhendisligi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "RAG or Fine-Tuning? Which to Use and When",
+      "url": "https://hatsontech.com/insights/rag-vs-fine-tuning.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI Hallucination: Why Models Make Things Up and How to Reduce It",
+      "url": "https://hatsontech.com/insights/yapay-zeka-halusinasyon.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Transformer Architecture, Explained Simply",
+      "url": "https://hatsontech.com/insights/transformer-mimarisi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI Agents and Tool Use: From Chatbot to AI That Actually Does Things",
+      "url": "https://hatsontech.com/insights/yapay-zeka-ajanlari.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Vector Databases and Semantic Search: How a Computer Finds \"Meaning\"",
+      "url": "https://hatsontech.com/insights/vektor-veritabani-anlamsal-arama.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI Ethics, Bias, and Safety: A Calm, Practical Guide",
+      "url": "https://hatsontech.com/insights/yapay-zeka-etigi-onyargi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI in Law: Opportunities, Risks, and Responsibility",
+      "url": "https://hatsontech.com/insights/hukukta-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI at Work: A Calm, Practical Productivity Guide",
+      "url": "https://hatsontech.com/insights/yapay-zeka-verimlilik.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Multimodal AI: How One Model Understands Text, Images and Sound at Once",
+      "url": "https://hatsontech.com/insights/cok-modlu-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How Do We Know an AI Model Is Good? Benchmarks and Evaluation",
+      "url": "https://hatsontech.com/insights/yapay-zeka-degerlendirme.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Open Source or Closed Model? AI's Big Trade-off, Explained",
+      "url": "https://hatsontech.com/insights/acik-kaynak-kapali-modeller.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI and Data Privacy: Where Does Everything You Type Actually Go?",
+      "url": "https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI for Businesses: Where to Start Without the Hype",
+      "url": "https://hatsontech.com/insights/isletmeler-icin-yapay-zeka.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "The Future of AI and the AGI Debate: Separating Signal from Hype",
+      "url": "https://hatsontech.com/insights/yapay-zekanin-gelecegi-agi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "caseon.ai — Rebuilding legal research in Türkiye with AI",
+      "url": "https://hatsontech.com/insights/caseon-ai.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Grounding LLMs in Your Business Data with RAG",
+      "url": "https://hatsontech.com/insights/rag-turkce-hukuk-verisi.html",
+      "datePublished": "2026-06-07"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "AI for Turkish: The Challenges and Opportunities of Turkish NLP",
+      "url": "https://hatsontech.com/insights/turkce-yapay-zeka-nlp.html",
+      "datePublished": "2026-06-07"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">What We Build</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Technologies</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Careers</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Insights</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/faydali-bilgiler/" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/insights/" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="blog-head">
+    <h1>Insights</h1>
+    <p>Educational writing on AI, large language models, RAG and Turkish NLP.</p>
+  </header>
+  <section class="blog-grid">
+
+      <article class="blog-card">
+        <a href="akil-yuruten-reasoning-modeller.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280" alt="Reasoning AI Models: How 'Thinking' Models Actually Work" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Education</div>
+          <h2><a href="akil-yuruten-reasoning-modeller.html">Reasoning AI Models: How 'Thinking' Models Actually Work</a></h2>
+          <p>A new class of models does not answer right away; it 'thinks' first. Here is what that thinking really is, why it solves certain problems, what it costs, and why you do not need it for every task — without hiding behind jargon.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="akil-yuruten-reasoning-modeller.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="model-context-protocol-mcp.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1280" alt="What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="model-context-protocol-mcp.html">What Is MCP (Model Context Protocol)? The Standard Connecting AI to Tools</a></h2>
+          <p>On its own, an AI model cannot check your calendar, query your database, or read a file. MCP is the common, open standard for connecting models to external tools and data — the USB-C of AI.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 min read</div>
+          <a class="read-more" href="model-context-protocol-mcp.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="baglam-muhendisligi-context-engineering.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280" alt="Context Engineering: Beyond Prompt Engineering" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="baglam-muhendisligi-context-engineering.html">Context Engineering: Beyond Prompt Engineering</a></h2>
+          <p>Getting good results is no longer a single 'right question'; it is designing the entire context the model sees. Instructions, retrieved documents, memory, tool outputs — assembling them well is called context engineering.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="baglam-muhendisligi-context-engineering.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="kucuk-dil-modelleri-slm.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280" alt="Small Language Models (SLMs) and Edge AI: Is Small Always Weak?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="kucuk-dil-modelleri-slm.html">Small Language Models (SLMs) and Edge AI: Is Small Always Weak?</a></h2>
+          <p>The headlines always talk about 'bigger' models. But in real products a quiet trend runs the other way: small, fast, cheap models. Running a giant model for every task is often unnecessary and expensive.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 min read</div>
+          <a class="read-more" href="kucuk-dil-modelleri-slm.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="coklu-ajan-multi-agent-sistemler.html"><img class="blog-card-img" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1280" alt="Multi-Agent Systems: From a Single Agent to an AI Team" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="coklu-ajan-multi-agent-sistemler.html">Multi-Agent Systems: From a Single Agent to an AI Team</a></h2>
+          <p>A single agent can plan and use tools to get work done. But what if a job is run by several agents, each with its own specialty, working like a team? That is the idea of multi-agent systems — a key architectural pattern of 2026.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 10 min read</div>
+          <a class="read-more" href="coklu-ajan-multi-agent-sistemler.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="llm-nedir-nasil-calisir.html"><img class="blog-card-img" src="../image/faydali-bilgiler/llm-nedir-nasil-calisir.jpg" alt="What Are Large Language Models (LLMs) and How Do They Work?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Education</div>
+          <h2><a href="llm-nedir-nasil-calisir.html">What Are Large Language Models (LLMs) and How Do They Work?</a></h2>
+          <p>Understanding the technology behind ChatGPT, Gemini and Claude from scratch: from next-token prediction to parameters, from context windows to the difference between training and inference, with no technical background required.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="llm-nedir-nasil-calisir.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="token-embedding-vektor.html"><img class="blog-card-img" src="../image/faydali-bilgiler/token-embedding-vektor.jpg" alt="Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Education</div>
+          <h2><a href="token-embedding-vektor.html">Tokens, Embeddings and Vectors: How AI Turns Language Into Numbers</a></h2>
+          <p>A computer processes numbers, not letters. So how does a word, a sentence, even a meaning turn into a number? From tokenization to embeddings, from vector space to semantic similarity, we explain how AI grasps language with concrete analogies and no math required.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="token-embedding-vektor.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="prompt-muhendisligi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/prompt-muhendisligi.jpg" alt="Prompt Engineering: A Practical Guide to Getting Better Answers from AI" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Practical / How-to</div>
+          <h2><a href="prompt-muhendisligi.html">Prompt Engineering: A Practical Guide to Getting Better Answers from AI</a></h2>
+          <p>The same AI model can hand you a forgettable answer from a sloppy prompt and a genuinely useful one from a good prompt. We unpack the few simple but powerful habits behind that gap —clear instructions, context, examples, and step-by-step thinking— with concrete before-and-after comparisons.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="prompt-muhendisligi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="rag-vs-fine-tuning.html"><img class="blog-card-img" src="../image/faydali-bilgiler/rag-vs-fine-tuning.jpg" alt="RAG or Fine-Tuning? Which to Use and When" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="rag-vs-fine-tuning.html">RAG or Fine-Tuning? Which to Use and When</a></h2>
+          <p>There are two distinct ways to give a language model what it needs to know: leave the book open in front of it (RAG) or send it back to school (fine-tuning). Here is what each one really does, where they diverge, and why the best systems often use both.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="rag-vs-fine-tuning.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-halusinasyon.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-halusinasyon.jpg" alt="AI Hallucination: Why Models Make Things Up and How to Reduce It" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Education</div>
+          <h2><a href="yapay-zeka-halusinasyon.html">AI Hallucination: Why Models Make Things Up and How to Reduce It</a></h2>
+          <p>Why does a language model state a wrong answer with total confidence, as if it were true? In plain language, we explain what hallucination is, why it springs from the model's very nature, and how engineers rein it in.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="yapay-zeka-halusinasyon.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="transformer-mimarisi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/transformer-mimarisi.jpg" alt="The Transformer Architecture, Explained Simply" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Research</div>
+          <h2><a href="transformer-mimarisi.html">The Transformer Architecture, Explained Simply</a></h2>
+          <p>A single paper published in 2017 changed the course of AI. We walk through why the "Attention Is All You Need" idea matters so much, how words learn to "pay attention" to one another, and why nearly every large language model today rests on this one foundation.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="transformer-mimarisi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-ajanlari.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-ajanlari.jpg" alt="AI Agents and Tool Use: From Chatbot to AI That Actually Does Things" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="yapay-zeka-ajanlari.html">AI Agents and Tool Use: From Chatbot to AI That Actually Does Things</a></h2>
+          <p>What separates an "agent" from a plain chatbot? We explain the plan-act-observe loop, tool calling, MCP-style tool standards, and where agents shine and where they fall apart, in plain language.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="yapay-zeka-ajanlari.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="vektor-veritabani-anlamsal-arama.html"><img class="blog-card-img" src="../image/faydali-bilgiler/vektor-veritabani-anlamsal-arama.jpg" alt="Vector Databases and Semantic Search: How a Computer Finds &quot;Meaning&quot;" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="vektor-veritabani-anlamsal-arama.html">Vector Databases and Semantic Search: How a Computer Finds "Meaning"</a></h2>
+          <p>From keyword search to semantic search: embeddings, ANN indexes like HNSW, what a vector database actually does, and re-ranking — all explained with plain examples, plus how an AI assistant finds documents by meaning rather than by words.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="vektor-veritabani-anlamsal-arama.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-etigi-onyargi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-etigi-onyargi.jpg" alt="AI Ethics, Bias, and Safety: A Calm, Practical Guide" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Society</div>
+          <h2><a href="yapay-zeka-etigi-onyargi.html">AI Ethics, Bias, and Safety: A Calm, Practical Guide</a></h2>
+          <p>Where does bias come from, what do fairness and transparency really mean, and what do KVKK and the EU AI Act actually ask of us? A concrete walkthrough, without the lecture.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="yapay-zeka-etigi-onyargi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="hukukta-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/hukukta-yapay-zeka.jpg" alt="AI in Law: Opportunities, Risks, and Responsibility" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">LegalTech</div>
+          <h2><a href="hukukta-yapay-zeka.html">AI in Law: Opportunities, Risks, and Responsibility</a></h2>
+          <p>AI is collapsing legal research, drafting, and review from hours into minutes. But it also brings real risks: hallucinated citations, confidentiality leaks, and a quiet creep of over-reliance. This piece explains what genuinely works, what is dangerous, and why the final word still belongs to the lawyer.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="hukukta-yapay-zeka.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-verimlilik.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-verimlilik.jpg" alt="AI at Work: A Calm, Practical Productivity Guide" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Practical / How-to</div>
+          <h2><a href="yapay-zeka-verimlilik.html">AI at Work: A Calm, Practical Productivity Guide</a></h2>
+          <p>How professionals use AI every day, from writing to research to email to code, how to delegate to it well, and exactly where you should not trust it.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="yapay-zeka-verimlilik.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="cok-modlu-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/cok-modlu-yapay-zeka.jpg" alt="Multimodal AI: How One Model Understands Text, Images and Sound at Once" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Education</div>
+          <h2><a href="cok-modlu-yapay-zeka.html">Multimodal AI: How One Model Understands Text, Images and Sound at Once</a></h2>
+          <p>When an AI can look at a photo and read the text inside it, interpret a chart, or listen to a voice and respond, we call it multimodal AI. We unpack the idea beneath this ability, its real-world uses and its limits, with concrete examples and no technical background required.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="cok-modlu-yapay-zeka.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-degerlendirme.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-degerlendirme.jpg" alt="How Do We Know an AI Model Is Good? Benchmarks and Evaluation" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="yapay-zeka-degerlendirme.html">How Do We Know an AI Model Is Good? Benchmarks and Evaluation</a></h2>
+          <p>What those leaderboard percentages really mean, where benchmarks mislead, and what actually proves a model works in the real world. A plain-language guide.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="yapay-zeka-degerlendirme.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="acik-kaynak-kapali-modeller.html"><img class="blog-card-img" src="../image/faydali-bilgiler/acik-kaynak-kapali-modeller.jpg" alt="Open Source or Closed Model? AI's Big Trade-off, Explained" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="acik-kaynak-kapali-modeller.html">Open Source or Closed Model? AI's Big Trade-off, Explained</a></h2>
+          <p>An AI model is either something you rent like a cloud service or something you download like a file and run on your own machine. Choosing between the two is a real trade-off among control, privacy, cost, and capability. Here is what each one means, when each makes more sense, and why mature teams usually run both.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="acik-kaynak-kapali-modeller.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zeka-veri-gizliligi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg" alt="AI and Data Privacy: Where Does Everything You Type Actually Go?" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Society</div>
+          <h2><a href="yapay-zeka-veri-gizliligi.html">AI and Data Privacy: Where Does Everything You Type Actually Go?</a></h2>
+          <p>When you type something into an AI tool, where exactly does your data go? The critical difference between training and inference, the cloud–private–on-prem spectrum, the basics of KVKK and GDPR, the real limits of anonymization, and practical tips that actually work for both individuals and companies.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="yapay-zeka-veri-gizliligi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="isletmeler-icin-yapay-zeka.html"><img class="blog-card-img" src="../image/faydali-bilgiler/isletmeler-icin-yapay-zeka.jpg" alt="AI for Businesses: Where to Start Without the Hype" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Business</div>
+          <h2><a href="isletmeler-icin-yapay-zeka.html">AI for Businesses: Where to Start Without the Hype</a></h2>
+          <p>A practical roadmap for companies that start with a real problem instead of a slide full of promises — that go small, measure honestly, and know when to walk away.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="isletmeler-icin-yapay-zeka.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="yapay-zekanin-gelecegi-agi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/yapay-zekanin-gelecegi-agi.jpg" alt="The Future of AI and the AGI Debate: Separating Signal from Hype" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Research</div>
+          <h2><a href="yapay-zekanin-gelecegi-agi.html">The Future of AI and the AGI Debate: Separating Signal from Hype</a></h2>
+          <p>What does "AGI" actually mean, where are we really right now, and what does agentic AI change? We calmly separate the optimistic and cautious views, the genuine near-term impact, and the inflated promises.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 13 min read</div>
+          <a class="read-more" href="yapay-zekanin-gelecegi-agi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="caseon-ai.html"><img class="blog-card-img" src="../image/faydali-bilgiler/caseon-ai.jpg" alt="caseon.ai — Rebuilding legal research in Türkiye with AI" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Product</div>
+          <h2><a href="caseon-ai.html">caseon.ai — Rebuilding legal research in Türkiye with AI</a></h2>
+          <p>caseon.ai turns hours of manual searching through millions of court decisions and thousands of pages of legislation into semantic legal research that finishes in seconds — built on large language models and RAG, powered by HatsonAI.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 9 min read</div>
+          <a class="read-more" href="caseon-ai.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="rag-turkce-hukuk-verisi.html"><img class="blog-card-img" src="../image/faydali-bilgiler/rag-turkce-hukuk-verisi.jpg" alt="Grounding LLMs in Your Business Data with RAG" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Engineering</div>
+          <h2><a href="rag-turkce-hukuk-verisi.html">Grounding LLMs in Your Business Data with RAG</a></h2>
+          <p>Why a raw language model gets domain-specific facts wrong, how Retrieval-Augmented Generation fixes it, and how we build a retrieval layer that grounds answers in your own data.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 12 min read</div>
+          <a class="read-more" href="rag-turkce-hukuk-verisi.html">Read more &rarr;</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <a href="turkce-yapay-zeka-nlp.html"><img class="blog-card-img" src="../image/faydali-bilgiler/turkce-yapay-zeka-nlp.jpg" alt="AI for Turkish: The Challenges and Opportunities of Turkish NLP" loading="lazy"></a>
+        <div class="blog-card-body">
+          <div class="article-cat">Research</div>
+          <h2><a href="turkce-yapay-zeka-nlp.html">AI for Turkish: The Challenges and Opportunities of Turkish NLP</a></h2>
+          <p>Why Turkish is hard for language models, how that difficulty shapes LLM behavior, and what it really takes to build Turkish-first AI products.</p>
+          <div class="blog-card-meta"><i class="far fa-clock"></i> 11 min read</div>
+          <a class="read-more" href="turkce-yapay-zeka-nlp.html">Read more &rarr;</a>
+        </div>
+      </article>
+  </section>
+  <nav class="blog-pagination" id="blogPager" aria-label="pagination"></nav>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Home</a>
+      <a href="/insights/">Insights</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Privacy</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. All rights reserved.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+  <script>
+(function () {
+  var PER = 9;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.blog-grid .blog-card'));
+  var pager = document.getElementById('blogPager');
+  if (!pager) return;
+  var pages = Math.ceil(cards.length / PER);
+  function show(p, scroll) {
+    cards.forEach(function (c, i) { var v = (i >= (p - 1) * PER && i < p * PER); c.style.display = v ? '' : 'none'; if (v && scroll) { c.classList.remove('card-in'); void c.offsetWidth; c.classList.add('card-in'); } });
+    Array.prototype.slice.call(pager.querySelectorAll('button')).forEach(function (b) { if (b.dataset.p) b.classList.toggle('active', b.dataset.p === String(p)); });
+    var prev = pager.querySelector('[data-nav=prev]'), next = pager.querySelector('[data-nav=next]');
+    if (prev) prev.disabled = (p <= 1); if (next) next.disabled = (p >= pages);
+    pager.dataset.cur = p;
+    if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  if (pages > 1) {
+    var prev = document.createElement('button'); prev.innerHTML = '&larr;'; prev.dataset.nav = 'prev';
+    prev.addEventListener('click', function () { show(Math.max(1, (+pager.dataset.cur || 1) - 1), true); });
+    pager.appendChild(prev);
+    for (var p = 1; p <= pages; p++) { var b = document.createElement('button'); b.textContent = p; b.dataset.p = p; b.addEventListener('click', (function (pp) { return function () { show(pp, true); }; })(p)); pager.appendChild(b); }
+    var next = document.createElement('button'); next.innerHTML = '&rarr;'; next.dataset.nav = 'next';
+    next.addEventListener('click', function () { show(Math.min(pages, (+pager.dataset.cur || 1) + 1), true); });
+    pager.appendChild(next);
+  }
+  show(1, false);
+})();
+</script>
+</body>
+</html>

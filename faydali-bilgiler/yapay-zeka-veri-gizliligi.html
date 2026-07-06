@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Yapay zekâ kullanırken veriniz nereye gidiyor? Eğitim ve çıkarım farkı, bulut–on-prem seçenekleri, KVKK ve GDPR temelleri, anonimleştirme ve birey ile şirketler için pratik ipuçlarını sade bir dille öğrenin.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?">
+  <meta property="og:description" content="Yapay zekâ kullanırken veriniz nereye gidiyor? Eğitim ve çıkarım farkı, bulut–on-prem seçenekleri, KVKK ve GDPR temelleri, anonimleştirme ve birey ile şirketler için pratik ipuçlarını sade bir dille öğrenin.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?">
+  <meta name="twitter:description" content="Yapay zekâ kullanırken veriniz nereye gidiyor? Eğitim ve çıkarım farkı, bulut–on-prem seçenekleri, KVKK ve GDPR temelleri, anonimleştirme ve birey ile şirketler için pratik ipuçlarını sade bir dille öğrenin.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg">
+  <title>Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor? | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?",
+  "description": "Yapay zekâ kullanırken veriniz nereye gidiyor? Eğitim ve çıkarım farkı, bulut–on-prem seçenekleri, KVKK ve GDPR temelleri, anonimleştirme ve birey ile şirketler için pratik ipuçlarını sade bir dille öğrenin.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg",
+  "articleSection": "Toplum",
+  "keywords": "Veri Gizliliği, KVKK, GDPR, Güvenlik, Yapay Zekâ"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?",
+      "item": "https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/yapay-zeka-veri-gizliligi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/yapay-zeka-veri-gizliligi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/yapay-zeka-veri-gizliligi.jpg" alt="Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?" loading="lazy">
+    <div class="article-cat">Toplum</div>
+    <h1>Yapay Zekâ ve Veri Gizliliği: Yazdığınız Her Şey Nereye Gidiyor?</h1>
+    <p class="article-sub">Bir yapay zekâ aracına bir şey yazdığınızda veriniz tam olarak nereye gider? Eğitim ile çıkarım arasındaki kritik fark, bulut–özel kurulum–on-prem seçenekleri, KVKK ile GDPR'ın temelleri, anonimleştirmenin gerçek sınırları ve hem bireyler hem şirketler için işe yarayan pratik ipuçları.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 12 dk okuma</span><div class="article-tags"><span class="article-tag">Veri Gizliliği</span><span class="article-tag">KVKK</span><span class="article-tag">GDPR</span><span class="article-tag">Güvenlik</span><span class="article-tag">Yapay Zekâ</span></div></div>
+    <div class="article-body">
+<h2>"Bu yazdığım nereye gidiyor?" sorusu</h2>
+<p>Bir yapay zekâ sohbet aracına bir e-posta taslağı, bir sözleşme maddesi ya da içinde isim, adres, telefon geçen bir mesaj yapıştırdığınızda akla gelen ilk soru masum görünür: bu metin tam olarak nereye gidiyor? Cevap, çoğu insanın sandığından hem daha basit hem daha incelikli. Basit kısmı şudur: yazdığınız metin neredeyse her zaman internet üzerinden, aracı sunan şirketin sunucularına gider, cevap orada üretilir ve size geri döner. Yani metniniz bir an için sizin cihazınızdan çıkar ve başka birinin bilgisayarında işlenir. Bu, yapay zekânın çalışma biçiminin kaçınılmaz bir parçasıdır, bir kusur değil.</p>
+<p>İncelikli kısım ise "orada ne olduğu" ile ilgili. Sunucuya ulaşan metin, anlık bir cevap üretmek için kullanılır; bu beklenen ve doğal bir adımdır. Asıl gizlilik sorusu, bu metnin o cevap üretildikten sonra ne olduğudur. Dört temel ihtimal vardır: hemen silinir mi, bir süre kayıt altında tutulur mu, gerektiğinde bir insan tarafından incelenir mi, yoksa modelin gelecekteki sürümlerini eğitmek için mi kullanılır? Bu dördü birbirinden çok farklı sonuçlar doğurur ve hangisinin geçerli olduğunu belirleyen şey, kullandığınız aracın ayarları ile gizlilik sözleşmesidir.</p>
+<p>Bu yazının amacı tam olarak bu zinciri görünür kılmaktır. Verinizin yolculuğunu durak durak izleyeceğiz: cihazınızdan çıkışı, ağ üzerinde taşınması, sunucuda işlenmesi, saklanması ve bazen modele "öğretilmesi". Ardından bu yolculuğu hukukun (KVKK ve GDPR) nasıl çerçevelediğine, verinin nasıl daha güvenli hâle getirilebileceğine ve hem birey hem kurum olarak alabileceğiniz somut önlemlere bakacağız. Amaç korkutmak değil; gözünüzü açık tutarak yapay zekâyı rahatça ve bilinçli kullanmanızı sağlamaktır.</p>
+<h2>Eğitim verisi mi, çıkarım verisi mi? En önemli ayrım</h2>
+<p>Yapay zekâ ve gizlilik konusunda akılda tutulacak tek bir kavram seçecek olsaydık, bu "eğitim" ile "çıkarım" arasındaki fark olurdu. Bir dil modelinin hayatını iki evreye ayırabiliriz. Birincisi eğitim (training): modelin devasa metin yığınlarını okuyarak dilin örüntülerini öğrendiği, haftalar ya da aylar süren, çok pahalı donanım gerektiren ağır bir süreç. İkincisi çıkarım (inference): artık eğitilmiş modelin hazır olduğu ve sizin sorunuza saniyeler içinde cevap ürettiği günlük kullanım anı. Bir benzetmeyle: eğitim, bir doktorun yıllarca süren tıp eğitimidir; çıkarım ise o doktora bir soru sorup cevap almanızdır. Siz bir araca her şey yazdığınızda yaptığınız şey çıkarımdır.</p>
+<p>Bu ayrım gizlilik açısından kritiktir, çünkü riskin doğası iki durumda tamamen farklıdır. Çıkarım sırasında metniniz bir cevap üretmek için kullanılır ve kural olarak işi orada biter; metin modelin "beynine" kalıcı olarak yazılmaz. Bir sohbette yazdıklarınız, yeni bir konuşmaya geçtiğinizde modelin içinde durmaz; modelin bir konuşma boyunca "hatırlıyor" gibi görünmesinin tek nedeni, o ana kadarki yazışmanın her seferinde tekrar gönderilmesidir, kalıcı bir bellek değildir. Asıl kalıcı iz, metniniz eğitim verisine dâhil edildiğinde oluşur: o zaman söyledikleriniz, modelin gelecekteki davranışını şekillendiren milyarlarca örnekten biri hâline gelebilir.</p>
+<p>Buradaki yaygın korku şudur: "Yazdığım gizli cümle bir gün başka birinin ekranında çıkar mı?" Gerçek, mitten daha ölçülüdür. Modern modeller metni kelimesi kelimesine ezberlemez; örüntüleri ve istatistiksel ilişkileri öğrenir. Ancak nadir, çok sık tekrar eden ya da çok özgün veriler bazı koşullarda "ezberlenebilir" ve dolaylı olarak sızabilir; araştırmacılar bunun mümkün olduğunu gösteren örnekler bulmuştur. Bu yüzden ciddi gizlilik politikası olan kurumsal ve API tabanlı hizmetler, çoğunlukla "verinizi varsayılan olarak eğitime kullanmayız" taahhüdü verir. İşin püf noktası, kullandığınız aracın hangi kategoride olduğunu bilmektir.</p>
+<p>Pratik çıkarım nettir: ücretsiz, tüketiciye yönelik bazı araçlar girdilerinizi hizmeti iyileştirmek veya eğitmek için kullanabilirken, ücretli kurumsal sürümler ve geliştirici API'leri genellikle kullanmaz. Dolayısıyla "hangi aracı" kullandığınız kadar "hangi sürümünde ve hangi modunda" kullandığınız da önemlidir. Aynı şirketin ücretsiz uygulaması ile kurumsal planı, gizlilik açısından iki ayrı dünya olabilir.</p>
+<h2>Verinizin yolculuğu: cihazdan sunucuya ve geri</h2>
+<p>Verinin nereye gittiğini somutlaştırmak için yolculuğu durak durak izleyelim. İlk durak cihazınızdır: yazdığınız metin tarayıcınızda veya uygulamada oluşur. İkinci durak ağdır: metin, modern web standartlarında şifreli bir bağlantı (TLS) üzerinden gönderilir. Bu şifreleme, internet bankacılığında da kullanılan kapalı bir zarf gibidir; hattın ortasındaki birinin metni okumasını engeller. Üçüncü durak sunucudur: metin, hizmeti sağlayan şirketin (ya da onun bulut sağlayıcısının) veri merkezinde işlenir, cevap üretilir ve aynı şifreli yoldan size geri döner.</p>
+<p>Yolculuğun görünmeyen ama en önemli kısmı sunucuda başlar. Birçok hizmet, kötüye kullanımı önlemek, hataları gidermek veya hizmeti iyileştirmek için girdileri bir süre kayıtta tutar (logging/retention). Bu saklama süresi sıfırdan birkaç güne, oradan aylara kadar değişebilir ve genellikle ayarlanabilir. Bazı durumlarda, güvenlik politikası ihlali şüphesi varsa metinler bir insan moderatör tarafından da incelenebilir. Bunların hiçbiri otomatik olarak kötü niyet değildir; ancak gizlilik açısından "metnim cevaptan sonra ne kadar süreyle ve kim tarafından görülebilir hâlde duruyor" sorusunun cevabını işte burası belirler.</p>
+<p>Önemli bir ayrıntı, şifrelemenin nerede bittiğidir. TLS, metni siz ile sunucu arasında yolda korur; ama metin sunucuya ulaştığında işlenmek için çözülmek zorundadır. Yani uçtan uca şifreli mesajlaşmanın aksine, hizmet sağlayıcının kendisi prensipte içeriği görebilir. Gizlilik taahhütleri tam da bu noktada devreye girer: "Görebiliriz ama görmüyoruz, saklamıyoruz, eğitime koymuyoruz" sözünün yazılı ve denetlenebilir olması bu yüzden değerlidir.</p>
+<p>Ek bir katman da üçüncü taraf entegrasyonlarıdır. Bir uygulamanın içine gömülü yapay zekâ asistanı kullandığınızda, veri çoğu zaman önce o uygulamanın sunucusuna, oradan da modeli sağlayan firmanın API'sine gider. Yani zincirde tek değil, birden çok şirket olabilir. Verinizin gerçek yolculuğunu anlamak için "hangi araç" kadar "bu aracın arkasında hangi sağlayıcılar var" sorusunu da sormak gerekir; bunun cevabı genellikle gizlilik politikasında ve veri işleme sözleşmesinde yazılıdır.</p>
+<h2>Bulut, özel kurulum ve on-prem: kontrolün üç seviyesi</h2>
+<p>Verinin nereye gittiğini en çok belirleyen tasarım tercihi, modelin nerede çalıştığıdır. Üç temel seçenek vardır ve bunları bir kütüphane benzetmesiyle düşünmek işi kolaylaştırır. Birincisi paylaşımlı bulut hizmetidir: herkesin kullandığı büyük bir halk kütüphanesi gibi. Hızlı, güçlü ve görece ucuzdur; ama okumak istediğiniz kitabı (verinizi) o binaya getirmeniz gerekir. İkincisi özel (private) bulut kurulumudur: aynı bulut sağlayıcının size ayrılmış, izole bir bölümü; verinizin başka müşterilerinkiyle karışmadığı, sınırları sözleşmeyle çizilmiş kilitli bir okuma odası gibi.</p>
+<p>Üçüncüsü ve en yüksek kontrol seviyesi on-prem (yerinde) kurulumdur: modelin doğrudan kurumun kendi sunucularında, kendi binasında çalıştırılması. Burada veri, kurumun ağ sınırlarının dışına hiç çıkmaz; sanki kitaplığı kendi evinizde tutmak gibidir. Hassas veriyle çalışan hastaneler, bankalar, kamu kurumları ve hukuk büroları için bu çoğu zaman bir tercih değil zorunluluktur, çünkü mevzuat verinin belirli bir coğrafyada ya da belirli bir altyapı içinde kalmasını isteyebilir. Karşılığında daha fazla donanım, bakım ve uzmanlık maliyeti gelir; güç ile kolaylık arasında klasik bir denge söz konusudur.</p>
+<p>Bu yelpazede son yıllarda öne çıkan bir orta yol da "veri ülkede kalsın" yaklaşımıdır: model güçlü bir bulutta çalışsa bile, verinin işlendiği veri merkezinin coğrafi olarak belirli bir ülkede tutulması (veri yerleşimi / data residency). KVKK'nın yurt dışına veri aktarımına getirdiği çerçeve düşünüldüğünde, Türkiye'de faaliyet gösteren kurumlar için bu detay çoğu zaman hayati önemdedir; verinin nerede durduğu, hangi ülkenin hukukuna tabi olacağını da belirler.</p>
+<p>HatsonTech'da müşterilerimiz için geliştirdiğimiz yapay zekâ destekli çözümlerde bu mimari kararlar baştan gizlilik ekseninde verilir: hassas dosyaların nerede işlendiği, hangi verinin sistemde kaldığı ve kurumsal müşterilerin verisinin modele "öğretilmeyeceği" gibi konular, sonradan eklenen bir özellik değil, tasarımın temelidir. Bu, soyut bir slogan olarak değil, somut mühendislik kararları olarak "gizlilik en baştan" (privacy by design) ilkesinin uygulanmış hâlidir.</p>
+<h2>KVKK ve GDPR: aynı melodinin iki düzenlemesi</h2>
+<p>Veri gizliliği yalnızca bir tercih değil, aynı zamanda hukuki bir yükümlülüktür; ve bu yükümlülüğü iki ana metin tanımlar. Avrupa Birliği'nin GDPR'ı (Genel Veri Koruma Tüzüğü) 2018'den beri dünya çapında bir referans hâline geldi. Türkiye'nin KVKK'sı (Kişisel Verilerin Korunması Kanunu, 6698 sayılı Kanun, 2016) ise büyük ölçüde aynı felsefeyi paylaşır: kişisel veri, ilgili kişinin açık rızası veya kanunda sayılı bir hukuki sebep olmadan işlenemez. İkisini aynı melodinin iki düzenlemesi gibi düşünebilirsiniz; ana tema aynıdır, bazı notalar ve uygulama ayrıntıları farklıdır.</p>
+<p>Her iki çerçevenin de ortak kalbi birkaç temel ilkedir. Veriyi yalnızca belirli ve açık bir amaç için toplayın (amaç sınırlaması). O amaç için gerekenden fazlasını toplamayın (veri minimizasyonu). Gerektiğinden uzun saklamayın (saklama sınırı). Ve kişiye haklar tanıyın: verisine erişme, düzeltme, silme ("unutulma hakkı") ve işlemeye itiraz etme. Yapay zekâ bağlamında bu ilkeler doğrudan iş görür: bir araca gereğinden fazla kişisel veri yapıştırmak, tek başına veri minimizasyonu ilkesine aykırı düşebilir.</p>
+<p>Yapay zekâ özelinde tabloya yeni bir oyuncu daha eklendi: AB Yapay Zekâ Yasası (AI Act). Bu düzenleme, GDPR'ın "veriyi nasıl işliyorsun" sorusunun yanına "bu yapay zekâ sistemi ne kadar riskli ve hangi şeffaflık kurallarına tabi" sorusunu koyar. Yüksek riskli kullanımlar için (örneğin işe alım, kredi değerlendirmesi, bazı kamusal kararlar) ek belgeleme, insan denetimi ve şeffaflık yükümlülükleri getirir. Kuralları 2026 itibarıyla kademeli olarak yürürlüğe girmektedir; bu nedenle yalnızca AB'deki şirketlerin değil, AB pazarına dokunan her kurumun radarında olmalıdır. Türkiye'de de bu yasanın bir referans çerçevesi olarak izlendiğini söylemek yanlış olmaz.</p>
+<p>Önemli bir uyarı: bu yazı genel bir bilgilendirmedir, hukuki tavsiye değildir. Somut bir veri işleme faaliyeti için mutlaka güncel mevzuata ve gerektiğinde bir hukuk uzmanına başvurmak gerekir. Özellikle yurt dışına veri aktarımı ve özel nitelikli (sağlık, biyometrik, din, cinsel hayat, ceza mahkûmiyeti gibi) veriler söz konusu olduğunda kurallar belirgin biçimde daha katıdır.</p>
+<h2>Anonimleştirme ve takma adlaştırma: ne işe yarar, nerede çuvallar</h2>
+<p>Verinin kimliği belirsiz hâle getirilmesi, gizlilik araç kutusundaki en güçlü tekniklerden biridir; ama sıkça birbirine karıştırılan iki kavramı ayırmak gerekir. Takma adlaştırma (pseudonymization), kişiyi doğrudan tanımlayan bilgileri (ad, TC kimlik numarası) bir kodla değiştirmektir; ancak bir yerde "kod ile gerçek kişi" eşleşmesini tutan bir anahtar bulunur. Yani teorik olarak geri döndürülebilir ve hukuken hâlâ kişisel veridir. Anonimleştirme (anonymization) ise bu bağı tamamen ve geri dönülmez biçimde koparmayı hedefler; doğru yapıldığında veri artık "kişisel veri" olmaktan çıkar ve KVKK/GDPR kapsamından büyük ölçüde sıyrılır.</p>
+<p>Kritik nokta şudur: gerçek anonimleştirme göründüğünden çok daha zordur. İsmi silmek tek başına yetmez. "Şu ilçede oturan, 35 yaşında, şu çok nadir meslekten tek kişi" gibi dolaylı ipuçları, başka veri kümeleriyle birleştirildiğinde kişiyi yeniden tanımlanabilir hâle getirebilir; buna yeniden kimliklendirme (re-identification) denir. Akademik çalışmalar, doğum tarihi, cinsiyet ve posta kodu gibi yalnızca birkaç sıradan alanın bile çoğu insanı tek başına ayırt etmeye yetebildiğini göstermiştir. Bu yüzden ciddi sistemler tek bir hamleye değil, katmanlı tekniklere yaslanır.</p>
+<p>Yapay zekâ akışlarında bunun pratik karşılığı nettir. Bir metni modele göndermeden önce kişisel tanımlayıcıları otomatik olarak maskelemek (örneğin isimleri ve numaraları [KİŞİ], [NUMARA] gibi yer tutucularla değiştirmek), hem veri minimizasyonu ilkesine hizmet eder hem de olası bir sızıntıda zararı azaltır. Belge analizi yapan sistemlerde bu özellikle değerlidir: bir metnin örüntüsünü ya da özünü analiz etmek için çoğu zaman içindeki gerçek kimlik bilgilerine ihtiyaç yoktur. İyi tasarlanmış bir yapay zekâ asistanında amaç, işin özünü korurken gereksiz kişisel ayrıntıyı sistemin içine hiç taşımamaktır.</p>
+<p>Yine de dürüst olmak gerekir: hiçbir anonimleştirme yüzde yüz garanti vermez ve fazla maskeleme verinin işe yararlığını düşürebilir; her şeyi karartırsanız geriye analiz edilecek bir şey kalmaz. Doğru denge, her seferinde "amacım için gerçekten hangi alanlara ihtiyacım var?" sorusunu sorarak bulunur.</p>
+<h2>Bireyler için pratik gizlilik rehberi</h2>
+<p>Kurumsal mimariler bir yana, çoğumuz yapay zekâyı her gün birey olarak kullanıyoruz; ve burada birkaç basit alışkanlık riskin büyük kısmını ortadan kaldırır. Birinci kural, "yapıştırmadan önce düşün": bir araca girdiğiniz her şeyin ekranınızdan çıkıp başka bir sunucuda işlendiğini varsayın. TC kimlik numaranızı, banka ve kart bilgilerinizi, şifrelerinizi, başkalarının size güvenerek emanet ettiği kişisel verileri ya da imzalı bir gizlilik sözleşmesi (NDA) kapsamındaki belgeleri, gerçekten gerekli olmadıkça yapıştırmayın. Basit bir test: "Bunu tanımadığım bir e-posta adresine gönderir miydim?" Cevap hayırsa, düşünmeden yapay zekâ aracına da yapıştırmayın.</p>
+<p>İkinci kural, ayarları bir kez gerçekten okumaktır. Kullandığınız aracın gizlilik ayarlarına girin; çoğu modern araçta "sohbet geçmişini ve eğitimi kapat" benzeri bir seçenek vardır. Bunu kapattığınızda hem geçmişiniz saklanmaz hem de girdileriniz model eğitimine kullanılmaz. Ücretsiz tüketici sürümleri ile ücretli/kurumsal sürümlerin gizlilik taahhütleri farklı olabilir; hangi modda olduğunuzu bilmek değerlidir. Hesabınızda iki adımlı doğrulamayı (2FA) açmak da, hesabınız ele geçirilirse geçmiş sohbetlerinizi korur.</p>
+<p>Üçüncü kural, gerektiğinde anonimleştirmektir. Bir e-postayı düzelttirmek istiyorsanız gerçek isimleri "X" ve "Y" ile değiştirin; bir tıbbi raporu anlamak istiyorsanız hasta kimliğini çıkarıp yalnızca tıbbi içeriği bırakın. Modelin işini yapması için çoğu zaman gerçek kimliklere ihtiyacı yoktur. Son olarak, içine yapay zekâ gömülü uygulamalarda "bu asistan verimi nereye gönderiyor?" diye sormayı alışkanlık hâline getirin; verdiğiniz izinleri ve gizlilik politikasını ara sıra gözden geçirin. Bu küçük adımlar, yapay zekâdan vazgeçmenizi gerektirmeden onu çok daha güvenli kullanmanızı sağlar.</p>
+<h2>Şirketler için: gizliliği bir ürün özelliği gibi tasarlamak</h2>
+<p>Bir şirket yapay zekâyı işine kattığında gizlilik artık bireysel bir alışkanlık değil, yasal yaptırımları olan kurumsal bir sorumluluktur. İlk adım envanter çıkarmaktır: hangi ekipler, hangi araçları, hangi veriyle kullanıyor? Çalışanların farkında olmadan müşteri verilerini ücretsiz araçlara yapıştırdığı "gölge yapay zekâ" (shadow AI) kullanımı, bugün kurumlar için en sık görülen sızıntı kaynaklarından biridir. Görmediğiniz riski yönetemezsiniz; bu yüzden önce net bir kullanım politikası ve onaylı araçlar listesi gerekir. Yasaklamak yerine güvenli bir alternatif sunmak, çoğu zaman gölge kullanımı azaltmanın en etkili yoludur.</p>
+<p>İkinci adım, sözleşmeleri dikkatle okumaktır. Bir yapay zekâ sağlayıcısıyla çalışırken Veri İşleme Sözleşmesi (DPA) hayatidir: sağlayıcı verinizi eğitim için kullanıyor mu, ne kadar süre saklıyor, nerede (hangi ülkede) işliyor, alt yükleniciler (subprocessor) kimler ve bir ihlal durumunda sizi ne kadar sürede bilgilendiriyor? KVKK kapsamında veri sorumlusu olarak nihai sorumluluk çoğu zaman sizde kalır; sağlayıcı yalnızca veri işleyendir. Bu nedenle, özellikle özel nitelikli veriler ve yurt dışına aktarım söz konusu olduğunda, taahhütlerin sözlü değil yazılı ve doğrulanabilir olması gerekir.</p>
+<p>Üçüncü adım, tasarımı baştan doğru kurmaktır: "gizlilik en baştan" (privacy by design) ve "varsayılan olarak gizlilik" (privacy by default). Bu pratikte veri minimizasyonu (modele yalnızca gereken alanı gönder), erişim kontrolü (kim hangi veriyi görebilir), kayıt tutma (kim ne zaman neye erişti) ve gerektiğinde özel/on-prem kurulum tercihleri demektir. Yüksek riskli kullanımlarda ise bir Veri Koruma Etki Değerlendirmesi (DPIA) yapmak hem iyi bir mühendislik pratiği hem de mevzuatın beklediği bir adımdır.</p>
+<p>HatsonTech'da yapay zekâ destekli ürünlerimizi ve müşteri projelerimizi geliştirirken yaklaşımımız tam olarak budur: hassas verinin nerede durduğu, kimin gördüğü ve modele ne öğretildiği gibi sorular, ürün özelliklerinden önce gelen tasarım kararlarıdır. Gizlilik, sonradan üzerine yapıştırılan bir uyumluluk katmanı değildir; ürünün güvenilir olmasının ön koşuludur. Akıllı bir şirket için bu bir maliyet değil, müşteri güveni biçiminde geri dönen bir yatırımdır; çünkü kurumsal yazılımda güven, ürünün kendisidir.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Bir yapay zekâ aracına yazdığınız metin neredeyse her zaman şifreli bir bağlantı (TLS) üzerinden sağlayıcının sunucusuna gider ve orada işlenmek için çözülür; asıl gizlilik sorusu, metnin cevaptan sonra ne kadar saklandığı, kim tarafından görülebildiği ve eğitime kullanılıp kullanılmadığıdır.</li><li>Eğitim (training) ile çıkarım (inference) farkı kritiktir: günlük kullanımınız çıkarımdır ve kural olarak modelin hafızasına kalıcı yazılmaz; kalıcı iz, veriniz eğitim verisine dâhil edildiğinde oluşur. Ciddi kurumsal sürümler ve API'ler genellikle 'verinizi varsayılan olarak eğitime kullanmayız' der.</li><li>Modelin nerede çalıştığı kontrol seviyesini belirler: paylaşımlı bulut, özel (private) bulut ve on-prem kurulum. Hassas veriyle çalışan kurumlar için verinin belirli bir ülke veya altyapı içinde kalması (veri yerleşimi / data residency) çoğu zaman zorunluluktur.</li><li>KVKK ve GDPR aynı temel ilkeleri paylaşır: amaç sınırlaması, veri minimizasyonu, saklama sınırı ve kişiye erişim/düzeltme/silme hakları. AB Yapay Zekâ Yasası (AI Act) bunlara risk ve şeffaflık yükümlülükleri ekler. Bu yazı genel bilgilendirmedir, hukuki tavsiye değildir.</li><li>Anonimleştirme güçlüdür ama zordur: ismi silmek yetmez, dolaylı ipuçları (yaş, ilçe, meslek gibi) yeniden kimliklendirmeye yol açabilir. Modele göndermeden önce gereksiz kişisel verileri maskelemek hem veri minimizasyonuna hizmet eder hem de sızıntı zararını azaltır.</li><li>Bireyler için: yapıştırmadan önce düşünün, gizlilik ve eğitim ayarlarını kapatın, gerektiğinde anonimleştirin. Şirketler için: araç envanteri çıkarın, DPA'leri dikkatle okuyun, gizliliği baştan tasarlayın (privacy by design) ve yüksek riskli kullanımda DPIA yapın.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>

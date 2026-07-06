@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      // Keep the address bar clean: strip a trailing "index.html" without reloading.
+      if (location.pathname.endsWith('index.html')) {
+        history.replaceState(null, '', location.pathname.replace(/index\.html$/, '') + location.search + location.hash);
+      }
+    </script>
+    <meta name="description" content="HatsonTech is a software solutions & innovation company. We build custom software, web platforms, mobile apps, cloud systems and AI-powered products — including our flagship business platform, FlowDesk. Ankara-based, serving all of Türkiye.">
+    <meta name="keywords" content="HatsonTech, software solutions, custom software development, web development, mobile app development, cloud, AI, machine learning, data engineering, FlowDesk, Türkiye">
+    <meta name="author" content="HatsonTech">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://hatsontech.com/">
+    <meta name="theme-color" content="#1E4FA0">
+
+    <!-- Geo / Local SEO -->
+    <meta name="geo.region" content="TR-06">
+    <meta name="geo.placename" content="Ankara, Türkiye">
+    <meta name="geo.position" content="39.891361;32.782800">
+    <meta name="ICBM" content="39.891361, 32.782800">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="HatsonTech — Software Solutions & Innovation">
+    <meta property="og:description" content="We design and build custom software, web platforms, mobile apps, cloud systems and AI-powered products for businesses. Flagship product: FlowDesk, our all-in-one business management platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hatsontech.com/">
+    <meta property="og:site_name" content="HatsonTech">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:image" content="https://hatsontech.com/image/hatsontech-logo.svg">
+    <meta property="og:image:alt" content="HatsonTech logo">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hatsontech">
+    <meta name="twitter:title" content="HatsonTech — Software Solutions & Innovation">
+    <meta name="twitter:description" content="Custom software, web & mobile apps, cloud and AI-powered products. Flagship: FlowDesk.">
+    <meta name="twitter:image" content="https://hatsontech.com/image/hatsontech-logo.svg">
+
+    <title>HatsonTech — Software Solutions & Innovation</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./image/hatsontech-logo.svg">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Structured Data (SEO / GEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "HatsonTech",
+      "legalName": "HatsonTech Yazılım A.Ş.",
+      "url": "https://hatsontech.com/",
+      "logo": "https://hatsontech.com/image/hatsontech-logo.svg",
+      "image": "https://hatsontech.com/image/hatsontech-logo.svg",
+      "description": "HatsonTech is a software solutions and innovation company based in Ankara, Türkiye. It designs and builds custom software, web platforms, mobile apps, cloud systems, and AI-powered products for businesses. Its flagship product is FlowDesk, an all-in-one business management platform.",
+      "foundingDate": "2026-01",
+      "email": "info@hatsontech.com",
+      "telephone": "+90-542-412-2111",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mustafa Kemal Mahallesi Bilişim İnovasyon Merkezi ODTÜ Teknokent",
+        "addressLocality": "Çankaya",
+        "addressRegion": "Ankara",
+        "postalCode": "06510",
+        "addressCountry": "TR"
+      },
+      "sameAs": [
+        "https://x.com/hatsontech",
+        "https://tr.linkedin.com/company/hatsontech",
+        "https://www.instagram.com/hatsontech/",
+        "https://github.com/HatsonTech"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "FlowDesk",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "/#projects",
+      "description": "FlowDesk is HatsonTech's all-in-one business management platform: CRM, project and task management, invoicing, and team collaboration in one cloud-native SaaS.",
+      "inLanguage": "tr",
+      "publisher": {
+        "@type": "Organization",
+        "name": "HatsonTech",
+        "url": "https://hatsontech.com/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "SaaS subscription"
+      }
+    }
+    </script>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container-fluid px-3 px-xl-5">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="./image/hatsontech-logo.svg" alt="HatsonTech Logo" class="logo-img">
+                <span class="ms-2 fw-bold">HatsonTech</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" data-translate="nav_home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" data-translate="nav_about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services" data-translate="nav_services">What We Build</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects" data-translate="nav_projects">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solutions" data-translate="nav_solutions">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#technologies" data-translate="nav_technologies">Technologies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#careers" data-translate="nav_careers">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#insights" data-translate="nav_blog">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-translate="nav_contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <div class="language-switcher">
+                            <button class="btn btn-sm btn-outline-light lang-btn" data-lang="en">EN</button>
+                            <button class="btn btn-sm btn-outline-light lang-btn" data-lang="tr">TR</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4" data-translate="hero_title">
+                        Software Solutions &amp; Innovation
+                    </h1>
+                    <p class="lead mb-4" data-translate="hero_subtitle">
+                        HatsonTech is a software company that designs and builds custom software, web platforms, mobile apps, cloud systems, and AI-powered products for businesses. Our flagship product, FlowDesk, brings your whole business into one platform.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary btn-lg me-3" data-translate="hero_btn_projects">Our Products</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg" data-translate="hero_btn_contact">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="hero-image">
+                        <img src="./image/hatsontech-logo.svg" alt="HatsonTech" class="img-fluid floating">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#about"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="section-title" data-translate="about_title">About HatsonTech</h2>
+                    <p class="lead mb-4" data-translate="about_intro">
+                        From Idea to Software, From Software to Innovation.
+                    </p>
+                    <p data-translate="about_description">
+                        HatsonTech is an Ankara-based software solutions and innovation company operating in ODTÜ Teknokent. We design and build custom software, web platforms, mobile apps, cloud systems, and AI-powered products. Our flagship product is FlowDesk, an all-in-one business management platform.
+                    </p>
+                    <p data-translate="about_mission">
+                        Our mission is to build software that solves real problems — from our own products like FlowDesk to tailored solutions for our clients — and to create lasting value for the businesses and people who rely on it. We bring the engineering, cloud, and AI capability behind our own products directly to our clients through our solutions: custom software, web and mobile development, AI &amp; data, and cloud.
+                    </p>
+                    <p data-translate="about_vision">
+                        Our vision is to become one of Türkiye's leading software and innovation companies, building our own products and platforms that make a difference both locally and internationally.
+                    </p>
+                    <p class="mt-4 mb-0" style="font-size:0.9rem;color:#8A93A6;">
+                        <span data-translate="about_founders">Founders</span>: <a href="https://tariksenkal.com" target="_blank" rel="noopener" style="color:var(--dark-green);font-weight:600;text-decoration:none;">Tarık Şenkal</a> &middot; <a href="https://halideyilmaz.com" target="_blank" rel="noopener" style="color:var(--dark-green);font-weight:600;text-decoration:none;">Halide Yılmaz</a>
+                    </p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 data-translate="about_feature1_title">Innovation First</h4>
+                                <p data-translate="about_feature1_desc">Pushing the boundaries with modern software, cloud-native architecture, and applied AI.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 data-translate="about_feature2_title">Excellence</h4>
+                                <p data-translate="about_feature2_desc">Building high-quality, scalable software that exceeds expectations.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 data-translate="about_feature3_title">Integrity</h4>
+                                <p data-translate="about_feature3_desc">Ethical engineering with a strong commitment to data privacy and security.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h4 data-translate="about_feature4_title">Partnership</h4>
+                                <p data-translate="about_feature4_desc">Long-term partnerships — we support and evolve the software we build with you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "What We Build" Section: capabilities behind our OWN products (not services-for-hire).
+         id kept as #services for anchor/SEO stability — visible label is "What We Build". -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="services_title">What We Build</h2>
+                <p class="section-subtitle" data-translate="services_subtitle">
+                    The engineering capabilities behind our own products and our clients' projects
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4 data-translate="service1_title">Custom Software</h4>
+                        <p data-translate="service1_desc">Tailored web applications, internal dashboards, APIs, and integrations built on clean, maintainable architecture.</p>
+                        <ul class="service-list">
+                            <li data-translate="service1_item1">Web Applications</li>
+                            <li data-translate="service1_item2">Dashboards &amp; Portals</li>
+                            <li data-translate="service1_item3">APIs &amp; Integrations</li>
+                            <li data-translate="service1_item4">Automation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-screen"></i>
+                        </div>
+                        <h4 data-translate="service2_title">Web &amp; Mobile Apps</h4>
+                        <p data-translate="service2_desc">Modern, fast, responsive products — from web platforms to native iOS and Android apps, designed and shipped end to end.</p>
+                        <ul class="service-list">
+                            <li data-translate="service2_item1">Responsive Web</li>
+                            <li data-translate="service2_item2">iOS &amp; Android</li>
+                            <li data-translate="service2_item3">Cross-Platform</li>
+                            <li data-translate="service2_item4">UI / UX Design</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 data-translate="service3_title">AI &amp; Data</h4>
+                        <p data-translate="service3_desc">AI features embedded into real software: assistants, RAG-based search, automation, plus the data engineering that powers them.</p>
+                        <ul class="service-list">
+                            <li data-translate="service3_item1">AI Assistants &amp; RAG</li>
+                            <li data-translate="service3_item2">Machine Learning</li>
+                            <li data-translate="service3_item3">Data Engineering</li>
+                            <li data-translate="service3_item4">Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h4 data-translate="service4_title">Cloud &amp; DevOps</h4>
+                        <p data-translate="service4_desc">Cloud-native infrastructure, CI/CD pipelines, and scalable, secure systems that keep software running reliably in production.</p>
+                        <ul class="service-list">
+                            <li data-translate="service4_item1">Cloud-Native</li>
+                            <li data-translate="service4_item2">CI/CD Pipelines</li>
+                            <li data-translate="service4_item3">Microservices</li>
+                            <li data-translate="service4_item4">Reliability &amp; Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section: FlowDesk (flagship) + HatsonAI (AI engine) + StorePilot (commerce).
+         id kept as #projects for anchor/SEO stability — visible label is "Our Products". -->
+    <section id="projects" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="projects_title">Our Products</h2>
+                <p class="section-subtitle" data-translate="projects_subtitle">
+                    The software products we build and operate
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <i class="fas fa-layer-group fa-5x"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category" data-translate="project2_category">Our Flagship Product</div>
+                            <h3 data-translate="project2_title">FlowDesk</h3>
+                            <p data-translate="project2_desc">
+                                Our flagship all-in-one business management platform: CRM, project and task management, invoicing, and team collaboration in a single cloud-native app. Built to help small and mid-sized businesses run everything from one place.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge" data-translate="tech_crm">CRM</span>
+                                <span class="tech-badge" data-translate="tech_project_mgmt">Project Management</span>
+                                <span class="tech-badge" data-translate="tech_invoicing">Invoicing</span>
+                                <span class="tech-badge" data-translate="tech_team_collab">Team Collaboration</span>
+                                <span class="tech-badge" data-translate="tech_cloud_saas">Cloud SaaS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <i class="fas fa-robot fa-5x"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category" data-translate="project1_category">AI Engine</div>
+                            <h3 data-translate="project1_title">HatsonAI</h3>
+                            <p data-translate="project1_desc">
+                                Our AI automation and assistant engine: document understanding, retrieval-augmented (RAG) assistants that cite their sources, and workflow automation. It powers the smart features across HatsonTech products and client projects.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge" data-translate="tech_ai_assistants">AI Assistants</span>
+                                <span class="tech-badge" data-translate="tech_rag_tech">RAG Technology</span>
+                                <span class="tech-badge" data-translate="tech_doc_ai">Document AI</span>
+                                <span class="tech-badge" data-translate="tech_automation">Automation</span>
+                                <span class="tech-badge" data-translate="tech_nlp">Natural Language Processing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-overlay">
+                                <i class="fas fa-store fa-5x"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-category" data-translate="project3_category">Commerce Platform</div>
+                            <h3 data-translate="project3_title">StorePilot</h3>
+                            <p data-translate="project3_desc">
+                                Our e-commerce and retail management platform: a modern storefront, inventory and order management, and sales analytics in one place. Everything a growing business needs to sell online and manage operations.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-badge" data-translate="tech_ecommerce">E-Commerce</span>
+                                <span class="tech-badge" data-translate="tech_inventory">Inventory</span>
+                                <span class="tech-badge" data-translate="tech_orders">Order Management</span>
+                                <span class="tech-badge" data-translate="tech_storefront">Storefront</span>
+                                <span class="tech-badge" data-translate="tech_analytics">Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Solutions Section: software / AI / data services we deliver to businesses -->
+    <section id="solutions" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="solutions_title">Solutions &amp; Services</h2>
+                <p class="section-subtitle" data-translate="solutions_subtitle">The engineering behind our own products, delivered to your business.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h4><a href="cozumler/ozel-yazilim-gelistirme.html" style="color:inherit;text-decoration:none;" data-translate="sol1_title">Custom Software Development</a></h4>
+                        <p data-translate="sol1_desc">Web apps, dashboards, APIs and cloud systems — built on the same scalable infrastructure that runs our own products.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-brain"></i></div>
+                        <h4><a href="cozumler/buyuk-dil-modeli-egitimi.html" style="color:inherit;text-decoration:none;" data-translate="sol2_title">LLM Training &amp; Fine-Tuning</a></h4>
+                        <p data-translate="sol2_desc">Domain-specific language models: Turkish NLP, fine-tuning and adaptation to your enterprise data.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-eye"></i></div>
+                        <h4><a href="cozumler/goruntu-tanima-bilgisayarli-goru.html" style="color:inherit;text-decoration:none;" data-translate="sol3_title">Computer Vision &amp; Image Recognition</a></h4>
+                        <p data-translate="sol3_desc">Object recognition, OCR, document and image analysis for manufacturing, retail, healthcare and security.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+                        <h4><a href="cozumler/rag-anlamsal-arama-cozumleri.html" style="color:inherit;text-decoration:none;" data-translate="sol4_title">RAG &amp; Enterprise Search</a></h4>
+                        <p data-translate="sol4_desc">Semantic search over your documents and AI assistants that cite their sources.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-mobile-screen"></i></div>
+                        <h4><a href="cozumler/mobil-uygulama-gelistirme.html" style="color:inherit;text-decoration:none;" data-translate="sol5_title">Mobile App Development</a></h4>
+                        <p data-translate="sol5_desc">Modern, fast, AI-powered apps for iOS and Android — from design to release.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-database"></i></div>
+                        <h4><a href="cozumler/buyuk-veri-veri-muhendisligi.html" style="color:inherit;text-decoration:none;" data-translate="sol6_title">Big Data &amp; Data Engineering</a></h4>
+                        <p data-translate="sol6_desc">Data pipelines, warehousing and analytics that turn scattered data into a clean, AI-ready source.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="cozumler/" style="display:inline-block;background:#14336B;color:#fff;font-weight:700;padding:.85rem 2rem;border-radius:10px;text-decoration:none;" data-translate="solutions_viewall">All solutions &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="tech_title">Technologies We Use</h2>
+                <p class="section-subtitle" data-translate="tech_subtitle">
+                    Cutting-edge tools and frameworks powering our software
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="tech-item">
+                        <i class="fas fa-laptop-code"></i>
+                        <h5 data-translate="tech1_title">Web & Frontend</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="tech-item">
+                        <i class="fas fa-server"></i>
+                        <h5 data-translate="tech2_title">Backend & APIs</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="tech-item">
+                        <i class="fas fa-mobile-screen"></i>
+                        <h5 data-translate="tech3_title">Mobile Development</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="tech-item">
+                        <i class="fas fa-brain"></i>
+                        <h5 data-translate="tech4_title">Artificial Intelligence</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="tech-item">
+                        <i class="fas fa-eye"></i>
+                        <h5 data-translate="tech5_title">Computer Vision</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
+                    <div class="tech-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h5 data-translate="tech6_title">Big Data & Analytics</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="tech-item">
+                        <i class="fas fa-cloud"></i>
+                        <h5 data-translate="tech7_title">Cloud Computing & DevOps</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="450">
+                    <div class="tech-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h5 data-translate="tech8_title">Cybersecurity & Privacy</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="tech-item">
+                        <i class="fas fa-layer-group"></i>
+                        <h5 data-translate="tech9_title">Machine Learning & MLOps</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="550">
+                    <div class="tech-item">
+                        <i class="fas fa-cubes"></i>
+                        <h5 data-translate="tech10_title">API & Microservices</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <h5 data-translate="tech11_title">Database Systems</h5>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="650">
+                    <div class="tech-item">
+                        <i class="fas fa-vector-square"></i>
+                        <h5 data-translate="tech12_title">Vector Search & RAG</h5>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="careers_title">Join Our Team</h2>
+                <p class="section-subtitle" data-translate="careers_subtitle">
+                    Build great software with us
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="career-benefits-card">
+                        <h3 class="mb-4" data-translate="careers_why_title">Why HatsonTech?</h3>
+                        <div class="career-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-translate="benefit1">Work on modern software and AI products</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-translate="benefit2">Flexible work arrangements</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-translate="benefit3">Professional development opportunities</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-translate="benefit4">Collaborative and innovative environment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="cv-submission-card">
+                        <h4 class="mb-3" data-translate="careers_send_cv_title">Send Us Your CV</h4>
+                        <p class="mb-4" data-translate="careers_send_cv_desc">
+                            We're always looking for talented individuals to join our team. Send us your CV and let's explore opportunities together.
+                        </p>
+                        <!-- Careers form posts directly to FormSubmit (supports the CV file attachment).
+                             After the one-time activation click, applications are emailed to info@hatsontech.com. -->
+                        <form id="cvForm" class="cv-form" action="https://formsubmit.co/info@hatsontech.com" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_subject" value="New CV / Job Application — HatsonTech">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://hatsontech.com/?sent=cv#careers">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="name" class="form-control" id="cv_name" placeholder="Your Name" data-translate-placeholder="cv_form_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" name="email" class="form-control" id="cv_email" placeholder="Your Email" data-translate-placeholder="cv_form_email" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="tel" name="phone" class="form-control" id="cv_phone" placeholder="Phone Number" data-translate-placeholder="cv_form_phone" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" name="position" class="form-control" id="cv_position" placeholder="Desired Position" data-translate-placeholder="cv_form_position" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" data-translate="cv_form_cv_label">Upload Your CV (PDF)</label>
+                                <input type="file" name="attachment" class="form-control" id="cv_file" accept=".pdf" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="message" id="cv_message" rows="3" placeholder="Tell us about yourself" data-translate-placeholder="cv_form_message"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg" data-translate="cv_form_submit">Submit Application</button>
+                            </div>
+                        </form>
+                        <div id="cvFormMessage" class="alert mt-3" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+
+    <!-- Insights Section: latest articles (full list at /faydali-bilgiler/) -->
+    <section id="insights" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="insights_title">Insights</h2>
+                <p class="section-subtitle" data-translate="insights_subtitle">Plain-language articles on AI, large language models, RAG and Turkish NLP.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a href="faydali-bilgiler/akil-yuruten-reasoning-modeller.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight1_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">Reasoning AI Models: How 'Thinking' Models Work</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="faydali-bilgiler/model-context-protocol-mcp.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight2_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">MCP: The Standard Connecting AI to Tools</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <a href="faydali-bilgiler/baglam-muhendisligi-context-engineering.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight3_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">Context Engineering: Beyond Prompt Engineering</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="faydali-bilgiler/rag-vs-fine-tuning.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="image/faydali-bilgiler/rag-vs-fine-tuning.jpg" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight4_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">RAG or Fine-Tuning? Which to Use and When</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <a href="faydali-bilgiler/llm-nedir-nasil-calisir.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="image/faydali-bilgiler/llm-nedir-nasil-calisir.jpg" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight5_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">What Are Large Language Models (LLMs)?</h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <a href="faydali-bilgiler/yapay-zeka-ajanlari.html" style="text-decoration:none;color:inherit;display:block;height:100%;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden;transition:transform .3s,box-shadow .3s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 15px 35px rgba(0,0,0,.08)';" onmouseout="this.style.transform='';this.style.boxShadow='';">
+                        <img src="image/faydali-bilgiler/yapay-zeka-ajanlari.jpg" alt="" loading="lazy" style="width:100%;height:175px;object-fit:cover;display:block;background:#E7EEF8;">
+                        <div style="padding:1.4rem;">
+                            <h5 data-translate="insight6_title" style="font-family:var(--font-heading,'Montserrat',sans-serif);font-weight:700;color:#222;line-height:1.4;margin:0;">AI Agents and Tool Use</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="faydali-bilgiler/" style="display:inline-block;background:#14336B;color:#fff;font-weight:700;padding:.85rem 2rem;border-radius:10px;text-decoration:none;" data-translate="insights_viewall">All articles &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title" data-translate="contact_title">Get In Touch</h2>
+                <p class="section-subtitle" data-translate="contact_subtitle">
+                    Have a project in mind, questions about our products, or want to join the team? Reach out.
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4" data-aos="fade-right">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5 data-translate="contact_address_title">Address</h5>
+                                <p data-translate="contact_address">Mustafa Kemal Mahallesi Bilişim İnovasyon Merkezi ODTÜ Teknokent 06510 Çankaya, Ankara</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5 data-translate="contact_email_title">Email</h5>
+                                <p><a href="mailto:info@hatsontech.com" style="color: inherit;">info@hatsontech.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5 data-translate="contact_phone_title">Phone</h5>
+                                <p><a href="tel:+905424122111" style="color: inherit;">+90 542 412 2111</a></p>
+                            </div>
+                        </div>
+                        <div class="social-links mt-4">
+                            <a href="https://x.com/hatsontech" target="_blank" rel="noopener" class="social-link" aria-label="X (Twitter)" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                            <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" class="social-link" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://wa.me/905424122111" target="_blank" rel="noopener" class="social-link" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://github.com/HatsonTech" target="_blank" rel="noopener" class="social-link" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8" data-aos="fade-left">
+                    <form id="contactForm" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" data-translate-placeholder="contact_form_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email" data-translate-placeholder="contact_form_email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" id="company" placeholder="Company Name" data-translate-placeholder="contact_form_company">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" data-translate-placeholder="contact_form_phone">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <!-- Product/topic selector (NOT a services menu). id="service" kept for main.js validateForm(). -->
+                            <select class="form-control" id="service" name="topic" required>
+                                <option value="" data-translate="contact_form_topic_default">Select a topic</option>
+                                <option value="project" data-translate="contact_form_topic_project">New Project / Quote</option>
+                                <option value="flowdesk" data-translate="contact_form_topic_flowdesk">FlowDesk</option>
+                                <option value="hatsonai" data-translate="contact_form_topic_hatsonai">HatsonAI</option>
+                                <option value="storepilot" data-translate="contact_form_topic_storepilot">StorePilot</option>
+                                <option value="partnership" data-translate="contact_form_topic_partnership">Partnership</option>
+                                <option value="careers" data-translate="contact_form_topic_careers">Careers</option>
+                                <option value="other" data-translate="contact_form_topic_other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" data-translate-placeholder="contact_form_message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg" data-translate="contact_form_submit">Send Message</button>
+                    </form>
+                    <div id="formMessage" class="alert mt-3" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-brand">
+                        <img src="./image/hatsontech-logo.svg" alt="HatsonTech" class="footer-logo">
+                        <h4>HatsonTech</h4>
+                    </div>
+                    <p data-translate="footer_description">
+                        Yazılım Çözümleri ve İnovasyon.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/905424122111" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://github.com/HatsonTech" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h5 data-translate="footer_company">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#about" data-translate="footer_about">About Us</a></li>
+                        <li><a href="#careers" data-translate="footer_careers">Careers</a></li>
+                        <li><a href="#contact" data-translate="footer_contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h5 data-translate="footer_services">Products</h5>
+                    <ul class="footer-links">
+                        <li><a href="#projects" data-translate="footer_ai">FlowDesk</a></li>
+                        <li><a href="#projects" data-translate="footer_software">HatsonAI</a></li>
+                        <li><a href="#projects" data-translate="footer_transformation">StorePilot</a></li>
+                        <li><a href="#services" data-translate="footer_research">What We Build</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h5 data-translate="footer_resources">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#projects" data-translate="footer_projects">Products</a></li>
+                        <li><a href="#technologies" data-translate="footer_technologies">Technologies</a></li>
+                        <li><a href="faydali-bilgiler/" data-translate="nav_blog">Insights</a></li>
+                        <li><a href="#solutions" data-translate="nav_solutions">Solutions</a></li>
+                        <li><a href="#careers" data-translate="footer_careers">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4">
+                    <h5 data-translate="footer_legal">Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="privacy-policy.html" data-translate="footer_privacy">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html" data-translate="footer_terms">Terms of Service</a></li>
+                        <li><a href="cookie-policy.html" data-translate="footer_cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p class="footer-copyright">
+                        &copy; 2026 HatsonTech. <span data-translate="footer_rights">All rights reserved.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    
+</body>
+</html>
+

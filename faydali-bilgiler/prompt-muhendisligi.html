@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prompt mühendisliği nedir, yapay zekadan nasıl daha iyi cevap alınır? Net talimat, bağlam, az-örnekli yaklaşım, rol istemleri ve adım adım düşünmeyi örneklerle anlatan rehber.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="en" href="https://hatsontech.com/insights/prompt-muhendisligi.html">
+  <link rel="alternate" hreflang="x-default" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <meta name="theme-color" content="#1E4FA0">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları">
+  <meta property="og:description" content="Prompt mühendisliği nedir, yapay zekadan nasıl daha iyi cevap alınır? Net talimat, bağlam, az-örnekli yaklaşım, rol istemleri ve adım adım düşünmeyi örneklerle anlatan rehber.">
+  <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html">
+  <meta property="og:site_name" content="HatsonTech">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@hatsontech">
+  <meta name="twitter:title" content="Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları">
+  <meta name="twitter:description" content="Prompt mühendisliği nedir, yapay zekadan nasıl daha iyi cevap alınır? Net talimat, bağlam, az-örnekli yaklaşım, rol istemleri ve adım adım düşünmeyi örneklerle anlatan rehber.">
+  <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg">
+  <title>Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları | HatsonTech</title>
+  <link rel="icon" type="image/svg+xml" href="../image/hatsontech-logo.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .legal-nav { background: #0F2A57; }
+    .legal-nav .nav-link { color: rgba(255,255,255,.85); }
+    .legal-nav .nav-link:hover, .legal-nav .nav-link.active { color: #fff; }
+    .legal-langbar { display:flex; gap:.4rem; }
+    .legal-lang-btn.active { background:#fff; color:#14336B; }
+    .article-wrap { max-width: 800px; margin: 0 auto; padding: 130px 1.25rem 70px; }
+    .article-hero { width:100%; height:340px; object-fit:cover; border-radius:14px; margin-bottom:1.6rem; display:block; background:#E7EEF8; }
+    .breadcrumb-nav { font-size:.88rem; color:#999; margin-bottom:1.4rem; }
+    .breadcrumb-nav a { color:#14336B; text-decoration:none; }
+    .article-cat { color: var(--primary-green,#1E4FA0); font-weight:700; text-transform:uppercase; letter-spacing:1px; font-size:.82rem; }
+    .article-wrap h1 { font-family:'Montserrat',sans-serif; font-weight:800; line-height:1.2; margin:.4rem 0 1rem; color:#222; }
+    .article-sub { font-size:1.22rem; color:#555; line-height:1.6; margin-bottom:1.4rem; }
+    .article-meta { display:flex; flex-wrap:wrap; gap:.8rem 1.2rem; align-items:center; color:#888; font-size:.9rem; border-top:1px solid #eee; border-bottom:1px solid #eee; padding:.9rem 0; margin-bottom:2rem; }
+    .article-tags { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .article-tag { background:#EEF3FB; color:#14336B; border-radius:50px; padding:.22rem .7rem; font-size:.78rem; font-weight:600; }
+    .article-body h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.5rem; margin:2.3rem 0 .8rem; color:#0F2A57; }
+    .article-body p { color:#333; line-height:1.85; font-size:1.07rem; margin-bottom:1.1rem; }
+    .takeaways { background:#EEF3FB; border-left:4px solid var(--primary-green,#1E4FA0); border-radius:8px; padding:1.2rem 1.5rem; margin:2.6rem 0; }
+    .takeaways h3 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:.6rem; }
+    .takeaways ul { margin:0; padding-left:1.2rem; } .takeaways li { color:#0F2A57; line-height:1.7; margin-bottom:.3rem; }
+    .article-back { display:inline-block; margin-top:2rem; font-weight:600; color:#14336B; text-decoration:none; }
+    .blog-head { padding:130px 1.25rem 1.5rem; text-align:center; }
+    .blog-head h1 { font-family:'Montserrat',sans-serif; font-weight:800; color:#0F2A57; }
+    .blog-head p { color:#666; max-width:640px; margin:.5rem auto 0; }
+    .blog-grid { max-width:1120px; margin:0 auto; padding:1rem 1.25rem 1.5rem; display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.6rem; }
+    .blog-card { background:#fff; border:1px solid #eee; border-radius:14px; overflow:hidden; transition:.3s; display:flex; flex-direction:column; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 15px 35px rgba(0,0,0,.08); }
+    .blog-card-img { width:100%; height:175px; object-fit:cover; display:block; background:#E7EEF8; }
+    .blog-card-body { padding:1.6rem; display:flex; flex-direction:column; flex:1; }
+    .blog-card h2 { font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.22rem; margin:.45rem 0 .6rem; line-height:1.35; }
+    .blog-card h2 a { color:#222; text-decoration:none; } .blog-card h2 a:hover { color:#14336B; }
+    .blog-card p { color:#666; line-height:1.6; flex:1; font-size:.97rem; }
+    .blog-card .read-more { color:#14336B; font-weight:600; text-decoration:none; margin-top:1rem; align-self:flex-start; }
+    .blog-card-meta { color:#999; font-size:.82rem; margin-top:.8rem; }
+    .blog-pagination { display:flex; justify-content:center; gap:.4rem; flex-wrap:wrap; padding:0 1.25rem 70px; }
+    .blog-pagination button { border:1px solid #C2D2EA; background:#fff; color:#0F2A57; min-width:42px; height:42px; padding:0 .5rem; border-radius:8px; font-weight:600; cursor:pointer; transition:.2s; }
+    .blog-pagination button:hover:not(:disabled) { border-color:#1E4FA0; color:#14336B; }
+    .blog-pagination button.active { background:#14336B; border-color:#14336B; color:#fff; }
+    .blog-pagination button:disabled { opacity:.4; cursor:default; }
+    @media (max-width:600px){ .article-hero{ height:210px; } }
+</style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları",
+  "description": "Prompt mühendisliği nedir, yapay zekadan nasıl daha iyi cevap alınır? Net talimat, bağlam, az-örnekli yaklaşım, rol istemleri ve adım adım düşünmeyi örneklerle anlatan rehber.",
+  "inLanguage": "tr",
+  "datePublished": "2026-06-07",
+  "dateModified": "2026-06-07",
+  "author": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "url": "https://hatsontech.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "HatsonTech",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hatsontech.com/image/hatsontech-logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html"
+  },
+  "image": "https://hatsontech.com/image/faydali-bilgiler/prompt-muhendisligi.jpg",
+  "articleSection": "Pratik / Nasıl Yapılır",
+  "keywords": "Prompt Engineering, LLM, Yapay Zeka, Verimlilik"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "HatsonTech",
+      "item": "https://hatsontech.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Faydalı Bilgiler",
+      "item": "https://hatsontech.com/faydali-bilgiler/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları",
+      "item": "https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top legal-nav">
+    <div class="container-fluid px-3 px-xl-5">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="../image/hatsontech-logo.svg" alt="HatsonTech" class="logo-img" style="height:36px;">
+        <span class="ms-2 fw-bold">HatsonTech</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#blogNav" aria-label="Menu"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="blogNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="/#home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#services">Neler Geliştiriyoruz</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Ürünler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#technologies">Teknolojiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#careers">Kariyer</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/#insights">Faydalı Bilgiler</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">İletişim</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <div class="legal-langbar">
+              <a class="btn btn-sm btn-outline-light legal-lang-btn active" href="https://hatsontech.com/faydali-bilgiler/prompt-muhendisligi.html" data-setlang="tr" hreflang="tr">TR</a>
+              <a class="btn btn-sm btn-outline-light legal-lang-btn" href="https://hatsontech.com/insights/prompt-muhendisligi.html" data-setlang="en" hreflang="en">EN</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="article-wrap">
+    <nav class="breadcrumb-nav"><a href="/">HatsonTech</a> / <a href="/faydali-bilgiler/">Faydalı Bilgiler</a> / Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları</nav>
+    <img class="article-hero" src="../image/faydali-bilgiler/prompt-muhendisligi.jpg" alt="Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları" loading="lazy">
+    <div class="article-cat">Pratik / Nasıl Yapılır</div>
+    <h1>Prompt Mühendisliği: Yapay Zekadan Daha İyi Cevaplar Almanın Pratik Yolları</h1>
+    <p class="article-sub">Aynı yapay zeka modeli, kötü bir istemle vasat, iyi bir istemle şaşırtıcı sonuçlar verir. Aradaki farkı yaratan birkaç basit ama güçlü alışkanlığı —net talimat, bağlam, örnek ve adım adım düşünme— somut öncesi/sonrası karşılaştırmalarıyla anlatıyoruz.</p>
+    <div class="article-meta"><span><i class="far fa-clock"></i> 11 dk okuma</span><div class="article-tags"><span class="article-tag">Prompt Engineering</span><span class="article-tag">LLM</span><span class="article-tag">Yapay Zeka</span><span class="article-tag">Verimlilik</span></div></div>
+    <div class="article-body">
+<h2>Prompt mühendisliği aslında nedir?</h2>
+<p>Bir yapay zeka modeline yazdığınız her şeye "istem" (prompt) denir ve aldığınız cevabın kalitesi büyük ölçüde o isteme bağlıdır. Adı kulağa teknik gelse de, prompt mühendisliği gizli bir programlama dili değildir. Özünde tek bir şeydir: ne istediğinizi, yapay zekanın anlayabileceği biçimde net, eksiksiz ve düzenli bir şekilde anlatabilme becerisi. İyi haber, bunun kod yazmayı gerektirmemesi; isteyen herkes öğrenebilir.</p>
+<p>Şöyle bir benzetme işe yarıyor: modeli, son derece bilgili ama sizin kafanızın içini hiç göremeyen, işe yeni başlamış çok yetenekli bir stajyer gibi düşünün. Bu stajyere yalnızca "şunu hallet" derseniz, makul ama büyük ihtimalle yanlış bir tahmin yürütür. Oysa ona kim olduğunuzu, neyi neden istediğinizi, sonucun nasıl görünmesi gerektiğini söyler ve bir de örnek verirseniz, çoğu zaman tam aklınızdakini getirir. Model değişmedi; değişen tek şey, ona verdiğiniz brifingdi.</p>
+<p>Bir noktanın altını çizelim: modern modeller giderek daha "affedici" hale geliyor; yani dağınık bir istemi bile bir şekilde anlamaya çalışıyorlar. Ama affedici olmak, kusursuz olmak değildir. Cevabın doğru, ilgili ve kullanılabilir olmasını istiyorsanız, isteminizi şansa bırakmak yerine bilinçli kurmak hâlâ elinizdeki en hızlı kaldıraçtır. Bu yazıda o kaldıracı nasıl kullanacağınızı, her teknik için bir öncesi/sonrası örneğiyle adım adım göreceğiz.</p>
+<h2>Net talimat: belirsizlik girer, belirsizlik çıkar</h2>
+<p>İyi bir istemin birinci kuralı en sıkıcı ama en güçlü olanıdır: ne istediğinizi açıkça söyleyin. Yapay zeka zihninizi okuyamaz; yalnızca sözcüklerinizi okur. "Kısa", "profesyonel", "birkaç madde" gibi ifadeler size net görünür ama modele yoruma açık birer boşluk olarak ulaşır. O boşlukları siz doldurmazsanız, model sizin yerinize doldurur; ve her zaman umduğunuz gibi doldurmaz.</p>
+<p>Somut bir örnekle gidelim. ÖNCESİ: "E-postamı düzeltir misin?" Bu istem neyin düzeltileceğini (yazım mı, ton mu, uzunluk mu?), kime yazıldığını ve ne kadar müdahale istediğinizi söylemez. SONRASI: "Aşağıdaki e-postayı bir müşteriye göndereceğim. Yazım ve dil bilgisi hatalarını düzelt, tonu kibar ama net tut, 120 kelimeyi geçme. Anlamı değiştirme. Yalnızca düzeltilmiş metni döndür." İkinci istem modele başarının ölçütlerini verdiği için, sonuç da tahmin edilebilir biçimde daha iyi gelir.</p>
+<p>Pratik bir alışkanlık olarak, isteminize üç şeyi koymaya çalışın: görev (ne yapsın), kısıt (neyi yapmasın ya da hangi sınırlar içinde kalsın) ve çıktı biçimi (sonuç nasıl görünsün; madde listesi mi, tablo mu, tek paragraf mı?). Bu üçlü tek başına cevaplarınızın kalitesini gözle görülür biçimde yükseltir.</p>
+<p>Olumsuz talimatlar konusunda küçük bir uyarı: "şunu yapma" demek bazen "şunu yap" demekten daha zayıf çalışır, çünkü modelin dikkatini tam da istemediğiniz şeye çekersiniz. Mümkünse olumsuzu olumluya çevirin. "Teknik jargon kullanma" demek yerine "lise öğrencisinin anlayacağı gündelik bir dille yaz" demek genellikle daha temiz bir sonuç verir.</p>
+<h2>Bağlam: modele bildiklerinizi anlatın</h2>
+<p>Net talimattan sonra en büyük kaldıraç bağlamdır. Bağlam, modelin sizin durumunuza özgü iyi bir cevap üretebilmesi için ihtiyaç duyduğu arka plan bilgisidir: kim olduğunuz, kimin için yazdığınız, hangi sektörde çalıştığınız, elinizdeki ham malzeme ve daha önce neyi denediğiniz. Model internetin büyük bir kısmını okumuş olabilir, ama sizin özel durumunuzu yalnızca siz söylerseniz bilebilir.</p>
+<p>Örneğe bakalım. ÖNCESİ: "Yeni ürünümüz için bir tanıtım metni yaz." Model bir şeyler yazar, ama havada yazar; ürünü, kitleyi ve tonu tahmin etmek zorunda kalır. SONRASI: "Küçük işletmelere yönelik bir muhasebe yazılımı için tanıtım metni yaz. Hedef kitle, muhasebeden anlamayan esnaf ve küçük işletme sahipleri. En büyük vaadimiz, fatura ve KDV takibini otomatikleştirip onlara haftada birkaç saat kazandırması. Ton: güven veren, sade, abartısız. 3 kısa paragraf." İkinci versiyon modele gerçek hammaddeyi verdiği için çok daha kullanışlı çıkar.</p>
+<p>Bağlam verirken bir dengeyi gözetmek gerekir. Çok az bağlam modeli tahmine zorlar; gereğinden fazla bağlam ise asıl talimatı gürültüye boğup modelin önemli ayrıntıyı kaçırmasına yol açabilir. Pratik kural: göreve gerçekten yardımcı olan bilgiyi verin, ilgisizi eleyin. Uzun bir metni özetletecekseniz metnin tamamını verin; ama hayat hikayenizi anlatmanıza gerek yok.</p>
+<p>Bu fikir, HatsonTech'da geliştirdiğimiz yapay zeka asistanı motoru HatsonAI'ın temel mantığıyla da örtüşür. Orada modele doğru bağlamı otomatik sağlamak için RAG (Retrieval-Augmented Generation, yani "erişimle beslenmiş üretim") adlı bir yöntem kullanırız: model cevap vermeden önce ilgili gerçek belgeleri getirip önüne koyarız. Yani sizin elle yaptığınız "bağlam ekleme" işini sistem arka planda otomatikleştirir. İlke aynıdır: iyi bağlam, iyi cevap demektir.</p>
+<h2>Örnek göstermek: az-örnekli (few-shot) yaklaşım</h2>
+<p>Bazen ne istediğinizi anlatmaktansa göstermek çok daha etkilidir. Yapay zeka, kendisine verdiğiniz birkaç örnekteki örüntüyü yakalamakta şaşırtıcı derecede iyidir. Bu yönteme "few-shot" (az-örnekli) istem denir: modele birkaç giriş-çıkış çifti gösterirsiniz, o da aynı kalıbı yeni girdiye uygular. Hiç örnek vermeden yalnızca talimatla istemeye ise "zero-shot" (sıfır-örnekli) denir.</p>
+<p>Somut bir durum. Diyelim ki ürün yorumlarını "olumlu / olumsuz / nötr" diye etiketlemek istiyorsunuz ve "nötr"ün sizin için ne anlama geldiği kendine özgü. ÖNCESİ: "Bu yorumun duygusunu söyle: 'Kargo biraz geç geldi ama ürün gayet iyi.'" Model bir tahmin yapar, ama sizin ölçeğinize göre değil. SONRASI: önce üç örnek verirsiniz —"'Harika, bayıldım' → olumlu", "'Berbat, paramı geri istiyorum' → olumsuz", "'İdare eder, beklediğim gibiydi' → nötr"— sonra asıl yorumu sorarsınız. Artık model sizin "nötr" tanımınızı görmüştür ve etiketleri tam istediğiniz çerçevede üretir.</p>
+<p>Few-shot özellikle şu durumlarda parlar: belirli bir biçim istiyorsanız (her cevabın aynı yapıda olması), kendinize özgü bir tarzı ya da tonu yakalatmak istiyorsanız, ya da görev tarif etmesi zor ama göstermesi kolaysa. İyi seçilmiş iki üç örnek, çoğu zaman uzun bir talimat paragrafından daha net iş görür.</p>
+<p>Birkaç pratik not: örnekleriniz çeşitli ve temsil edici olsun, çünkü model örneklerdeki gizli örüntüyü de kopyalar; hepsi kısa cümlelerden oluşuyorsa, model uzun girdilerde şaşırabilir. Ayrıca örneklerinizin doğru olduğundan emin olun; yanlış bir örnek, modele yanlışı öğretir. Az ama nitelikli örnek, çok ama özensiz örnekten daima iyidir.</p>
+<h2>Rol ve sistem istemleri: modele bir şapka giydirin</h2>
+<p>Modele bir rol vermek; cevabın tonunu, derinliğini ve odağını şaşırtıcı derecede etkiler. "Sen deneyimli bir mali müşavirsin" ya da "Acemilere anlatan sabırlı bir öğretmen gibi davran" demek, modelin hangi bilgi havuzuna ve hangi anlatım tarzına yöneleceğine karar vermesine yardım eder. Bu sihir değil; modelin geniş yeteneklerinden hangi dilimini öne çıkaracağını söylemenin pratik bir yoludur.</p>
+<p>Örnek. ÖNCESİ: "Enflasyon nedir?" Genel, ansiklopedik bir cevap alırsınız. SONRASI: "Ekonomi okumamış meraklı bir lise öğrencisine, günlük hayattan bir örnekle enflasyonun ne olduğunu anlatan sabırlı bir öğretmen gibi cevap ver. Tek paragraf, sade dil." İkinci cevap aynı bilgiyi içerir, ama tam ihtiyacınız olan seviyede ve tonda gelir. Rol, içeriği değil, içeriğin sunumunu hizalar.</p>
+<p>Burada "sistem istemi" (system prompt) kavramına değmek gerek. Birçok yapay zeka aracında iki tür talimat vardır: her mesajda yazdığınız normal istem ve sohbetin tamamı boyunca geçerli kalan, kalıcı bir çerçeve niteliğindeki sistem istemi. Sistem istemi modele "sen kimsin ve genel kuralların neler?" sorusunun cevabını verir; tek tek mesajlar ise o çerçevenin içine düşen görevlerdir. Bir uygulama geliştiriyorsanız, davranışın değişmeyen kısmını sistem istemine koymak iyi bir alışkanlıktır.</p>
+<p>Pratik tavsiye: rolü göreve uygun ve dürüst tutun. Modele "sen bir doktorsun" demek onu gerçek bir doktor yapmaz ve verdiği tıbbi tavsiyeyi güvenilir kılmaz; yalnızca anlatım tarzını etkiler. Rolü, çıktının biçimini ve seviyesini ayarlamak için kullanın; bir uzmanlık garantisi olarak değil. Kritik kararlarda cevabı yine bir insanın doğrulaması gerekir.</p>
+<h2>Adım adım düşünmek: düşünce zinciri (chain-of-thought)</h2>
+<p>Bir mantık yürütme, matematik ya da çok adımlı bir problemde modelden doğrudan cevap istediğinizde, bazen hızlı ama yanlış bir tahminle karşılaşırsınız; tıpkı işlemi atlayıp sonucu pat diye söyleyen bir öğrenci gibi. Bunu düzeltmenin basit ve güçlü bir yolu var: modele acele etmemesini, adım adım düşünmesini söylemek. Bu tekniğe "düşünce zinciri" (chain-of-thought) denir.</p>
+<p>Etkisi şaşırtıcı derecede somuttur. ÖNCESİ: "Bir kalem 7 lira, bir defter kalemin 3 katı. 2 kalem ve 1 defter kaç lira?" Modelden doğrudan sayı isterseniz bazen yanlış sonuca atlar. SONRASI: aynı soruya "Adım adım düşün, önce her kalemi tek tek hesapla, en sonda toplamı yaz" eklersiniz. Model önce defterin 21 lira olduğunu, sonra 2 kalemin 14 lira ettiğini, toplamda 35 lira yaptığını ayrı ayrı yazar. Düşünmeyi görünür kılmak, hata olasılığını ciddi biçimde azaltır.</p>
+<p>Bu yaklaşımın iki ek faydası var. Birincisi denetlenebilirlik: modelin akıl yürütmesini görebildiğiniz için nerede yanıldığını fark edip düzeltebilirsiniz; kapalı bir kutudan çıkan tek bir sayıya bakarak bunu yapamazsınız. İkincisi, karmaşık bir görevi parçalara bölmek modelin yükünü hafifletir; tıpkı büyük bir problemi küçük adımlara bölmenin bir insana yardımcı olması gibi.</p>
+<p>Modern modellerin bir kısmında bu akıl yürütme artık dahili olarak yapılıyor; yani siz istemeseniz de model arka planda adım adım düşünüp size yalnızca sonucu veriyor ("akıl yürüten" modeller bunu standart hale getirdi). Yine de, özellikle karmaşık veya kritik görevlerde, "adım adım düşün" demek hem doğruluğu artırır hem de cevabı denetlenebilir kılar. Basit, tek adımlı sorularda ise buna gerek yoktur; yalnızca gereksiz uzunluk yaratır.</p>
+<h2>Sık yapılan hatalar ve nasıl kaçınılır</h2>
+<p>En sık görülen hata, tek bir istemin içine birbiriyle ilgisiz birçok görevi tıkıştırmaktır. "Bu metni özetle, sonra İngilizceye çevir, bir başlık öner, bir de sosyal medya paylaşımı yaz" gibi bir istemde model genellikle bazı parçaları savsaklar. Çözüm, büyük görevi küçük ve odaklı adımlara bölmektir: önce özet, sonra çeviri, sonra başlık. Her adımda kalite belirgin biçimde artar.</p>
+<p>İkinci sık hata, belirsiz nicelik ve biçim ifadeleridir. "Birkaç fikir ver", "kısa tut", "detaylı yaz" gibi ifadeler kişiden kişiye değişir. Bunun yerine sayı ve biçim verin: "5 fikir, her biri tek cümle", "en fazla 100 kelime", "madde madde, her madde bir cümle". Ölçülebilir bir hedef, hem size hem modele net bir başarı tanımı sunar.</p>
+<p>Üçüncü ve hukuki/teknik konularda en tehlikeli hata, modelin uydurduğu bilgiye —yani "halüsinasyon"a— körü körüne güvenmektir. Yapay zeka, emin olmadığı durumlarda bile kendinden emin bir tonla yanlış bir tarih, sahte bir kaynak ya da var olmayan bir alıntı üretebilir. Korunmanın yolu: kritik bilgileri (sayılar, isimler, tarihler, kaynaklar) bağımsız olarak doğrulamak ve modelden mümkün olduğunda dayanağını göstermesini istemek. HatsonAI'ı tam da bu yüzden, cevaplarını uydurmak yerine verilen gerçek belgelere bağlayan ve kaynağına kadar izlenebilir kılan bir mimari üzerine kuruyoruz.</p>
+<p>Dördüncü hata daha incedir: ilk cevabı son cevap sanmak. Yapay zekayla çalışmak tek atışlık bir iş değil, bir diyalogdur. Çoğu zaman ilk çıktı yüzde yetmiş iyidir; geri kalan yüzde otuz, birkaç düzeltici talimatla gelir. Bu da bizi son ilkeye, yani yinelemeye getiriyor.</p>
+<h2>Yineleme: iyi istem bulunmaz, geliştirilir</h2>
+<p>Deneyimli kullanıcıları acemilerden ayıran en büyük fark, mükemmel istemi ilk seferde yazmaları değildir; kötü bir ilk cevabı atıp pes etmek yerine, isteklerini düzelterek cevabı adım adım iyileştirmeleridir. Prompt mühendisliği bir keşif değil, bir döngüdür: iste, cevaba bak, neyin eksik olduğunu fark et, istemini düzelt, yeniden dene.</p>
+<p>Bu döngüyü verimli kılmanın pratik yolu, düzeltmelerinizi belirli yapmaktır. "Bu olmadı, tekrar dene" demek yerine, neyin neden olmadığını söyleyin: "Çok resmî oldu, daha samimi bir dille yaz", "İkinci madde konuyla ilgisiz, onu çıkar", "Örnekler soyut kaldı, günlük hayattan somut örnekler ekle." Model hem son cevabını hem sizin geri bildiriminizi gördüğü için, hedefe her turda biraz daha yaklaşır.</p>
+<p>Zamanla, sık yaptığınız işler için işe yarayan istem kalıplarını biriktirmeye başlarsınız; kendinize ait küçük bir "istem kütüphanesi" gibi. Belirli bir e-posta türünü yazdıran, belirli bir formatta özet çıkaran ya da metni belirli bir tonda düzelten kalıplarınız olur. Bir kez işe yarayan bir kalıbı bulduğunuzda kaydedin ve yeniden kullanın; her seferinde sıfırdan başlamak zorunda değilsiniz.</p>
+<p>Sonuç olarak prompt mühendisliği gizemli bir uzmanlık değil, öğrenilebilir bir iletişim becerisidir. Bu yazıdaki ilkeler —net talimat, yeterli bağlam, örnek gösterme, rol/sistem istemleri, adım adım düşünme ve yineleme— birlikte kullanıldığında, aynı modelden çok daha iyi sonuçlar almanızı sağlar. HatsonTech'da yapay zeka ürünleri geliştirirken her gün bu ilkelerin üzerine inşa ediyoruz; ama güzel yanı, bunları kullanmak için bir yazılım şirketi olmanıza gerek olmaması. Bir sonraki istemi yazarken bunlardan yalnızca birini deneyin; farkı hemen göreceksiniz.</p>
+    </div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Prompt mühendisliği gizli bir programlama dili değil, ne istediğinizi yapay zekaya net ve düzenli anlatma becerisidir; kod gerektirmez, isteyen herkes öğrenebilir.</li><li>Her isteme üç şey ekleyin: görev (ne yapsın), kısıt (hangi sınırlarda kalsın) ve çıktı biçimi (sonuç nasıl görünsün). Belirsiz ifadeler yerine sayı ve biçim verin.</li><li>Bağlam ve örnek güçlü kaldıraçlardır: modele durumunuza özgü arka planı verin, gerektiğinde birkaç örnekle (few-shot) istediğiniz kalıbı gösterin.</li><li>Rol ve sistem istemleri cevabın tonunu ve seviyesini hizalar; karmaşık problemlerde 'adım adım düşün' demek (chain-of-thought) doğruluğu artırır ve cevabı denetlenebilir kılar.</li><li>En tehlikeli hata, modelin uydurabileceği bilgiye (halüsinasyon) körü körüne güvenmektir; sayı, isim, tarih ve kaynak gibi kritik bilgileri bağımsız olarak doğrulayın.</li><li>İyi istem ilk seferde bulunmaz, yinelenerek geliştirilir; belirli geri bildirimle cevabı adım adım iyileştirin ve işe yarayan kalıpları kaydedip yeniden kullanın.</li></ul></div>
+    <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
+  </main>
+  <footer class="footer" style="padding:2rem 0;">
+  <div class="container text-center">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="/">Ana Sayfa</a>
+      <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
+      <a href="/#projects">FlowDesk</a>
+      <a href="/privacy-policy.html">Gizlilik</a>
+    </div>
+    <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
+      <a href="https://x.com/hatsontech" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://tr.linkedin.com/company/hatsontech" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/hatsontech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@hatsontech" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <p class="footer-copyright mb-0">&copy; 2026 HatsonTech. Tüm hakları saklıdır.</p>
+  </div>
+</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.querySelectorAll('[data-setlang]').forEach(function(a){a.addEventListener('click',function(){try{localStorage.setItem('language',this.getAttribute('data-setlang'));}catch(e){}});});</script>
+</body>
+</html>
