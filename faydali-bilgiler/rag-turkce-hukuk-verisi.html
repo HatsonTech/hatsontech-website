@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. HatsonAI ile RAG mühendisliği.">
+  <meta name="description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. MevzuatBot ile RAG mühendisliği.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://hatsontech.com/faydali-bilgiler/rag-turkce-hukuk-verisi.html">
   <link rel="alternate" hreflang="tr" href="https://hatsontech.com/faydali-bilgiler/rag-turkce-hukuk-verisi.html">
@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#1E4FA0">
   <meta property="og:type" content="article">
   <meta property="og:title" content="İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak">
-  <meta property="og:description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. HatsonAI ile RAG mühendisliği.">
+  <meta property="og:description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. MevzuatBot ile RAG mühendisliği.">
   <meta property="og:url" content="https://hatsontech.com/faydali-bilgiler/rag-turkce-hukuk-verisi.html">
   <meta property="og:site_name" content="HatsonTech">
   <meta property="og:locale" content="tr_TR">
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@hatsontech">
   <meta name="twitter:title" content="İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak">
-  <meta name="twitter:description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. HatsonAI ile RAG mühendisliği.">
+  <meta name="twitter:description" content="Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. MevzuatBot ile RAG mühendisliği.">
   <meta name="twitter:image" content="https://hatsontech.com/image/faydali-bilgiler/rag-turkce-hukuk-verisi.jpg">
   <title>İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak | HatsonTech</title>
   <link rel="icon" type="image/png" href="../image/hatsontech-logo.png">
@@ -78,7 +78,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak",
-  "description": "Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. HatsonAI ile RAG mühendisliği.",
+  "description": "Ham LLM'ler işletme verisinde neden yanılır, RAG bunu nasıl çözer: parçalama, embedding, vektör arama, yeniden sıralama ve kaynak gösterimi. MevzuatBot ile RAG mühendisliği.",
   "inLanguage": "tr",
   "datePublished": "2026-06-07",
   "dateModified": "2026-06-07",
@@ -164,7 +164,7 @@
     <img class="article-hero" src="../image/faydali-bilgiler/rag-turkce-hukuk-verisi.jpg" alt="İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak" loading="lazy">
     <div class="article-cat">Mühendislik</div>
     <h1>İşletme Verinizde LLM'leri RAG ile Sağlamlaştırmak</h1>
-    <p class="article-sub">Ham bir dil modeli işletme verisinde neden yanılır, Retrieval-Augmented Generation bunu nasıl çözer ve HatsonAI ile müşterilerimiz için getirme katmanını nasıl kuruyoruz?</p>
+    <p class="article-sub">Ham bir dil modeli işletme verisinde neden yanılır, Retrieval-Augmented Generation bunu nasıl çözer ve MevzuatBot ile müşterilerimiz için getirme katmanını nasıl kuruyoruz?</p>
     <div class="article-meta"><span><i class="far fa-clock"></i> 12 dk okuma</span><div class="article-tags"><span class="article-tag">RAG</span><span class="article-tag">LLM</span><span class="article-tag">Vektör Veritabanı</span><span class="article-tag">NLP</span></div></div>
     <div class="article-body">
 <h2>Neden Ham Bir LLM İşletme Verisinde Yanılır?</h2>
@@ -174,7 +174,7 @@
 <h2>Retrieval-Augmented Generation Nedir?</h2>
 <p>Retrieval-Augmented Generation (RAG), bir dil modelini kendi hafızasıyla baş başa bırakmak yerine, cevap üretmeden önce ona güncel ve doğrulanmış bir kaynak kümesi sunan bir mimaridir. Fikir basit ama güçlüdür: modele 'bildiğini yaz' demek yerine 'işte ilgili belgeler, yalnızca bunlara dayanarak cevapla' demek. Böylece modelin yaratıcılığı dil üretiminde kalır, olgular ise dışarıdan gelir.</p>
 <p>Akış kabaca iki aşamadır. Önce getirme (retrieval) aşamasında kullanıcının sorusu bir arama sistemine gider ve soruyla en alakalı belge parçaları bulunur. Ardından üretim (generation) aşamasında bu parçalar soruyla birlikte modele bağlam olarak verilir; model cevabını yalnızca bu bağlama yaslanarak kurar. Modelin işi bilgiyi hatırlamak değil, önüne konan kanıtı doğru biçimde sentezlemektir.</p>
-<p>Bu yaklaşım işletme verisi için neredeyse kusursuz bir eşleşmedir. Bir politika ya da ürün belgesi değiştiğinde modeli baştan eğitmeniz gerekmez; sadece getirme katmanındaki belgeleri güncellersiniz. Bir cevap her zaman somut bir kaynağa bağlanabilir, çünkü zaten o kaynaktan üretilmiştir. HatsonAI ile müşterilerimiz için kurduğumuz asistanlar da tam bu ilkeyle çalışır: dilin akıcılığı modelden, doğruluğun teminatı ise şirketin kendi bilgi tabanından, ürün dokümanlarından ve kayıtlarından gelir.</p>
+<p>Bu yaklaşım işletme verisi için neredeyse kusursuz bir eşleşmedir. Bir politika ya da ürün belgesi değiştiğinde modeli baştan eğitmeniz gerekmez; sadece getirme katmanındaki belgeleri güncellersiniz. Bir cevap her zaman somut bir kaynağa bağlanabilir, çünkü zaten o kaynaktan üretilmiştir. MevzuatBot ile müşterilerimiz için kurduğumuz asistanlar da tam bu ilkeyle çalışır: dilin akıcılığı modelden, doğruluğun teminatı ise şirketin kendi bilgi tabanından, ürün dokümanlarından ve kayıtlarından gelir.</p>
 <p>Özetle RAG, 'her şeyi bilen ama kaynak gösteremeyen' bir modeli, 'doğru kaynağı bulup ondan konuşan' bir asistana dönüştürür. İşletmede değerli olan ezber değil dayanaktır; RAG da bu dayanağı sisteme geri kazandırır.</p>
 <h2>İşletme Belgelerini Parçalamak: İşin Sessiz Kalbi</h2>
 <p>Bir RAG sisteminin kalitesi, büyük ölçüde getirme katmanına koyduğunuz parçaların kalitesiyle belirlenir. Bir belgeyi hangi boyutta ve hangi sınırlardan böldüğünüz, sistemin ileride doğru cevabı bulup bulamayacağını doğrudan etkiler. Bu yüzden parçalama (chunking) bizim için sıradan bir ön işleme adımı değil, mimarinin en kritik tasarım kararlarından biridir.</p>
@@ -184,7 +184,7 @@
 <p>Parçaları hazırladıktan sonra onları aranabilir hale getirmemiz gerekir. Burada embedding devreye girer: her metin parçasını, anlamını sayısal olarak temsil eden yüksek boyutlu bir vektöre dönüştürürüz. Anlamca yakın iki metin bu uzayda birbirine yakın noktalara düşer. Böylece 'iade koşulları' diye soran bir kullanıcı, metinde tam o kelimeler geçmese bile ilgili politika bölümüne ulaşabilir.</p>
 <p>Bu, geleneksel anahtar kelime aramasına göre temel bir sıçramadır. Klasik arama yalnızca birebir eşleşen kelimeleri bulur; oysa kurumsal dilde aynı kavram onlarca farklı biçimde ifade edilebilir. Vektör araması kelimeleri değil kavramları eşleştirir. Sorgu da aynı embedding modelinden geçer ve sistem, sorgu vektörüne en yakın belge vektörlerini bularak anlamsal olarak en alakalı parçaları getirir.</p>
 <p>Pratikte yalnızca anlamsal arama her zaman yetmez. İş dünyasında bazen belirli bir ürün kodunu ya da belirli bir terimi birebir aramak istersiniz. Bu yüzden hibrit bir yol izleriz: anlamsal vektör aramasını anahtar kelime tabanlı klasik aramayla birleştirir, hem kavramsal yakınlığı hem de tam eşleşmeleri aynı anda yakalarız.</p>
-<p>Tüm bu altyapıyı, HatsonAI ile bulut tabanlı ve ölçeklenebilir bir biçimde kurarız. Embedding üretimi, vektör depolama ve ölçeklenebilir arama, üretim ortamında çok sayıda sorguyu düşük gecikmeyle karşılayacak biçimde yönetilir; çünkü kullanıcı için doğru cevap kadar, hızlı gelen doğru cevap da önemlidir.</p>
+<p>Tüm bu altyapıyı, MevzuatBot ile bulut tabanlı ve ölçeklenebilir bir biçimde kurarız. Embedding üretimi, vektör depolama ve ölçeklenebilir arama, üretim ortamında çok sayıda sorguyu düşük gecikmeyle karşılayacak biçimde yönetilir; çünkü kullanıcı için doğru cevap kadar, hızlı gelen doğru cevap da önemlidir.</p>
 <h2>Yeniden Sıralama: İlk Getirmenin Üzerine İnce Ayar</h2>
 <p>Vektör araması hızlıdır ve geniş bir aday kümesini saniyeler içinde getirir, ama hassasiyeti her zaman kusursuz olmaz. İlk getirme, on binlerce parça arasından örneğin en alakalı yirmi adayı bulmakta iyidir; fakat bu yirmiyi en doğru sıraya dizmekte zayıf kalabilir. Kurumsal soru-cevapta sıralama önemlidir: en alakalı bölümü modele ilk sırada vermek, cevabın kalitesini doğrudan belirler.</p>
 <p>Bu yüzden iki aşamalı bir strateji kullanırız. İlk aşamada vektör araması geniş ama kaba bir aday listesi çıkarır. İkinci aşamada bir yeniden sıralama (re-ranking) modeli, her adayı soruyla birlikte daha derinlemesine tartar ve gerçek alaka düzeyine göre yeniden dizer. Bu model daha pahalıdır, ama yalnızca küçük bir aday kümesine uygulandığı için maliyeti yönetilebilir kalır.</p>
@@ -196,13 +196,13 @@
 <h2>Değerlendirme: Sezgi Değil, Ölçüm</h2>
 <p>Bir RAG sistemini 'iyi görünüyor' diyerek üretime almak kurumsal bir ortamda sorumsuzluk olur. Bu yüzden sistemi sürekli ve ayrıştırılmış biçimde ölçeriz. İki katmanı ayrı ayrı değerlendiririz: getirme katmanı doğru belgeleri buluyor mu, üretim katmanı bu belgeleri sadık biçimde kullanıyor mu? Bir cevap kötüyse, sorunun yanlış belge getirmekten mi yoksa doğru belgeyi yanlış yorumlamaktan mı kaynaklandığını bilmek zorundayız.</p>
 <p>Getirme tarafında, doğru cevapları önceden bilinen soru kümeleri üzerinde, doğru kaynağın getirilen parçalar arasında olup olmadığını ve ne kadar üst sıralarda yer aldığını izleriz. Üretim tarafında ise sadakat (faithfulness) ölçeriz: modelin söylediği her şey gerçekten verilen bağlam tarafından destekleniyor mu, yoksa bağlamın ötesine geçip uyduruyor mu? Sadakat, işletme kullanımı için belki de en kritik metriktir.</p>
-<p>Bu değerlendirme tek seferlik bir sınav değil, sürekli işleyen bir süreçtir. Kullanıcılardan gelen geri bildirimler, hatalı cevap örnekleri ve değişen belgeler test kümelerimizi besler. Bir parçalama stratejisini, bir embedding modelini ya da bir talimatı değiştirdiğimizde, bunun kaliteyi gerçekten artırdığını sezgiyle değil sayılarla doğrularız. HatsonAI ile kurduğumuz sistemlerin güvenilirliği tam da bu disiplinli ölçüm döngüsünün üzerine inşa edilir.</p>
+<p>Bu değerlendirme tek seferlik bir sınav değil, sürekli işleyen bir süreçtir. Kullanıcılardan gelen geri bildirimler, hatalı cevap örnekleri ve değişen belgeler test kümelerimizi besler. Bir parçalama stratejisini, bir embedding modelini ya da bir talimatı değiştirdiğimizde, bunun kaliteyi gerçekten artırdığını sezgiyle değil sayılarla doğrularız. MevzuatBot ile kurduğumuz sistemlerin güvenilirliği tam da bu disiplinli ölçüm döngüsünün üzerine inşa edilir.</p>
 <h2>Sonuç: İşletmede Sağlamlaştırma Lüks Değil, Şarttır</h2>
 <p>Birçok alanda bir dil modelinin ara sıra yanılması tolere edilebilir. İşletmede ise yanlış bir fiyat, geçersiz bir politika ya da uydurma bir prosedür gerçek sonuçlar doğurur. Bu yüzden bizim için RAG, modelin zekâsına eklenen bir süs değil, onu güvenilir kılan asıl çerçevedir. Akıllı bir model ile güvenilir bir kurumsal asistan arasındaki fark, tam olarak bu getirme ve sağlamlaştırma katmanında saklıdır.</p>
-<p>Parçalama, embedding, vektör arama, yeniden sıralama, kaynak gösterimi ve değerlendirme; bunların hiçbiri tek başına sihirli bir çözüm değildir. Ama birlikte ve alana özgü bir titizlikle kurulduklarında, ham bir dil modelini her cümlesini gerçek bir kaynağa yaslayabilen bir sisteme dönüştürürler. HatsonAI ile müşterilerimiz için kurduğumuz RAG asistanlarını tam olarak bu felsefeyle inşa ediyoruz.</p>
+<p>Parçalama, embedding, vektör arama, yeniden sıralama, kaynak gösterimi ve değerlendirme; bunların hiçbiri tek başına sihirli bir çözüm değildir. Ama birlikte ve alana özgü bir titizlikle kurulduklarında, ham bir dil modelini her cümlesini gerçek bir kaynağa yaslayabilen bir sisteme dönüştürürler. MevzuatBot ile müşterilerimiz için kurduğumuz RAG asistanlarını tam olarak bu felsefeyle inşa ediyoruz.</p>
 <p>HatsonTech olarak inancımız net: işletmeler için yapay zeka, kullanıcının kör bir güvenle bağlandığı bir kâhin değil, her iddiasını gösterebilen ve gerektiğinde 'bilmiyorum' diyebilen bir araç olmalıdır. Sağlamlaştırmayı mimarinin merkezine koymak, bu aracı ekibin gerçekten güvenebileceği bir meslektaşa dönüştürmenin tek dürüst yoludur.</p>
     </div>
-    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Ham LLM'ler işletme verisinde halüsinasyon yapar: var olmayan fiyat, tarih veya prosedür uydurabilir ve kaynak gösteremez.</li><li>RAG, modele cevaptan önce güncel ve doğrulanmış belgeler sunarak olguları dış kaynaktan getirir; belgeler değişince yeniden eğitim gerekmez.</li><li>İşletme belgelerini başlık-bölüm-madde yapısına göre parçalamak ve zengin üst veri eklemek, getirme kalitesinin sessiz belirleyicisidir.</li><li>Embedding tabanlı vektör arama kavramları eşleştirir; hibrit arama ve yeniden sıralama isabeti artırır ve gürültüyü modele ulaşmadan eler.</li><li>Kaynak gösterimi ve sağlamlaştırma her iddiayı gerçek bir kaynağa bağlar ve sistemin gerektiğinde 'bilmiyorum' demesini sağlar.</li><li>Getirme ve üretim katmanları ayrı ayrı, sadakat odaklı ölçülür; HatsonAI ile kurduğumuz RAG asistanları bu disiplinli döngü üzerine kuruludur.</li></ul></div>
+    <div class="takeaways"><h3>Öne çıkanlar</h3><ul><li>Ham LLM'ler işletme verisinde halüsinasyon yapar: var olmayan fiyat, tarih veya prosedür uydurabilir ve kaynak gösteremez.</li><li>RAG, modele cevaptan önce güncel ve doğrulanmış belgeler sunarak olguları dış kaynaktan getirir; belgeler değişince yeniden eğitim gerekmez.</li><li>İşletme belgelerini başlık-bölüm-madde yapısına göre parçalamak ve zengin üst veri eklemek, getirme kalitesinin sessiz belirleyicisidir.</li><li>Embedding tabanlı vektör arama kavramları eşleştirir; hibrit arama ve yeniden sıralama isabeti artırır ve gürültüyü modele ulaşmadan eler.</li><li>Kaynak gösterimi ve sağlamlaştırma her iddiayı gerçek bir kaynağa bağlar ve sistemin gerektiğinde 'bilmiyorum' demesini sağlar.</li><li>Getirme ve üretim katmanları ayrı ayrı, sadakat odaklı ölçülür; MevzuatBot ile kurduğumuz RAG asistanları bu disiplinli döngü üzerine kuruludur.</li></ul></div>
     <a href="/faydali-bilgiler/" class="article-back"><i class="fas fa-arrow-left"></i> Tüm yazılar</a>
   </main>
   <footer class="footer" style="padding:2rem 0;">
@@ -210,7 +210,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
       <a href="/">Ana Sayfa</a>
       <a href="/faydali-bilgiler/">Faydalı Bilgiler</a>
-      <a href="/#projects">FlowDesk</a>
+      <a href="/#projects">caseon.ai</a>
       <a href="/privacy-policy.html">Gizlilik</a>
     </div>
     <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">

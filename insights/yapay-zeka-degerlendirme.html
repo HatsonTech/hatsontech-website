@@ -206,7 +206,7 @@
 <p>Real-world testing also has an honesty dimension. A model can be impressive in a demo but slow down under thousands of queries a day, blow up in cost, or make rare but dangerous mistakes. Scale surfaces problems that controlled tests can never catch. This is why the ultimate answer to "is this a good model?" is always given in the field, in the hands of real users.</p>
 <h2>How we evaluate AI answers at HatsonTech</h2>
 <p>When an AI assistant answers questions over a company's own documents, being "pretty good" is not enough. A wrong figure, a citation to an outdated document, or a fact that never existed can seriously mislead the user. This is why, when we build AI-powered products at HatsonTech, we treat evaluation not as an afterthought but as the center of our engineering. A model that scores high on a general leaderboard tells you nothing about how well it handles the specific language of your domain and your documents; only task-focused evaluation can show that.</p>
-<p>For us the most critical metric is faithfulness. Our HatsonAI engine powers RAG assistants: they first retrieve the relevant documents, then ground the answer directly in those sources. Our evaluation process asks exactly this: is every fact and every reference cited in the answer genuinely present in the real sources that were retrieved, or did the model fabricate something? Having citations traceably bound to sources is our strongest defense against hallucination, because the user should be able to check not just the answer but the source the answer rests on.</p>
+<p>For us the most critical metric is faithfulness. Our MevzuatBot engine powers RAG assistants: they first retrieve the relevant documents, then ground the answer directly in those sources. Our evaluation process asks exactly this: is every fact and every reference cited in the answer genuinely present in the real sources that were retrieved, or did the model fabricate something? Having citations traceably bound to sources is our strongest defense against hallucination, because the user should be able to check not just the answer but the source the answer rests on.</p>
 <p>Our evaluation works in layers. We run automated checks over a test set built with domain experts to represent real questions; we use AI-based scoring to run some judgments at scale; but the final quality call is always given by the eyes of domain experts. And most importantly, we continuously monitor the system through real usage, add the hard cases that emerge to our test set, and close the loop.</p>
 <p>The aim here is to turn the promise of an explainer into a concrete discipline: never answer the question "is it good?" with a single shiny number. Instead, measure accuracy, faithfulness, completeness and real-world reliability separately. Because when a model's answers drive real decisions, the only honest way to know it is truly good is to measure it relentlessly and rigorously.</p>
     </div>
@@ -218,7 +218,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
       <a href="/">Home</a>
       <a href="/insights/">Insights</a>
-      <a href="/#projects">FlowDesk</a>
+      <a href="/#projects">caseon.ai</a>
       <a href="/privacy-policy.html">Privacy</a>
     </div>
     <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">

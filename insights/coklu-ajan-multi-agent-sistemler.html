@@ -165,7 +165,7 @@
 <h2>Cost and Pitfalls</h2>
 <p>Multi-agent is not always better. More agents mean more model calls, more cost, and more latency. Coordination between agents brings its own complexity; one agent's error can propagate down the chain. Often a single well-designed agent produces better results than a poorly coordinated crowd of them. The right approach is to see multi-agent not as a 'default' but as a tool reached for when genuinely needed — when the work clearly splits into distinct specialties.</p>
 <h2>A Specialized Workflow Example</h2>
-<p>Consider a knowledge-heavy workflow such as an AI assistant we build for a client on top of HatsonAI: retrieve the relevant documents, apply them to the question at hand, check for conflicts and exceptions, and write a sourced result. This is exactly the kind of flow where a multi-agent or pipeline pattern fits: the retrieval layer supplies the information, the analysis step builds the reasoning, the verification step ties each claim to its source. When reliability matters as much as speed, the 'produce and verify' separation becomes critical. <a href="/insights/rag-vs-fine-tuning.html">RAG</a> and <a href="/insights/model-context-protocol-mcp.html">MCP</a> form the shared infrastructure of these specialized steps.</p>
+<p>Consider a knowledge-heavy workflow such as an AI assistant we build for a client on top of MevzuatBot: retrieve the relevant documents, apply them to the question at hand, check for conflicts and exceptions, and write a sourced result. This is exactly the kind of flow where a multi-agent or pipeline pattern fits: the retrieval layer supplies the information, the analysis step builds the reasoning, the verification step ties each claim to its source. When reliability matters as much as speed, the 'produce and verify' separation becomes critical. <a href="/insights/rag-vs-fine-tuning.html">RAG</a> and <a href="/insights/model-context-protocol-mcp.html">MCP</a> form the shared infrastructure of these specialized steps.</p>
     </div>
     <div class="takeaways"><h3>Key takeaways</h3><ul><li>A multi-agent system consists of several AI agents working together for a shared goal; the work is split and handed to specialized agents.</li><li>Advantages: specialization, parallelism, cross-checking (reducing errors/hallucination), and scalability.</li><li>Common patterns: orchestrator-worker, pipeline, and debate/critique; the right pattern depends on the structure of the work.</li><li>Multi-agent is not always better: it adds cost, latency, and coordination complexity; often a single good agent is enough.</li><li>A knowledge-heavy workflow naturally splits into steps (retrieve → analyze → verify); RAG and MCP are the infrastructure of these specialized steps.</li></ul></div>
     <a href="/insights/" class="article-back"><i class="fas fa-arrow-left"></i> All articles</a>
@@ -175,7 +175,7 @@
     <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">
       <a href="/">Home</a>
       <a href="/insights/">Insights</a>
-      <a href="/#projects">FlowDesk</a>
+      <a href="/#projects">caseon.ai</a>
       <a href="/privacy-policy.html">Privacy</a>
     </div>
     <div class="footer-social" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1rem;">

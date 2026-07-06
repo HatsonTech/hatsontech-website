@@ -523,7 +523,7 @@
     // ==========================================================================
     
     console.log('%c🎩 HatsonTech ', 'background: #1E4FA0; color: white; font-size: 20px; padding: 10px;');
-    console.log('%cSoftware Solutions & Innovation — flagship: FlowDesk', 'color: #2b2f36; font-size: 14px;');
+    console.log('%cSoftware Solutions & Innovation — flagship: caseon.ai', 'color: #2b2f36; font-size: 14px;');
     console.log('%cWebsite built with ❤️ by the HatsonTech Team', 'color: #6b7280; font-size: 12px;');
     console.log('%cInterested in joining our team? Check out our careers page!', 'color: #E01B24; font-size: 12px; font-weight: bold;');
 

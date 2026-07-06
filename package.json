@@ -1,7 +1,7 @@
 {
   "name": "hatsontech-website",
   "version": "1.0.0",
-  "description": "HatsonTech — software solutions & innovation company website (flagship product: FlowDesk). Bilingual (EN/TR) static site.",
+  "description": "HatsonTech — software solutions & innovation company website (flagship product: caseon.ai). Bilingual (EN/TR) static site.",
   "main": "index.html",
   "scripts": {
     "start": "npx http-server -p 8000 -o",
@@ -18,7 +18,8 @@
     "mobile-app-development",
     "cloud",
     "ai",
-    "flowdesk",
+    "caseon.ai",
+    "legal-tech",
     "bilingual",
     "responsive"
   ],

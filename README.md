@@ -11,7 +11,7 @@ A modern, fully bilingual (English / Turkish), responsive, static website for **
 
 ## 🎩 About HatsonTech
 
-HatsonTech is an Ankara-based software solutions and innovation company operating at ODTÜ Teknokent. We design and build custom software, web platforms, mobile apps, cloud systems, and AI-powered products for businesses — and we build our own products, led by **FlowDesk**, an all-in-one business management platform.
+HatsonTech is an Ankara-based software solutions and innovation company operating at ODTÜ Teknokent. We design and build custom software, web platforms, mobile apps, cloud systems, and AI-powered products for businesses — and we build our own products, led by **caseon.ai**, an AI-powered legal research platform.
 
 ### Company Information
 - **Location:** Mustafa Kemal Mahallesi Bilişim İnovasyon Merkezi ODTÜ Teknokent, 06510 Çankaya, Ankara
@@ -28,9 +28,10 @@ HatsonTech is an Ankara-based software solutions and innovation company operatin
 
 ## 🚀 Products
 
-- **FlowDesk** — *Flagship product.* An all-in-one business management platform: CRM, project & task management, invoicing, and team collaboration in a single cloud-native app.
-- **HatsonAI** — *AI engine.* Document understanding, retrieval-augmented (RAG) assistants that cite their sources, and workflow automation that powers the smart features across our products and client projects.
-- **StorePilot** — *Commerce platform.* An e-commerce and retail management platform: modern storefront, inventory and order management, and sales analytics.
+- **caseon.ai** — *Flagship product.* An AI-powered legal platform: semantic case-law search, document analysis, smart templates, and an intelligent legal assistant grounded in real legal sources, built on LLMs + RAG. ([caseon.ai](https://caseon.ai))
+- **MevzuatBot** — *AI engine.* Our own large language model for Turkish legal texts — RAG, an MCP agent system, and deep semantic understanding. It is the engine that powers caseon.ai.
+- **DiligenceAI** — *Contract intelligence.* AI-powered due diligence for contracts, with a focus on international, cross-border agreements: clause review, obligation and risk extraction, and multi-jurisdiction consistency checks.
+- **SYDhub** — *Public-sector platform.* A large-scale platform for industrial green transformation — environmental data, resources, and a knowledge-sharing ecosystem for academia, industry, and the public sector.
 
 ## 🛠️ What We Build
 
